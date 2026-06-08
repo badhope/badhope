@@ -287,24 +287,24 @@ def _card(r: dict) -> str:
     topic_html = ""
     if topics:
         pills = " ".join(
-            f"<span style='font-size:10px;color:#a5b4fc;background:rgba(49,46,129,0.55);"
-            f"padding:2px 7px;border-radius:10px;margin-right:3px'>{t}</span>"
+            f"<span style='font-size:12px;color:#a5b4fc;background:rgba(49,46,129,0.55);"
+            f"padding:2px 8px;border-radius:10px;margin-right:4px'>{t}</span>"
             for t in topics[:3]
         )
-        topic_html = f"<div style='margin-top:8px;line-height:1.6'>{pills}</div>"
+        topic_html = f"<div style='margin-top:10px;line-height:1.8'>{pills}</div>"
 
     style = f"{_CARD_BG}{_CARD_BORDER}{_CARD_RADIUS}{_CARD_PAD}{_CARD_SHADOW}"
     return (
         f'<td valign="top" width="33.3%" style="padding:6px">'
-        f'<div style="{style}height:175px">'
+        f'<div style="{style}height:200px">'
         f'<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">'
-        f'<a href="{url}" style="color:#c4b5fd;font-weight:600;font-size:15px;'
+        f'<a href="{url}" style="color:#c4b5fd;font-weight:600;font-size:16px;'
         f'text-decoration:none;letter-spacing:0.2px">{name}</a>'
-        f'<span style="color:#fbbf24;font-size:12px;white-space:nowrap">⭐ {stars}</span>'
+        f'<span style="color:#fbbf24;font-size:14px;white-space:nowrap">⭐ {stars}</span>'
         f'</div>'
-        f'<div style="margin-top:4px;font-size:11px;color:#a5b4fc;letter-spacing:0.4px">'
+        f'<div style="margin-top:5px;font-size:13px;color:#a5b4fc;letter-spacing:0.4px">'
         f'{emoji} {lang_}  ·  ⑂ {forks}</div>'
-        f'<div style="margin-top:10px;font-size:12px;color:#d1d5ff;line-height:1.5">'
+        f'<div style="margin-top:10px;font-size:14px;color:#d1d5ff;line-height:1.55">'
         f'{desc}</div>'
         f'{topic_html}'
         f'</div>'
@@ -353,10 +353,10 @@ def render_repos_longtail(repos: list[dict], skip: int = 9) -> str:
         pills.append(
             f'<a href="{url}" style="color:#c4b5fd;text-decoration:none;'
             f'background:rgba(49,46,129,0.30);border:1px solid rgba(167,139,250,0.18);'
-            f'padding:3px 9px;border-radius:12px;font-size:11px;'
-            f'display:inline-block;margin:2px 4px 2px 0;letter-spacing:0">'
+            f'padding:4px 11px;border-radius:12px;font-size:13px;'
+            f'display:inline-block;margin:3px 5px 3px 0;letter-spacing:0;line-height:1.6">'
             f'{name}&nbsp;<span style="color:#fbbf24">⭐ {stars}</span>'
-            f'<span style="color:#818cf8;margin-left:4px;font-size:10px">· {emoji} {lang_}</span>'
+            f'<span style="color:#818cf8;margin-left:5px;font-size:12px">· {emoji} {lang_}</span>'
             f'</a>'
         )
     inner = "".join(pills)
@@ -380,17 +380,17 @@ def render_lang_bars(repos: list[dict]) -> str:
     total = sum(counts.values())
     rows  = sorted(counts.items(), key=lambda x: -x[1])
     max_w = 22  # bar width in cells
-    out: list[str] = ['<div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.7">']
+    out: list[str] = ['<div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.85">']
     for name, n in rows:
         bar_len = max(1, round(n / rows[0][1] * max_w))
         bar  = "█" * bar_len
         pct  = round(n / total * 100)
         emoji = language_emoji(name)
         out.append(
-            f'<div style="display:flex;align-items:center;gap:10px;margin:2px 0">'
+            f'<div style="display:flex;align-items:center;gap:12px;margin:3px 0">'
             f'<span style="display:inline-block;width:120px;color:#a5b4fc">{emoji} {name}</span>'
             f'<span style="color:#c4b5fd;letter-spacing:-1px">{bar}</span>'
-            f'<span style="color:#a5b4fc;font-size:11px">{n} · {pct}%</span>'
+            f'<span style="color:#a5b4fc;font-size:13px">{n} · {pct}%</span>'
             f'</div>'
         )
     out.append("</div>")
@@ -411,11 +411,11 @@ def render_topic_cloud(repos: list[dict], top: int = 30) -> str:
     pills: list[str] = []
     for tag, n in items:
         # size scales with frequency, capped
-        size = 11 + min(4, n - 1)   # 11px..15px
+        size = 13 + min(4, n - 1)   # 13px..17px
         pills.append(
             f'<span style="display:inline-block;font-size:{size}px;'
             f'color:#c4b5fd;background:rgba(49,46,129,0.45);'
-            f'padding:3px 10px;border-radius:12px;margin:3px 4px 3px 0;'
+            f'padding:4px 11px;border-radius:12px;margin:4px 5px 4px 0;'
             f'border:1px solid rgba(167,139,250,0.18)">'
             f'{tag}<sub style="opacity:0.55;margin-left:4px">×{n}</sub></span>'
         )
