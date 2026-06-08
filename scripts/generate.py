@@ -402,17 +402,40 @@ def render_lang_bars(repos: list[dict]) -> str:
     return "\n".join(out)
 
 
-def render_topic_cloud(repos: list[dict], top: int = 30) -> str:
-    """Topic pill cloud — frequency-weighted, deduplicated."""
+def render_topic_cloud(repos: list[dict], max_topics: int = 24) -> str:
+    """Topic pill cloud — frequency-weighted, deduplicated, generic topics filtered.
+
+    Skips tags that are too generic for a personal profile card (e.g.
+    "open-source", "python", "docker"). The result is meant to mirror
+    what someone would write in the GitHub profile "About" sidebar —
+    terse and project-specific.
+    """
     if not repos:
         return ""
+    skip = {
+        # already covered by the language bars
+        "python", "typescript", "javascript", "rust", "go", "java", "c++",
+        "c", "c#", "ruby", "php", "swift", "kotlin", "scala",
+        "nodejs", "node", "node-js", "npm",
+        # too generic for a personal profile
+        "open-source", "opensource", "mit", "license",
+        "github", "github-pages", "static-site", "static-site-generator",
+        "docker", "docker-compose",
+        "i18n", "internationalization", "multilingual",
+        "tailwindcss", "tailwind", "css",
+        # describe the project, not the user
+        "self-hosted", "self-hostable",
+    }
     counts: dict[str, int] = {}
     for r in repos:
         for t in (r.get("topics") or []):
+            t = t.lower()
+            if t in skip:
+                continue
             counts[t] = counts.get(t, 0) + 1
     if not counts:
         return ""
-    items = sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:top]
+    items = sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:max_topics]
     pills: list[str] = []
     for tag, n in items:
         # size scales with frequency, capped
@@ -527,7 +550,7 @@ def main() -> int:
             "REPOS_GRID":   render_repos_grid(repos, limit=9),
             "REPOS_TAIL":   render_repos_longtail(repos, skip=9),
             "LANG_BARS":    render_lang_bars(repos),
-            "TOPIC_CLOUD":  render_topic_cloud(repos, top=30),
+            "TOPIC_CLOUD":  render_topic_cloud(repos, max_topics=30),
             "REPOS":        render_repos(repos, lang="en"),
             "CSDN":         render_csdn(csdn_items, lang="en"),
             "QUOTE":        render_quote(quote),
@@ -547,7 +570,7 @@ def main() -> int:
             "REPOS_GRID":   render_repos_grid(repos, limit=9),
             "REPOS_TAIL":   render_repos_longtail(repos, skip=9),
             "LANG_BARS":    render_lang_bars(repos),
-            "TOPIC_CLOUD":  render_topic_cloud(repos, top=30),
+            "TOPIC_CLOUD":  render_topic_cloud(repos, max_topics=30),
             "REPOS":        render_repos(repos, lang="zh"),
             "CSDN":         render_csdn(csdn_items, lang="zh"),
             "QUOTE":        render_quote(quote),
