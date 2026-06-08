@@ -50,6 +50,9 @@ QUOTE_API     = os.environ.get("QUOTE_API", QUOTE_APIS[0][0])
 
 FETCH_TIMEOUT = 15  # seconds
 
+# Repositories to always exclude (e.g. the profile README repo itself).
+EXCLUDED_REPOS: set[str] = set()
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Tiny HTTP helper
 # ──────────────────────────────────────────────────────────────────────────────
@@ -89,7 +92,13 @@ def fetch_all_repos(user: str) -> list[dict]:
         page += 1
         if page > 8:    # safety cap = 800 repos
             break
-    return [r for r in repos if not r.get("fork") and not r.get("archived")]
+    # also exclude the profile repo (username == repo name)
+    EXCLUDED_REPOS.add(GH_USER)
+    return [
+        r for r in repos
+        if not r.get("fork") and not r.get("archived")
+        and r.get("name") not in EXCLUDED_REPOS
+    ]
 
 
 def language_emoji(lang: str | None) -> str:
@@ -211,8 +220,7 @@ def render_featured(repos: list[dict], n: int = 6, lang: str = "en") -> str:
         emoji = language_emoji(lang_)
         if not desc:
             desc = "—"
-        if len(desc) > 110:
-            desc = desc[:107] + "…"
+        desc = _truncate(desc, 110)
         lines.append(
             f"### [{name}]({url})  {emoji} {lang_}  ·  ⭐ {stars}\n{desc}"
         )
@@ -225,6 +233,40 @@ _CARD_BORDER = "border:1px solid rgba(167,139,250,0.30);"
 _CARD_RADIUS = "border-radius:10px;"
 _CARD_PAD    = "padding:16px 18px;"
 _CARD_SHADOW = "box-shadow:0 1px 0 rgba(167,139,250,0.05) inset,0 0 24px rgba(30,27,75,0.25);"
+
+
+def _truncate(text: str, max_len: int) -> str:
+    """Truncate at a word boundary that doesn't leave a broken word.
+
+    Specifically: never end with a partial hyphenated word like "single-"
+    that looks like an LLM edit. We try to chop the partial word too.
+    """
+    if len(text) <= max_len:
+        return text
+    cut = text[:max_len]
+    sp  = cut.rfind(" ")
+    if sp <= max_len // 2:
+        return cut.rstrip() + "…"
+    result = cut[:sp]
+    # If the result has a trailing partial word ending in "-" (e.g. "single-"),
+    # chop that word off too.
+    while True:
+        sp = result.rfind(" ")
+        if sp <= 0:
+            break
+        # the last "word" is result[sp+1:]
+        if result[sp+1:].endswith(("-", "–", "—")):
+            result = result[:sp]
+            continue
+        # Also: if the second-to-last word ends with "-" and the last is
+        # a connective like "and/or/to", the partial word is dangling.
+        prev_sp = result.rfind(" ", 0, sp)
+        if prev_sp >= 0 and result[prev_sp+1:sp].endswith(("-", "–", "—")):
+            if result[sp+1:].lower() in ("and", "or", "to", "of", "in", "a", "an", "the"):
+                result = result[:prev_sp]
+                continue
+        break
+    return result.rstrip(" -–—·•") + "…"
 
 
 def _card(r: dict) -> str:
@@ -240,8 +282,7 @@ def _card(r: dict) -> str:
 
     if not desc:
         desc = "<i style='opacity:0.5'>no description</i>"
-    if len(desc) > 95:
-        desc = desc[:92] + "…"
+    desc = _truncate(desc, 95)
 
     topic_html = ""
     if topics:
@@ -295,27 +336,34 @@ def render_repos_grid(repos: list[dict], limit: int = 9) -> str:
 
 
 def render_repos_longtail(repos: list[dict], skip: int = 9) -> str:
-    """Compact one-line-per-repo list for repos beyond the grid."""
+    """Compact pill cloud for repos beyond the grid (flex-wrap so it reflows)."""
     if not repos:
         return ""
     tail = sorted(repos, key=lambda x: (-(x.get("stargazers_count") or 0),
                                          x.get("name", "").lower()))[skip:]
     if not tail:
         return ""
-    lines: list[str] = []
+    pills: list[str] = []
     for r in tail:
         name  = r.get("name", "")
         url   = r.get("html_url", "#")
         stars = r.get("stargazers_count", 0) or 0
         lang_ = r.get("language") or "—"
         emoji = language_emoji(lang_)
-        # ultra-compact: just name + lang + ⭐, no description
-        lines.append(
-            f"[`{name}`]({url})&nbsp;{emoji} {lang_} · ⭐ {stars}  ·  "
+        pills.append(
+            f'<a href="{url}" style="color:#c4b5fd;text-decoration:none;'
+            f'background:rgba(49,46,129,0.30);border:1px solid rgba(167,139,250,0.18);'
+            f'padding:3px 9px;border-radius:12px;font-size:11px;'
+            f'display:inline-block;margin:2px 4px 2px 0;letter-spacing:0">'
+            f'{name}&nbsp;<span style="color:#fbbf24">⭐ {stars}</span>'
+            f'<span style="color:#818cf8;margin-left:4px;font-size:10px">· {emoji} {lang_}</span>'
+            f'</a>'
         )
-    # wrap in a single flowing paragraph (strip trailing separator)
-    body = "".join(lines).rstrip(" ·  ")
-    return f"<sub>{body}</sub>"
+    inner = "".join(pills)
+    return (
+        '<div style="display:flex;flex-wrap:wrap;gap:0;line-height:2;'
+        'margin:4px 0">' + inner + '</div>'
+    )
 
 
 def render_lang_bars(repos: list[dict]) -> str:
@@ -407,8 +455,19 @@ def render_summary(repos: list[dict], user_meta: dict | None) -> str:
         lg = r.get("language")
         if lg:
             lang_count[lg] = lang_count.get(lg, 0) + 1
-    top = sorted(lang_count.items(), key=lambda x: -x[1])[:3]
-    top_str = ", ".join(f"{n} ({c})" for n, c in top) if top else "—"
+    # Only languages with >= 2 repos are worth showing as "top" —
+    # showing single-repo languages as "top" looks misleading.
+    significant = sorted(
+        ((n, c) for n, c in lang_count.items() if c >= 2),
+        key=lambda x: -x[1],
+    )[:3]
+    if len(significant) < len(lang_count):
+        # 4+ languages total: mention there's more.
+        more = len(lang_count) - len(significant)
+        top_str = ", ".join(f"{n} ({c})" for n, c in significant)
+        top_str += f" + {more} more" if significant else f"+ {more} more"
+    else:
+        top_str = ", ".join(f"{n} ({c})" for n, c in significant) or "—"
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     return (f"_As of {today} UTC — {total} public repos · "
             f"{stars} total ⭐ · top languages: {top_str}._")

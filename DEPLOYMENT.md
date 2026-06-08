@@ -35,7 +35,7 @@ The currently populated `AUTO` keys:
 | `SUMMARY`          | "As of YYYY-MM-DD UTC — N public repos · M total ⭐ …" line  |
 | `FEATURED`         | Top 6 repos by ⭐, compact list                              |
 | `REPOS_GRID`       | Top 9 repos by ⭐, 3×3 card grid (HTML)                     |
-| `REPOS_TAIL`       | Repos ranked 10 and below, single flowing paragraph         |
+| `REPOS_TAIL`       | Repos ranked 10 and below, flex-wrap pill cloud (reflows on mobile) |
 | `LANG_BARS`        | Horizontal bar chart of language share                      |
 | `TOPIC_CLOUD`      | Frequency-weighted topic pills                              |
 | `CSDN`             | Latest 5 CSDN articles (date + title + link)                |
