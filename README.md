@@ -40,7 +40,7 @@
 </p>
 
 <p align="center" style="font-size:15px;color:#a5b4fc;margin:14px 0 0">
-  <sub>Shenzhen · this repo is the engine behind the page you're reading</sub>
+  <sub>Shenzhen · this page is the engine behind what you're reading</sub>
 </p>
 
 <br/>
@@ -339,9 +339,10 @@ Fetched once a day. Don't read it twice — that defeats the point.
 <br/>
 
 <ul style="font-size:17px;line-height:2.0;list-style:none;padding-left:0;max-width:780px">
-  <li>📝 <strong>Issue</strong> — the fastest lane. Open one in <a href="https://github.com/badhope/badhope/issues">this repo</a> or any other repo of mine; I read every one.</li>
-  <li>📚 <strong>CSDN</strong> — for long thoughts. <a href="https://blog.csdn.net/weixin_56622231">blog.csdn.net/weixin_56622231</a></li>
-  <li>☕ <strong>In person</strong> — Shenzhen, by the harbour, with a coffee.</li>
+  <li>📝 <strong>Issue</strong> — the fastest lane. open one anywhere; I read every one of them.</li>
+  <li>📚 <strong>CSDN</strong> — for long thoughts. <https://blog.csdn.net/weixin_56622231></li>
+  <li>📧 <strong>Email</strong> — open an issue and I'll reply privately</li>
+  <li>☕ <strong>In person</strong> — Shenzhen, by the harbour, with a coffee</li>
 </ul>
 
 <sub>This README is partly generated. Static prose is mine. Repo list, CSDN feed, language bars, topic cloud, and the daily quote are refreshed by <code>python scripts/generate.py</code> (see <a href="./DEPLOYMENT.md">DEPLOYMENT.md</a>). The Taiji spins at one revolution per minute. Everything else is on a longer timescale.</sub>

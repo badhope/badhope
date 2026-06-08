@@ -1,7 +1,8 @@
 # Deployment & Operations
 
 This is the README behind [github.com/badhope](https://github.com/badhope).
-Everything in this document is hand-written, **no bot runs on its own.**
+The static prose in this document is hand-written, **and no bot pushes
+to `main` directly** — a daily cron opens a PR, you review and merge.
 
 ---
 
@@ -19,6 +20,7 @@ Everything in this document is hand-written, **no bot runs on its own.**
 ├── scripts/
 │   └── generate.py         # Manual refresh: repos, CSDN, daily quote, stats
 └── .github/workflows/
+    ├── refresh.yml         # Daily 06:13 UTC cron → opens an auto/refresh PR
     └── validate.yml        # PR-only validator (no auto-run, no auto-merge)
 ```
 

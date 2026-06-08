@@ -36,7 +36,7 @@
 </p>
 
 <p align="center" style="font-size:15px;color:#a5b4fc;margin:14px 0 0">
-  <sub>深圳 · 你正在读的这个页面背后的引擎，就是这个仓库</sub>
+<sub>深圳 · 你正在读的页面背后就是它本身</sub>
 </p>
 
 <br/>
