@@ -40,7 +40,7 @@
 </p>
 
 <p align="center" style="font-size:15px;color:#a5b4fc;margin:14px 0 0">
-  <sub>Shenzhen · <a href="https://badhope.github.io/github.io/">badhope.github.io</a></sub>
+  <sub>Shenzhen · this repo is the engine behind the page you're reading</sub>
 </p>
 
 <br/>
@@ -50,6 +50,97 @@
 
 <br/>
 
+
+<h2 style="font-size:32px;font-weight:700;letter-spacing:2px;border-bottom:1px solid rgba(167,139,250,0.30);padding-bottom:10px;margin:18px 0 18px">🛰️ About this repo</h2>
+
+<p style="font-size:17px;line-height:1.8;color:#d1d5ff;max-width:820px;margin:0 0 6px">
+This repository is the engine behind the page you are reading. Because GitHub renders a
+<code>username/username</code> repo as your profile, everything below is generated from
+<strong>live data</strong> every day, by a small Python script and a GitHub Actions cron.
+Nothing is hand-edited after each refresh — only the surrounding prose.
+</p>
+
+<br/>
+
+<h3 style="font-size:20px;font-weight:600;letter-spacing:0.8px;color:#c4b5fd;margin:18px 0 10px">How it works</h3>
+
+<ol style="font-size:16px;line-height:1.85;color:#d1d5ff;max-width:820px;padding-left:22px">
+  <li><code>.github/workflows/refresh.yml</code> runs on a daily cron and on demand.</li>
+  <li>It checks out the repo, runs <code>python scripts/generate.py</code>, and opens a PR
+      titled <em>Daily profile refresh — YYYY-MM-DD</em> on branch <code>auto/refresh</code>.</li>
+  <li><code>scripts/generate.py</code> fetches:
+    <ul style="margin:6px 0 6px 0;padding-left:22px">
+      <li>your public repos from the <strong>GitHub REST API</strong> (sorted by ⭐)</li>
+      <li>your latest articles from the <strong>CSDN RSS</strong> feed</li>
+      <li>one quote from <strong>Quotable</strong> (falls back to ZenQuotes)</li>
+    </ul>
+  </li>
+  <li>The script rewrites the parts of <code>README.md</code> and <code>README.zh-CN.md</code>
+      between <code>&lt;!-- AUTO:KEY:START --&gt; ... &lt;!-- AUTO:KEY:END --&gt;</code>
+      markers, then opens the PR. You review and merge — the bot never touches <code>main</code>
+      directly.</li>
+  <li><code>.github/workflows/validate.yml</code> re-runs the markers / assets / script
+      syntax check on every PR and push, so a broken refresh is caught before merge.</li>
+</ol>
+
+<br/>
+
+<h3 style="font-size:20px;font-weight:600;letter-spacing:0.8px;color:#c4b5fd;margin:18px 0 10px">Run it locally</h3>
+
+<p style="font-size:16px;line-height:1.75;color:#d1d5ff;max-width:820px;margin:0 0 10px">
+Stdlib only — no <code>pip install</code> required.
+</p>
+
+```bash
+git clone https://github.com/badhope/badhope.git
+cd badhope
+python scripts/generate.py
+# → rewrites README.md and README.zh-CN.md in place
+```
+
+<p style="font-size:15px;line-height:1.75;color:#a5b4fc;max-width:820px;margin:10px 0 0">
+Override any of <code>GH_USER</code>, <code>CSDN_USER</code>, <code>QUOTE_API</code> via env
+vars; set <code>GITHUB_TOKEN</code> to lift the 60-req/hr anonymous rate limit on
+<code>api.github.com</code>. See <a href="./DEPLOYMENT.md">DEPLOYMENT.md</a> for the full
+operations manual (cron cadence, design tokens, troubleshooting).
+</p>
+
+<br/>
+
+<h3 style="font-size:20px;font-weight:600;letter-spacing:0.8px;color:#c4b5fd;margin:18px 0 10px">Repo layout</h3>
+
+```
+.
+├── README.md               # English (default — GitHub renders this on the profile)
+├── README.zh-CN.md         # Chinese mirror
+├── DEPLOYMENT.md           # Ops manual: cron, design tokens, troubleshooting
+├── assets/
+│   ├── taiji.svg           # Slowly rotating Tai Chi
+│   ├── starry-banner.svg   # Top banner with the Big Dipper
+│   └── starry-band.svg     # Mid / bottom starry dividers
+├── scripts/
+│   └── generate.py         # Stdlib-only regenerator (AUTO markers)
+└── .github/workflows/
+    ├── refresh.yml         # Daily PR with regenerated data
+    └── validate.yml        # PR-only sanity checks
+```
+
+<br/>
+
+<h3 style="font-size:20px;font-weight:600;letter-spacing:0.8px;color:#c4b5fd;margin:18px 0 10px">Reuse it on your own profile</h3>
+
+<ol style="font-size:16px;line-height:1.85;color:#d1d5ff;max-width:820px;padding-left:22px">
+  <li>Fork this repo into <code>&lt;your-username&gt;/&lt;your-username&gt;</code>.</li>
+  <li>Edit <code>scripts/generate.py</code> &rarr; the <code>Config</code> block at the top
+      (<code>GH_USER</code>, <code>CSDN_USER</code>, <code>QUOTE_APIS</code>).</li>
+  <li>Replace the prose in <code>README.md</code> / <code>README.zh-CN.md</code>; keep the
+      <code>AUTO:*</code> markers where you want auto-filled content.</li>
+  <li>Push. The daily PR flow and the validator run unchanged.</li>
+</ol>
+
+<br/>
+
+---
 
 <h2 style="font-size:32px;font-weight:700;letter-spacing:2px;border-bottom:1px solid rgba(167,139,250,0.30);padding-bottom:10px;margin:18px 0 18px">📜 A letter from badhope</h2>
 
@@ -214,9 +305,9 @@ Fetched once a day. Don't read it twice — that defeats the point.
 </p>
 
 <!-- AUTO:QUOTE:START -->
-> *"The only way to do great work is to love what you do."*
+> *"To be heroic is to be courageous enough to die for something; to be inspirational is to be crazy enough to live a little."*
 > 
-> — **Steve Jobs**
+> — **Criss Jami**
 <!-- AUTO:QUOTE:END -->
 
 ---
@@ -248,10 +339,9 @@ Fetched once a day. Don't read it twice — that defeats the point.
 <br/>
 
 <ul style="font-size:17px;line-height:2.0;list-style:none;padding-left:0;max-width:780px">
-  <li>📝 <strong>Issue</strong> — the fastest lane. open one anywhere; I read every one of them.</li>
-  <li>📚 <strong>CSDN</strong> — for long thoughts. <https://blog.csdn.net/weixin_56622231></li>
-  <li>📧 <strong>Email</strong> — see the pinned gist on my profile</li>
-  <li>☕ <strong>In person</strong> — Shenzhen, by the harbour, with a coffee</li>
+  <li>📝 <strong>Issue</strong> — the fastest lane. Open one in <a href="https://github.com/badhope/badhope/issues">this repo</a> or any other repo of mine; I read every one.</li>
+  <li>📚 <strong>CSDN</strong> — for long thoughts. <a href="https://blog.csdn.net/weixin_56622231">blog.csdn.net/weixin_56622231</a></li>
+  <li>☕ <strong>In person</strong> — Shenzhen, by the harbour, with a coffee.</li>
 </ul>
 
-<sub>This README is partly generated. Static text is mine. Repo list, CSDN feed, and the daily quote are refreshed by `python scripts/generate.py` (see [DEPLOYMENT.md](./DEPLOYMENT.md)). The Taiji spins at one revolution per minute. Everything else is on a longer timescale.</sub>
+<sub>This README is partly generated. Static prose is mine. Repo list, CSDN feed, language bars, topic cloud, and the daily quote are refreshed by <code>python scripts/generate.py</code> (see <a href="./DEPLOYMENT.md">DEPLOYMENT.md</a>). The Taiji spins at one revolution per minute. Everything else is on a longer timescale.</sub>

@@ -36,7 +36,7 @@
 </p>
 
 <p align="center" style="font-size:15px;color:#a5b4fc;margin:14px 0 0">
-  <sub>深圳 · <a href="https://badhope.github.io/github.io/">badhope.github.io</a></sub>
+  <sub>深圳 · 你正在读的这个页面背后的引擎，就是这个仓库</sub>
 </p>
 
 <br/>
@@ -45,6 +45,97 @@
 ---
 
 <br/>
+
+<h2 style="font-size:32px;font-weight:700;letter-spacing:2px;border-bottom:1px solid rgba(167,139,250,0.30);padding-bottom:10px;margin:18px 0 18px">🛰️ 关于这个仓库</h2>
+
+<p style="font-size:17px;line-height:1.8;color:#d1d5ff;max-width:820px;margin:0 0 6px">
+你正在读的这个页面，背后就是<strong>这个仓库</strong>本身。GitHub 会把
+<code>username/username</code> 仓库的 <code>README.md</code> 当作个人主页渲染。
+下面所有的「实时数据」都来自一段很小的 Python 脚本和一个每天跑一次的 GitHub
+Actions 定时任务。除了这段说明文字，其它部分都是机器写的。
+</p>
+
+<br/>
+
+<h3 style="font-size:20px;font-weight:600;letter-spacing:0.8px;color:#c4b5fd;margin:18px 0 10px">它怎么工作</h3>
+
+<ol style="font-size:16px;line-height:1.85;color:#d1d5ff;max-width:820px;padding-left:22px">
+  <li><code>.github/workflows/refresh.yml</code> 按 cron 每天跑一次，也可以手动触发。</li>
+  <li>它 checkout 本仓库、跑 <code>python scripts/generate.py</code>，把变更开成
+      PR（标题形如 <em>Daily profile refresh — YYYY-MM-DD</em>，分支 <code>auto/refresh</code>）。</li>
+  <li><code>scripts/generate.py</code> 同时拉三处数据：
+    <ul style="margin:6px 0 6px 0;padding-left:22px">
+      <li>你的公开仓库列表（<strong>GitHub REST API</strong>，按 ⭐ 排序）</li>
+      <li>你的最新文章（<strong>CSDN RSS</strong>）</li>
+      <li>每日一句（<strong>Quotable</strong>，挂了自动降级到 ZenQuotes）</li>
+    </ul>
+  </li>
+  <li>脚本把 <code>README.md</code> 和 <code>README.zh-CN.md</code> 里夹在
+      <code>&lt;!-- AUTO:KEY:START --&gt; ... &lt;!-- AUTO:KEY:END --&gt;</code>
+      之间的内容整段重写，然后开 PR 让你审核并合并。机器人<strong>不会</strong>直接
+      改 <code>main</code>。</li>
+  <li><code>.github/workflows/validate.yml</code> 在每次 PR / push 上重新跑一遍
+      标记符、资源文件、脚本语法的检查，刷新出错时先在这里被抓出来。</li>
+</ol>
+
+<br/>
+
+<h3 style="font-size:20px;font-weight:600;letter-spacing:0.8px;color:#c4b5fd;margin:18px 0 10px">本地运行</h3>
+
+<p style="font-size:16px;line-height:1.75;color:#d1d5ff;max-width:820px;margin:0 0 10px">
+只用标准库，<strong>不需要 <code>pip install</code></strong>。
+</p>
+
+```bash
+git clone https://github.com/badhope/badhope.git
+cd badhope
+python scripts/generate.py
+# → 就地重写 README.md 和 README.zh-CN.md
+```
+
+<p style="font-size:15px;line-height:1.75;color:#a5b4fc;max-width:820px;margin:10px 0 0">
+可以通过环境变量覆盖 <code>GH_USER</code>、<code>CSDN_USER</code>、<code>QUOTE_API</code>；
+想避开 GitHub 匿名 API 的 60 次/小时限制，就设置 <code>GITHUB_TOKEN</code>。
+完整运维手册（cron 节奏、设计 token、故障排查）见
+<a href="./DEPLOYMENT.md">DEPLOYMENT.md</a>。
+</p>
+
+<br/>
+
+<h3 style="font-size:20px;font-weight:600;letter-spacing:0.8px;color:#c4b5fd;margin:18px 0 10px">目录结构</h3>
+
+```
+.
+├── README.md               # 英文（默认 — GitHub 把它渲染到个人主页）
+├── README.zh-CN.md         # 中文镜像
+├── DEPLOYMENT.md           # 运维手册：cron、设计 token、故障排查
+├── assets/
+│   ├── taiji.svg           # 缓慢旋转的太极
+│   ├── starry-banner.svg   # 顶部 banner，含北斗七星
+│   └── starry-band.svg     # 中部 / 底部的星带分隔
+├── scripts/
+│   └── generate.py         # 仅依赖标准库的 AUTO 标记重写器
+└── .github/workflows/
+    ├── refresh.yml         # 每天 PR，刷新数据
+    └── validate.yml        # 仅在 PR 上跑的健全性检查
+```
+
+<br/>
+
+<h3 style="font-size:20px;font-weight:600;letter-spacing:0.8px;color:#c4b5fd;margin:18px 0 10px">用在你自己的主页上</h3>
+
+<ol style="font-size:16px;line-height:1.85;color:#d1d5ff;max-width:820px;padding-left:22px">
+  <li>把这个仓库 fork 成你自己的 <code>&lt;your-username&gt;/&lt;your-username&gt;</code>。</li>
+  <li>改 <code>scripts/generate.py</code> 顶部的 <code>Config</code> 块
+      （<code>GH_USER</code>、<code>CSDN_USER</code>、<code>QUOTE_APIS</code>）。</li>
+  <li>把 <code>README.md</code> / <code>README.zh-CN.md</code> 里的散文换成你自己的；
+      想保留自动填充的地方就保留 <code>AUTO:*</code> 标记对。</li>
+  <li>Push。每日 PR 流和校验器会原样跑起来。</li>
+</ol>
+
+<br/>
+
+---
 
 <h2 style="font-size:32px;font-weight:700;letter-spacing:2px;border-bottom:1px solid rgba(167,139,250,0.30);padding-bottom:10px;margin:18px 0 18px">📜 来自 badhope 的一封信</h2>
 
@@ -213,9 +304,9 @@ _As of 2026-06-08 UTC — 21 public repos · 219 total ⭐ · top languages: Pyt
 </p>
 
 <!-- AUTO:QUOTE:START -->
-> *"The only way to do great work is to love what you do."*
+> *"To be heroic is to be courageous enough to die for something; to be inspirational is to be crazy enough to live a little."*
 > 
-> — **Steve Jobs**
+> — **Criss Jami**
 <!-- AUTO:QUOTE:END -->
 
 ---
@@ -247,10 +338,9 @@ _As of 2026-06-08 UTC — 21 public repos · 219 total ⭐ · top languages: Pyt
 <br/>
 
 <ul style="font-size:17px;line-height:2.0;list-style:none;padding-left:0;max-width:780px">
-  <li>📝 <strong>Issue</strong> — 最快。在任何仓库开一个；每一个我都看。</li>
-  <li>📚 <strong>CSDN</strong> — 用来写长的。<https://blog.csdn.net/weixin_56622231></li>
-  <li>📧 <strong>邮件</strong> — 见我 profile 上的置顶 gist</li>
-  <li>☕ <strong>当面</strong> — 深圳，港口附近，一杯咖啡</li>
+  <li>📝 <strong>Issue</strong> — 最快。在 <a href="https://github.com/badhope/badhope/issues">这个仓库</a>或我任何一个仓库里开 issue 都行；每一条我都看。</li>
+  <li>📚 <strong>CSDN</strong> — 用来写长的。<a href="https://blog.csdn.net/weixin_56622231">blog.csdn.net/weixin_56622231</a></li>
+  <li>☕ <strong>当面</strong> — 深圳，港口附近，一杯咖啡。</li>
 </ul>
 
-<sub>这个 README 有一半是生成的。静态文字是我的。仓库列表、CSDN feed 和每日一言由 `python scripts/generate.py` 刷新（见 [DEPLOYMENT.md](./DEPLOYMENT.md)）。太极一分钟转一圈。其它的，时间尺度更长。</sub>
+<sub>这个 README 有一半是生成的。静态散文是我的；仓库列表、CSDN feed、语言条、标签云和每日一言由 <code>python scripts/generate.py</code> 刷新（见 <a href="./DEPLOYMENT.md">DEPLOYMENT.md</a>）。太极一分钟转一圈。其它的，时间尺度更长。</sub>
