@@ -1,6 +1,7 @@
 <!--
-  中文镜像版本。结构与 README.md 完全一致，由
-  .github/workflows/refresh-profile.yml 同步刷新 AUTO:* 区段。
+  中文镜像版本。结构与 README.md 完全一致，
+  <!-- AUTO:KEY:START --> ... <!-- AUTO:KEY:END --> 区段由
+  `python scripts/generate.py` 同步刷新（见 DEPLOYMENT.md）。
 -->
 
 <p align="right">
@@ -8,6 +9,12 @@
     🌐 <a href="./README.md">English</a> · <b>中文</b>
   </sub>
 </p>
+
+<br/>
+
+<div align="center">
+  <img src="./assets/starry-banner.svg" alt="starry sky banner with the Big Dipper" width="100%"/>
+</div>
 
 <br/>
 
@@ -111,6 +118,12 @@ _As of 2026-06-08 UTC — 22 public repos · 219 total ⭐ · top languages: Pyt
 
 ---
 
+<div align="center">
+  <img src="./assets/starry-band.svg" alt="—" width="100%"/>
+</div>
+
+---
+
 ## 📊 用数字说话
 
 #### 我活在哪些语言里
@@ -149,6 +162,12 @@ _As of 2026-06-08 UTC — 22 public repos · 219 total ⭐ · top languages: Pyt
 
 ---
 
+<div align="center">
+  <img src="./assets/starry-band.svg" alt="—" width="100%"/>
+</div>
+
+---
+
 ## 🌙 每日的反刍
 
 每个 UTC 日开头抓一次。别读两遍 —— 那就废了。
@@ -173,6 +192,12 @@ _As of 2026-06-08 UTC — 22 public repos · 219 total ⭐ · top languages: Pyt
 
 ---
 
+<div align="center">
+  <img src="./assets/starry-band.svg" alt="—" width="100%"/>
+</div>
+
+---
+
 ## 📫 找到我
 
 - **Issue** — 最快。在任何仓库开一个；我自己开的我都看。
@@ -180,4 +205,4 @@ _As of 2026-06-08 UTC — 22 public repos · 219 total ⭐ · top languages: Pyt
 - **邮件** — 见我 profile 上的置顶 gist
 - **当面** — 深圳，港口附近，一杯咖啡
 
-<sub>这个 README 有一半是生成的。静态文字是我的。仓库列表、CSDN feed 和每日一言由 `.github/workflows/refresh-profile.yml` 在每天 00:00 UTC 刷新。太极一分钟转一圈。其它的，时间尺度更长。</sub>
+<sub>这个 README 有一半是生成的。静态文字是我的。仓库列表、CSDN feed 和每日一言由 `python scripts/generate.py` 刷新（见 [DEPLOYMENT.md](./DEPLOYMENT.md)）。太极一分钟转一圈。其它的，时间尺度更长。</sub>

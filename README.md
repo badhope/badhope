@@ -3,8 +3,9 @@
     - README.md      → English (default)
     - README.zh-CN.md → 中文
 
-  Everything inside the AUTO:* markers is rewritten daily by
-  .github/workflows/refresh-profile.yml. Everything else is hand-written.
+  Sections between <!-- AUTO:KEY:START --> ... <!-- AUTO:KEY:END -->
+  markers are rewritten by `python scripts/generate.py` (see DEPLOYMENT.md).
+  Everything else is hand-written.
 -->
 
 <p align="right">
@@ -12,6 +13,12 @@
     🌐 <b>English</b> · <a href="./README.zh-CN.md">中文</a>
   </sub>
 </p>
+
+<br/>
+
+<div align="center">
+  <img src="./assets/starry-banner.svg" alt="starry sky banner with the Big Dipper" width="100%"/>
+</div>
 
 <br/>
 
@@ -115,6 +122,12 @@ _As of 2026-06-08 UTC — 22 public repos · 219 total ⭐ · top languages: Pyt
 
 ---
 
+<div align="center">
+  <img src="./assets/starry-band.svg" alt="—" width="100%"/>
+</div>
+
+---
+
 ## 📊 By the numbers
 
 #### Languages I live in
@@ -153,6 +166,12 @@ Long-form writing lives on CSDN. I do not cross-post. The feed below refreshes o
 
 ---
 
+<div align="center">
+  <img src="./assets/starry-band.svg" alt="—" width="100%"/>
+</div>
+
+---
+
 ## 🌙 Daily reflection
 
 Pulled at the start of every UTC day. Don't read it twice — that defeats the point.
@@ -177,6 +196,12 @@ Pulled at the start of every UTC day. Don't read it twice — that defeats the p
 
 ---
 
+<div align="center">
+  <img src="./assets/starry-band.svg" alt="—" width="100%"/>
+</div>
+
+---
+
 ## 📫 Reach me
 
 - **Issue** — the fastest lane. open one anywhere; I read all of mine.
@@ -184,4 +209,4 @@ Pulled at the start of every UTC day. Don't read it twice — that defeats the p
 - **Email** — see the pinned gist on my profile
 - **In person** — Shenzhen, by the harbour, with a coffee
 
-<sub>This README is partly generated. Static text is mine. Repo list, CSDN feed, and the daily quote are refreshed by `.github/workflows/refresh-profile.yml` at 00:00 UTC. The Taiji spins at one revolution per minute. Everything else is on a longer timescale.</sub>
+<sub>This README is partly generated. Static text is mine. Repo list, CSDN feed, and the daily quote are refreshed by `python scripts/generate.py` (see [DEPLOYMENT.md](./DEPLOYMENT.md)). The Taiji spins at one revolution per minute. Everything else is on a longer timescale.</sub>
