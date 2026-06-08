@@ -209,9 +209,9 @@ Fetched once a day. Don't read it twice — that defeats the point.
 </p>
 
 <!-- AUTO:QUOTE:START -->
-> *"The greatest weariness comes from work not done."*
+> *"We would accomplish many more things if we did not think of them as impossible."*
 > 
-> — **Eric Hoffer**
+> — **Vince Lombardi**
 <!-- AUTO:QUOTE:END -->
 
 ---

@@ -209,9 +209,9 @@ _As of 2026-06-08 UTC — 21 public repos · 219 total ⭐ · top languages: Pyt
 </p>
 
 <!-- AUTO:QUOTE:START -->
-> *"The greatest weariness comes from work not done."*
+> *"We would accomplish many more things if we did not think of them as impossible."*
 > 
-> — **Eric Hoffer**
+> — **Vince Lombardi**
 <!-- AUTO:QUOTE:END -->
 
 ---
