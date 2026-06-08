@@ -81,7 +81,7 @@ automatically.
 `.github/workflows/validate.yml` runs on:
 
 - every **pull request** opened against `main`
-- every **push** to `main**
+- every **push** to `main`
 - the **manual "Run workflow"** button in the Actions tab
 
 It does **not** run on a schedule. It does **not** push. It does **not**
@@ -89,45 +89,24 @@ merge. It only checks that:
 
 - all `assets/*.svg` exist and are non-empty
 - all `AUTO:*` markers are populated
-- `python scripts/generate.py` produces no diff against the committed README
 - `scripts/generate.py` is syntactically valid Python
 
-If the README has drifted, CI fails with a clear hint. The maintainer
-runs the script locally, commits, pushes, and merges.
+### Daily refresh (open a PR, you merge)
 
-### Re-enabling scheduled auto-refresh (optional)
+`.github/workflows/refresh.yml` runs every day at **06:13 UTC** and
+on the **manual "Run workflow"** button:
 
-If you later want a daily bot to open a PR, restore a schedule + the
-`peter-evans/create-pull-request` step. Sketch:
+1. Checks out the repo
+2. Runs `python scripts/generate.py`
+3. Opens a PR titled `Daily profile refresh — YYYY-MM-DD` with the diff
 
-```yaml
-on:
-  schedule:
-    - cron: "0 0 * * *"   # 00:00 UTC = 08:00 Beijing
-  workflow_dispatch:
-permissions:
-  contents: read
-  pull-requests: write
-jobs:
-  refresh:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: "3.12" }
-      - run: python scripts/generate.py
-      - uses: peter-evans/create-pull-request@v6
-        with:
-          branch: profile-bot/auto-refresh
-          delete-branch: true
-          title: "chore: daily profile refresh"
-          add-paths: |
-            README.md
-            README.zh-CN.md
-```
+You review the PR and click merge. No direct push to `main`. No
+separate bot account — the PR author is `github-actions`, which is
+just a label on the standard `GITHUB_TOKEN` (i.e. it's still you).
 
-**You still merge the PR yourself** — `create-pull-request` will not
-auto-merge even with extra config.
+The schedule lives in `refresh.yml`; change the `cron:` field if you
+want a different time. Disable the workflow by deleting the file
+(or `gh workflow disable refresh.yml`).
 
 ---
 
