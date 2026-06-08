@@ -205,7 +205,7 @@ def render_repos(repos: list[dict], lang: str = "en") -> str:
 
 
 def render_featured(repos: list[dict], n: int = 6, lang: str = "en") -> str:
-    """Compact table of top N repos by stars."""
+    """Compact list of top N repos by stars — each entry is a big h3 with a styled sub-line."""
     if not repos:
         return "_No data yet._"
     top = sorted(repos, key=lambda x: (-(x.get("stargazers_count") or 0),
@@ -222,7 +222,12 @@ def render_featured(repos: list[dict], n: int = 6, lang: str = "en") -> str:
             desc = "—"
         desc = _truncate(desc, 110)
         lines.append(
-            f"### [{name}]({url})  {emoji} {lang_}  ·  ⭐ {stars}\n{desc}"
+            f'<h3 style="font-size:21px;font-weight:700;letter-spacing:0.3px;margin:18px 0 6px">'
+            f'<a href="{url}" style="color:#c4b5fd;text-decoration:none">{name}</a> '
+            f'<span style="font-size:15px;font-weight:500;color:#fbbf24;letter-spacing:0.4px">⭐ {stars}</span> '
+            f'<span style="font-size:14px;font-weight:500;color:#a5b4fc">{emoji} {lang_}</span>'
+            f'</h3>\n'
+            f'<p style="font-size:15px;line-height:1.65;color:#d1d5ff;margin:0 0 8px;max-width:820px">{desc}</p>'
         )
     return "\n\n".join(lines)
 

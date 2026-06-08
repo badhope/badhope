@@ -1,99 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 90" width="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Starry band divider">
 <defs>
-  <linearGradient id="sky2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1e1b4b" stop-opacity="0"/><stop offset="20%" stop-color="#312e81" stop-opacity="0.4"/><stop offset="50%" stop-color="#1e1b4b" stop-opacity="0.6"/><stop offset="80%" stop-color="#312e81" stop-opacity="0.4"/><stop offset="100%" stop-color="#1e1b4b" stop-opacity="0"/></linearGradient>
-  <radialGradient id="halo2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="1"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+  <linearGradient id="sky2" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%"   stop-color="#1e1b4b" stop-opacity="0"/>
+    <stop offset="18%"  stop-color="#312e81" stop-opacity="0.65"/>
+    <stop offset="50%"  stop-color="#1e1b4b" stop-opacity="0.85"/>
+    <stop offset="82%"  stop-color="#312e81" stop-opacity="0.65"/>
+    <stop offset="100%" stop-color="#1e1b4b" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="halo2" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="#ffffff" stop-opacity="1"/>
+    <stop offset="60%"  stop-color="#c4b5fd" stop-opacity="0.5"/>
+    <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+  </radialGradient>
+  <style>
+    .twinkle { animation: twinkle 3.4s ease-in-out infinite; }
+    .twinkle-2 { animation: twinkle 4.2s ease-in-out infinite .7s; }
+    .twinkle-3 { animation: twinkle 5.1s ease-in-out infinite 1.4s; }
+    @keyframes twinkle { 0%,100%{opacity:.85} 50%{opacity:.25} }
+  </style>
 </defs>
+
+<!-- gradient band background -->
 <rect width="1200" height="90" fill="url(#sky2)"/>
-<g fill="#e6e7ee">
-<circle cx="228" cy="3" r="0.6" opacity="0.43"/>
-<circle cx="285" cy="13" r="1.0" opacity="0.35"/>
-<circle cx="864" cy="4" r="0.4" opacity="0.35"/>
-<circle cx="476" cy="64" r="1.0" opacity="0.31"/>
-<circle cx="407" cy="83" r="1.0" opacity="0.53"/>
-<circle cx="919" cy="75" r="0.6" opacity="0.75"/>
-<circle cx="13" cy="20" r="0.8" opacity="0.49"/>
-<circle cx="318" cy="27" r="0.6" opacity="0.36"/>
-<circle cx="778" cy="12" r="0.6" opacity="0.77"/>
-<circle cx="541" cy="5" r="0.8" opacity="0.59"/>
-<circle cx="775" cy="10" r="1.0" opacity="0.46"/>
-<circle cx="740" cy="73" r="0.6" opacity="0.69"/>
-<circle cx="93" cy="84" r="0.6" opacity="0.73"/>
-<circle cx="163" cy="29" r="0.4" opacity="0.51"/>
-<circle cx="928" cy="81" r="0.6" opacity="0.39"/>
-<circle cx="727" cy="26" r="0.6" opacity="0.69"/>
-<circle cx="146" cy="77" r="0.6" opacity="0.59"/>
-<circle cx="501" cy="20" r="0.8" opacity="0.51"/>
-<circle cx="1140" cy="28" r="0.6" opacity="0.76"/>
-<circle cx="114" cy="29" r="0.4" opacity="0.74"/>
-<circle cx="821" cy="34" r="0.4" opacity="0.42"/>
-<circle cx="1161" cy="40" r="0.6" opacity="0.66"/>
-<circle cx="810" cy="82" r="0.8" opacity="0.38"/>
-<circle cx="285" cy="31" r="1.0" opacity="0.6"/>
-<circle cx="1197" cy="54" r="1.0" opacity="0.52"/>
-<circle cx="449" cy="17" r="1.0" opacity="0.57"/>
-<circle cx="96" cy="14" r="0.6" opacity="0.65"/>
-<circle cx="864" cy="76" r="0.4" opacity="0.51"/>
-<circle cx="958" cy="67" r="0.6" opacity="0.83"/>
-<circle cx="23" cy="87" r="0.4" opacity="0.67"/>
-<circle cx="1099" cy="34" r="0.6" opacity="0.36"/>
-<circle cx="890" cy="20" r="0.8" opacity="0.3"/>
-<circle cx="539" cy="64" r="0.6" opacity="0.58"/>
-<circle cx="217" cy="80" r="0.6" opacity="0.76"/>
-<circle cx="1039" cy="77" r="0.6" opacity="0.38"/>
-<circle cx="330" cy="69" r="1.0" opacity="0.81"/>
-<circle cx="663" cy="62" r="0.4" opacity="0.36"/>
-<circle cx="743" cy="39" r="0.6" opacity="0.33"/>
-<circle cx="1161" cy="10" r="0.4" opacity="0.7"/>
-<circle cx="141" cy="68" r="0.6" opacity="0.37"/>
-<circle cx="973" cy="70" r="0.6" opacity="0.45"/>
-<circle cx="866" cy="27" r="1.0" opacity="0.72"/>
-<circle cx="411" cy="39" r="0.8" opacity="0.85"/>
-<circle cx="764" cy="56" r="1.0" opacity="0.55"/>
-<circle cx="507" cy="28" r="0.4" opacity="0.49"/>
-<circle cx="1134" cy="29" r="1.0" opacity="0.42"/>
-<circle cx="145" cy="90" r="0.4" opacity="0.43"/>
-<circle cx="64" cy="42" r="0.4" opacity="0.58"/>
-<circle cx="570" cy="85" r="0.8" opacity="0.42"/>
-<circle cx="270" cy="73" r="1.0" opacity="0.56"/>
-<circle cx="968" cy="52" r="0.6" opacity="0.35"/>
-<circle cx="882" cy="45" r="0.8" opacity="0.53"/>
-<circle cx="110" cy="86" r="0.4" opacity="0.33"/>
-<circle cx="694" cy="13" r="0.6" opacity="0.41"/>
-<circle cx="1098" cy="57" r="0.6" opacity="0.53"/>
-<circle cx="570" cy="59" r="0.6" opacity="0.78"/>
-<circle cx="154" cy="56" r="1.0" opacity="0.35"/>
-<circle cx="1107" cy="1" r="0.4" opacity="0.81"/>
-<circle cx="484" cy="21" r="0.8" opacity="0.57"/>
-<circle cx="437" cy="51" r="0.4" opacity="0.39"/>
-<circle cx="4" cy="49" r="0.6" opacity="0.81"/>
-<circle cx="931" cy="36" r="0.8" opacity="0.68"/>
-<circle cx="1138" cy="84" r="0.8" opacity="0.39"/>
-<circle cx="607" cy="27" r="0.4" opacity="0.62"/>
-<circle cx="1110" cy="7" r="0.6" opacity="0.33"/>
-<circle cx="1196" cy="61" r="1.0" opacity="0.81"/>
-<circle cx="1087" cy="20" r="0.4" opacity="0.83"/>
-<circle cx="164" cy="23" r="0.4" opacity="0.63"/>
-<circle cx="481" cy="51" r="0.4" opacity="0.82"/>
-<circle cx="1166" cy="31" r="1.0" opacity="0.63"/>
-<circle cx="167" cy="53" r="1.0" opacity="0.61"/>
-<circle cx="647" cy="33" r="0.6" opacity="0.67"/>
-<circle cx="643" cy="30" r="0.6" opacity="0.52"/>
-<circle cx="614" cy="58" r="0.6" opacity="0.81"/>
-<circle cx="148" cy="1" r="0.8" opacity="0.64"/>
-<circle cx="1153" cy="12" r="0.4" opacity="0.6"/>
-<circle cx="1036" cy="33" r="0.6" opacity="0.81"/>
-<circle cx="140" cy="31" r="0.6" opacity="0.46"/>
-<circle cx="897" cy="69" r="0.6" opacity="0.64"/>
-<circle cx="1083" cy="1" r="1.0" opacity="0.46"/>
+
+<!-- a row of soft stars along the band (animated twinkle) -->
+<g class="twinkle" fill="#e6e7ee">
+  <circle cx="80"   cy="20" r="0.8" opacity="0.65"/>
+  <circle cx="220"  cy="55" r="1.0" opacity="0.50"/>
+  <circle cx="320"  cy="15" r="0.6" opacity="0.40"/>
+  <circle cx="410"  cy="65" r="0.8" opacity="0.55"/>
+  <circle cx="540"  cy="35" r="1.0" opacity="0.60"/>
+  <circle cx="700"  cy="20" r="0.8" opacity="0.70"/>
+  <circle cx="780"  cy="50" r="1.0" opacity="0.55"/>
+  <circle cx="900"  cy="30" r="0.6" opacity="0.65"/>
+  <circle cx="980"  cy="60" r="0.8" opacity="0.50"/>
+  <circle cx="1080" cy="20" r="1.0" opacity="0.60"/>
+  <circle cx="1150" cy="50" r="0.6" opacity="0.55"/>
 </g>
-<circle cx="150" cy="45" r="9" fill="url(#halo2)" opacity="0.6"/>
-<circle cx="150" cy="45" r="1.4" fill="#ffffff" opacity="0.95"/>
-<circle cx="450" cy="30" r="9" fill="url(#halo2)" opacity="0.6"/>
-<circle cx="450" cy="30" r="1.4" fill="#ffffff" opacity="0.95"/>
-<circle cx="820" cy="55" r="9" fill="url(#halo2)" opacity="0.6"/>
-<circle cx="820" cy="55" r="1.4" fill="#ffffff" opacity="0.95"/>
-<circle cx="1050" cy="40" r="9" fill="url(#halo2)" opacity="0.6"/>
-<circle cx="1050" cy="40" r="1.4" fill="#ffffff" opacity="0.95"/>
-<text x="600" y="55" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="14" fill="#a78bfa" opacity="0.7" letter-spacing="8">·   ✦   ·</text>
+<g class="twinkle-2" fill="#f0eaff">
+  <circle cx="120"  cy="60" r="0.6" opacity="0.55"/>
+  <circle cx="270"  cy="30" r="0.8" opacity="0.65"/>
+  <circle cx="360"  cy="70" r="0.6" opacity="0.50"/>
+  <circle cx="480"  cy="20" r="0.8" opacity="0.65"/>
+  <circle cx="630"  cy="60" r="1.0" opacity="0.55"/>
+  <circle cx="850"  cy="65" r="0.6" opacity="0.60"/>
+  <circle cx="1020" cy="35" r="0.8" opacity="0.50"/>
+  <circle cx="1110" cy="65" r="0.6" opacity="0.55"/>
+</g>
+<g class="twinkle-3" fill="#fff7d6">
+  <circle cx="170"  cy="45" r="1.0" opacity="0.70"/>
+  <circle cx="450"  cy="45" r="1.2" opacity="0.65"/>
+  <circle cx="950"  cy="20" r="1.0" opacity="0.70"/>
+</g>
+
+<!-- 4 prominent accent stars with halos -->
+<g>
+  <circle cx="150"  cy="45" r="11" fill="url(#halo2)" opacity="0.7"/>
+  <circle cx="150"  cy="45" r="1.6" fill="#ffffff" opacity="0.95"/>
+
+  <circle cx="450"  cy="30" r="11" fill="url(#halo2)" opacity="0.7"/>
+  <circle cx="450"  cy="30" r="1.6" fill="#ffffff" opacity="0.95"/>
+
+  <circle cx="820"  cy="55" r="11" fill="url(#halo2)" opacity="0.7"/>
+  <circle cx="820"  cy="55" r="1.6" fill="#ffffff" opacity="0.95"/>
+
+  <circle cx="1050" cy="40" r="11" fill="url(#halo2)" opacity="0.7"/>
+  <circle cx="1050" cy="40" r="1.6" fill="#ffffff" opacity="0.95"/>
+</g>
+
+<!-- centre text -->
+<text x="600" y="55" text-anchor="middle"
+      font-family="Cormorant Garamond, Georgia, serif"
+      font-size="14" fill="#a78bfa" opacity="0.85" letter-spacing="8">·   ✦   ·</text>
 </svg>

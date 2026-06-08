@@ -1,252 +1,268 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220" width="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Starry night sky with the Big Dipper">
-<title>badhope · starry sky banner with the Big Dipper</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Starry night sky with the Big Dipper">
+<title>badhope · starry sky with the Big Dipper (Ursa Major)</title>
 <defs>
-  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a0820"/><stop offset="55%" stop-color="#1e1b4b"/><stop offset="100%" stop-color="#312e81"/></linearGradient>
-  <radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="1"/><stop offset="30%" stop-color="#c4b5fd" stop-opacity="0.6"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
-  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
+  <!-- sky gradient: deep indigo to violet -->
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%"  stop-color="#050417"/>
+    <stop offset="35%" stop-color="#0d0b30"/>
+    <stop offset="75%" stop-color="#1e1b4b"/>
+    <stop offset="100%" stop-color="#312e81"/>
+  </linearGradient>
+  <!-- soft nebula glow -->
+  <radialGradient id="nebula-violet" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"  stop-color="#a78bfa" stop-opacity="0.18"/>
+    <stop offset="60%" stop-color="#7c3aed" stop-opacity="0.05"/>
+    <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="nebula-cyan" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"  stop-color="#67e8f9" stop-opacity="0.14"/>
+    <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="nebula-pink" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"  stop-color="#f0abfc" stop-opacity="0.10"/>
+    <stop offset="100%" stop-color="#d946ef" stop-opacity="0"/>
+  </radialGradient>
+  <!-- star glow -->
+  <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"  stop-color="#ffffff" stop-opacity="1"/>
+    <stop offset="30%" stop-color="#c4b5fd" stop-opacity="0.55"/>
+    <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="1.4"/>
+  </filter>
+  <!-- one reusable star symbol so we can sprinkle via <use> -->
+  <symbol id="star-sm" overflow="visible">
+    <circle r="1" fill="#e6e7ee"/>
+  </symbol>
 </defs>
-<rect width="1200" height="220" fill="url(#sky)"/>
-<ellipse cx="350" cy="80" rx="220" ry="60" fill="#a78bfa" opacity="0.06"/>
-<ellipse cx="1050" cy="170" rx="180" ry="50" fill="#67e8f9" opacity="0.05"/>
-<g fill="#e6e7ee">
-<circle cx="663" cy="38" r="1.2" opacity="0.71"/>
-<circle cx="148" cy="210" r="0.6" opacity="0.51"/>
-<circle cx="118" cy="129" r="0.8" opacity="0.28"/>
-<circle cx="888" cy="107" r="0.6" opacity="0.42"/>
-<circle cx="1128" cy="108" r="0.4" opacity="0.83"/>
-<circle cx="253" cy="57" r="0.4" opacity="0.65"/>
-<circle cx="812" cy="12" r="0.8" opacity="0.28"/>
-<circle cx="272" cy="74" r="1.2" opacity="0.35"/>
-<circle cx="241" cy="146" r="0.8" opacity="0.64"/>
-<circle cx="370" cy="26" r="0.8" opacity="0.51"/>
-<circle cx="1121" cy="182" r="0.6" opacity="0.65"/>
-<circle cx="421" cy="127" r="1.2" opacity="0.79"/>
-<circle cx="953" cy="149" r="1.6" opacity="0.5"/>
-<circle cx="508" cy="203" r="0.6" opacity="0.74"/>
-<circle cx="499" cy="20" r="0.8" opacity="0.62"/>
-<circle cx="703" cy="186" r="1.6" opacity="0.45"/>
-<circle cx="149" cy="30" r="1.2" opacity="0.37"/>
-<circle cx="700" cy="38" r="1.6" opacity="0.55"/>
-<circle cx="158" cy="195" r="1.0" opacity="0.49"/>
-<circle cx="717" cy="152" r="1.6" opacity="0.66"/>
-<circle cx="934" cy="17" r="0.6" opacity="0.91"/>
-<circle cx="970" cy="178" r="0.6" opacity="0.29"/>
-<circle cx="634" cy="165" r="1.6" opacity="0.45"/>
-<circle cx="790" cy="171" r="1.0" opacity="0.27"/>
-<circle cx="945" cy="90" r="0.6" opacity="0.68"/>
-<circle cx="1011" cy="15" r="0.8" opacity="0.79"/>
-<circle cx="264" cy="189" r="0.8" opacity="0.53"/>
-<circle cx="1016" cy="20" r="0.6" opacity="0.56"/>
-<circle cx="1125" cy="71" r="0.6" opacity="0.82"/>
-<circle cx="1126" cy="71" r="1.2" opacity="0.94"/>
-<circle cx="779" cy="59" r="0.6" opacity="0.31"/>
-<circle cx="309" cy="59" r="0.8" opacity="0.26"/>
-<circle cx="373" cy="67" r="0.8" opacity="0.25"/>
-<circle cx="858" cy="136" r="1.0" opacity="0.68"/>
-<circle cx="652" cy="32" r="0.4" opacity="0.57"/>
-<circle cx="1145" cy="100" r="1.2" opacity="0.53"/>
-<circle cx="212" cy="123" r="1.2" opacity="0.29"/>
-<circle cx="137" cy="53" r="1.6" opacity="0.36"/>
-<circle cx="696" cy="153" r="0.4" opacity="0.32"/>
-<circle cx="1160" cy="38" r="0.6" opacity="0.91"/>
-<circle cx="52" cy="18" r="0.8" opacity="0.68"/>
-<circle cx="304" cy="162" r="0.8" opacity="0.92"/>
-<circle cx="745" cy="121" r="0.6" opacity="0.33"/>
-<circle cx="999" cy="119" r="1.6" opacity="0.59"/>
-<circle cx="175" cy="36" r="0.6" opacity="0.77"/>
-<circle cx="542" cy="122" r="0.6" opacity="0.61"/>
-<circle cx="420" cy="135" r="1.0" opacity="0.35"/>
-<circle cx="1112" cy="6" r="0.8" opacity="0.93"/>
-<circle cx="186" cy="178" r="0.8" opacity="0.61"/>
-<circle cx="342" cy="91" r="0.8" opacity="0.62"/>
-<circle cx="1029" cy="84" r="0.8" opacity="0.68"/>
-<circle cx="399" cy="206" r="0.8" opacity="0.82"/>
-<circle cx="464" cy="51" r="1.6" opacity="0.5"/>
-<circle cx="59" cy="7" r="0.8" opacity="0.58"/>
-<circle cx="396" cy="177" r="1.0" opacity="0.56"/>
-<circle cx="715" cy="93" r="0.6" opacity="0.4"/>
-<circle cx="464" cy="120" r="0.8" opacity="0.49"/>
-<circle cx="988" cy="159" r="0.4" opacity="0.59"/>
-<circle cx="704" cy="204" r="0.6" opacity="0.83"/>
-<circle cx="245" cy="99" r="0.8" opacity="0.58"/>
-<circle cx="365" cy="111" r="1.0" opacity="0.31"/>
-<circle cx="810" cy="118" r="1.2" opacity="0.77"/>
-<circle cx="173" cy="185" r="0.6" opacity="0.37"/>
-<circle cx="260" cy="7" r="0.6" opacity="0.66"/>
-<circle cx="953" cy="206" r="0.6" opacity="0.68"/>
-<circle cx="971" cy="168" r="1.0" opacity="0.36"/>
-<circle cx="1122" cy="33" r="0.4" opacity="0.26"/>
-<circle cx="210" cy="134" r="0.6" opacity="0.55"/>
-<circle cx="398" cy="211" r="0.8" opacity="0.27"/>
-<circle cx="435" cy="74" r="0.8" opacity="0.78"/>
-<circle cx="667" cy="66" r="1.2" opacity="0.83"/>
-<circle cx="124" cy="189" r="1.0" opacity="0.88"/>
-<circle cx="1194" cy="208" r="1.2" opacity="0.83"/>
-<circle cx="1027" cy="33" r="0.6" opacity="0.62"/>
-<circle cx="38" cy="112" r="0.6" opacity="0.68"/>
-<circle cx="306" cy="44" r="0.6" opacity="0.58"/>
-<circle cx="246" cy="142" r="0.4" opacity="0.48"/>
-<circle cx="1061" cy="135" r="1.6" opacity="0.8"/>
-<circle cx="217" cy="143" r="0.4" opacity="0.42"/>
-<circle cx="567" cy="10" r="0.6" opacity="0.61"/>
-<circle cx="1150" cy="7" r="0.6" opacity="0.56"/>
-<circle cx="1035" cy="155" r="0.8" opacity="0.73"/>
-<circle cx="926" cy="130" r="1.6" opacity="0.61"/>
-<circle cx="507" cy="178" r="0.8" opacity="0.9"/>
-<circle cx="414" cy="215" r="1.6" opacity="0.35"/>
-<circle cx="249" cy="100" r="1.6" opacity="0.47"/>
-<circle cx="492" cy="109" r="0.6" opacity="0.4"/>
-<circle cx="620" cy="200" r="0.6" opacity="0.88"/>
-<circle cx="316" cy="183" r="1.0" opacity="0.35"/>
-<circle cx="281" cy="119" r="0.8" opacity="0.77"/>
-<circle cx="192" cy="101" r="1.6" opacity="0.36"/>
-<circle cx="458" cy="41" r="1.2" opacity="0.95"/>
-<circle cx="827" cy="86" r="1.2" opacity="0.39"/>
-<circle cx="652" cy="23" r="1.0" opacity="0.26"/>
-<circle cx="1134" cy="117" r="1.6" opacity="0.74"/>
-<circle cx="787" cy="84" r="0.8" opacity="0.61"/>
-<circle cx="131" cy="28" r="0.8" opacity="0.93"/>
-<circle cx="214" cy="21" r="0.8" opacity="0.44"/>
-<circle cx="371" cy="69" r="0.6" opacity="0.82"/>
-<circle cx="529" cy="103" r="0.6" opacity="0.63"/>
-<circle cx="1054" cy="146" r="1.6" opacity="0.74"/>
-<circle cx="183" cy="71" r="0.4" opacity="0.81"/>
-<circle cx="375" cy="108" r="0.6" opacity="0.44"/>
-<circle cx="34" cy="162" r="0.6" opacity="0.81"/>
-<circle cx="171" cy="155" r="0.8" opacity="0.3"/>
-<circle cx="249" cy="116" r="0.4" opacity="0.49"/>
-<circle cx="1132" cy="106" r="0.8" opacity="0.69"/>
-<circle cx="88" cy="134" r="0.8" opacity="0.91"/>
-<circle cx="330" cy="67" r="0.4" opacity="0.38"/>
-<circle cx="638" cy="160" r="0.8" opacity="0.62"/>
-<circle cx="421" cy="74" r="1.6" opacity="0.6"/>
-<circle cx="364" cy="69" r="1.0" opacity="0.81"/>
-<circle cx="512" cy="9" r="0.4" opacity="0.26"/>
-<circle cx="1035" cy="141" r="0.8" opacity="0.61"/>
-<circle cx="503" cy="114" r="0.6" opacity="0.71"/>
-<circle cx="885" cy="168" r="1.6" opacity="0.63"/>
-<circle cx="805" cy="129" r="0.8" opacity="0.73"/>
-<circle cx="470" cy="87" r="0.8" opacity="0.83"/>
-<circle cx="286" cy="103" r="1.0" opacity="0.94"/>
-<circle cx="265" cy="3" r="0.6" opacity="0.69"/>
-<circle cx="523" cy="110" r="0.6" opacity="0.29"/>
-<circle cx="780" cy="129" r="0.8" opacity="0.67"/>
-<circle cx="600" cy="11" r="1.6" opacity="0.38"/>
-<circle cx="550" cy="114" r="0.4" opacity="0.43"/>
-<circle cx="673" cy="140" r="1.0" opacity="0.42"/>
-<circle cx="633" cy="55" r="1.0" opacity="0.38"/>
-<circle cx="686" cy="97" r="0.6" opacity="0.58"/>
-<circle cx="1029" cy="167" r="0.8" opacity="0.42"/>
-<circle cx="10" cy="23" r="0.8" opacity="0.82"/>
-<circle cx="294" cy="102" r="0.4" opacity="0.53"/>
-<circle cx="613" cy="77" r="0.8" opacity="0.31"/>
-<circle cx="1083" cy="218" r="0.6" opacity="0.71"/>
-<circle cx="797" cy="195" r="1.0" opacity="0.75"/>
-<circle cx="1012" cy="38" r="0.8" opacity="0.76"/>
-<circle cx="296" cy="11" r="1.2" opacity="0.76"/>
-<circle cx="1035" cy="35" r="0.4" opacity="0.83"/>
-<circle cx="1196" cy="204" r="0.8" opacity="0.31"/>
-<circle cx="85" cy="34" r="1.0" opacity="0.92"/>
-<circle cx="771" cy="213" r="1.6" opacity="0.64"/>
-<circle cx="38" cy="160" r="0.8" opacity="0.59"/>
-<circle cx="6" cy="116" r="0.6" opacity="0.77"/>
-<circle cx="1030" cy="137" r="0.6" opacity="0.71"/>
-<circle cx="135" cy="190" r="1.6" opacity="0.43"/>
-<circle cx="152" cy="216" r="0.8" opacity="0.41"/>
-<circle cx="420" cy="59" r="1.6" opacity="0.6"/>
-<circle cx="783" cy="19" r="1.6" opacity="0.89"/>
-<circle cx="588" cy="196" r="0.4" opacity="0.68"/>
-<circle cx="406" cy="19" r="0.6" opacity="0.48"/>
-<circle cx="623" cy="159" r="0.6" opacity="0.26"/>
-<circle cx="124" cy="124" r="0.8" opacity="0.93"/>
-<circle cx="203" cy="177" r="0.8" opacity="0.72"/>
-<circle cx="595" cy="181" r="0.8" opacity="0.58"/>
-<circle cx="955" cy="196" r="0.6" opacity="0.95"/>
-<circle cx="1124" cy="51" r="0.8" opacity="0.93"/>
-<circle cx="968" cy="4" r="0.8" opacity="0.57"/>
-<circle cx="1037" cy="115" r="0.8" opacity="0.52"/>
-<circle cx="431" cy="19" r="0.6" opacity="0.35"/>
-<circle cx="1073" cy="67" r="1.0" opacity="0.34"/>
-<circle cx="1041" cy="71" r="0.6" opacity="0.74"/>
-<circle cx="473" cy="127" r="1.6" opacity="0.53"/>
-<circle cx="325" cy="0" r="1.6" opacity="0.73"/>
-<circle cx="830" cy="77" r="0.6" opacity="0.54"/>
-<circle cx="770" cy="80" r="0.6" opacity="0.84"/>
-<circle cx="3" cy="83" r="1.0" opacity="0.84"/>
-<circle cx="245" cy="50" r="0.4" opacity="0.88"/>
-<circle cx="593" cy="64" r="1.0" opacity="0.3"/>
-<circle cx="799" cy="150" r="0.6" opacity="0.5"/>
-<circle cx="876" cy="193" r="0.8" opacity="0.85"/>
-<circle cx="574" cy="26" r="0.4" opacity="0.83"/>
-<circle cx="584" cy="162" r="0.6" opacity="0.42"/>
-<circle cx="544" cy="111" r="1.0" opacity="0.38"/>
-<circle cx="764" cy="200" r="1.2" opacity="0.87"/>
-<circle cx="819" cy="141" r="0.8" opacity="0.75"/>
-<circle cx="101" cy="187" r="1.2" opacity="0.57"/>
-<circle cx="283" cy="164" r="0.8" opacity="0.59"/>
-<circle cx="1126" cy="32" r="0.6" opacity="0.58"/>
-<circle cx="703" cy="72" r="0.8" opacity="0.43"/>
-<circle cx="532" cy="103" r="0.8" opacity="0.46"/>
-<circle cx="1141" cy="171" r="1.2" opacity="0.33"/>
-<circle cx="331" cy="19" r="0.8" opacity="0.6"/>
+
+<!-- inline animation: twinkle + halo pulse + slow drift -->
+<style>
+  @keyframes twinkleA { 0%,100%{opacity:.25} 50%{opacity:.95} }
+  @keyframes twinkleB { 0%,100%{opacity:.55} 50%{opacity:.15} }
+  @keyframes twinkleC { 0%,100%{opacity:.4 } 60%{opacity:1  } }
+  @keyframes halo     { 0%,100%{opacity:.5 } 50%{opacity:1  } }
+  @keyframes drift    { 0%{transform:translate3d(0,0,0)} 100%{transform:translate3d(-40px,8px,0)} }
+  @keyframes shoot    { 0%{transform:translate(0,0)  ;opacity:0} 5%{opacity:1} 70%{opacity:1} 100%{transform:translate(720px,180px);opacity:0} }
+  .tA { animation: twinkleA 3.2s ease-in-out infinite; }
+  .tB { animation: twinkleB 4.1s ease-in-out infinite; }
+  .tC { animation: twinkleC 5.6s ease-in-out infinite; }
+  .h  { animation: halo     3.0s ease-in-out infinite; transform-origin:center; }
+  .h2 { animation: halo     3.6s ease-in-out infinite .6s; transform-origin:center; }
+  .h3 { animation: halo     4.2s ease-in-out infinite 1.2s; transform-origin:center; }
+  .shooting { animation: shoot 9s linear infinite; }
+  .drift    { animation: drift 60s linear infinite alternate; }
+</style>
+
+<!-- background -->
+<rect width="1200" height="500" fill="url(#sky)"/>
+<!-- nebula clouds (slow drift) -->
+<g class="drift">
+  <ellipse cx="280"  cy="180" rx="380" ry="140" fill="url(#nebula-violet)"/>
+  <ellipse cx="980"  cy="320" rx="340" ry="130" fill="url(#nebula-cyan)"/>
+  <ellipse cx="620"  cy="420" rx="300" ry="120" fill="url(#nebula-pink)"/>
+  <ellipse cx="180"  cy="430" rx="240" ry="100" fill="url(#nebula-violet)"/>
+  <ellipse cx="1080" cy="120" rx="220" ry="90"  fill="url(#nebula-cyan)"/>
 </g>
-<circle cx="1038" cy="160" r="7.90408080704179" fill="url(#halo)" opacity="0.465"/>
-<circle cx="1038" cy="160" r="1.9760202017604476" fill="#ffffff" opacity="0.93"/>
-<circle cx="305" cy="160" r="7.815702706434385" fill="url(#halo)" opacity="0.36"/>
-<circle cx="305" cy="160" r="1.9539256766085962" fill="#ffffff" opacity="0.72"/>
-<circle cx="206" cy="101" r="7.9652050582958545" fill="url(#halo)" opacity="0.38"/>
-<circle cx="206" cy="101" r="1.9913012645739636" fill="#ffffff" opacity="0.76"/>
-<circle cx="433" cy="25" r="9.598904344334972" fill="url(#halo)" opacity="0.4"/>
-<circle cx="433" cy="25" r="2.399726086083743" fill="#ffffff" opacity="0.8"/>
-<circle cx="450" cy="116" r="8.064767511801794" fill="url(#halo)" opacity="0.445"/>
-<circle cx="450" cy="116" r="2.0161918779504484" fill="#ffffff" opacity="0.89"/>
-<circle cx="1040" cy="91" r="9.0376984588548" fill="url(#halo)" opacity="0.395"/>
-<circle cx="1040" cy="91" r="2.2594246147137" fill="#ffffff" opacity="0.79"/>
-<circle cx="1050" cy="155" r="9.214806098707006" fill="url(#halo)" opacity="0.46"/>
-<circle cx="1050" cy="155" r="2.3037015246767516" fill="#ffffff" opacity="0.92"/>
-<circle cx="462" cy="43" r="8.067266819400553" fill="url(#halo)" opacity="0.38"/>
-<circle cx="462" cy="43" r="2.016816704850138" fill="#ffffff" opacity="0.76"/>
-<g stroke="#a78bfa" stroke-width="0.6" stroke-linecap="round" opacity="0.35" fill="none">
-<line x1="760" y1="110" x2="870" y2="88"/>
-<line x1="870" y1="88" x2="920" y2="158"/>
-<line x1="920" y1="158" x2="820" y2="178"/>
-<line x1="820" y1="178" x2="760" y2="110"/>
-<line x1="760" y1="110" x2="690" y2="130"/>
-<line x1="690" y1="130" x2="610" y2="110"/>
-<line x1="610" y1="110" x2="530" y2="90"/>
+
+<!-- background star field (tA class) -->
+<g fill="#e6e7ee" class="tA">
+  <circle cx="80"   cy="60"  r="1.0" opacity=".7"/>
+  <circle cx="148"  cy="210" r="0.6" opacity=".5"/>
+  <circle cx="118"  cy="129" r="0.8" opacity=".3"/>
+  <circle cx="888"  cy="107" r="0.6" opacity=".4"/>
+  <circle cx="1128" cy="108" r="0.4" opacity=".8"/>
+  <circle cx="253"  cy="57"  r="0.4" opacity=".6"/>
+  <circle cx="812"  cy="12"  r="0.8" opacity=".3"/>
+  <circle cx="272"  cy="74"  r="1.2" opacity=".4"/>
+  <circle cx="241"  cy="146" r="0.8" opacity=".6"/>
+  <circle cx="370"  cy="26"  r="0.8" opacity=".5"/>
+  <circle cx="1121" cy="182" r="0.6" opacity=".7"/>
+  <circle cx="421"  cy="127" r="1.2" opacity=".8"/>
+  <circle cx="953"  cy="149" r="1.6" opacity=".5"/>
+  <circle cx="508"  cy="203" r="0.6" opacity=".7"/>
+  <circle cx="499"  cy="20"  r="0.8" opacity=".6"/>
+  <circle cx="703"  cy="186" r="1.6" opacity=".5"/>
+  <circle cx="149"  cy="30"  r="1.2" opacity=".4"/>
+  <circle cx="700"  cy="38"  r="1.6" opacity=".6"/>
+  <circle cx="158"  cy="195" r="1.0" opacity=".5"/>
+  <circle cx="717"  cy="152" r="1.6" opacity=".7"/>
+  <circle cx="934"  cy="17"  r="0.6" opacity=".9"/>
+  <circle cx="970"  cy="178" r="0.6" opacity=".3"/>
+  <circle cx="634"  cy="165" r="1.6" opacity=".5"/>
+  <circle cx="790"  cy="171" r="1.0" opacity=".3"/>
+  <circle cx="945"  cy="90"  r="0.6" opacity=".7"/>
+  <circle cx="1011" cy="15"  r="0.8" opacity=".8"/>
+  <circle cx="264"  cy="189" r="0.8" opacity=".5"/>
+  <circle cx="1016" cy="20"  r="0.6" opacity=".6"/>
+  <circle cx="1125" cy="71"  r="0.6" opacity=".8"/>
+  <circle cx="779"  cy="59"  r="0.6" opacity=".3"/>
+  <circle cx="309"  cy="59"  r="0.8" opacity=".3"/>
+  <circle cx="373"  cy="67"  r="0.8" opacity=".3"/>
+  <circle cx="858"  cy="136" r="1.0" opacity=".7"/>
+  <circle cx="652"  cy="32"  r="0.4" opacity=".6"/>
+  <circle cx="1145" cy="100" r="1.2" opacity=".5"/>
+  <circle cx="212"  cy="123" r="1.2" opacity=".3"/>
+  <circle cx="137"  cy="53"  r="1.6" opacity=".4"/>
+  <circle cx="200"  cy="270" r="1.0" opacity=".5"/>
+  <circle cx="290"  cy="350" r="0.8" opacity=".4"/>
+  <circle cx="350"  cy="430" r="1.2" opacity=".6"/>
+  <circle cx="420"  cy="380" r="0.6" opacity=".5"/>
+  <circle cx="480"  cy="280" r="1.0" opacity=".7"/>
+  <circle cx="560"  cy="340" r="0.8" opacity=".4"/>
+  <circle cx="650"  cy="270" r="1.2" opacity=".5"/>
+  <circle cx="720"  cy="420" r="0.6" opacity=".6"/>
+  <circle cx="800"  cy="280" r="1.0" opacity=".4"/>
+  <circle cx="880"  cy="370" r="0.8" opacity=".5"/>
+  <circle cx="950"  cy="240" r="1.0" opacity=".4"/>
+  <circle cx="1020" cy="290" r="0.6" opacity=".6"/>
+  <circle cx="1080" cy="400" r="1.2" opacity=".5"/>
+  <circle cx="1140" cy="330" r="0.8" opacity=".4"/>
+  <circle cx="60"   cy="330" r="0.8" opacity=".5"/>
+  <circle cx="100"  cy="430" r="1.0" opacity=".4"/>
+  <circle cx="160"  cy="380" r="0.6" opacity=".6"/>
+  <circle cx="40"   cy="180" r="1.0" opacity=".5"/>
+  <circle cx="90"   cy="80"  r="0.6" opacity=".4"/>
+  <circle cx="40"   cy="40"  r="1.0" opacity=".5"/>
+  <circle cx="1160" cy="40"  r="1.0" opacity=".6"/>
+  <circle cx="600"  cy="60"  r="0.8" opacity=".4"/>
+  <circle cx="700"  cy="100" r="0.6" opacity=".3"/>
+  <circle cx="800"  cy="220" r="0.6" opacity=".5"/>
+  <circle cx="900"  cy="60"  r="0.8" opacity=".6"/>
+  <circle cx="380"  cy="100" r="0.6" opacity=".4"/>
+  <circle cx="260"  cy="220" r="0.8" opacity=".5"/>
+  <circle cx="600"  cy="200" r="0.6" opacity=".4"/>
+  <circle cx="900"  cy="180" r="1.0" opacity=".5"/>
+  <circle cx="500"  cy="440" r="0.8" opacity=".5"/>
+  <circle cx="320"  cy="320" r="0.6" opacity=".4"/>
+  <circle cx="400"  cy="240" r="0.8" opacity=".5"/>
 </g>
+
+<!-- second star field (tB class) for variety -->
+<g fill="#f0eaff" class="tB">
+  <circle cx="220"  cy="50"  r="0.8" opacity=".8"/>
+  <circle cx="320"  cy="100" r="0.6" opacity=".7"/>
+  <circle cx="540"  cy="80"  r="0.6" opacity=".9"/>
+  <circle cx="780"  cy="140" r="0.6" opacity=".8"/>
+  <circle cx="900"  cy="40"  r="0.8" opacity=".7"/>
+  <circle cx="1080" cy="220" r="0.6" opacity=".8"/>
+  <circle cx="240"  cy="320" r="0.6" opacity=".7"/>
+  <circle cx="180"  cy="460" r="0.8" opacity=".9"/>
+  <circle cx="430"  cy="450" r="0.6" opacity=".7"/>
+  <circle cx="610"  cy="380" r="0.6" opacity=".8"/>
+  <circle cx="780"  cy="450" r="0.8" opacity=".7"/>
+  <circle cx="940"  cy="450" r="0.6" opacity=".9"/>
+  <circle cx="1090" cy="470" r="0.8" opacity=".7"/>
+  <circle cx="60"   cy="260" r="0.6" opacity=".8"/>
+  <circle cx="50"   cy="380" r="0.6" opacity=".7"/>
+  <circle cx="170"  cy="100" r="0.8" opacity=".9"/>
+  <circle cx="350"  cy="180" r="0.6" opacity=".7"/>
+  <circle cx="450"  cy="150" r="0.6" opacity=".8"/>
+  <circle cx="580"  cy="120" r="0.8" opacity=".7"/>
+  <circle cx="730"  cy="200" r="0.6" opacity=".9"/>
+  <circle cx="830"  cy="160" r="0.6" opacity=".7"/>
+  <circle cx="980"  cy="120" r="0.6" opacity=".8"/>
+  <circle cx="1110" cy="160" r="0.8" opacity=".7"/>
+  <circle cx="290"  cy="400" r="0.6" opacity=".9"/>
+  <circle cx="370"  cy="320" r="0.6" opacity=".7"/>
+  <circle cx="510"  cy="310" r="0.6" opacity=".8"/>
+  <circle cx="660"  cy="430" r="0.8" opacity=".7"/>
+  <circle cx="850"  cy="340" r="0.6" opacity=".9"/>
+  <circle cx="1010" cy="400" r="0.6" opacity=".7"/>
+  <circle cx="1130" cy="380" r="0.6" opacity=".8"/>
+  <circle cx="240"  cy="180" r="0.8" opacity=".7"/>
+  <circle cx="80"   cy="370" r="0.6" opacity=".9"/>
+  <circle cx="150"  cy="280" r="0.6" opacity=".7"/>
+  <circle cx="40"   cy="100" r="0.8" opacity=".8"/>
+</g>
+
+<!-- third star field (tC) — sparse, larger -->
+<g fill="#fff7d6" class="tC">
+  <circle cx="190"  cy="40"  r="1.6" opacity=".7"/>
+  <circle cx="610"  cy="50"  r="1.6" opacity=".6"/>
+  <circle cx="1080" cy="80"  r="1.6" opacity=".7"/>
+  <circle cx="80"   cy="440" r="1.6" opacity=".6"/>
+  <circle cx="380"  cy="470" r="1.6" opacity=".5"/>
+  <circle cx="1110" cy="450" r="1.6" opacity=".7"/>
+  <circle cx="280"  cy="150" r="1.4" opacity=".6"/>
+  <circle cx="980"  cy="180" r="1.4" opacity=".5"/>
+  <circle cx="660"  cy="490" r="1.4" opacity=".6"/>
+  <circle cx="450"  cy="60"  r="1.4" opacity=".5"/>
+</g>
+
+<!-- shooting star (drifts in every 9s) -->
+<g class="shooting" opacity=".85">
+  <line x1="0" y1="0" x2="-90" y2="40" stroke="#fff" stroke-width="1.4" stroke-linecap="round" filter="url(#soft)"/>
+  <circle cx="0" cy="0" r="2.4" fill="#fff"/>
+</g>
+
+<!-- Big Dipper / Ursa Major — main attraction, centered around (700,210) -->
+<g class="tA">
+  <!-- 7 stars + connecting lines -->
+  <line x1="530"  y1="90"  x2="610" y2="110" stroke="#a5b4fc" stroke-width="0.8" opacity=".55"/>
+  <line x1="610"  y1="110" x2="690" y2="130" stroke="#a5b4fc" stroke-width="0.8" opacity=".55"/>
+  <line x1="690"  y1="130" x2="760" y2="110" stroke="#a5b4fc" stroke-width="0.8" opacity=".55"/>
+  <line x1="760"  y1="110" x2="820" y2="178" stroke="#a5b4fc" stroke-width="0.8" opacity=".55"/>
+  <line x1="820"  y1="178" x2="920" y2="158" stroke="#a5b4fc" stroke-width="0.8" opacity=".55"/>
+  <line x1="920"  y1="158" x2="870" y2="88"  stroke="#a5b4fc" stroke-width="0.8" opacity=".55"/>
+  <line x1="870"  y1="88"  x2="760" y2="110" stroke="#a5b4fc" stroke-width="0.8" opacity=".55"/>
+  <!-- halos behind stars (pulse) -->
+  <circle cx="530"  cy="90"  r="18" fill="url(#halo)" class="h"/>
+  <circle cx="610"  cy="110" r="22" fill="url(#halo)" class="h2"/>
+  <circle cx="690"  cy="130" r="18" fill="url(#halo)" class="h3"/>
+  <circle cx="760"  cy="110" r="26" fill="url(#halo)" class="h"/>
+  <circle cx="820"  cy="178" r="20" fill="url(#halo)" class="h2"/>
+  <circle cx="920"  cy="158" r="20" fill="url(#halo)" class="h3"/>
+  <circle cx="870"  cy="88"  r="24" fill="url(#halo)" class="h"/>
+  <!-- the stars themselves (solid, on top) -->
+  <circle cx="530"  cy="90"  r="2.2" fill="#fff"/>
+  <circle cx="610"  cy="110" r="2.8" fill="#fff"/>
+  <circle cx="690"  cy="130" r="2.2" fill="#fff"/>
+  <circle cx="760"  cy="110" r="3.2" fill="#fff"/>
+  <circle cx="820"  cy="178" r="2.4" fill="#fff"/>
+  <circle cx="920"  cy="158" r="2.4" fill="#fff"/>
+  <circle cx="870"  cy="88"  r="2.8" fill="#fff"/>
+</g>
+
+<!-- accent stars (larger, halos) -->
 <g>
-<circle cx="760" cy="110" r="15.75" fill="url(#halo)" opacity="0.7"/>
-<circle cx="760" cy="110" r="4.5" fill="#ffffff"/>
-<circle cx="870" cy="88" r="19.25" fill="url(#halo)" opacity="0.7"/>
-<circle cx="870" cy="88" r="5.5" fill="#ffffff"/>
-<circle cx="920" cy="158" r="14.0" fill="url(#halo)" opacity="0.7"/>
-<circle cx="920" cy="158" r="4.0" fill="#ffffff"/>
-<circle cx="820" cy="178" r="14.0" fill="url(#halo)" opacity="0.7"/>
-<circle cx="820" cy="178" r="4.0" fill="#ffffff"/>
-<circle cx="690" cy="130" r="14.0" fill="url(#halo)" opacity="0.7"/>
-<circle cx="690" cy="130" r="4.0" fill="#ffffff"/>
-<circle cx="610" cy="110" r="14.700000000000001" fill="url(#halo)" opacity="0.7"/>
-<circle cx="610" cy="110" r="4.2" fill="#ffffff"/>
-<circle cx="530" cy="90" r="14.0" fill="url(#halo)" opacity="0.7"/>
-<circle cx="530" cy="90" r="4.0" fill="#ffffff"/>
+  <circle cx="120"  cy="120" r="14" fill="url(#halo)" class="h"/>
+  <circle cx="120"  cy="120" r="2.0" fill="#fff"/>
+  <circle cx="1080" cy="380" r="14" fill="url(#halo)" class="h2"/>
+  <circle cx="1080" cy="380" r="2.0" fill="#fff"/>
+  <circle cx="60"   cy="380" r="11" fill="url(#halo)" class="h3"/>
+  <circle cx="60"   cy="380" r="1.6" fill="#fff"/>
+  <circle cx="1140" cy="80"  r="12" fill="url(#halo)" class="h"/>
+  <circle cx="1140" cy="80"  r="1.8" fill="#fff"/>
+  <circle cx="280"  cy="400" r="12" fill="url(#halo)" class="h2"/>
+  <circle cx="280"  cy="400" r="1.8" fill="#fff"/>
+  <circle cx="940"  cy="50"  r="11" fill="url(#halo)" class="h3"/>
+  <circle cx="940"  cy="50"  r="1.6" fill="#fff"/>
+  <circle cx="400"  cy="60"  r="13" fill="url(#halo)" class="h"/>
+  <circle cx="400"  cy="60"  r="1.8" fill="#fff"/>
 </g>
-<g font-family="Cormorant Garamond, Georgia, serif" font-size="11" fill="#a5b4fc" opacity="0.85">
-<text x="770" y="114">天权</text>
-<text x="880" y="92">天枢</text>
-<text x="930" y="162">天璇</text>
-<text x="830" y="182">天玑</text>
-<text x="700" y="134">玉衡</text>
-<text x="620" y="114">开阳</text>
-<text x="540" y="94">摇光</text>
+
+<!-- labels (English + Classical Chinese) -->
+<g font-family="Cormorant Garamond, Georgia, serif" fill="#c4b5fd" opacity="0.85">
+  <!-- English, top-left -->
+  <text x="60" y="280" font-size="16" letter-spacing="0.5">the Big Dipper · Ursa Major</text>
+  <text x="60" y="300" font-size="12" letter-spacing="0.4" fill="#a5b4fc" opacity="0.85">the seven governors of the northern sky</text>
+  <!-- Classical Chinese, bottom-right -->
+  <text x="1140" y="455" font-size="14" text-anchor="end" fill="#a5b4fc" opacity="0.8">观乎天文，以察时变</text>
+  <!-- Northern hemisphere pointer -->
+  <text x="760" y="200" font-size="10" text-anchor="middle" fill="#a5b4fc" opacity="0.6" letter-spacing="1.5">POLE</text>
 </g>
-<g font-family="Cormorant Garamond, Georgia, serif" fill="#c4b5fd" opacity="0.55" letter-spacing="0">
-<text x="60" y="56" font-size="14">badhope</text>
-<text x="60" y="76" font-size="10" fill="#a5b4fc">stargazing &nbsp;·&nbsp; 斗转星移</text>
-</g>
-<g font-family="Cormorant Garamond, Georgia, serif" fill="#a5b4fc" opacity="0.45" letter-spacing="0">
-<text x="60" y="198" font-size="10">Ursa Major · the seven governors of the northern sky</text>
-<text x="60" y="212" font-size="9" letter-spacing="2" fill="#818cf8">观乎天文，以察时变</text>
+
+<!-- Big Dipper star labels (small, fade in via class) -->
+<g font-family="Cormorant Garamond, Georgia, serif" fill="#e0d4ff" opacity="0.75" font-size="9" letter-spacing="0.4">
+  <text x="540"  y="80">摇光 Alkaid</text>
+  <text x="620"  y="100">开阳 Mizar</text>
+  <text x="700"  y="120">玉衡 Alioth</text>
+  <text x="770"  y="100">天权 Megrez</text>
+  <text x="830"  y="168">天玑 Phecda</text>
+  <text x="930"  y="148">天璇 Merak</text>
+  <text x="880"  y="78">天枢 Dubhe</text>
 </g>
 </svg>
