@@ -1,0 +1,55 @@
+name: Refresh profile data
+
+# Daily refresh of repo list, CSDN feed, daily quote.
+# Creates a PR; the maintainer reviews and merges.
+# No direct push to main, no separate bot account.
+on:
+  schedule:
+    - cron: "13 6 * * *"   # 06:13 UTC every day
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    name: Regenerate and open PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run generator
+        env:
+          GH_USER: badhope
+          CSDN_USER: weixin_56622231
+        run: python scripts/generate.py
+
+      - name: Open PR with the diff
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(profile): daily refresh"
+          title: "Daily profile refresh — $(date -u +%Y-%m-%d)"
+          body: |
+            Automated daily refresh. The script regenerated:
+            - repo list (sorted by ⭐)
+            - language / topic stats
+            - CSDN feed (latest articles)
+            - daily quote
+
+            Please review the diff and merge.
+          branch: auto/refresh
+          delete-branch: true
+          add-paths: |
+            README.md
+            README.zh-CN.md
