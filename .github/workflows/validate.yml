@@ -56,23 +56,12 @@ jobs:
           sys.exit(0 if ok else 1)
           PY
 
-      - name: Run generator (re-derives content)
-        env:
-          GH_USER: badhope
-          CSDN_USER: weixin_56622231
-        run: python scripts/generate.py
-
-      - name: Verify regenerated content is identical
-        run: |
-          if ! git diff --quiet; then
-            echo "::error::Generated README drifted from what is committed."
-            echo "Run 'python scripts/generate.py' locally, review, and commit the result."
-            git --no-pager diff | head -80
-            exit 1
-          fi
-          echo "README is up to date."
-
       - name: Python syntax check on script
         run: |
           python -m py_compile scripts/generate.py
           echo "scripts/generate.py compiles cleanly"
+      # NOTE: We deliberately do NOT re-run the generator in CI, because
+      # the daily quote and (potentially) CSDN feed will differ between
+      # the PR-creator moment and the CI moment, and a non-deterministic
+      # diff would just be noise. The AUTO-marker check above is the real
+      # structural test.
