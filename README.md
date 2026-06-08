@@ -209,9 +209,9 @@ Fetched once a day. Don't read it twice — that defeats the point.
 </p>
 
 <!-- AUTO:QUOTE:START -->
-> *"As soon as you trust yourself, you will know how to live."*
+> *"The greatest weariness comes from work not done."*
 > 
-> — **Johann Wolfgang von Goethe**
+> — **Eric Hoffer**
 <!-- AUTO:QUOTE:END -->
 
 ---

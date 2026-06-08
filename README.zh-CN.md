@@ -209,9 +209,9 @@ _As of 2026-06-08 UTC — 21 public repos · 219 total ⭐ · top languages: Pyt
 </p>
 
 <!-- AUTO:QUOTE:START -->
-> *"As soon as you trust yourself, you will know how to live."*
+> *"The greatest weariness comes from work not done."*
 > 
-> — **Johann Wolfgang von Goethe**
+> — **Eric Hoffer**
 <!-- AUTO:QUOTE:END -->
 
 ---
