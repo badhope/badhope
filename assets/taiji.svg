@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Tai Chi Bagua spinning slowly">
+  <title>Tai Chi Bagua — slow rotation</title>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#A78BFA" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#312E81" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#1E1B4B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="darkOrb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#312E81"/>
+      <stop offset="100%" stop-color="#1E1B4B"/>
+    </radialGradient>
+  </defs>
+
+  <style><![CDATA[
+    .spinner {
+      transform-origin: 200px 200px;
+      animation: spin 60s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .trigram {
+      fill: #A78BFA;
+      opacity: 0.55;
+      font-family: "Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", "Microsoft YaHei", serif;
+      font-size: 22px;
+    }
+    .ring {
+      fill: none;
+      stroke: #A78BFA;
+      stroke-width: 0.6;
+      opacity: 0.35;
+    }
+    .core-light { fill: #E6E7EE; }
+    .core-dark  { fill: url(#darkOrb); }
+    .dot-light  { fill: #E6E7EE; }
+    .dot-dark   { fill: #1E1B4B; }
+  ]]></style>
+
+  <!-- background glow -->
+  <circle cx="200" cy="200" r="195" fill="url(#glow)"/>
+
+  <!-- static decorative ring -->
+  <circle class="ring" cx="200" cy="200" r="170"/>
+  <circle class="ring" cx="200" cy="200" r="120" stroke-dasharray="2 6"/>
+
+  <!-- spinning group -->
+  <g class="spinner">
+    <!-- 8 trigrams around the taiji (radius ~158) -->
+    <g class="trigram" text-anchor="middle">
+      <text x="200" y="48">☰</text>   <!-- Qian, Heaven  -->
+      <text x="312" y="88">☱</text>   <!-- Dui, Lake     -->
+      <text x="352" y="200">☲</text>  <!-- Li, Fire      -->
+      <text x="312" y="312">☳</text>  <!-- Zhen, Thunder -->
+      <text x="200" y="352">☴</text>  <!-- Xun, Wind     -->
+      <text x="88"  y="312">☵</text>  <!-- Kan, Water    -->
+      <text x="48"  y="200">☶</text>  <!-- Gen, Mountain -->
+      <text x="88"  y="88">☷</text>   <!-- Kun, Earth    -->
+    </g>
+
+    <!-- Taiji outer -->
+    <circle class="core-light" cx="200" cy="200" r="90"/>
+
+    <!-- S-curve dividing yin/yang (dark) -->
+    <path class="core-dark"
+          d="M 200,110
+             A 90,90 0 0,1 200,290
+             A 45,45 0 0,0 200,200
+             A 45,45 0 0,1 200,110 Z"/>
+
+    <!-- inner seed dots -->
+    <circle class="dot-light" cx="200" cy="155" r="11"/>
+    <circle class="dot-dark"  cx="200" cy="245" r="11"/>
+  </g>
+
+  <!-- static label outside spinner so it stays upright -->
+  <text x="200" y="380" text-anchor="middle"
+        font-family="Cormorant Garamond, Georgia, serif"
+        font-size="13" letter-spacing="6" fill="#A78BFA" opacity="0.65">
+    badhope · 万物负阴而抱阳
+  </text>
+</svg>
