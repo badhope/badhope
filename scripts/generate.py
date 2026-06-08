@@ -441,13 +441,17 @@ def render_topic_cloud(repos: list[dict], max_topics: int = 24) -> str:
         # size scales with frequency, capped
         size = 16 + min(4, n - 1)   # 16px..20px
         pills.append(
-            f'<span style="display:inline-block;font-size:{size}px;'
+            f'<span style="font-size:{size}px;'
             f'color:#c4b5fd;background:rgba(49,46,129,0.45);'
-            f'padding:4px 11px;border-radius:12px;margin:4px 5px 4px 0;'
+            f'padding:4px 11px;border-radius:12px;'
             f'border:1px solid rgba(167,139,250,0.18)">'
             f'{tag}<sub style="opacity:0.55;margin-left:4px">×{n}</sub></span>'
         )
-    return '<div style="line-height:2">' + "".join(pills) + "</div>"
+    return (
+        '<div style="display:flex;flex-wrap:wrap;gap:8px;'
+        'justify-content:center;line-height:1.4;margin:6px 0 10px">'
+        + "".join(pills) + "</div>"
+    )
 
 
 def render_csdn(items: list[dict], lang: str = "en") -> str:

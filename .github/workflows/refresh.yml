@@ -1,8 +1,15 @@
 name: Refresh profile data
 
-# Daily refresh of repo list, CSDN feed, daily quote.
-# Creates a PR; the maintainer reviews and merges.
-# No direct push to main, no separate bot account.
+# Daily regeneration of repo list, CSDN feed, and daily quote.
+# Commits straight to main — no PR, no bot branch, no separate account.
+# "all branches are deployed and expanded by us" is a hard rule, so
+# peter-evans/create-pull-request is intentionally not used.
+#
+# Authentication: a Personal Access Token (classic, scope `repo`) stored
+# as the repository secret `PROFILE_PAT` is used for both checkout and
+# push. `secrets.GITHUB_TOKEN` is NOT used because the default token
+# cannot push back to the same branch and would also fail to trigger
+# the validator workflow.
 on:
   schedule:
     - cron: "13 6 * * *"   # 06:13 UTC every day
@@ -10,18 +17,24 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
+
+concurrency:
+  # serialize runs so two overlapping cron ticks do not fight on the
+  # same push target
+  group: refresh-profile
+  cancel-in-progress: false
 
 jobs:
   refresh:
-    name: Regenerate and open PR
+    name: Regenerate and push to main
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PROFILE_PAT }}
+          fetch-depth: 1
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -32,24 +45,18 @@ jobs:
         env:
           GH_USER: badhope
           CSDN_USER: weixin_56622231
+          GITHUB_TOKEN: ${{ secrets.PROFILE_PAT }}
         run: python scripts/generate.py
 
-      - name: Open PR with the diff
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore(profile): daily refresh"
-          title: "Daily profile refresh — $(date -u +%Y-%m-%d)"
-          body: |
-            Automated daily refresh. The script regenerated:
-            - repo list (sorted by ⭐)
-            - language / topic stats
-            - CSDN feed (latest articles)
-            - daily quote
-
-            Please review the diff and merge.
-          branch: auto/refresh
-          delete-branch: true
-          add-paths: |
-            README.md
-            README.zh-CN.md
+      - name: Commit (only if there is a diff)
+        run: |
+          set -euo pipefail
+          if git diff --quiet README.md README.zh-CN.md; then
+            echo "no changes — nothing to commit"
+            exit 0
+          fi
+          git config user.name  "badhope-bump"
+          git config user.email "badhope-bump@users.noreply.github.com"
+          git add README.md README.zh-CN.md
+          git commit -m "chore(profile): daily refresh"
+          git push https://x-access-token:${{ secrets.PROFILE_PAT }}@github.com/badhope/badhope.git HEAD:main

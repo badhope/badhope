@@ -1,8 +1,11 @@
 # Deployment & Operations
 
 This is the README behind [github.com/badhope](https://github.com/badhope).
-The static prose in this document is hand-written, **and no bot pushes
-to `main` directly** — a daily cron opens a PR, you review and merge.
+The static prose in this document is hand-written. The automated refresh
+runs every day at 06:13 UTC and commits the regenerated content
+straight to `main` — no PR, no bot branch, no separate bot account.
+**All branches in this repo are deployed and expanded by you manually;
+no bot opens branches on its own.**
 
 ---
 
@@ -20,7 +23,7 @@ to `main` directly** — a daily cron opens a PR, you review and merge.
 ├── scripts/
 │   └── generate.py         # Manual refresh: repos, CSDN, daily quote, stats
 └── .github/workflows/
-    ├── refresh.yml         # Daily 06:13 UTC cron → opens an auto/refresh PR
+    ├── refresh.yml         # Daily 06:13 UTC cron → commits regenerated content to main
     └── validate.yml        # PR-only validator (no auto-run, no auto-merge)
 ```
 
@@ -93,18 +96,39 @@ merge. It only checks that:
 - all `AUTO:*` markers are populated
 - `scripts/generate.py` is syntactically valid Python
 
-### Daily refresh (open a PR, you merge)
+### Daily refresh (commits to `main` directly)
 
 `.github/workflows/refresh.yml` runs every day at **06:13 UTC** and
 on the **manual "Run workflow"** button:
 
-1. Checks out the repo
+1. Checks out the repo using a Personal Access Token
 2. Runs `python scripts/generate.py`
-3. Opens a PR titled `Daily profile refresh — YYYY-MM-DD` with the diff
+3. If `README.md` / `README.zh-CN.md` changed, commits them and pushes
+   the result straight to `main` as the `badhope-bump` bot identity.
 
-You review the PR and click merge. No direct push to `main`. No
-separate bot account — the PR author is `github-actions`, which is
-just a label on the standard `GITHUB_TOKEN` (i.e. it's still you).
+No PR. No `auto/refresh` branch. No separate bot account — the commit
+author is `badhope-bump <badhope-bump@users.noreply.github.com>`, a
+noreply identity, but it still authenticates as **you** (the PAT owner).
+
+#### Setting up the PAT (one-time, then automatic)
+
+The workflow needs a Personal Access Token because the default
+`secrets.GITHUB_TOKEN` cannot push to the same branch it just checked
+out. The token is stored as the repository secret `PROFILE_PAT` and is
+read in three places (checkout, `GITHUB_TOKEN` env for the script, push).
+
+To set it up:
+
+1. Visit <https://github.com/settings/tokens/new> and create a **classic**
+   token with the `repo` scope (no expiry is fine).
+2. Visit <https://github.com/badhope/badhope/settings/secrets/actions/new>
+   and add a secret:
+   - **Name**: `PROFILE_PAT`
+   - **Value**: paste the token you just created
+3. Re-run the workflow from the Actions tab.
+
+Until the secret is set, the workflow will fail at the first checkout
+step with `Input required and not supplied: token`.
 
 The schedule lives in `refresh.yml`; change the `cron:` field if you
 want a different time. Disable the workflow by deleting the file
@@ -136,6 +160,9 @@ and inside the inline `style="…"` blocks emitted by `scripts/generate.py`.
 
 **GitHub rate-limit hit (`403 rate limit exceeded`)**
 Wait an hour, or set a `GITHUB_TOKEN` env var before running the script.
+
+**Refresh workflow fails at checkout with `Input required and not supplied: token`**
+The `PROFILE_PAT` secret is missing. See *Setting up the PAT* above.
 
 **CSDN feed empty**
 CSDN occasionally blocks unauthenticated RSS. The script logs to stderr
