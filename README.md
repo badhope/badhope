@@ -4,12 +4,7 @@
   <img src="./assets/banner-header.svg" alt="header" width="100%" />
 </p>
 
-<div align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/typing-card.svg">
-  <img src="./assets/profile-verse/typing-card-light.svg" alt="typing"  width="100%" />
-</picture>
-</div>
+
 
 ## About
 
@@ -20,16 +15,16 @@ A developer who turns abstract ideas into tangible interfaces. Focused on full-s
 
 ### 🌐 Four-Platform Mirror &nbsp;`one page · four places`
 
-> The same profile is mirrored & synced across four platforms — two GitHub accounts + GitCode + Gitee; contributions & works aggregated.
+> One identity mirrored across four platforms — two GitHub accounts + GitCode + Gitee; each platform refreshes its own real data, contributions & works aggregated.
 
 | Platform | Account | Focus |
 |------|------|------|
-| **GitHub** | [X33834](https://github.com/X33834) | Upstream OSS contributions ◆ |
+| **GitHub** | [X33834](https://github.com/X33834) | Upstream OSS contributions |
 | **GitHub** | [Morningstar202604](https://github.com/Morningstar202604) | Portfolio · Nailong / Tooling |
-| **GitCode** | [badhope](https://gitcode.com/badhope) | Mobile dev · Offline tools |
+| **GitCode** | [badhope](https://gitcode.com/badhope) | Mobile dev · Offline tools ◆ |
 | **Gitee** | [badhope](https://gitee.com/badhope) | Mirror · Mini-programs |
 
-## Stats
+## Profile Verse · 10 Cards
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=Morningstar202604&style=flat-square&color=C9A86A&label=Profile+Views" alt="profile views" />
@@ -37,74 +32,21 @@ A developer who turns abstract ideas into tangible interfaces. Focused on full-s
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/stats-card.svg">
-  <img src="./assets/profile-verse/stats-card-light.svg" alt="profile stats"  width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/wall-dark.png">
+  <img src="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/wall-light.png" alt="Profile Verse — all 10 cards"  width="100%" />
 </picture>
 </p>
-
-## Streak
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/streak-card.svg">
-  <img src="./assets/profile-verse/streak-card-light.svg" alt="GitHub streak"  width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/hero-home.png">
+  <img src="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/hero-light.png" alt="Profile Verse hero"  width="100%" />
 </picture>
 </p>
 
-## Contribution Graph
+<p align="center"><sub>Rebuilt automatically every day at 01:00 UTC by [Profile Verse](https://gitcode.com/badhope/profile-cards) · real data from the GitHub API</sub></p>
 
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/contrib-grid-card.svg">
-  <img src="./assets/profile-verse/contrib-grid-card-light.svg" alt="3D Contribution"  width="100%" />
-</picture>
-</p>
-
-## Tech Stack
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/tech-stack-card.svg">
-  <img src="./assets/profile-verse/tech-stack-card-light.svg" alt="tech stack"  width="100%" />
-</picture>
-</p>
-
-<p align="center">
-  <a href="https://github.com/Morningstar202604/Morningstar202604/actions/workflows/profile-verse.yml"><img src="https://img.shields.io/github/actions/workflow/status/Morningstar202604/Morningstar202604/profile-cards.yml?label=profile-verse&logo=github&logoColor=white&style=flat-square&color=C9A86A" alt="profile-verse workflow" /></a>
-  <a href="https://github.com/Morningstar202604/Morningstar202604/actions/workflows/update-stats.yml"><img src="https://img.shields.io/github/actions/workflow/status/Morningstar202604/Morningstar202604/update-stats.yml?label=update-stats&logo=github&logoColor=white&style=flat-square&color=C9A86A" alt="update-stats workflow" /></a>
-</p>
-
-## Badges
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/badge-card.svg">
-  <img src="./assets/profile-verse/badge-card-light.svg" alt="badges"  width="100%" />
-</picture>
-</p>
-
-## Projects
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/projects-card.svg">
-  <img src="./assets/profile-verse/projects-card-light.svg" alt="projects"  width="100%" />
-</picture>
-</p>
-
-## Open Source Contributions
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/impact-card.svg">
-  <img src="./assets/profile-verse/impact-card-light.svg" alt="open source impact"  width="100%" />
-</picture>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/year-review-card.svg">
-  <img src="./assets/profile-verse/year-review-card-light.svg" alt="year in review"  width="100%" />
-</picture>
-</p>
+<p align="center"><a href="https://gitcode.com/badhope/profile-cards"><img src="https://img.shields.io/badge/Profile_Verse-cards-C9A86A?style=flat-square&logo=git&logoColor=white&labelColor=0B1026" alt="Profile Verse" /></a></p>
 
 ### 📌 Contributions across four platforms
 
@@ -112,6 +54,7 @@ A developer who turns abstract ideas into tangible interfaces. Focused on full-s
 - **GitHub · X33834** — [link](https://github.com/X33834) · **4 PRs merged** (Nailong-Studio/website ×4) + reviewing: airflow #73099 · MonkeyCode #1298 · simona #1–6
 - **GitCode · badhope** — [link](https://gitcode.com/badhope) · 16 open source projects mirrored (mobile IDE / AI assistant / learning terminal)
 - **Gitee · badhope** — [link](https://gitee.com/badhope) · Project mirror + mini-program portfolio
+
 
 ## Blog
 

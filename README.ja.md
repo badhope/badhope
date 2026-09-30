@@ -4,12 +4,7 @@
   <img src="./assets/banner-header.svg" alt="header" width="100%" />
 </p>
 
-<div align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/typing-card.svg">
-  <img src="./assets/profile-verse/typing-card-light.svg" alt="typing"  width="100%" />
-</picture>
-</div>
+
 
 ## プロフィール
 
@@ -20,16 +15,16 @@
 
 ### 🌐 4プラットフォームミラー &nbsp;`1ページ·4つの場所`
 
-> 同じプロフィールを4つのプラットフォームでミラー同期 — GitHub 2アカウント + GitCode + Gitee。
+> 同じプロフィールを4つのプラットフォームでミラー — GitHub 2アカウント + GitCode + Gitee。各プラットフォームのデータはそれぞれ自動更新。
 
 | プラットフォーム | アカウント | 内容 |
 |------|------|------|
-| **GitHub** | [X33834](https://github.com/X33834) | OSS へのコントリビューション ◆ |
+| **GitHub** | [X33834](https://github.com/X33834) | OSS へのコントリビューション |
 | **GitHub** | [Morningstar202604](https://github.com/Morningstar202604) | ポートフォリオ · Nailong / ツール群 |
-| **GitCode** | [badhope](https://gitcode.com/badhope) | モバイル開発 · オフラインツール |
+| **GitCode** | [badhope](https://gitcode.com/badhope) | モバイル開発 · オフラインツール ◆ |
 | **Gitee** | [badhope](https://gitee.com/badhope) | ミラー · ミニアプリ |
 
-## 統計
+## Profile Verse · 10 枚のカード
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=Morningstar202604&style=flat-square&color=C9A86A&label=Profile+Views" alt="profile views" />
@@ -37,74 +32,21 @@
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/stats-card.svg">
-  <img src="./assets/profile-verse/stats-card-light.svg" alt="profile stats"  width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/wall-dark.png">
+  <img src="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/wall-light.png" alt="Profile Verse — 全10カード"  width="100%" />
 </picture>
 </p>
-
-## 連続コミット
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/streak-card.svg">
-  <img src="./assets/profile-verse/streak-card-light.svg" alt="GitHub streak"  width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/hero-home.png">
+  <img src="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/hero-light.png" alt="Profile Verse ヒーロー"  width="100%" />
 </picture>
 </p>
 
-## コントリビューション
+<p align="center"><sub>[Profile Verse](https://gitcode.com/badhope/profile-cards) が毎日 01:00 UTC に自動再構築 · データは GitHub API の実データ</sub></p>
 
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/contrib-grid-card.svg">
-  <img src="./assets/profile-verse/contrib-grid-card-light.svg" alt="3D Contribution"  width="100%" />
-</picture>
-</p>
-
-## 技術スタック
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/tech-stack-card.svg">
-  <img src="./assets/profile-verse/tech-stack-card-light.svg" alt="tech stack"  width="100%" />
-</picture>
-</p>
-
-<p align="center">
-  <a href="https://github.com/Morningstar202604/Morningstar202604/actions/workflows/profile-verse.yml"><img src="https://img.shields.io/github/actions/workflow/status/Morningstar202604/Morningstar202604/profile-cards.yml?label=profile-verse&logo=github&logoColor=white&style=flat-square&color=C9A86A" alt="profile-verse workflow" /></a>
-  <a href="https://github.com/Morningstar202604/Morningstar202604/actions/workflows/update-stats.yml"><img src="https://img.shields.io/github/actions/workflow/status/Morningstar202604/Morningstar202604/update-stats.yml?label=update-stats&logo=github&logoColor=white&style=flat-square&color=C9A86A" alt="update-stats workflow" /></a>
-</p>
-
-## バッジ
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/badge-card.svg">
-  <img src="./assets/profile-verse/badge-card-light.svg" alt="badges"  width="100%" />
-</picture>
-</p>
-
-## プロジェクト
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/projects-card.svg">
-  <img src="./assets/profile-verse/projects-card-light.svg" alt="projects"  width="100%" />
-</picture>
-</p>
-
-## オープンソースへの貢献
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/impact-card.svg">
-  <img src="./assets/profile-verse/impact-card-light.svg" alt="open source impact"  width="100%" />
-</picture>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/year-review-card.svg">
-  <img src="./assets/profile-verse/year-review-card-light.svg" alt="年間レビュー"  width="100%" />
-</picture>
-</p>
+<p align="center"><a href="https://gitcode.com/badhope/profile-cards"><img src="https://img.shields.io/badge/Profile_Verse-cards-C9A86A?style=flat-square&logo=git&logoColor=white&labelColor=0B1026" alt="Profile Verse" /></a></p>
 
 ### 📌 4プラットフォームの貢献一覧
 
@@ -112,6 +54,7 @@
 - **GitHub · X33834** — [リンク](https://github.com/X33834) · **4 PR merged**（Nailong-Studio/website ×4）+ レビュー中：airflow #73099 · MonkeyCode #1298 · simona #1–6
 - **GitCode · badhope** — [リンク](https://gitcode.com/badhope) · 16のオープンソースをミラー公開
 - **Gitee · badhope** — [リンク](https://gitee.com/badhope) · プロジェクトミラー＋ミニアプリ
+
 
 ## ブログ
 

@@ -4,12 +4,7 @@
   <img src="./assets/banner-header.svg" alt="header" width="100%" />
 </p>
 
-<div align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/typing-card.svg">
-  <img src="./assets/profile-verse/typing-card-light.svg" alt="typing"  width="100%" />
-</picture>
-</div>
+
 
 ## 关于
 
@@ -20,16 +15,16 @@
 
 ### 🌐 四平台镜像 &nbsp;`一页 · 四地 · 互为镜像`
 
-> 同一份主页在四个平台互为镜像同步——GitHub 双账号 + GitCode + Gitee，贡献与作品跨平台聚合展示。
+> 同一份主页在四个平台互为镜像——GitHub 双账号 + GitCode + Gitee，各平台数据各自实时刷新，贡献与作品跨平台聚合展示。
 
 | 平台 | 账号 | 定位 |
 |------|------|------|
-| **GitHub** | [X33834](https://github.com/X33834) | 开源贡献 · 上游 PR ◆ |
+| **GitHub** | [X33834](https://github.com/X33834) | 开源贡献 · 上游 PR |
 | **GitHub** | [Morningstar202604](https://github.com/Morningstar202604) | 作品集 · 奶龙系列 / 工具集 |
-| **GitCode** | [badhope](https://gitcode.com/badhope) | 移动端开发 · 离线工具 |
+| **GitCode** | [badhope](https://gitcode.com/badhope) | 移动端开发 · 离线工具 ◆ |
 | **Gitee** | [badhope](https://gitee.com/badhope) | 作品镜像 · 小程序 |
 
-## 统计
+## Profile Verse · 全家桶 10 卡
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=Morningstar202604&style=flat-square&color=C9A86A&label=Profile+Views" alt="profile views" />
@@ -37,74 +32,21 @@
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/stats-card.svg">
-  <img src="./assets/profile-verse/stats-card-light.svg" alt="profile stats"  width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/wall-dark.png">
+  <img src="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/wall-light.png" alt="Profile Verse — 全部 10 张卡片"  width="100%" />
 </picture>
 </p>
-
-## 连续提交
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/streak-card.svg">
-  <img src="./assets/profile-verse/streak-card-light.svg" alt="GitHub streak"  width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/hero-home.png">
+  <img src="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/hero-light.png" alt="Profile Verse 头图"  width="100%" />
 </picture>
 </p>
 
-## 贡献热力图
+<p align="center"><sub>由 [Profile Verse](https://gitcode.com/badhope/profile-cards) 组件每天 01:00 UTC 自动重建 · 数据来自真实 GitHub API</sub></p>
 
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/contrib-grid-card.svg">
-  <img src="./assets/profile-verse/contrib-grid-card-light.svg" alt="3D Contribution"  width="100%" />
-</picture>
-</p>
-
-## 技术栈
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/tech-stack-card.svg">
-  <img src="./assets/profile-verse/tech-stack-card-light.svg" alt="tech stack"  width="100%" />
-</picture>
-</p>
-
-<p align="center">
-  <a href="https://github.com/Morningstar202604/Morningstar202604/actions/workflows/profile-verse.yml"><img src="https://img.shields.io/github/actions/workflow/status/Morningstar202604/Morningstar202604/profile-cards.yml?label=profile-verse&logo=github&logoColor=white&style=flat-square&color=C9A86A" alt="profile-verse workflow" /></a>
-  <a href="https://github.com/Morningstar202604/Morningstar202604/actions/workflows/update-stats.yml"><img src="https://img.shields.io/github/actions/workflow/status/Morningstar202604/Morningstar202604/update-stats.yml?label=update-stats&logo=github&logoColor=white&style=flat-square&color=C9A86A" alt="update-stats workflow" /></a>
-</p>
-
-## 徽章
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/badge-card.svg">
-  <img src="./assets/profile-verse/badge-card-light.svg" alt="badges"  width="100%" />
-</picture>
-</p>
-
-## 项目
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/projects-card.svg">
-  <img src="./assets/profile-verse/projects-card-light.svg" alt="projects"  width="100%" />
-</picture>
-</p>
-
-## 开源贡献
-
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/impact-card.svg">
-  <img src="./assets/profile-verse/impact-card-light.svg" alt="open source impact"  width="100%" />
-</picture>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-verse/year-review-card.svg">
-  <img src="./assets/profile-verse/year-review-card-light.svg" alt="年度回顾"  width="100%" />
-</picture>
-</p>
+<p align="center"><a href="https://gitcode.com/badhope/profile-cards"><img src="https://img.shields.io/badge/Profile_Verse-cards-C9A86A?style=flat-square&logo=git&logoColor=white&labelColor=0B1026" alt="Profile Verse" /></a></p>
 
 ### 📌 四平台贡献一览
 
@@ -112,6 +54,7 @@
 - **GitHub · X33834** — [链接](https://github.com/X33834) · **4 PRs merged**（Nailong-Studio/website ×4）+ 评审中：airflow #73099 · MonkeyCode #1298 · simona #1–6
 - **GitCode · badhope** — [链接](https://gitcode.com/badhope) · 16 个开源项目镜像（移动端 IDE / AI 助手 / 学习终端）
 - **Gitee · badhope** — [链接](https://gitee.com/badhope) · 项目镜像 + 小程序作品集
+
 
 ## 博客
 
