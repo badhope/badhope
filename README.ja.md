@@ -4,7 +4,9 @@
   <img src="./assets/banner-header.svg" alt="header" width="100%" />
 </p>
 
-
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1200&color=C9A86A&center=true&vCenter=true&width=640&height=50&lines=%E5%A4%9C%E8%A7%82%E6%98%9F%E8%B1%A1%EF%BC%8C%E4%BB%A5%E4%BB%A3%E7%A0%81%E4%BD%9C%E8%88%9F%E3%80%82;%E4%B8%8E%E5%85%B6%E6%9B%B4%E5%A5%BD%EF%BC%8C%E4%B8%8D%E5%A6%82%E4%B8%8D%E5%90%8C;Code%20under%20the%20stars%2C%20ship%20with%20the%20dawn" alt="typing" />
+</div>
 
 ## プロフィール
 
@@ -15,38 +17,83 @@
 
 ### 🌐 4プラットフォームミラー &nbsp;`1ページ·4つの場所`
 
-> 同じプロフィールを4つのプラットフォームでミラー — GitHub 2アカウント + GitCode + Gitee。各プラットフォームのデータはそれぞれ自動更新。
+> 同じプロフィールを4つのプラットフォームでミラー同期 — GitHub 2アカウント + GitCode + Gitee。
 
 | プラットフォーム | アカウント | 内容 |
 |------|------|------|
 | **GitHub** | [X33834](https://github.com/X33834) | OSS へのコントリビューション |
-| **GitHub** | [Morningstar202604](https://github.com/Morningstar202604) | ポートフォリオ · Nailong / ツール群 |
-| **GitCode** | [badhope](https://gitcode.com/badhope) | モバイル開発 · オフラインツール ◆ |
+| **GitHub** | [Morningstar202604](https://github.com/Morningstar202604) | ポートフォリオ · Nailong / ツール群 ◆ |
+| **GitCode** | [badhope](https://gitcode.com/badhope) | モバイル開発 · オフラインツール |
 | **Gitee** | [badhope](https://gitee.com/badhope) | ミラー · ミニアプリ |
 
-## Profile Verse · 10 枚のカード
+## 統計
+
+<!-- STATS:START -->
+- ⭐ **12** stars（4プラットフォーム最大値）&nbsp;·&nbsp; 👥 **13** followers &nbsp;·&nbsp; 📦 **17+ リポジトリ**（GitCode 基準）
+<!-- STATS:END -->
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=Morningstar202604&style=flat-square&color=C9A86A&label=Profile+Views" alt="profile views" />
 </p>
 
+## 連続コミット
+
 <p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/wall-dark.png">
-  <img src="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/wall-light.png" alt="Profile Verse — 全10カード"  width="100%" />
-</picture>
+  <img src="https://streak-stats.demolab.com?user=Morningstar202604&theme=tokyonight&hide_border=true&border_radius=12" alt="GitHub streak" width="70%" />
+</p>
+
+## コントリビューション
+
+<p align="center">
+  <img src="./assets/3d-contrib-green.png" alt="3D Contribution" width="98%" />
 </p>
 
 <p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/hero-home.png">
-  <img src="https://gitcode.com/badhope/profile-cards/raw/main/assets/showcase/hero-light.png" alt="Profile Verse ヒーロー"  width="100%" />
-</picture>
+  <img src="./assets/github-contribution-grid-snake.svg" alt="Contribution Snake" width="100%" />
 </p>
 
-<p align="center"><sub>[Profile Verse](https://gitcode.com/badhope/profile-cards) が毎日 01:00 UTC に自動再構築 · データは GitHub API の実データ</sub></p>
+## 技術スタック
 
-<p align="center"><a href="https://gitcode.com/badhope/profile-cards"><img src="https://img.shields.io/badge/Profile_Verse-cards-C9A86A?style=flat-square&logo=git&logoColor=white&labelColor=0B1026" alt="Profile Verse" /></a></p>
+<p align="center">
+  <img src="./assets/tech-stack.png" alt="tech stack" width="620" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/Morningstar202604/Morningstar202604/actions/workflows/snake.yml"><img src="https://img.shields.io/github/actions/workflow/status/Morningstar202604/Morningstar202604/snake.yml?label=snake&logo=github&logoColor=white&style=flat-square&color=2ea44f" alt="snake workflow" /></a>
+  <a href="https://github.com/Morningstar202604/Morningstar202604/actions/workflows/profile-3d.yml"><img src="https://img.shields.io/github/actions/workflow/status/Morningstar202604/Morningstar202604/profile-3d.yml?label=profile-3d&logo=github&logoColor=white&style=flat-square&color=2ea44f" alt="profile-3d workflow" /></a>
+  <a href="https://github.com/Morningstar202604/Morningstar202604/actions/workflows/update-stats.yml"><img src="https://img.shields.io/github/actions/workflow/status/Morningstar202604/Morningstar202604/update-stats.yml?label=update-stats&logo=github&logoColor=white&style=flat-square&color=2ea44f" alt="update-stats workflow" /></a>
+</p>
+
+## プロジェクト
+
+<!-- PROJECTS:START -->
+- **[bot4cj](https://gitcode.com/badhope/bot4cj)** · 6★ · 基于仓颉语言的硬件机器人控制框架 · `ハードウェア · ロボット`
+- **[mobilecode](https://gitcode.com/badhope/mobilecode)** · 1★ · Android 端 AI 编程助手（BYOK 离线运行） · `モバイル · Kotlin`
+- **[dev-terminal](https://gitcode.com/badhope/dev-terminal)** · 0★ · 完全离线的安卓编程终端 — 手机上的现代 IDE · `モバイル · オフライン`
+- **[awesome-skillkit](https://gitcode.com/badhope/awesome-skillkit)** · 3★ · Agent Skills 场景包 · 27 packs / 11 分类 · `AI ツール`
+- **[scholarhub](https://gitcode.com/badhope/scholarhub)** · 1★ · 学术期刊与预印本多租户平台 · `SaaS`
+- **[FinHub](https://gitcode.com/badhope/FinHub)** · 0★ · AI 投资研究 Agent 平台 · `Quant · 金融`
+- **[VerdictAI](https://gitcode.com/badhope/VerdictAI)** · 0★ · 多智能体法庭辩论系统 · `マルチエージェント`
+- **[mashang-python](https://gitcode.com/badhope/mashang-python)** · 0★ · 码上 Python · PY//NOW 赛博朋克风学习终端 · `教育`
+- **[KeBaiPay](https://gitcode.com/badhope/KeBaiPay)** · 0★ · 科佰支付 · 自托管开源支付中台 · `決済`
+<!-- PROJECTS:END -->
+
+## オープンソースへの貢献
+
+スター数の多いオープンソースへのコード提供 — **2つのGitHubアカウントで合計16 PR マージ済み**、中でも **ohmyzsh（189k★）**・**tldr-pages（64k★）** は有名プロジェクトです。
+
+### ⭐ ハイインパクト・マージ済み
+
+<table align="center">
+  <tr><td align="center" width="280"><sub><b><a href="https://github.com/ohmyzsh/ohmyzsh">ohmyzsh/ohmyzsh</a></b> ⭐189k</sub><br/><a href="https://github.com/ohmyzsh/ohmyzsh/pull/14006">#14006</a> · <a href="https://github.com/ohmyzsh/ohmyzsh/pull/14021">#14021</a> · <a href="https://github.com/ohmyzsh/ohmyzsh/pull/14027">#14027</a><br/><sub>fix(git): force C locale · fix(pipenv): keep activation · fix(aws): asr error</sub><br/><sub>zsh フレームワークの定番</sub></td><td align="center" width="280"><sub><b><a href="https://github.com/tldr-pages/tldr">tldr-pages/tldr</a></b> ⭐64k</sub><br/><a href="https://github.com/tldr-pages/tldr/pull/23780">#23780</a><br/><sub>doctl CLI pages</sub><br/><sub>コミュニティのコマンドチートシート</sub></td></tr>
+  <tr><td align="center" width="280"><sub><b><a href="https://github.com/collective/icalendar">collective/icalendar</a></b> ⭐1.2k</sub><br/><a href="https://github.com/collective/icalendar/pull/1731">#1731</a> · <a href="https://github.com/collective/icalendar/pull/1750">#1750</a> · <a href="https://github.com/collective/icalendar/pull/1751">#1751</a><br/><sub>docs: public exports · deprecate single_string_parameter · TYPE_CHECKING imports</sub><br/><sub>Python iCalendar エコシステム</sub></td><td align="center" width="280"><sub><b><a href="https://github.com/nix-community/NUR">nix-community/NUR</a></b> ⭐2k</sub><br/><a href="https://github.com/nix-community/NUR/pull/1220">#1220</a><br/><sub>treat SSL errors as transient</sub><br/><sub>Nix ユーザーリポジトリ</sub></td></tr>
+</table>
+
+ほかにも [EnderBridge](https://github.com/Hydrooxzgen/EnderBridge)（110★）や [claude-tool-agent](https://github.com/jaychouchannel/claude-tool-agent)（エージェント連携 ×3）にも合流。
+
+### 🚧 レビュー中
+
+pydantic / galaxy / LibreChat / PDFMathTranslate / getmoto / zsh-completions など 20+ プロジェクトでレビュー中・提出済み。
 
 ### 📌 4プラットフォームの貢献一覧
 
@@ -55,16 +102,15 @@
 - **GitCode · badhope** — [リンク](https://gitcode.com/badhope) · 16のオープンソースをミラー公開
 - **Gitee · badhope** — [リンク](https://gitee.com/badhope) · プロジェクトミラー＋ミニアプリ
 
-
 ## ブログ
 
 <!-- BLOG:START -->
-- [Playwright 多平台分发：8 个踩坑与合规门禁](https://blog.csdn.net/weixin_56622231/article/details/166698802) · `2026-09-27` · CSDN
-- [Playwright 多平台分发：8 个踩坑与合规门禁](https://juejin.cn/post/7689408456146616347) · `2026-09-27` · 掘金
-- [AI Agent 智能体开发从零到一：2026年程序员完整学习路线与实战指南](https://blog.csdn.net/weixin_56622231/article/details/166643070) · `2026-09-25` · CSDN
-- [Render用Go扛1500亿请求，Cloudflare用Rust快1000倍：这场战争里没有赢家，只有场景](https://juejin.cn/post/7689030185366159406) · `2026-09-25` · 掘金
-- [35岁程序员求职周期127天：不是年龄歧视，是性价比歧视——但 victims 还是我们](https://juejin.cn/post/7688942552990171171) · `2026-09-25` · 掘金
-- [我的QQ群友给我发了一个「奶蛙圣殿」，我进去之后陷入了沉思](https://juejin.cn/post/7688988203789385728) · `2026-09-25` · 掘金
+- [C++、Node.js、Python 写最小 HTTP 服务谁快？我实测了 6 万次请求](https://juejin.cn/post/7686040694947233801) · `2026-09-16` · 掘金
+- [Token 变成 KPI：大厂发 22 万「Token 套餐」，程序员开始自费上班](https://juejin.cn/post/7686025279651299374) · `2026-09-16` · 掘金
+- [【分布式第一课】从单机到百万级并发：一小时带你看懂分布式系统的前世今生](https://blog.csdn.net/weixin_56622231/article/details/165435117) · `2026-09-15` · CSDN
+- [2026分布式系统新范式：从CAP到AI驱动的动态一致性](https://blog.csdn.net/weixin_56622231/article/details/165426714) · `2026-09-15` · CSDN
+- [阿里面试全流程及备战攻略](https://blog.csdn.net/weixin_56622231/article/details/165339986) · `2026-09-14` · CSDN
+- [同样写 AI，为什么有的文章 549 人看、有的只有 16 人看？——我用 40 篇掘金文章的真实数据复盘](https://juejin.cn/post/7684646620394979355) · `2026-09-12` · 掘金
 <!-- BLOG:END -->
 
 ## オープンソースレーダー
@@ -104,14 +150,11 @@
 <a href="https://juejin.cn/user/2350111542479753"><img src="https://img.shields.io/badge/Juejin-2350111542479753-C9A86A?style=flat&logo=juejin&logoColor=white&labelColor=0B1026" alt="Juejin" /></a>
 </p>
 
+
 <p align="center">
   <img src="./assets/banner-footer.svg" alt="footer" width="100%" />
 </p>
 
 <p align="center">
-  <p align="center">
-  <sub>Built with <a href="https://github.com/Morningstar202604/profile-cards">Profile Verse</a> · zero-server GitHub cards</sub>
-</p>
-
-<sub>&copy; Morningstar202604</sub>
+  <sub>&copy; Morningstar202604</sub>
 </p>
