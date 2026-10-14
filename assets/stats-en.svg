@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 190" width="1000" height="190" role="img" aria-label="30 public repos · 9 stars">
+<defs>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#121A2E"/>
+    <stop offset="100%" stop-color="#141B33"/>
+  </linearGradient>
+</defs>
+<rect x="0.75" y="0.75" width="998.5" height="188.5" rx="16" fill="url(#panel)" stroke="#C9A86A" stroke-opacity="0.28" stroke-width="1.5"/>
+<text x="250.0" y="92" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#E8CD92">30</text>
+<text x="250.0" y="126" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" letter-spacing="1.5" fill="#A9B4CC">public repos</text>
+<text x="750.0" y="92" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#E8CD92">9</text>
+<text x="750.0" y="126" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" letter-spacing="1.5" fill="#A9B4CC">stars</text>
+<line x1="500.0" y1="46" x2="500.0" y2="146" stroke="#C9A86A" stroke-opacity="0.16"/>
+<text x="26" y="172" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#6B7A9B">badhope</text>
+<text x="974" y="172" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="1" fill="#6B7A9B">as of 2026-10-14</text>
+</svg>

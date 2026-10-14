@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 130" width="1200" height="130" role="img" aria-label="·">
+<defs>
+  <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#C9A86A" stop-opacity="0"/>
+    <stop offset="50%" stop-color="#C9A86A" stop-opacity="0.45"/>
+    <stop offset="100%" stop-color="#C9A86A" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+<line x1="120" y1="18" x2="1080" y2="18" stroke="url(#rule)" stroke-width="1.2"/>
+<polyline points="255.4,68.7 381.5,57.0 516.0,61.9 656.5,50.4 802.5,61.3 940.9,56.1" fill="none" stroke="#C9A86A" stroke-opacity="0.22" stroke-width="1"/>
+<g>
+  <circle cx="255.4" cy="68.7" r="1.8" fill="#DCE4F5" opacity="0.85"/>
+  <circle cx="381.5" cy="57.0" r="1.8" fill="#DCE4F5" opacity="0.85"/>
+  <circle cx="516.0" cy="61.9" r="1.8" fill="#DCE4F5" opacity="0.85"/>
+  <circle cx="656.5" cy="50.4" r="1.8" fill="#DCE4F5" opacity="0.85"/>
+  <circle cx="802.5" cy="61.3" r="1.8" fill="#DCE4F5" opacity="0.85"/>
+  <circle cx="940.9" cy="56.1" r="1.8" fill="#DCE4F5" opacity="0.85"/>
+</g>
+<rect x="593" y="92" width="12" height="12" fill="none" stroke="#C9A86A" stroke-opacity="0.7" stroke-width="1.1" transform="rotate(45 599 98)"/>
+<line x1="120" y1="112" x2="1080" y2="112" stroke="url(#rule)" stroke-width="1.2"/>
+</svg>

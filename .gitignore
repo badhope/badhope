@@ -1,14 +1,6 @@
-# 系统
-*.log
-.DS_Store
-Thumbs.db
-
-# 编辑器
-.vscode/
-.idea/
-*.swp
-.trae/
-
-# Python
+# build outputs
+dist/
+preview/
 __pycache__/
 *.pyc
+.aqg/
