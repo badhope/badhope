@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""刷新 data/stats.json —— kit 里唯一联网的组件（生成器从不联网）。
+"""刷新 data/stats.json 与 data/writing.json —— kit 里唯一联网的组件（生成器从不联网）。
 
 用法：
   python scripts/refresh.py                # 刷新五个账号的统计数字
@@ -18,12 +18,14 @@
 
 import argparse
 import datetime
+import email.utils
 import json
 import os
 import pathlib
 import sys
 import urllib.error
 import urllib.request
+import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -36,7 +38,10 @@ STATS_PATH = ROOT / "data" / "stats.json"
 STAT_FIELDS = ("repos", "stars", "followers", "merged")
 
 # 网络/解析失败的收窄捕获集合（refresh 对每个数据源失败软处理，绝不整体崩溃）
-NETWORK_ERRORS = (urllib.error.URLError, OSError, ValueError)
+NETWORK_ERRORS = (urllib.error.URLError, OSError, ValueError, ET.ParseError)
+
+WRITING_PATH = ROOT / "data" / "writing.json"
+CSDN_RSS = "https://blog.csdn.net/weixin_56622231/rss/list"
 
 
 def http_json(url, headers=None, timeout=30):
@@ -163,6 +168,47 @@ def refresh_gitcode(owner, block):
         warn("gitcode %s unavailable (%s); keeping old values" % (owner, err))
 
 
+def _fmt_pubdate(raw):
+    try:
+        return email.utils.parsedate_to_datetime(raw).strftime("%Y-%m-%d")
+    except (TypeError, ValueError):
+        return ""
+
+
+def fetch_writing():
+    """抓 CSDN RSS 最新文章 → data/writing.json（失败保留旧内容；文件总会写出）。"""
+    items = []
+    try:
+        req = urllib.request.Request(CSDN_RSS, headers={"User-Agent": UA})
+        root = ET.fromstring(urllib.request.urlopen(req, timeout=30).read())
+        for it in root.findall(".//item")[:6]:
+            title = (it.findtext("title") or "").strip()
+            link = (it.findtext("link") or "").strip()
+            if title and link:
+                items.append({
+                    "title": title,
+                    "url": link,
+                    "date": _fmt_pubdate((it.findtext("pubDate") or "").strip()),
+                })
+        print("writing: fetched %d items (CSDN RSS)" % len(items))
+    except NETWORK_ERRORS as err:
+        warn("writing feed unavailable (%s); keeping old items" % err)
+    old_items = []
+    try:
+        old_items = json.loads(WRITING_PATH.read_text(encoding="utf-8")).get("items") or []
+    except (OSError, ValueError, AttributeError):
+        pass
+    out = {
+        "fetched": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
+        "source": "CSDN RSS",
+        "items": items or old_items,
+    }
+    WRITING_PATH.parent.mkdir(parents=True, exist_ok=True)
+    WRITING_PATH.write_text(
+        json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
+    )
+
+
 def collect_urls():
     urls = set()
     for acct in A.ACCOUNTS.values():
@@ -231,6 +277,7 @@ def main(argv=None):
             refresh_gitee(acct["handle"], block)
         elif acct["platform"] == "gitcode":
             refresh_gitcode(acct["handle"], block)
+    fetch_writing()
     stats = {
         "as_of": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
         "source": "scripts/refresh.py",

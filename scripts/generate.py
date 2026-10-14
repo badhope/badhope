@@ -16,6 +16,7 @@
 """
 
 import argparse
+import datetime
 import json
 import pathlib
 import random
@@ -66,6 +67,18 @@ def load_stats(path):
 
 def acct_stats(stats, key):
     return (stats.get("accounts") or {}).get(key) or {}
+
+
+SNAKE_NAMES = ("github-contribution-grid-snake.svg", "github-contribution-grid-snake-dark.svg")
+
+
+def load_writing_items():
+    """读取 data/writing.json（refresh.py 维护）。缺失/损坏时返回空列表。"""
+    try:
+        data = json.loads((ROOT / "data" / "writing.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    return [it for it in (data.get("items") or []) if it.get("title") and it.get("url")]
 
 
 # --------------------------------------------------------------------------
@@ -275,6 +288,12 @@ def render_readme(acct, key, lang, stats):
     lines.append("")
     lines.append("<p align=\"center\"><i>%s</i></p>" % tagline)
     lines.append("")
+    quote = A.QUOTES[(datetime.date.today().month - 1) % len(A.QUOTES)]
+    quote_text = quote["zh"] if lang == "zh-CN" else quote["en"]
+    author = quote.get("author") or ""
+    suffix = "" if author in ("", "—") else " — %s" % author
+    lines.append('<p align="center"><sub>%s%s</sub></p>' % (quote_text, suffix))
+    lines.append("")
     lines.append("## %s" % labels["about"])
     lines.append("")
     lines.append(acct["about"][lang])
@@ -311,8 +330,26 @@ def render_readme(acct, key, lang, stats):
     lines.append('  <img src="./assets/%s" alt="%s" width="80%%" />' % (A.STATS_NAME[lang], esc(alt)))
     lines.append("</p>")
     lines.append("")
+    if acct.get("contrib_graph"):
+        lines.append("## %s" % labels["contrib_graph"])
+        lines.append("")
+        lines.append('<p align="center">')
+        lines.append('  <picture>')
+        lines.append('    <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />')
+        lines.append('    <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />')
+        lines.append('  </picture>')
+        lines.append('</p>')
+        lines.append("")
     lines.append("## %s" % labels["writing"])
     lines.append("")
+    writing_items = load_writing_items()
+    if writing_items:
+        lines.append("### %s" % labels["writing_latest"])
+        lines.append("")
+        for item in writing_items[:5]:
+            date_bit = " · `%s`" % item["date"] if item.get("date") else ""
+            lines.append("- [%s](%s)%s" % (item["title"], item["url"], date_bit))
+        lines.append("")
     lines.append("- " + " · ".join("[%s](%s)" % w for w in A.WRITING))
     lines.append("")
     lines.append("## %s" % labels["elsewhere"])
@@ -343,6 +380,8 @@ def write_account_files(acct, key, out_dir, stats):
     assets = out / "assets"
     assets.mkdir(parents=True, exist_ok=True)
     wanted = {"hero.svg", "footer.svg"} | {A.STATS_NAME[l] for l in A.LANGS}
+    if acct.get("contrib_graph"):
+        wanted |= set(SNAKE_NAMES)
     for stale in assets.glob("*.svg"):
         if stale.name not in wanted:
             stale.unlink()
@@ -355,9 +394,15 @@ def write_account_files(acct, key, out_dir, stats):
         )
     (assets / "hero.svg").write_text(hero_svg(acct), encoding="utf-8", newline="\n")
     (assets / "footer.svg").write_text(footer_svg(acct), encoding="utf-8", newline="\n")
+    if acct.get("contrib_graph"):
+        seed_dir = ROOT / "data" / "contrib" / key
+        for src_name, dst_name in (("snake.svg", SNAKE_NAMES[0]), ("snake-dark.svg", SNAKE_NAMES[1])):
+            src = seed_dir / src_name
+            if src.is_file():
+                shutil.copyfile(src, assets / dst_name)
 
 
-PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "accounts.py", "data/stats.json")
+PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "accounts.py", "data/stats.json", "data/writing.json")
 PACK_GITIGNORE = ".gitignore"
 
 
@@ -372,14 +417,23 @@ def pack(key, out_dir):
         dst = out / rel
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / rel, dst)
+    if acct.get("contrib_graph"):
+        seed_src = ROOT / "data" / "contrib" / key
+        if seed_src.is_dir():
+            dst_dir = out / "data" / "contrib" / key
+            dst_dir.mkdir(parents=True, exist_ok=True)
+            for f in sorted(seed_src.glob("*.svg")):
+                shutil.copyfile(f, dst_dir / f.name)
     (out / "profile.json").write_text(
         json.dumps({"kit_version": A.KIT_VERSION, "account": key}, indent=2) + "\n",
         encoding="utf-8", newline="\n",
     )
     if acct["platform"] == "github":
-        wf = out / ".github" / "workflows" / "refresh.yml"
-        wf.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(ROOT / "workflows" / "refresh.yml", wf)
+        wf_dir = out / ".github" / "workflows"
+        wf_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / "workflows" / "refresh.yml", wf_dir / "refresh.yml")
+        if acct.get("contrib_graph"):
+            shutil.copyfile(ROOT / "workflows" / "contrib.yml", wf_dir / "contrib.yml")
     (out / PACK_GITIGNORE).write_text(
         (ROOT / PACK_GITIGNORE).read_text(encoding="utf-8"), encoding="utf-8", newline="\n"
     )
