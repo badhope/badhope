@@ -1,33 +1,35 @@
 [English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)
 
 <p align="center">
-  <img src="./assets/hero.svg" alt="badhope · gitcode.com/badhope" width="100%" />
+  <img src="./assets/hero.svg" alt="badhope · github.com/badhope" width="100%" />
 </p>
 
-<p align="center"><i>オフラインでも動くソフトウェアを。</i></p>
+<p align="center"><i>抽象的なアイデアを、動くインターフェースに落とし込む開発者。</i></p>
+
+<p align="center"><sub>First, solve the problem. Then, write the code. — John Johnson</sub></p>
 
 ## について
 
-GitHub 作品の中国ミラー＋モバイル実験場 — オフライン IDE・学習ターミナル・Cangjie ロボットフレームワーク。
+GitHub の拠点 — ツール・索引・小さなソフトウェア実験を公開しています。オフライン優先・シングルファイルな道具が好きです。
 
 ### 近況
 
-- CodePocket オフライン IDE の磨き込み
-- Cangjie 製ロボットフレームワーク bot4cj
-- ツール資料のアーカイブ整理
+- API-Market / MCP-HUB 索引のデータ整備
+- digilegacy と spark の継続開発
+- 49 種のツール集（DU）のドキュメント整備
 
 ## 主な作品
 
-- **[Zhike 知客](https://gitcode.com/badhope/zhike)** — オンライン客服エージェント — QQ / WeChat 連携・コンソール・RAG · `AI · サポート`
-- **[Xiaoman 小满](https://gitcode.com/badhope/xiaoman)** — 会話ファーストの個人金融エージェント — ローカル優先・LangGraph 編成 · `AI · 金融`
-- **[Workbench](https://gitcode.com/badhope/workbench)** — ローカル優先のデスクトップワークベンチ（Tauri 2 + React 19） · `デスクトップ · 生産性`
-- **[VaultX](https://gitcode.com/badhope/vaultx)** — エージェント優先の個人鍵保管庫 — 暗号化ローカルファイル + MCP · `セキュリティ · ツール`
-- **[Spark](https://gitcode.com/badhope/spark)** — ローカル優先の AI コーディングエージェント（承認ゲート付き） · `AI · 開発`
-- **[SciFlow](https://gitcode.com/badhope/sciflow)** — ローカル優先の AI 研究エージェント作業台 — マルチエージェント編成 · `AI · 研究`
-- **[ScholarHub](https://gitcode.com/badhope/scholarhub)** — 学術ジャーナル・プレプリントのマルチテナント基盤 · `SaaS · 学術`
-- **[bot4cj](https://gitcode.com/badhope/bot4cj)** — Cangjie 言語によるハードウェアロボット制御フレームワーク · `ハードウェア · ロボット`
+- **[DigiLegacy 归零](https://github.com/badhope/digilegacy)** — ローカル優先のデジタル遺産管理 · `ツール · プライバシー`
+- **[Spark](https://github.com/badhope/spark)** — ローカル優先の AI コーディングエージェント（承認ゲート付き） · `AI · 開発`
+- **[Agent Builder](https://github.com/badhope/agent-builder)** — プロダクション向け AI エージェント実装ガイド（TypeScript 24 篇） · `AI · ガイド`
+- **[Workbench](https://github.com/badhope/workbench)** — ローカル優先のデスクトップワークベンチ（Tauri 2 + React 19） · `デスクトップ · 生産性`
+- **[SciFlow](https://github.com/badhope/sciflow)** — ローカル優先の AI 研究エージェント作業台 — マルチエージェント編成 · `AI · 研究`
+- **[DU 渡](https://github.com/badhope/DU)** — クライアントサイド中国術数ツールキット — 49 ツール · `ツール · 文化`
+- **[API Market](https://github.com/badhope/API-Market)** — 14,000+ の公開 API を検索できるカタログ · `データ · 索引`
+- **[MCP Hub](https://github.com/badhope/MCP-HUB)** — 4,400+ の MCP サーバー＆リソース登録簿 · `AI · 索引`
 
-全公開リポジトリ： [gitcode.com/badhope](https://gitcode.com/badhope)
+全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
 
 ## オープンソース
 
@@ -36,10 +38,27 @@ GitHub 作品の中国ミラー＋モバイル実験場 — オフライン IDE�
 ## 数字で見る
 
 <p align="center">
-  <img src="./assets/stats-ja.svg" alt="30 公開リポジトリ · 9 累計スター" width="80%" />
+  <img src="./assets/stats-ja.svg" alt="45 公開リポジトリ · 236 累計スター · 18 フォロワー · 6 上流へのマージ" width="80%" />
+</p>
+
+## コントリビューション
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />
+    <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />
+  </picture>
 </p>
 
 ## 執筆
+
+### 最新の記事
+
+- [Playwright 多平台分发：8 个踩坑与合规门禁](https://blog.csdn.net/weixin_56622231/article/details/166698802) · `2026-09-27`
+- [AI Agent 智能体开发从零到一：2026年程序员完整学习路线与实战指南](https://blog.csdn.net/weixin_56622231/article/details/166643070) · `2026-09-25`
+- [工作流体检验收：全链路发布完整性验证](https://blog.csdn.net/weixin_56622231/article/details/166254273) · `2026-09-21`
+- [Python协程全景解析：从原理到生产实战](https://blog.csdn.net/weixin_56622231/article/details/166252941) · `2026-09-21`
+- [【分布式第一课】从单机到百万级并发：一小时带你看懂分布式系统的前世今生](https://blog.csdn.net/weixin_56622231/article/details/165435117) · `2026-09-15`
 
 - [CSDN](https://blog.csdn.net/weixin_56622231) · [Juejin](https://juejin.cn/user/2350111542479753)
 
@@ -49,8 +68,8 @@ GitHub 作品の中国ミラー＋モバイル実験場 — オフライン IDE�
 
 - **GitHub · [X33834](https://github.com/X33834)** — 上流 OSS · ツールと作品
 - **GitHub · [Morningstar202604](https://github.com/Morningstar202604)** — ポートフォリオ · 長期プロジェクト
-- **GitHub · [badhope](https://github.com/badhope)** — プロフィール · ツール小屋
-- **GitCode · [badhope](https://gitcode.com/badhope)** — モバイル開発 · オフラインツール ◆ 現在地
+- **GitHub · [badhope](https://github.com/badhope)** — プロフィール · ツール小屋 ◆ 現在地
+- **GitCode · [badhope](https://gitcode.com/badhope)** — モバイル開発 · オフラインツール
 - **Gitee · [badhope](https://gitee.com/badhope)** — ミラー · ミニアプリ
 
 <p align="center">

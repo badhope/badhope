@@ -1,0 +1,52 @@
+name: Contribution snake
+
+on:
+  schedule:
+    - cron: "41 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: contrib-snake
+  cancel-in-progress: true
+
+jobs:
+  snake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate snake (dark + light)
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          outputs: |
+            assets/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=%23C9A86A&color_dots=%23141B33,%231F2A4A,%232C3C67,%233E528C,%23C9A86A
+            assets/github-contribution-grid-snake.svg?palette=github-light&color_snake=%23C9A86A
+
+      - name: Open pull request when changed
+        # 仓库若禁止默认令牌创建 PR，请在 Settings → Secrets 配置 PROFILE_PAT（classic, repo 权限）
+        env:
+          GH_TOKEN: ${{ secrets.PROFILE_PAT || secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet; then
+            echo "no changes to publish"
+            exit 0
+          fi
+          branch="contrib-snake/$(date -u +%Y%m%d-%H%M)"
+          git config user.name "profile-kit"
+          git config user.email "profile-kit@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A
+          git commit -m "chore: refresh contribution snake"
+          git push -u origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "chore: refresh contribution snake ($(date -u +%F))" \
+            --body "自动刷新贡献蛇形图（Platane/snk）；合入后生效。"
+          gh pr merge --auto --squash || true

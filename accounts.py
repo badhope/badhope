@@ -36,6 +36,22 @@ WRITING = [
     ("Juejin", "https://juejin.cn/user/2350111542479753"),
 ]
 
+# 精选格言（离线、确定性轮换：index = (月-1) % len；每月一句，避免每日变更造成刷新 PR 噪音）
+QUOTES = [
+    {"en": "Make it work, make it right, make it fast.", "zh": "先能跑，再跑对，再跑快。", "author": "Kent Beck"},
+    {"en": "Simplicity is the soul of efficiency.", "zh": "简洁是效率的灵魂。", "author": "Austin Freeman"},
+    {"en": "The best way to predict the future is to invent it.", "zh": "预测未来的最好方式，是把它创造出来。", "author": "Alan Kay"},
+    {"en": "Talk is cheap. Show me the code.", "zh": "少废话，放码过来。", "author": "Linus Torvalds"},
+    {"en": "Premature optimization is the root of all evil.", "zh": "过早优化是万恶之源。", "author": "Donald Knuth"},
+    {"en": "Programs must be written for people to read.", "zh": "程序首先是写给人读的。", "author": "Harold Abelson"},
+    {"en": "Done is better than perfect.", "zh": "完成胜于完美。", "author": "Sheryl Sandberg"},
+    {"en": "Stay hungry, stay foolish.", "zh": "求知若饥，虚心若愚。", "author": "Steve Jobs"},
+    {"en": "Everything should be made as simple as possible, but not simpler.", "zh": "尽可能简单，但不过于简单。", "author": "Albert Einstein"},
+    {"en": "First, solve the problem. Then, write the code.", "zh": "先解决问题，再写代码。", "author": "John Johnson"},
+    {"en": "Slow is smooth, and smooth is fast.", "zh": "慢即是稳，稳即是快。", "author": "—"},
+    {"en": "An investment in knowledge pays the best interest.", "zh": "对知识的投资，回报最丰厚。", "author": "Benjamin Franklin"},
+]
+
 LABELS = {
     "md": {
         "about": "About",
@@ -44,6 +60,8 @@ LABELS = {
         "contrib": "Open source",
         "numbers": "Numbers",
         "writing": "Writing",
+        "writing_latest": "Latest writing",
+        "contrib_graph": "Contribution graph",
         "elsewhere": "Elsewhere",
         "stat_repos": "public repos",
         "stat_stars": "stars",
@@ -64,6 +82,8 @@ LABELS = {
         "contrib": "开源足迹",
         "numbers": "数据",
         "writing": "写作",
+        "writing_latest": "最新文章",
+        "contrib_graph": "贡献图",
         "elsewhere": "在别处",
         "stat_repos": "公开仓库",
         "stat_stars": "累计 Star",
@@ -84,6 +104,8 @@ LABELS = {
         "contrib": "オープンソース",
         "numbers": "数字で見る",
         "writing": "執筆",
+        "writing_latest": "最新の記事",
+        "contrib_graph": "コントリビューション",
         "elsewhere": "ほかの場所",
         "stat_repos": "公開リポジトリ",
         "stat_stars": "累計スター",
@@ -633,6 +655,7 @@ ACCOUNTS = {
                 "ローカル優先の AI ワークフロー探究",
             ],
         },
+        "contrib_graph": True,
         "works": [
             "xiaoman", "shopcash", "digilegacy", "naiwa-pet",
             "agent-builder", "workbench", "awesome-ai-devkit", "awesome-skillkit",
@@ -678,6 +701,7 @@ ACCOUNTS = {
                 "上流 PR をレビュー中 — ohmyzsh・moto・PDFMathTranslate",
             ],
         },
+        "contrib_graph": True,
         "works": [
             "novel-engine", "KeBaiPay", "p2wlan", "xiaoman",
             "shopcash", "naiwa-pet", "sciflow", "spark",
@@ -691,6 +715,7 @@ ACCOUNTS = {
         "home_display": "github.com/badhope",
         "repo_path": "badhope/badhope",
         "deploy_state": "exists",
+        "deploy_protected": True,
         "role": {
             "md": "Profile · full-stack toolshop",
             "zh-CN": "个人主页 · 全栈工具馆",
@@ -723,6 +748,7 @@ ACCOUNTS = {
                 "49 種のツール集（DU）のドキュメント整備",
             ],
         },
+        "contrib_graph": True,
         "works": [
             "digilegacy", "spark", "agent-builder", "workbench",
             "sciflow", "DU", "API-Market", "MCP-HUB",

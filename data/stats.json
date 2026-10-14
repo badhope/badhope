@@ -3,7 +3,7 @@
   "source": "scripts/refresh.py",
   "accounts": {
     "gh_x33834": {
-      "repos": 18,
+      "repos": 20,
       "stars": 3,
       "followers": 1,
       "merged": 1
@@ -15,13 +15,13 @@
       "merged": 15
     },
     "gh_badhope": {
-      "repos": 29,
-      "stars": 239,
+      "repos": 45,
+      "stars": 236,
       "followers": 18,
       "merged": 6
     },
     "gitcode_badhope": {
-      "repos": 30,
+      "repos": 31,
       "stars": 9,
       "followers": null,
       "merged": null
