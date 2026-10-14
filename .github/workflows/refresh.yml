@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: refresh-profile
@@ -29,14 +30,22 @@ jobs:
       - name: Regenerate READMEs and assets
         run: python3 scripts/generate.py --here
 
-      - name: Commit and push
+      - name: Open pull request when content changed
+        # 仓库若禁止默认令牌创建 PR，请在 Settings → Secrets 配置 PROFILE_PAT（classic, repo 权限）
+        env:
+          GH_TOKEN: ${{ secrets.PROFILE_PAT || secrets.GITHUB_TOKEN }}
         run: |
+          if git diff --quiet; then
+            echo "no changes to publish"
+            exit 0
+          fi
+          branch="profile-refresh/$(date -u +%Y%m%d-%H%M)"
           git config user.name "profile-kit"
           git config user.email "profile-kit@users.noreply.github.com"
+          git checkout -b "$branch"
           git add -A
-          if git diff --cached --quiet; then
-            echo "no changes to commit"
-          else
-            git commit -m "chore: refresh profile [skip ci]"
-            git push
-          fi
+          git commit -m "chore: refresh profile stats"
+          git push -u origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "chore: refresh profile stats ($(date -u +%F))" \
+            --body "自动刷新：data/stats.json 及 README/资产更新；合入后生效。"
