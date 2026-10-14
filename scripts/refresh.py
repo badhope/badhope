@@ -1,0 +1,248 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""刷新 data/stats.json —— kit 里唯一联网的组件（生成器从不联网）。
+
+用法：
+  python scripts/refresh.py                # 刷新五个账号的统计数字
+  python scripts/refresh.py --check-links  # 在线校验 accounts.py 里的全部链接
+
+数据源均为公开 API；失败一律保留旧值（绝不删除已有数据）：
+- GitHub : api.github.com          —— 可选 GITHUB_TOKEN / GH_TOKEN / GH_<账号>_TOKEN 提高额度
+- Gitee  : gitee.com/api/v5        —— 公开接口（有 token 时用 Authorization: token 头提额）
+- GitCode: api.gitcode.com         —— 需 token，缺省时跳过
+
+凭据来源优先级：账号专属环境变量（含凭据库记录的变量名）→ 本机凭据库
+`~/.zcode/secrets/accounts.json`（可用 PROFILE_KIT_SECRETS 指定路径）→ 通用环境变量。
+本库不存在时静默降级，CI 上照常可用。token 只在内存中传递、不进 URL。
+"""
+
+import argparse
+import datetime
+import json
+import os
+import pathlib
+import sys
+import urllib.error
+import urllib.request
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+import accounts as A  # noqa: E402
+
+UA = "profile-kit-refresh/1.0"
+STATS_PATH = ROOT / "data" / "stats.json"
+STAT_FIELDS = ("repos", "stars", "followers", "merged")
+
+# 网络/解析失败的收窄捕获集合（refresh 对每个数据源失败软处理，绝不整体崩溃）
+NETWORK_ERRORS = (urllib.error.URLError, OSError, ValueError)
+
+
+def http_json(url, headers=None, timeout=30):
+    req = urllib.request.Request(url, headers={"User-Agent": UA, **(headers or {})})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.load(resp)
+
+
+def warn(msg):
+    print("warn: %s" % msg)
+    return None
+
+
+SECRETS_FILE = pathlib.Path(
+    os.environ.get("PROFILE_KIT_SECRETS", "").strip()
+    or (pathlib.Path.home() / ".zcode" / "secrets" / "accounts.json")
+)
+
+
+def _load_store():
+    """本机凭据库（可选）。读不到/解析失败时返回空 dict —— 刷新照常降级运行。"""
+    try:
+        return json.loads(SECRETS_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def resolve_token(platform, handle, generic_env=()):
+    """凭据解析顺序：账号专属环境变量（含库中记录的变量名）→ 本机凭据库 → 通用环境变量。
+
+    token 只在内存中传递；不要在日志/异常消息里拼接含 token 的 URL。
+    """
+    store = _load_store()
+    account = (((store.get("platforms") or {}).get(platform) or {}).get("accounts") or {}).get(handle) or {}
+    names = []
+    if account.get("env"):
+        names.append(account["env"])
+    names.append("GH_%s_TOKEN" % handle.upper())
+    for name in names:
+        value = os.environ.get(name, "").strip()
+        if value:
+            return value
+    stored = (account.get("token") or "").strip()
+    if stored:
+        return stored
+    for name in generic_env:
+        value = os.environ.get(name, "").strip()
+        if value:
+            return value
+    return None
+
+
+def gh_headers(handle):
+    token = resolve_token("github", handle, generic_env=("GITHUB_TOKEN", "GH_TOKEN"))
+    return {"Authorization": "Bearer " + token} if token else {}
+
+
+def refresh_github(handle, block):
+    try:
+        user = http_json("https://api.github.com/users/%s" % handle, gh_headers(handle))
+        block["repos"] = user.get("public_repos", block.get("repos"))
+        block["followers"] = user.get("followers", block.get("followers"))
+        print("github %s: repos=%s followers=%s" % (handle, block.get("repos"), block.get("followers")))
+    except NETWORK_ERRORS as err:
+        warn("github profile %s unavailable (%s); keeping old values" % (handle, err))
+    stars = 0
+    got = False
+    try:
+        page = 1
+        while True:
+            repos = http_json(
+                "https://api.github.com/users/%s/repos?per_page=100&page=%d" % (handle, page),
+                gh_headers(handle),
+            )
+            if not repos:
+                break
+            for repo in repos:
+                stars += repo.get("stargazers_count", 0)
+            got = True
+            if len(repos) < 100:
+                break
+            page += 1
+        if got:
+            block["stars"] = stars
+            print("github %s: total stars=%d" % (handle, stars))
+    except NETWORK_ERRORS as err:
+        warn("github repos %s unavailable (%s); keeping old stars" % (handle, err))
+    try:
+        found = http_json(
+            "https://api.github.com/search/issues"
+            "?q=author:%s+type:pr+is:merged+-user:%s&per_page=1" % (handle, handle),
+            gh_headers(handle),
+        )
+        block["merged"] = found.get("total_count", block.get("merged"))
+        print("github %s: upstream merged PRs=%s" % (handle, block.get("merged")))
+    except NETWORK_ERRORS as err:
+        warn("github search %s unavailable (%s); keeping old merged count" % (handle, err))
+
+
+def refresh_gitee(owner, block):
+    token = resolve_token("gitee", owner)
+    headers = {"Authorization": "token " + token} if token else None
+    try:
+        repos = http_json("https://gitee.com/api/v5/users/%s/repos?per_page=100" % owner, headers)
+        block["repos"] = len(repos)
+        block["stars"] = sum(r.get("stargazers_count", 0) for r in repos)
+        print("gitee %s: repos=%s stars=%s" % (owner, block["repos"], block["stars"]))
+    except NETWORK_ERRORS as err:
+        warn("gitee %s unavailable (%s); keeping old values" % (owner, err))
+
+
+def refresh_gitcode(owner, block):
+    token = resolve_token("gitcode", owner)
+    if not token:
+        warn("no gitcode credential (env or local secrets store); gitcode numbers not refreshed")
+        return
+    try:
+        url = "https://api.gitcode.com/api/v5/users/%s/repos?per_page=100&page=1" % owner
+        repos = http_json(url, {"Authorization": "Bearer " + token})
+        block["repos"] = len(repos)
+        block["stars"] = sum(r.get("stargazers_count", 0) for r in repos)
+        print("gitcode %s: repos=%s stars=%s" % (owner, block["repos"], block["stars"]))
+    except NETWORK_ERRORS as err:
+        warn("gitcode %s unavailable (%s); keeping old values" % (owner, err))
+
+
+def collect_urls():
+    urls = set()
+    for acct in A.ACCOUNTS.values():
+        urls.add(acct["home"])
+    for work in A.WORKS.values():
+        for value in work["links"].values():
+            if isinstance(value, str):
+                urls.add(value)
+            else:
+                urls.update(value)
+    for block in A.CONTRIB["own"].values():
+        for repo, url, nums, note in block["merged"] + block["review"]:
+            urls.add(url)
+    for handle, url in A.GITHUB_ACCOUNTS_FOR_SHARED:
+        urls.add(url)
+    for label, url in A.WRITING:
+        urls.add(url)
+    return sorted(urls)
+
+
+def check_links():
+    bad = []
+    for url in collect_urls():
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                status = resp.status
+        except urllib.error.HTTPError as err:
+            status = err.code
+        except NETWORK_ERRORS as err:
+            status = str(err)
+        state = "ok" if status == 200 else "CHECK"
+        if status != 200:
+            bad.append((url, status))
+        print("[%s] %s -> %s" % (state, url, status))
+    if bad:
+        print("\n%d link(s) need attention:" % len(bad))
+        for url, status in bad:
+            print("  - %s -> %s" % (url, status))
+        return 1
+    print("\nall links reachable.")
+    return 0
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="refresh profile-kit stats")
+    parser.add_argument("--check-links", action="store_true", help="verify every link in accounts.py online")
+    args = parser.parse_args(argv)
+
+    if args.check_links:
+        return check_links()
+
+    current = {}
+    if STATS_PATH.is_file():
+        try:
+            current = json.loads(STATS_PATH.read_text(encoding="utf-8"))
+        except ValueError:
+            current = {}
+    accounts = current.get("accounts") or {}
+    for key in A.ACCOUNT_ORDER:
+        block = accounts.setdefault(key, {})
+        acct = A.ACCOUNTS[key]
+        if acct["platform"] == "github":
+            refresh_github(acct["handle"], block)
+        elif acct["platform"] == "gitee":
+            refresh_gitee(acct["handle"], block)
+        elif acct["platform"] == "gitcode":
+            refresh_gitcode(acct["handle"], block)
+    stats = {
+        "as_of": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
+        "source": "scripts/refresh.py",
+        "accounts": accounts,
+    }
+    STATS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    STATS_PATH.write_text(
+        json.dumps(stats, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
+    )
+    print("stats written: %s" % STATS_PATH)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
