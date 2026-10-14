@@ -36,7 +36,7 @@ Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details 
 ## Numbers
 
 <p align="center">
-  <img src="./assets/stats-en.svg" alt="30 public repos · 239 stars · 18 followers · 6 upstream merges" width="80%" />
+  <img src="./assets/stats-en.svg" alt="29 public repos · 239 stars · 18 followers · 4 upstream merges" width="80%" />
 </p>
 
 ## Writing

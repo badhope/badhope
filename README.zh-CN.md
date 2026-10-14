@@ -36,7 +36,7 @@
 ## 数据
 
 <p align="center">
-  <img src="./assets/stats-zh-CN.svg" alt="30 公开仓库 · 239 累计 Star · 18 关注者 · 6 上游合并" width="80%" />
+  <img src="./assets/stats-zh-CN.svg" alt="29 公开仓库 · 239 累计 Star · 18 关注者 · 4 上游合并" width="80%" />
 </p>
 
 ## 写作

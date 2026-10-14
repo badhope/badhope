@@ -36,7 +36,7 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 ## 数字で見る
 
 <p align="center">
-  <img src="./assets/stats-ja.svg" alt="30 公開リポジトリ · 239 累計スター · 18 フォロワー · 6 上流へのマージ" width="80%" />
+  <img src="./assets/stats-ja.svg" alt="29 公開リポジトリ · 239 累計スター · 18 フォロワー · 4 上流へのマージ" width="80%" />
 </p>
 
 ## 執筆
