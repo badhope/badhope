@@ -1,592 +1,560 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""主页面 kit 生成器 —— 纯 stdlib、离线可跑、输出确定。
+
+用法：
+  python scripts/generate.py --all --out dist         # 五个账号全量生成
+  python scripts/generate.py --account gh_badhope --out dist
+  python scripts/generate.py --pack gh_badhope --out pack/gh_badhope
+  python scripts/generate.py --here                   # 在已部署仓库内原地重建
+  python scripts/generate.py --preview                # 生成 dist/ 与 preview/index.html
+
+约定：
+- README 里的 <img> 只指向仓库内 ./assets/*.svg（自包含，各平台渲染一致）。
+- 星域坐标由 CRC32(账号 key) 固定种子生成 —— 同一输入两次运行字节一致。
+- 数字来自 data/stats.json（由 scripts/refresh.py 刷新）；本脚本从不联网。
 """
-Generate / refresh the auto-updating parts of the GitHub profile READMEs.
 
-Sections that are AUTO-REFRESHED (daily by GitHub Actions):
-  - Repository constellation (sorted by stars)
-  - CSDN latest dispatches
-  - Daily reflection (one quote per day)
-
-The script reads README.md / README.zh-CN.md as templates and rewrites the
-content delimited by <!-- AUTO:SECTION_NAME:START --> ... <!-- AUTO:SECTION_NAME:END -->
-markers. Everything outside the markers is preserved verbatim.
-
-Stdlib-only on purpose — no pip dependency required in the runner.
-"""
-
-from __future__ import annotations
-
+import argparse
 import json
-import os
+import pathlib
+import random
 import re
+import shutil
 import sys
-import textwrap
-import urllib.error
-import urllib.parse
-import urllib.request
-import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
-from pathlib import Path
+import xml.sax.saxutils as xu
+import zlib
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Config
-# ──────────────────────────────────────────────────────────────────────────────
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
-ROOT          = Path(__file__).resolve().parent.parent
-README_EN     = ROOT / "README.md"
-README_ZH     = ROOT / "README.zh-CN.md"
-GITHUB_API    = "https://api.github.com"
-CSDN_RSS_TPL  = "https://blog.csdn.net/{user}/rss/list"
-QUOTE_APIS    = [
-    # (url, kind) — kind is "quotable" or "zenquotes"
-    ("https://api.quotable.io/random", "quotable"),
-    ("https://zenquotes.io/api/random", "zenquotes"),
-]
-UA            = "badhope-profile-bot/1.0 (+https://github.com/badhope)"
+import accounts as A  # noqa: E402
 
-GH_USER       = os.environ.get("GH_USER", "badhope")
-CSDN_USER     = os.environ.get("CSDN_USER", "weixin_56622231")
-QUOTE_API     = os.environ.get("QUOTE_API", QUOTE_APIS[0][0])
-
-FETCH_TIMEOUT = 15  # seconds
-
-# Repositories to always exclude (e.g. the profile README repo itself).
-EXCLUDED_REPOS: set[str] = set()
-
-# ──────────────────────────────────────────────────────────────────────────────
-# Tiny HTTP helper
-# ──────────────────────────────────────────────────────────────────────────────
-
-def http_get(url: str, *, headers: dict | None = None) -> bytes:
-    req = urllib.request.Request(url, headers={
-        "User-Agent": UA,
-        "Accept": "application/json, application/rss+xml, text/xml, */*",
-        **(headers or {}),
-    })
-    with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT) as r:
-        return r.read()
-
-def http_get_json(url: str, *, headers: dict | None = None):
-    return json.loads(http_get(url, headers=headers))
-
-# ──────────────────────────────────────────────────────────────────────────────
-# GitHub: repos + user meta
-# ──────────────────────────────────────────────────────────────────────────────
-
-def fetch_all_repos(user: str) -> list[dict]:
-    """Paginated fetch of all public, non-fork, non-archived repos."""
-    repos: list[dict] = []
-    page = 1
-    while True:
-        url = f"{GITHUB_API}/users/{user}/repos?per_page=100&page={page}&type=owner&sort=updated"
-        try:
-            chunk = http_get_json(url, headers={"Accept": "application/vnd.github+json"})
-        except urllib.error.HTTPError as e:
-            print(f"[github] HTTP {e.code} on page {page}: {e.reason}", file=sys.stderr)
-            break
-        if not chunk:
-            break
-        repos.extend(chunk)
-        if len(chunk) < 100:
-            break
-        page += 1
-        if page > 8:    # safety cap = 800 repos
-            break
-    # also exclude the profile repo (username == repo name)
-    EXCLUDED_REPOS.add(GH_USER)
-    return [
-        r for r in repos
-        if not r.get("fork") and not r.get("archived")
-        and r.get("name") not in EXCLUDED_REPOS
-    ]
+STAT_FIELDS = ("repos", "stars", "followers", "merged")
+PLATFORM_LABEL = {"github": "GitHub", "gitcode": "GitCode", "gitee": "Gitee"}
 
 
-def language_emoji(lang: str | None) -> str:
-    L = (lang or "").lower()
-    return {
-        "python": "🐍", "typescript": "🟦", "javascript": "🟨", "rust": "🦀",
-        "go": "🐹", "java": "☕", "c++": "➕", "c": "🔷", "ruby": "💎",
-        "swift": "🦅", "kotlin": "🟪", "vue": "🟩", "shell": "🐚", "tex": "📜",
-    }.get(L, "✦")
+# --------------------------------------------------------------------------
+# small helpers
+# --------------------------------------------------------------------------
+def esc(text):
+    return xu.escape(str(text), {'"': "&quot;"})
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-# CSDN: latest articles
-# ──────────────────────────────────────────────────────────────────────────────
+def seed_of(acct):
+    return zlib.crc32(acct["home_display"].encode("utf-8"))
 
-def fetch_csdn_latest(user: str, limit: int = 5) -> list[dict]:
-    """Return list of {title, link, pubDate}."""
-    url = CSDN_RSS_TPL.format(user=user)
+
+def rng(acct, salt=""):
+    return random.Random(seed_of(acct) ^ zlib.crc32(salt.encode("utf-8")))
+
+
+def fmt_num(v):
     try:
-        raw = http_get(url)
-    except Exception as e:
-        print(f"[csdn] failed: {e}", file=sys.stderr)
-        return []
+        return format(int(v), ",")
+    except (TypeError, ValueError):
+        return str(v)
 
-    # strip default namespace to keep xpath simple
-    text = raw.decode("utf-8", errors="replace").replace('xmlns="http://www.w3.org/2005/Atom"', "")
+
+def load_stats(path):
     try:
-        root = ET.fromstring(text)
-    except ET.ParseError as e:
-        print(f"[csdn] parse error: {e}", file=sys.stderr)
-        return []
-
-    items: list[dict] = []
-    for item in root.iter("item"):
-        title = (item.findtext("title") or "").strip()
-        link  = (item.findtext("link")  or "").strip()
-        pub   = (item.findtext("pubDate") or "").strip()
-        if title and link:
-            items.append({"title": title, "link": link, "pubDate": pub})
-        if len(items) >= limit:
-            break
-    return items
+        return json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"as_of": "", "accounts": {}}
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Daily quote
-# ──────────────────────────────────────────────────────────────────────────────
-
-def fetch_quote() -> dict:
-    """Return {text, author}."""
-    for api in [QUOTE_API] + [u for u, _ in QUOTE_APIS if u != QUOTE_API]:
-        try:
-            raw = http_get(api).decode("utf-8", errors="replace")
-            data = json.loads(raw)
-            if api.endswith("quotable.io/random"):
-                return {
-                    "text":   data.get("content", "").strip(),
-                    "author": (data.get("author") or "").strip(),
-                }
-            if api.endswith("zenquotes.io/api/random"):
-                if isinstance(data, list) and data:
-                    return {"text": data[0].get("q", "").strip(),
-                            "author": (data[0].get("a") or "").strip()}
-        except Exception as e:
-            print(f"[quote] {api} failed: {e}", file=sys.stderr)
-    return {"text": "The only way to do great work is to love what you do.",
-            "author": "Steve Jobs"}
+def acct_stats(stats, key):
+    return (stats.get("accounts") or {}).get(key) or {}
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Render blocks
-# ──────────────────────────────────────────────────────────────────────────────
-
-def render_repos(repos: list[dict], lang: str = "en") -> str:
-    """Markdown block of all public repos, sorted by stars desc."""
-    if not repos:
-        return "_No data yet — the next refresh will populate this._"
-
-    lines: list[str] = []
-    for r in sorted(repos, key=lambda x: (-(x.get("stargazers_count") or 0),
-                                          x.get("name", "").lower())):
-        name   = r.get("name", "")
-        desc   = (r.get("description") or "").strip().replace("\n", " ")
-        url    = r.get("html_url", "#")
-        stars  = r.get("stargazers_count", 0) or 0
-        forks  = r.get("forks_count", 0) or 0
-        lang_  = r.get("language") or "—"
-        emoji  = language_emoji(lang_)
-        topics = r.get("topics") or []
-        topic_str = "  ".join(f"`{t}`" for t in topics[:4])
-
-        if lang == "zh":
-            meta = f"{emoji} **{lang_}** · ⭐ {stars} · ⑂ {forks}"
-        else:
-            meta = f"{emoji} **{lang_}** · ⭐ {stars} · ⑂ {forks}"
-
-        lines.append(f"### [{name}]({url})  {meta}")
-        if desc:
-            lines.append(desc)
-        if topic_str:
-            lines.append(topic_str)
-        lines.append("")
-    return "\n".join(lines).rstrip()
-
-
-def render_featured(repos: list[dict], n: int = 6, lang: str = "en") -> str:
-    """Compact list of top N repos by stars — each entry is a big h3 with a styled sub-line."""
-    if not repos:
-        return "_No data yet._"
-    top = sorted(repos, key=lambda x: (-(x.get("stargazers_count") or 0),
-                                       x.get("name", "").lower()))[:n]
-    lines: list[str] = []
-    for r in top:
-        name  = r.get("name", "")
-        url   = r.get("html_url", "#")
-        desc  = (r.get("description") or "").strip().replace("\n", " ")
-        stars = r.get("stargazers_count", 0) or 0
-        lang_ = r.get("language") or "—"
-        emoji = language_emoji(lang_)
-        if not desc:
-            desc = "—"
-        desc = _truncate(desc, 110)
-        lines.append(
-            f'<h3 style="font-size:26px;font-weight:700;letter-spacing:0.3px;margin:18px 0 6px">'
-            f'<a href="{url}" style="color:#c4b5fd;text-decoration:none">{name}</a> '
-            f'<span style="font-size:18px;font-weight:500;color:#fbbf24;letter-spacing:0.4px">⭐ {stars}</span> '
-            f'<span style="font-size:17px;font-weight:500;color:#a5b4fc">{emoji} {lang_}</span>'
-            f'</h3>\n'
-            f'<p style="font-size:18px;line-height:1.65;color:#d1d5ff;margin:0 0 8px;max-width:820px">{desc}</p>'
-        )
-    return "\n\n".join(lines)
-
-
-# ── Card styling tokens (kept inline because GitHub sanitises <style>) ──────
-_CARD_BG     = "background:linear-gradient(135deg,rgba(167,139,250,0.10) 0%,rgba(30,27,75,0.40) 60%,rgba(49,46,129,0.20) 100%);"
-_CARD_BORDER = "border:1px solid rgba(167,139,250,0.30);"
-_CARD_RADIUS = "border-radius:10px;"
-_CARD_PAD    = "padding:16px 18px;"
-_CARD_SHADOW = "box-shadow:0 1px 0 rgba(167,139,250,0.05) inset,0 0 24px rgba(30,27,75,0.25);"
-
-
-def _truncate(text: str, max_len: int) -> str:
-    """Truncate at a word boundary that doesn't leave a broken word.
-
-    Specifically: never end with a partial hyphenated word like "single-"
-    that looks like an LLM edit. We try to chop the partial word too.
-    """
-    if len(text) <= max_len:
-        return text
-    cut = text[:max_len]
-    sp  = cut.rfind(" ")
-    if sp <= max_len // 2:
-        return cut.rstrip() + "…"
-    result = cut[:sp]
-    # If the result has a trailing partial word ending in "-" (e.g. "single-"),
-    # chop that word off too.
-    while True:
-        sp = result.rfind(" ")
-        if sp <= 0:
-            break
-        # the last "word" is result[sp+1:]
-        if result[sp+1:].endswith(("-", "–", "—")):
-            result = result[:sp]
-            continue
-        # Also: if the second-to-last word ends with "-" and the last is
-        # a connective like "and/or/to", the partial word is dangling.
-        prev_sp = result.rfind(" ", 0, sp)
-        if prev_sp >= 0 and result[prev_sp+1:sp].endswith(("-", "–", "—")):
-            if result[sp+1:].lower() in ("and", "or", "to", "of", "in", "a", "an", "the"):
-                result = result[:prev_sp]
-                continue
-        break
-    return result.rstrip(" -–—·•") + "…"
-
-
-def _card(r: dict) -> str:
-    """One repo rendered as a styled 'card' cell for a 3-column table."""
-    name   = r.get("name", "")
-    url    = r.get("html_url", "#")
-    desc   = (r.get("description") or "").strip().replace("\n", " ").replace("|", "\\|")
-    stars  = r.get("stargazers_count", 0) or 0
-    forks  = r.get("forks_count", 0) or 0
-    lang_  = r.get("language") or "—"
-    emoji  = language_emoji(lang_)
-    topics = r.get("topics") or []
-
-    if not desc:
-        desc = "<i style='opacity:0.5'>no description</i>"
-    desc = _truncate(desc, 95)
-
-    topic_html = ""
-    if topics:
-        pills = " ".join(
-            f"<span style='font-size:15px;color:#a5b4fc;background:rgba(49,46,129,0.55);"
-            f"padding:2px 8px;border-radius:10px;margin-right:4px'>{t}</span>"
-            for t in topics[:3]
-        )
-        topic_html = f"<div style='margin-top:10px;line-height:1.8'>{pills}</div>"
-
-    style = f"{_CARD_BG}{_CARD_BORDER}{_CARD_RADIUS}{_CARD_PAD}{_CARD_SHADOW}"
-    return (
-        f'<td valign="top" width="33.3%" style="padding:6px">'
-        f'<div style="{style}height:200px">'
-        f'<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">'
-        f'<a href="{url}" style="color:#c4b5fd;font-weight:600;font-size:19px;'
-        f'text-decoration:none;letter-spacing:0.2px">{name}</a>'
-        f'<span style="color:#fbbf24;font-size:17px;white-space:nowrap">⭐ {stars}</span>'
-        f'</div>'
-        f'<div style="margin-top:5px;font-size:16px;color:#a5b4fc;letter-spacing:0.4px">'
-        f'{emoji} {lang_}  ·  ⑂ {forks}</div>'
-        f'<div style="margin-top:10px;font-size:17px;color:#d1d5ff;line-height:1.55">'
-        f'{desc}</div>'
-        f'{topic_html}'
-        f'</div>'
-        f'</td>'
-    )
-
-
-def render_repos_grid(repos: list[dict], limit: int = 9) -> str:
-    """Top N repos rendered as a 3-column card grid (HTML table)."""
-    if not repos:
-        return "<i>No data yet — the next refresh will populate this.</i>"
-    top = sorted(repos, key=lambda x: (-(x.get("stargazers_count") or 0),
-                                       x.get("name", "").lower()))[:limit]
-    # pad to multiple of 3 for clean rows
-    while len(top) % 3:
-        top.append(None)
-    rows: list[str] = []
-    for i in range(0, len(top), 3):
-        cells = []
-        for r in top[i:i + 3]:
-            cells.append(_card(r) if r else '<td width="33.3%" style="padding:6px"></td>')
-        rows.append("<tr>" + "".join(cells) + "</tr>")
-    return (
-        '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" '
-        'style="border-collapse:separate;border-spacing:0;margin:8px 0 16px">'
-        + "".join(rows) +
-        "</table>"
-    )
-
-
-def render_repos_longtail(repos: list[dict], skip: int = 9) -> str:
-    """Compact pill cloud for repos beyond the grid (flex-wrap so it reflows)."""
-    if not repos:
-        return ""
-    tail = sorted(repos, key=lambda x: (-(x.get("stargazers_count") or 0),
-                                         x.get("name", "").lower()))[skip:]
-    if not tail:
-        return ""
-    pills: list[str] = []
-    for r in tail:
-        name  = r.get("name", "")
-        url   = r.get("html_url", "#")
-        stars = r.get("stargazers_count", 0) or 0
-        lang_ = r.get("language") or "—"
-        emoji = language_emoji(lang_)
-        pills.append(
-            f'<a href="{url}" style="color:#c4b5fd;text-decoration:none;'
-            f'background:rgba(49,46,129,0.30);border:1px solid rgba(167,139,250,0.18);'
-            f'padding:4px 11px;border-radius:12px;font-size:16px;'
-            f'display:inline-block;margin:3px 5px 3px 0;letter-spacing:0;line-height:1.6">'
-            f'{name}&nbsp;<span style="color:#fbbf24">⭐ {stars}</span>'
-            f'<span style="color:#818cf8;margin-left:5px;font-size:15px">· {emoji} {lang_}</span>'
-            f'</a>'
-        )
-    inner = "".join(pills)
-    return (
-        '<div style="display:flex;flex-wrap:wrap;gap:0;line-height:2;'
-        'margin:4px 0">' + inner + '</div>'
-    )
-
-
-def render_lang_bars(repos: list[dict]) -> str:
-    """Horizontal bar chart of language share, sorted descending."""
-    if not repos:
-        return ""
-    counts: dict[str, int] = {}
-    for r in repos:
-        lg = r.get("language")
-        if lg:
-            counts[lg] = counts.get(lg, 0) + 1
-    if not counts:
-        return ""
-    total = sum(counts.values())
-    rows  = sorted(counts.items(), key=lambda x: -x[1])
-    max_w = 22  # bar width in cells
-    out: list[str] = ['<div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:17px;line-height:1.85">']
-    for name, n in rows:
-        bar_len = max(1, round(n / rows[0][1] * max_w))
-        bar  = "█" * bar_len
-        pct  = round(n / total * 100)
-        emoji = language_emoji(name)
+# --------------------------------------------------------------------------
+# SVG assets
+# --------------------------------------------------------------------------
+def starfield(acct, w, h, n, salt="hero"):
+    r = rng(acct, salt)
+    out = []
+    for _ in range(n):
+        x = round(r.uniform(10, w - 10), 1)
+        y = round(r.uniform(8, h - 8), 1)
+        rr = round(r.uniform(0.6, 1.7), 1)
+        op = round(r.uniform(0.22, 0.9), 2)
+        fill = A.THEME["gold"] if r.random() < 0.14 else A.THEME["star"]
         out.append(
-            f'<div style="display:flex;align-items:center;gap:12px;margin:3px 0">'
-            f'<span style="display:inline-block;width:120px;color:#a5b4fc">{emoji} {name}</span>'
-            f'<span style="color:#c4b5fd;letter-spacing:-1px">{bar}</span>'
-            f'<span style="color:#a5b4fc;font-size:16px">{n} · {pct}%</span>'
-            f'</div>'
+            '<circle cx="%s" cy="%s" r="%s" fill="%s" opacity="%s"/>'
+            % (x, y, rr, fill, op)
         )
-    out.append("</div>")
-    return "\n".join(out)
+    return "\n  ".join(out)
 
 
-def render_topic_cloud(repos: list[dict], max_topics: int = 24) -> str:
-    """Topic pill cloud — frequency-weighted, deduplicated, generic topics filtered.
+DIPPER = [(0.075, 0.62), (0.130, 0.46), (0.190, 0.365), (0.285, 0.42),
+          (0.415, 0.27), (0.520, 0.225), (0.635, 0.30)]
 
-    Skips tags that are too generic for a personal profile card (e.g.
-    "open-source", "python", "docker"). The result is meant to mirror
-    what someone would write in the GitHub profile "About" sidebar —
-    terse and project-specific.
-    """
-    if not repos:
-        return ""
-    skip = {
-        # already covered by the language bars
-        "python", "typescript", "javascript", "rust", "go", "java", "c++",
-        "c", "c#", "ruby", "php", "swift", "kotlin", "scala",
-        "nodejs", "node", "node-js", "npm",
-        # too generic for a personal profile
-        "open-source", "opensource", "mit", "license",
-        "github", "github-pages", "static-site", "static-site-generator",
-        "docker", "docker-compose",
-        "i18n", "internationalization", "multilingual",
-        "tailwindcss", "tailwind", "css",
-        # describe the project, not the user
-        "self-hosted", "self-hostable",
-    }
-    counts: dict[str, int] = {}
-    for r in repos:
-        for t in (r.get("topics") or []):
-            t = t.lower()
-            if t in skip:
-                continue
-            counts[t] = counts.get(t, 0) + 1
-    if not counts:
-        return ""
-    items = sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:max_topics]
-    pills: list[str] = []
-    for tag, n in items:
-        # size scales with frequency, capped
-        size = 16 + min(4, n - 1)   # 16px..20px
-        pills.append(
-            f'<span style="font-size:{size}px;'
-            f'color:#c4b5fd;background:rgba(49,46,129,0.45);'
-            f'padding:4px 11px;border-radius:12px;'
-            f'border:1px solid rgba(167,139,250,0.18)">'
-            f'{tag}<sub style="opacity:0.55;margin-left:4px">×{n}</sub></span>'
-        )
-    return (
-        '<div style="display:flex;flex-wrap:wrap;gap:8px;'
-        'justify-content:center;line-height:1.4;margin:6px 0 10px">'
-        + "".join(pills) + "</div>"
+
+def dipper(acct, w, h, salt="dipper"):
+    r = rng(acct, salt)
+    pts = []
+    for px, py in DIPPER:
+        jx = px + r.uniform(-0.012, 0.012)
+        jy = py + r.uniform(-0.02, 0.02)
+        pts.append((round(jx * w, 1), round(jy * h, 1)))
+    poly = " ".join("%s,%s" % p for p in pts)
+    dots = "\n  ".join(
+        '<circle cx="%s" cy="%s" r="2.1" fill="%s"><title>·</title></circle>' % (x, y, A.THEME["star"])
+        for x, y in pts
+    )
+    return poly, dots
+
+
+def hero_svg(acct):
+    w, h = 1200, 360
+    poly, dots = dipper(acct, w, h)
+    handle = acct["handle"]
+    fs = 58 if len(handle) <= 12 else 46
+    ls = 6 if len(handle) <= 12 else 8
+    t = A.THEME
+    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="{handle} — {home}">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#05070F"/>
+    <stop offset="55%" stop-color="{bg0}"/>
+    <stop offset="100%" stop-color="{bg1}"/>
+  </linearGradient>
+  <radialGradient id="glow-warm" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="{gold}" stop-opacity="0.10"/>
+    <stop offset="100%" stop-color="{gold}" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glow-cool" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="{deep}" stop-opacity="0.22"/>
+    <stop offset="100%" stop-color="{deep}" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="{gold}" stop-opacity="0"/>
+    <stop offset="50%" stop-color="{gold}" stop-opacity="0.55"/>
+    <stop offset="100%" stop-color="{gold}" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+<rect width="1200" height="360" fill="url(#sky)"/>
+<ellipse cx="880" cy="80" rx="430" ry="200" fill="url(#glow-warm)"/>
+<ellipse cx="240" cy="300" rx="470" ry="220" fill="url(#glow-cool)"/>
+<g>
+  {stars}
+</g>
+<polyline points="{poly}" fill="none" stroke="{gold}" stroke-opacity="0.30" stroke-width="1.1"/>
+<g>
+  {dots}
+</g>
+<text x="600" y="205" text-anchor="middle" font-family="{serif}" font-size="{fs}" letter-spacing="{ls}" fill="{ink}">{handle}</text>
+<text x="600" y="252" text-anchor="middle" font-family="{sans}" font-size="19" letter-spacing="4" fill="{gold}">{home}</text>
+<rect x="260" y="296" width="680" height="1.5" fill="url(#rule)"/>
+<rect x="592" y="288" width="14" height="14" fill="none" stroke="{gold}" stroke-opacity="0.8" stroke-width="1.2" transform="rotate(45 599 295)"/>
+</svg>
+""".format(
+        handle=esc(handle), home=esc(acct["home_display"]),
+        bg0=t["bg0"], bg1=t["bg1"], gold=t["gold"], ink=t["ink"],
+        deep=t["deep_blue"], serif=A.SERIF, sans=A.SANS,
+        fs=fs, ls=ls, stars=starfield(acct, w, h, 84), poly=poly, dots=dots,
     )
 
 
-def render_csdn(items: list[dict], lang: str = "en") -> str:
-    if not items:
-        return "_No data yet — the next refresh will populate this._"
-    out: list[str] = []
-    for it in items:
-        date = it["pubDate"]
-        try:
-            # RFC 822 → yyyy-mm-dd
-            d = datetime.strptime(date, "%a, %d %b %Y %H:%M:%S %z")
-            date_str = d.strftime("%Y-%m-%d")
-        except Exception:
-            date_str = date or "—"
-        title = it["title"]
-        link  = it["link"]
-        out.append(f"- [`{date_str}`]({link}) — {title}")
+def stats_svg(acct, key, stats, lang):
+    t = A.THEME
+    labels = A.LABELS[lang]
+    data = acct_stats(stats, key)
+    cells = []
+    for field in STAT_FIELDS:
+        val = data.get(field)
+        if val is None:
+            continue
+        label = labels["stat_%s" % field]
+        cells.append((fmt_num(val), label))
+    if not cells:
+        cells = [("—", labels["numbers"])]
+    n = len(cells)
+    parts = []
+    for i, (val, label) in enumerate(cells):
+        cx = round(1000 * (i + 0.5) / n, 1)
+        parts.append(
+            '<text x="%s" y="92" text-anchor="middle" font-family="%s" font-size="44" fill="%s">%s</text>'
+            % (cx, A.SERIF, t["gold_bright"], esc(val))
+        )
+        parts.append(
+            '<text x="%s" y="126" text-anchor="middle" font-family="%s" font-size="16" letter-spacing="1.5" fill="%s">%s</text>'
+            % (cx, A.SANS, t["muted"], esc(label))
+        )
+    for i in range(1, n):
+        x = round(1000 * i / n, 1)
+        parts.append(
+            '<line x1="%s" y1="46" x2="%s" y2="146" stroke="%s" stroke-opacity="0.16"/>'
+            % (x, x, t["gold"])
+        )
+    as_of = stats.get("as_of") or ""
+    foot_left = esc(acct["handle"])
+    foot_right = ("%s %s" % (labels["as_of"], as_of)).strip()
+    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 190" width="1000" height="190" role="img" aria-label="{alt}">
+<defs>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="{panel}"/>
+    <stop offset="100%" stop-color="{bg1}"/>
+  </linearGradient>
+</defs>
+<rect x="0.75" y="0.75" width="998.5" height="188.5" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.28" stroke-width="1.5"/>
+{parts}
+<text x="26" y="172" font-family="{sans}" font-size="13" letter-spacing="2" fill="{faint}">{left}</text>
+<text x="974" y="172" text-anchor="end" font-family="{sans}" font-size="13" letter-spacing="1" fill="{faint}">{right}</text>
+</svg>
+""".format(
+        alt=esc(" · ".join("%s %s" % (v, l) for v, l in cells)),
+        panel=t["panel"], bg1=t["bg1"], gold=t["gold"], faint=t["faint"],
+        sans=A.SANS, parts="\n".join(parts), left=foot_left, right=esc(foot_right),
+    )
+
+
+def footer_svg(acct):
+    t = A.THEME
+    r = rng(acct, "footer")
+    xs = [260, 380, 520, 660, 800, 940]
+    ys = [66, 54, 60, 50, 62, 56]
+    pts = [(x + round(r.uniform(-6, 6), 1), y + round(r.uniform(-4, 4), 1)) for x, y in zip(xs, ys)]
+    poly = " ".join("%s,%s" % p for p in pts)
+    dots = "\n  ".join('<circle cx="%s" cy="%s" r="1.8" fill="%s" opacity="0.85"/>' % (x, y, t["star"]) for x, y in pts)
+    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 130" width="1200" height="130" role="img" aria-label="·">
+<defs>
+  <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="{gold}" stop-opacity="0"/>
+    <stop offset="50%" stop-color="{gold}" stop-opacity="0.45"/>
+    <stop offset="100%" stop-color="{gold}" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+<line x1="120" y1="18" x2="1080" y2="18" stroke="url(#rule)" stroke-width="1.2"/>
+<polyline points="{poly}" fill="none" stroke="{gold}" stroke-opacity="0.22" stroke-width="1"/>
+<g>
+  {dots}
+</g>
+<rect x="593" y="92" width="12" height="12" fill="none" stroke="{gold}" stroke-opacity="0.7" stroke-width="1.1" transform="rotate(45 599 98)"/>
+<line x1="120" y1="112" x2="1080" y2="112" stroke="url(#rule)" stroke-width="1.2"/>
+</svg>
+""".format(gold=t["gold"], poly=poly, dots=dots)
+
+
+# --------------------------------------------------------------------------
+# README rendering
+# --------------------------------------------------------------------------
+def pr_links(repo_url, nums):
+    return " · ".join("[#%s](%s/pull/%s)" % (n, repo_url, n) for n in nums)
+
+
+def render_contrib(acct, key, lang):
+    labels = A.LABELS[lang]
+    kind = acct["contrib"]
+    if kind == "shared":
+        links = " · ".join("[%s](%s)" % (h, u) for h, u in A.GITHUB_ACCOUNTS_FOR_SHARED)
+        return "%s: %s" % (labels["shared_line"], links)
+    block = A.CONTRIB["own"][key]
+    out = ["**%s**" % labels["merged_heading"]]
+    for repo, url, nums, note in block["merged"]:
+        out.append("- [%s](%s) — %s — %s" % (repo, url, pr_links(url, nums), note))
+    out.append("")
+    out.append("**%s**" % labels["review_heading"])
+    for repo, url, nums, note in block["review"]:
+        out.append("- [%s](%s) — %s — %s" % (repo, url, pr_links(url, nums), note))
     return "\n".join(out)
 
 
-def render_quote(q: dict) -> str:
-    text   = q.get("text", "").strip()
-    author = (q.get("author") or "Unknown").strip()
-    return f"> *\"{text}\"*\n> \n> — **{author}**"
+def render_readme(acct, key, lang, stats):
+    labels = A.LABELS[lang]
+    role = acct["role"][lang]
+    tagline = acct["tagline"][lang]
+    lines = []
+    lines.append("[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)")
+    lines.append("")
+    lines.append('<p align="center">')
+    lines.append('  <img src="./assets/hero.svg" alt="%s · %s" width="100%%" />'
+                 % (esc(acct["handle"]), esc(acct["home_display"])))
+    lines.append("</p>")
+    lines.append("")
+    lines.append("<p align=\"center\"><i>%s</i></p>" % tagline)
+    lines.append("")
+    lines.append("## %s" % labels["about"])
+    lines.append("")
+    lines.append(acct["about"][lang])
+    lines.append("")
+    lines.append("### %s" % labels["now"])
+    lines.append("")
+    for item in acct["now"][lang]:
+        lines.append("- %s" % item)
+    lines.append("")
+    lines.append("## %s" % labels["works"])
+    lines.append("")
+    for wid in acct["works"]:
+        work = A.WORKS[wid]
+        url = A.work_url(wid, acct)
+        lines.append("- **[%s](%s)** — %s · `%s`"
+                     % (work["title"], url, work["desc"][lang], work["tags"][lang]))
+    lines.append("")
+    lines.append("%s [%s](%s)" % (labels["all_repos"], acct["home_display"], acct["home"]))
+    lines.append("")
+    lines.append("## %s" % labels["contrib"])
+    lines.append("")
+    lines.append(render_contrib(acct, key, lang))
+    lines.append("")
+    lines.append("## %s" % labels["numbers"])
+    lines.append("")
+    data = acct_stats(stats, key)
+    alt_bits = []
+    for field in STAT_FIELDS:
+        val = data.get(field)
+        if val is not None:
+            alt_bits.append("%s %s" % (fmt_num(val), labels["stat_%s" % field]))
+    alt = " · ".join(alt_bits) if alt_bits else labels["numbers"]
+    lines.append('<p align="center">')
+    lines.append('  <img src="./assets/%s" alt="%s" width="80%%" />' % (A.STATS_NAME[lang], esc(alt)))
+    lines.append("</p>")
+    lines.append("")
+    lines.append("## %s" % labels["writing"])
+    lines.append("")
+    lines.append("- " + " · ".join("[%s](%s)" % w for w in A.WRITING))
+    lines.append("")
+    lines.append("## %s" % labels["elsewhere"])
+    lines.append("")
+    lines.append("> %s" % labels["mirror_note"])
+    lines.append("")
+    for other_key in A.ACCOUNT_ORDER:
+        other = A.ACCOUNTS[other_key]
+        marker = " ◆ %s" % labels["here"] if other_key == key else ""
+        lines.append("- **%s · [%s](%s)** — %s%s"
+                     % (PLATFORM_LABEL[other["platform"]], other["handle"], other["home"],
+                        other["role"][lang], marker))
+    lines.append("")
+    lines.append('<p align="center">')
+    lines.append('  <img src="./assets/footer.svg" alt="" width="100%" />')
+    lines.append("</p>")
+    lines.append("")
+    lines.append('<p align="center"><sub>© %s</sub></p>' % acct["handle"])
+    lines.append("")
+    return "\n".join(lines)
 
 
-def render_summary(repos: list[dict], user_meta: dict | None) -> str:
-    """A small 'as of today' stat line."""
-    total = len(repos)
-    stars = sum((r.get("stargazers_count") or 0) for r in repos)
-    lang_count: dict[str, int] = {}
-    for r in repos:
-        lg = r.get("language")
-        if lg:
-            lang_count[lg] = lang_count.get(lg, 0) + 1
-    # Only languages with >= 2 repos are worth showing as "top" —
-    # showing single-repo languages as "top" looks misleading.
-    significant = sorted(
-        ((n, c) for n, c in lang_count.items() if c >= 2),
-        key=lambda x: -x[1],
-    )[:3]
-    if len(significant) < len(lang_count):
-        # 4+ languages total: mention there's more.
-        more = len(lang_count) - len(significant)
-        top_str = ", ".join(f"{n} ({c})" for n, c in significant)
-        top_str += f" + {more} more" if significant else f"+ {more} more"
-    else:
-        top_str = ", ".join(f"{n} ({c})" for n, c in significant) or "—"
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    return (f"_As of {today} UTC — {total} public repos · "
-            f"{stars} total ⭐ · top languages: {top_str}._")
+# --------------------------------------------------------------------------
+# writing / packing
+# --------------------------------------------------------------------------
+def write_account_files(acct, key, out_dir, stats):
+    out = pathlib.Path(out_dir)
+    assets = out / "assets"
+    assets.mkdir(parents=True, exist_ok=True)
+    wanted = {"hero.svg", "footer.svg"} | {A.STATS_NAME[l] for l in A.LANGS}
+    for stale in assets.glob("*.svg"):
+        if stale.name not in wanted:
+            stale.unlink()
+    for lang in A.LANGS:
+        (out / A.README_NAME[lang]).write_text(
+            render_readme(acct, key, lang, stats), encoding="utf-8", newline="\n"
+        )
+        (assets / A.STATS_NAME[lang]).write_text(
+            stats_svg(acct, key, stats, lang), encoding="utf-8", newline="\n"
+        )
+    (assets / "hero.svg").write_text(hero_svg(acct), encoding="utf-8", newline="\n")
+    (assets / "footer.svg").write_text(footer_svg(acct), encoding="utf-8", newline="\n")
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Template substitution
-# ──────────────────────────────────────────────────────────────────────────────
-
-MARKER_RE = re.compile(
-    r"<!--\s*AUTO:([A-Z0-9_]+):START\s*-->\n?(.*?)<!--\s*AUTO:\1:END\s*-->",
-    re.DOTALL,
-)
-
-def fill_template(text: str, blocks: dict[str, str]) -> str:
-    def repl(m: re.Match) -> str:
-        key = m.group(1)
-        return f"<!-- AUTO:{key}:START -->\n{blocks.get(key, '').rstrip()}\n<!-- AUTO:{key}:END -->"
-    return MARKER_RE.sub(repl, text)
+PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "accounts.py", "data/stats.json")
+PACK_GITIGNORE = ".gitignore"
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Main
-# ──────────────────────────────────────────────────────────────────────────────
+def pack(key, out_dir):
+    acct = A.ACCOUNTS[key]
+    out = pathlib.Path(out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    stats_path = ROOT / "data" / "stats.json"
+    stats = load_stats(stats_path)
+    write_account_files(acct, key, out, stats)
+    for rel in PACK_EXTRAS:
+        dst = out / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / rel, dst)
+    (out / "profile.json").write_text(
+        json.dumps({"kit_version": A.KIT_VERSION, "account": key}, indent=2) + "\n",
+        encoding="utf-8", newline="\n",
+    )
+    if acct["platform"] == "github":
+        wf = out / ".github" / "workflows" / "refresh.yml"
+        wf.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / "workflows" / "refresh.yml", wf)
+    (out / PACK_GITIGNORE).write_text(
+        (ROOT / PACK_GITIGNORE).read_text(encoding="utf-8"), encoding="utf-8", newline="\n"
+    )
+    return out
 
-def main() -> int:
-    print(f"[run] starting at {datetime.now(timezone.utc).isoformat()}")
-    repos     = fetch_all_repos(GH_USER)
-    print(f"[github] fetched {len(repos)} repos for {GH_USER}")
+
+def here(cwd):
+    cwd = pathlib.Path(cwd)
+    prof = json.loads((cwd / "profile.json").read_text(encoding="utf-8"))
+    key = prof["account"]
+    stats = load_stats(cwd / "data" / "stats.json")
+    write_account_files(A.ACCOUNTS[key], key, cwd, stats)
+    return key
+
+
+# --------------------------------------------------------------------------
+# preview
+# --------------------------------------------------------------------------
+def md_line_html(text):
+    text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
+    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    return text
+
+
+def md_to_html(md):
+    out, in_ul = [], False
+    for raw in md.split("\n"):
+        line = raw.rstrip()
+        if in_ul and not line.startswith("- "):
+            out.append("</ul>")
+            in_ul = False
+        if line.startswith("## "):
+            out.append("<h2>%s</h2>" % md_line_html(line[3:]))
+        elif line.startswith("### "):
+            out.append("<h3>%s</h3>" % md_line_html(line[4:]))
+        elif line.startswith("- "):
+            if not in_ul:
+                out.append("<ul>")
+                in_ul = True
+            out.append("<li>%s</li>" % md_line_html(line[2:]))
+        elif line.startswith("> "):
+            out.append("<blockquote>%s</blockquote>" % md_line_html(line[2:]))
+        elif line.startswith("<"):
+            out.append(line)
+        elif not line:
+            out.append("")
+        else:
+            out.append("<p>%s</p>" % md_line_html(line))
+    if in_ul:
+        out.append("</ul>")
+    return "\n".join(out)
+
+
+PREVIEW_TPL = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>主页面 kit · 预览</title>
+<style>
+  :root {{ color-scheme: dark; }}
+  body {{ margin:0; background:#070A13; color:#E9EDF6;
+         font:16px/1.65 "Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif; }}
+  .page {{ max-width:900px; margin:0 auto; padding:48px 28px 96px; }}
+  .badge {{ display:inline-block; padding:2px 10px; border:1px solid rgba(201,168,106,.5);
+            border-radius:999px; color:#C9A86A; font-size:12px; letter-spacing:2px; }}
+  .kit {{ font-size:13px; color:#6B7A9B; letter-spacing:2px; }}
+  .account {{ margin-top:72px; border-top:1px solid rgba(201,168,106,.22); padding-top:40px; }}
+  .account h1 {{ font-family:Georgia,"Times New Roman",serif; font-weight:600;
+                 letter-spacing:1px; font-size:26px; }}
+  .account img.hero {{ width:100%; border-radius:14px; border:1px solid rgba(201,168,106,.25); }}
+  .readme {{ margin-top:28px; }}
+  .readme h2 {{ font-family:Georgia,serif; font-size:21px; border-bottom:1px solid rgba(201,168,106,.2);
+                padding-bottom:8px; margin-top:44px; }}
+  .readme h3 {{ font-size:17px; color:#C9A86A; margin-top:28px; }}
+  .readme a {{ color:#E8CD92; text-decoration:none; }}
+  .readme code {{ background:#121A2E; border:1px solid rgba(201,168,106,.18);
+                  border-radius:6px; padding:1px 6px; font-size:13px; color:#A9B4CC; }}
+  .readme blockquote {{ border-left:3px solid rgba(201,168,106,.5); margin-left:0;
+                        padding-left:16px; color:#A9B4CC; }}
+  .readme img {{ max-width:100%; }}
+  .readme ul {{ padding-left:22px; }}
+  .meta {{ color:#6B7A9B; font-size:13px; margin-top:6px; }}
+</style>
+</head>
+<body>
+<div class="page">
+  <span class="badge">主页面 KIT · 预览</span>
+  <p class="kit">GENERATED PREVIEW · {count} ACCOUNTS · {langs} LANGUAGES · SELF-CONTAINED SVG</p>
+{body}
+</div>
+</body>
+</html>
+"""
+
+
+def build_preview(out_dir):
+    out_dir = pathlib.Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    dist = ROOT / "dist"
+    stats = load_stats(ROOT / "data" / "stats.json")
+    blocks = []
+    for key in A.ACCOUNT_ORDER:
+        acct = A.ACCOUNTS[key]
+        generate_to(dist / key, key, stats)
+        rel = "../dist/%s/assets" % key
+        hero = ('<img class="hero" src="%s/hero.svg" alt="%s" />' % (rel, esc(acct["handle"])))
+        md = (dist / key / "README.md").read_text(encoding="utf-8")
+        md = md.replace("./assets/", rel + "/")
+        blocks.append(
+            '<section class="account" id="%s">\n<h1>%s · %s</h1>\n'
+            '<p class="meta">%s</p>\n%s\n<div class="readme">\n%s\n</div>\n</section>'
+            % (key, esc(acct["handle"]), PLATFORM_LABEL[acct["platform"]],
+               esc(acct["home"]), hero, md_to_html(md))
+        )
+    html = PREVIEW_TPL.format(count=len(A.ACCOUNT_ORDER), langs=len(A.LANGS), body="\n".join(blocks))
+    (out_dir / "index.html").write_text(html, encoding="utf-8", newline="\n")
+    return out_dir / "index.html"
+
+
+def generate_to(out_dir, key, stats):
+    write_account_files(A.ACCOUNTS[key], key, out_dir, stats)
+
+
+# --------------------------------------------------------------------------
+# CLI
+# --------------------------------------------------------------------------
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="主页面 kit generator")
+    parser.add_argument("--all", action="store_true", help="generate all accounts")
+    parser.add_argument("--account", metavar="KEY", help="generate one account")
+    parser.add_argument("--pack", metavar="KEY", help="write a deployable repo tree")
+    parser.add_argument("--here", action="store_true", help="regenerate in current dir (needs profile.json)")
+    parser.add_argument("--preview", action="store_true", help="build dist/ + preview/index.html")
+    parser.add_argument("--out", metavar="DIR", help="output directory")
+    args = parser.parse_args(argv)
 
     try:
-        user_meta = http_get_json(f"{GITHUB_API}/users/{GH_USER}")
-    except Exception as e:
-        print(f"[github] user meta failed: {e}", file=sys.stderr)
-        user_meta = None
-
-    csdn_items = fetch_csdn_latest(CSDN_USER, limit=5)
-    print(f"[csdn] fetched {len(csdn_items)} articles for {CSDN_USER}")
-
-    quote      = fetch_quote()
-    print(f"[quote] \"{quote['text'][:40]}…\" — {quote['author']}")
-
-    summary_en = render_summary(repos, user_meta)
-    summary_zh = render_summary(repos, user_meta)
-
-    # English
-    if README_EN.exists():
-        en = README_EN.read_text(encoding="utf-8")
-        en = fill_template(en, {
-            "SUMMARY":      summary_en,
-            "FEATURED":     render_featured(repos, n=6, lang="en"),
-            "REPOS_GRID":   render_repos_grid(repos, limit=9),
-            "REPOS_TAIL":   render_repos_longtail(repos, skip=9),
-            "LANG_BARS":    render_lang_bars(repos),
-            "TOPIC_CLOUD":  render_topic_cloud(repos, max_topics=30),
-            "REPOS":        render_repos(repos, lang="en"),
-            "CSDN":         render_csdn(csdn_items, lang="en"),
-            "QUOTE":        render_quote(quote),
-            "QUOTE_AUTHOR": quote.get("author", ""),
-        })
-        README_EN.write_text(en, encoding="utf-8")
-        print(f"[write] {README_EN.relative_to(ROOT)}")
-    else:
-        print(f"[skip] {README_EN} not found", file=sys.stderr)
-
-    # Chinese
-    if README_ZH.exists():
-        zh = README_ZH.read_text(encoding="utf-8")
-        zh = fill_template(zh, {
-            "SUMMARY":      summary_zh,
-            "FEATURED":     render_featured(repos, n=6, lang="zh"),
-            "REPOS_GRID":   render_repos_grid(repos, limit=9),
-            "REPOS_TAIL":   render_repos_longtail(repos, skip=9),
-            "LANG_BARS":    render_lang_bars(repos),
-            "TOPIC_CLOUD":  render_topic_cloud(repos, max_topics=30),
-            "REPOS":        render_repos(repos, lang="zh"),
-            "CSDN":         render_csdn(csdn_items, lang="zh"),
-            "QUOTE":        render_quote(quote),
-            "QUOTE_AUTHOR": quote.get("author", ""),
-        })
-        README_ZH.write_text(zh, encoding="utf-8")
-        print(f"[write] {README_ZH.relative_to(ROOT)}")
-    else:
-        print(f"[skip] {README_ZH} not found", file=sys.stderr)
-
-    print("[run] done.")
-    return 0
+        if args.pack:
+            if args.pack not in A.ACCOUNTS:
+                print("unknown account: %s (available: %s)"
+                      % (args.pack, ", ".join(A.ACCOUNT_ORDER)), file=sys.stderr)
+                return 1
+            out = args.out or (ROOT / "pack" / args.pack)
+            path = pack(args.pack, out)
+            print("packed %s -> %s" % (args.pack, path))
+            return 0
+        if args.here:
+            key = here(pathlib.Path.cwd())
+            print("regenerated in place: %s" % key)
+            return 0
+        if args.preview:
+            index = build_preview(args.out or (ROOT / "preview"))
+            print("preview -> %s" % index)
+            return 0
+        stats = load_stats(ROOT / "data" / "stats.json")
+        keys = list(A.ACCOUNT_ORDER)
+        if args.account:
+            if args.account not in A.ACCOUNTS:
+                print("unknown account: %s (available: %s)"
+                      % (args.account, ", ".join(keys)), file=sys.stderr)
+                return 1
+            keys = [args.account]
+        elif not args.all:
+            parser.print_help()
+            return 1
+        base = pathlib.Path(args.out) if args.out else (ROOT / "dist")
+        for key in keys:
+            target = base / key
+            generate_to(target, key, stats)
+            print("generated %s -> %s" % (key, target))
+        return 0
+    except (OSError, KeyError, ValueError) as err:
+        print("generation failed: %r" % (err,), file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":
