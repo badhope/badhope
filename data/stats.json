@@ -3,31 +3,31 @@
   "source": "scripts/refresh.py",
   "accounts": {
     "gh_x33834": {
-      "repos": 33,
+      "repos": 37,
       "stars": 3,
       "followers": 4,
       "merged": 1
     },
     "gh_morningstar": {
-      "repos": 41,
+      "repos": 45,
       "stars": 4,
       "followers": 18,
       "merged": 15
     },
     "gh_badhope": {
-      "repos": 35,
+      "repos": 36,
       "stars": 235,
       "followers": 20,
-      "merged": 4
+      "merged": 6
     },
     "gitcode_badhope": {
-      "repos": 31,
+      "repos": 34,
       "stars": 9,
       "followers": null,
       "merged": null
     },
     "gitee_badhope": {
-      "repos": 10,
+      "repos": 11,
       "stars": 2,
       "followers": null,
       "merged": null

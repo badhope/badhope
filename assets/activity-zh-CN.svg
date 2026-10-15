@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 258" width="1000" height="258" role="img" aria-label="公开仓库: 35 · 累计 Star: 235 · 关注者: 20 · 上游合并: 4">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 258" width="1000" height="258" role="img" aria-label="公开仓库: 36 · 累计 Star: 235 · 关注者: 20 · 上游合并: 6">
 <defs>
   <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0%" stop-color="#121A2E"/>
@@ -13,8 +13,8 @@
 <text x="966" y="30" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#6B7A9B">数据截至 2026-10-15</text>
 <text x="282" y="63" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#A9B4CC">公开仓库</text>
 <rect x="300" y="48" width="600" height="14" rx="7" fill="#141B33" fill-opacity="0.55"/>
-<rect x="300" y="48" width="89.4" height="14" rx="7" fill="url(#bar)"/>
-<text x="916" y="61" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#E8CD92">35</text>
+<rect x="300" y="48" width="91.9" height="14" rx="7" fill="url(#bar)"/>
+<text x="916" y="61" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#E8CD92">36</text>
 <text x="282" y="109" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#A9B4CC">累计 Star</text>
 <rect x="300" y="94" width="600" height="14" rx="7" fill="#141B33" fill-opacity="0.55"/>
 <rect x="300" y="94" width="600.0" height="14" rx="7" fill="url(#bar)"/>
@@ -25,6 +25,6 @@
 <text x="916" y="153" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#E8CD92">20</text>
 <text x="282" y="201" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#A9B4CC">上游合并</text>
 <rect x="300" y="186" width="600" height="14" rx="7" fill="#141B33" fill-opacity="0.55"/>
-<rect x="300" y="186" width="10.2" height="14" rx="7" fill="url(#bar)"/>
-<text x="916" y="199" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#E8CD92">4</text>
+<rect x="300" y="186" width="15.3" height="14" rx="7" fill="url(#bar)"/>
+<text x="916" y="199" font-family="Georgia, 'Times New Roman', serif" font-size="14.5" fill="#E8CD92">6</text>
 </svg>

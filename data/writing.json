@@ -1,7 +1,22 @@
 {
   "fetched": "2026-10-15",
-  "source": "CSDN RSS",
+  "source": "CSDN RSS + curated",
   "items": [
+    {
+      "title": "MCP 落地一年，我总结了 6 个没人告诉你的工程真相",
+      "url": "https://zhuanlan.zhihu.com/p/2094232145015453253",
+      "date": "2026-10-16"
+    },
+    {
+      "title": "本地优先 AI：当所有人都在上云，我为什么把 AI 装回自己电脑",
+      "url": "https://zhuanlan.zhihu.com/p/2094233605513991576",
+      "date": "2026-10-16"
+    },
+    {
+      "title": "AI Agent 上线前必须过的 5 道关：一个真实项目的工程手记",
+      "url": "https://zhuanlan.zhihu.com/p/2094218858789856836",
+      "date": "2026-10-16"
+    },
     {
       "title": "Playwright 多平台分发：8 个踩坑与合规门禁",
       "url": "https://blog.csdn.net/weixin_56622231/article/details/166698802",

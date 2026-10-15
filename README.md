@@ -53,7 +53,7 @@ All public repositories: [github.com/badhope](https://github.com/badhope)
 </p>
 
 <p align="center">
-  <img src="./assets/activity-md.svg" alt="35 public repos · 235 stars · 20 followers · 4 upstream merges" width="100%" />
+  <img src="./assets/activity-md.svg" alt="36 public repos · 235 stars · 20 followers · 6 upstream merges" width="100%" />
 </p>
 
 ## Pinned work
@@ -81,13 +81,13 @@ Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details 
 
 | Date | Article |
 |---|---|
+| 2026-10-16 | [MCP 落地一年，我总结了 6 个没人告诉你的工程真相](https://zhuanlan.zhihu.com/p/2094232145015453253) |
+| 2026-10-16 | [本地优先 AI：当所有人都在上云，我为什么把 AI 装回自己电脑](https://zhuanlan.zhihu.com/p/2094233605513991576) |
+| 2026-10-16 | [AI Agent 上线前必须过的 5 道关：一个真实项目的工程手记](https://zhuanlan.zhihu.com/p/2094218858789856836) |
 | 2026-09-27 | [Playwright 多平台分发：8 个踩坑与合规门禁](https://blog.csdn.net/weixin_56622231/article/details/166698802) |
 | 2026-09-25 | [AI Agent 智能体开发从零到一：2026年程序员完整学习路线与实战指南](https://blog.csdn.net/weixin_56622231/article/details/166643070) |
-| 2026-09-21 | [工作流体检验收：全链路发布完整性验证](https://blog.csdn.net/weixin_56622231/article/details/166254273) |
-| 2026-09-21 | [Python协程全景解析：从原理到生产实战](https://blog.csdn.net/weixin_56622231/article/details/166252941) |
-| 2026-09-15 | [【分布式第一课】从单机到百万级并发：一小时带你看懂分布式系统的前世今生](https://blog.csdn.net/weixin_56622231/article/details/165435117) |
 
-<sub>Also on <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a></sub>
+<sub>Also on <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a> · <img src="./assets/icons/si-zhihu.svg" width="15" alt="Zhihu" /> <a href="https://www.zhihu.com/people/e7c851hd">Zhihu</a></sub>
 
 ## Elsewhere
 
