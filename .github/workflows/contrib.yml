@@ -75,16 +75,25 @@ jobs:
             --title "chore: refresh contribution snake ($(date -u +%F))" \
             --body "自动刷新贡献蛇形图（Platane/snk 种子 → generate.py 派生 assets）；合入后生效。"
 
-          for i in 1 2 3; do
+          # 合并路径（按仓库能力自愈）：
+          #   1) 无分支保护的仓库：--auto 会被拒（no rules），退化为立即 squash；
+          #   2) 受保护仓库：--auto 成功，但并发时另一 PR 先合入会让本 PR 变成 behind，
+          #      auto-merge 会一直等待 —— 故每轮先更新分支再重试；
+          #   3) 需人工批准的场景：保留 PR 待批，下一轮 supersede。
+          for i in 1 2 3 4; do
+            if [ "$i" -gt 1 ]; then
+              gh pr update-branch "$branch" 2>/dev/null || gh pr update-branch 2>/dev/null || true
+              sleep 8
+            fi
             if gh pr merge --auto --squash 2>/dev/null; then
-              echo "auto-merge enabled"
+              echo "auto-merge enabled (attempt $i)"
               exit 0
             fi
             if gh pr merge --squash 2>/dev/null; then
-              echo "merged immediately"
+              echo "merged immediately (attempt $i)"
               exit 0
             fi
-            echo "merge attempt $i pending (branch protection may require approval)"
-            sleep 10
+            echo "merge attempt $i pending (behind or approval required)"
+            sleep 12
           done
           echo "PR left open for approval; next run will supersede it"
