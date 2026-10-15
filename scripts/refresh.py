@@ -175,8 +175,29 @@ def _fmt_pubdate(raw):
         return ""
 
 
+def merge_writing(rss_items, curated_items, old_items=()):
+    """合并三类写作条目 → 归一列表（R13）。
+
+    优先级：curated（人工维护）> rss（本次抓取）> old（上次结果）。
+    同一 URL 只保留首次出现的版本；按日期倒序（无日期排最后，稳定）。
+    RSS 失败时 curated 与 old 都不丢——fail-closed。
+    """
+    merged, seen = [], set()
+    for it in list(curated_items) + list(rss_items) + list(old_items):
+        url = (it.get("url") or "").strip()
+        if not url or url in seen:
+            continue
+        seen.add(url)
+        merged.append(dict(it))
+    merged.sort(key=lambda it: it.get("date") or "", reverse=True)
+    return merged
+
+
 def fetch_writing():
-    """抓 CSDN RSS 最新文章 → data/writing.json（失败保留旧内容；文件总会写出）。"""
+    """抓 CSDN RSS 最新文章，与人工维护的 CURATED_POSTS 合并 → data/writing.json。
+
+    失败保留旧内容；文件总会写出（R13）。
+    """
     items = []
     try:
         req = urllib.request.Request(CSDN_RSS, headers={"User-Agent": UA})
@@ -198,11 +219,14 @@ def fetch_writing():
         old_items = json.loads(WRITING_PATH.read_text(encoding="utf-8")).get("items") or []
     except (OSError, ValueError, AttributeError):
         pass
+    merged = merge_writing(items, A.CURATED_POSTS, old_items)
     out = {
         "fetched": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
-        "source": "CSDN RSS",
-        "items": items or old_items,
+        "source": "CSDN RSS + curated",
+        "items": merged,
     }
+    print("writing: %d items total (curated %d + rss %d)" % (
+        len(merged), len(A.CURATED_POSTS), len(items)))
     WRITING_PATH.parent.mkdir(parents=True, exist_ok=True)
     WRITING_PATH.write_text(
         json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
@@ -224,8 +248,10 @@ def collect_urls():
             urls.add(url)
     for handle, url in A.GITHUB_ACCOUNTS_FOR_SHARED:
         urls.add(url)
-    for label, url in A.WRITING:
+    for label, url, icon in A.WRITING:
         urls.add(url)
+    for post in A.CURATED_POSTS:
+        urls.add(post["url"])
     return sorted(urls)
 
 

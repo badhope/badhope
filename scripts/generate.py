@@ -671,10 +671,12 @@ def render_readme(acct, key, lang, stats, base=None):
             lines.append("| %s | [%s](%s) |"
                          % (item.get("date") or "—", item["title"], item["url"]))
         lines.append("")
-    lines.append('<sub>%s <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> '
-                 '<a href="%s">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> '
-                 '<a href="%s">Juejin</a></sub>'
-                 % (esc(labels["also_on"]), esc(A.WRITING[0][1]), esc(A.WRITING[1][1])))
+    platform_bits = " · ".join(
+        '<img src="./assets/icons/%s" width="15" alt="%s" /> <a href="%s">%s</a>'
+        % (icon, esc(name), esc(url), esc(name))
+        for name, url, icon in A.WRITING
+    )
+    lines.append("<sub>%s %s</sub>" % (esc(labels["also_on"]), platform_bits))
     lines.append("")
 
     # ---- 在别处（宽表格，窄屏可横向滑动） ----
@@ -742,7 +744,7 @@ def write_account_files(acct, key, out_dir, stats, base=None):
     icon_roots = [pathlib.Path(base) / "data" / "icons", ROOT / "data" / "icons"] if base else [ROOT / "data" / "icons"]
     used_icons = sorted({A.PLATFORM_ICON[p] for p in
                          {a["platform"] for a in A.ACCOUNTS.values()}})
-    used_icons += ["si-csdn.svg", "si-juejin.svg"]
+    used_icons += [icon for _name, _url, icon in A.WRITING]
     for name in used_icons:
         for root in icon_roots:
             src = root / name

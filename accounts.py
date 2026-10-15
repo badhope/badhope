@@ -52,10 +52,32 @@ ICON_PREFIXES = ("si", "dev")
 # 平台徽标（「在别处」表格用，图标同样 vendored）
 PLATFORM_ICON = {"github": "si-github.svg", "gitcode": "si-gitcode.svg", "gitee": "si-gitee.svg"}
 
-# 写作区（同一个人，三处公开笔迹）
+# 写作区（同一个人，三处公开笔迹）：(平台名, 主页 URL, 本地图标文件)
 WRITING = [
-    ("CSDN", "https://blog.csdn.net/weixin_56622231"),
-    ("Juejin", "https://juejin.cn/user/2350111542479753"),
+    ("CSDN", "https://blog.csdn.net/weixin_56622231", "si-csdn.svg"),
+    ("Juejin", "https://juejin.cn/user/2350111542479753", "si-juejin.svg"),
+    ("Zhihu", "https://www.zhihu.com/people/e7c851hd", "si-zhihu.svg"),
+]
+
+# 人工维护的站外文章（curated，无 RSS 来源；zhihu 三篇 2026-10-15/16 经发布 API 实测）。
+# refresh.py 的 fetch_writing 会把本列表合并进 data/writing.json（curated 优先、URL 去重、
+# 按日期倒序），RSS 抓取失败也不会丢失——新增文章只改这里。
+CURATED_POSTS = [
+    {
+        "title": "MCP 落地一年，我总结了 6 个没人告诉你的工程真相",
+        "url": "https://zhuanlan.zhihu.com/p/2094232145015453253",
+        "date": "2026-10-16",
+    },
+    {
+        "title": "本地优先 AI：当所有人都在上云，我为什么把 AI 装回自己电脑",
+        "url": "https://zhuanlan.zhihu.com/p/2094233605513991576",
+        "date": "2026-10-16",
+    },
+    {
+        "title": "AI Agent 上线前必须过的 5 道关：一个真实项目的工程手记",
+        "url": "https://zhuanlan.zhihu.com/p/2094218858789856836",
+        "date": "2026-10-16",
+    },
 ]
 
 # 精选格言（离线、确定性轮换：index = (月-1) % len；每月一句，避免每日变更造成刷新 PR 噪音）
