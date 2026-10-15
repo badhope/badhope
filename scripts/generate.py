@@ -58,6 +58,221 @@ def fmt_num(v):
         return str(v)
 
 
+def copy_icon_light(src, dst, color):
+    """拷贝图标并确保其在深色底上可见。
+
+    simple-icons 的 SVG 不带 fill（默认黑色），在深色 README 上不可见；
+    这里给根元素补一个浅色 fill（仅当图标自身未指定）。
+    """
+    text = src.read_text(encoding="utf-8", errors="replace")
+    m = re.match(r"<svg\b[^>]*>", text)
+    if m and "fill=" not in m.group(0):
+        text = text.replace(m.group(0), m.group(0)[:-1] + ' fill="%s">' % color, 1)
+    dst.write_text(text, encoding="utf-8", newline="\n")
+
+
+def icon_svg_body(name, size, color=None):
+    """取 vendored 图标的内部图形（path/circle/...），返回可直接内联的片段。
+
+    图标来源 devicon / simple-icons（纯几何元素，无 <style>/<class>），
+    以嵌套 <svg> 承载：外层给尺寸与配色，内层保留原始 viewBox 与路径。
+    color 为 None 时保留图标自身配色；否则以单色填充覆盖（外层 fill 继承）。
+
+    个别图标（dev-go）带 xlink:href 引用，内联时须补命名空间声明，
+    否则整份 SVG 会因 unbound prefix 解析失败。
+    """
+    path = None
+    for prefix in A.ICON_PREFIXES:
+        cand = ROOT / "data" / "icons" / ("%s-%s.svg" % (prefix, name))
+        if cand.is_file():
+            path = cand
+            break
+    if path is None:
+        return None
+    text = path.read_text(encoding="utf-8", errors="replace")
+    m = re.search(r"<svg[^>]*viewBox=\"([^\"]+)\"[^>]*>(.*)</svg>", text, re.S)
+    if not m:
+        return None
+    viewbox, body = m.group(1), m.group(2).strip()
+    ns = ' xmlns:xlink="http://www.w3.org/1999/xlink"' if "xlink:" in body else ""
+    style = ' fill="%s"' % color if color else ""
+    return ('<svg x="0" y="0" width="%s" height="%s" viewBox="%s"%s%s>%s</svg>'
+            % (size, size, viewbox, ns, style, body))
+
+
+def skills_svg(acct, lang):
+    """技能矩阵：图标 + 名称的网格卡片（本地资产，无外链）。"""
+    t = A.THEME
+    labels = A.LABELS[lang]
+    names = [s for s in acct.get("skills", []) if s in A.SKILL_LABELS]
+    tiles = []
+    for name in names:
+        body = icon_svg_body(name, 34)
+        if body is None:
+            continue
+        tiles.append((A.SKILL_LABELS[name], body))
+    if not tiles:
+        return None
+    cols = min(5, len(tiles))
+    rows = (len(tiles) + cols - 1) // cols
+    cell_w, cell_h = 196, 92
+    pad_x, pad_top = 34, 48
+    width = pad_x * 2 + cell_w * cols
+    height = pad_top + cell_h * rows + 24
+    parts = []
+    for i, (label, body) in enumerate(tiles):
+        cx = pad_x + (i % cols) * cell_w
+        cy = pad_top + (i // cols) * cell_h
+        parts.append(
+            '<g transform="translate(%s,%s)">'
+            '<rect x="0" y="0" width="%s" height="%s" rx="12" fill="%s" fill-opacity="0.55" '
+            'stroke="%s" stroke-opacity="0.22"/>'
+            '<g transform="translate(%s,20)">%s</g>'
+            '<text x="%s" y="76" text-anchor="middle" font-family="%s" font-size="13.5" fill="%s">%s</text>'
+            '</g>'
+            % (cx, cy, cell_w - 16, cell_h - 16, t["bg1"], t["gold"],
+               (cell_w - 16 - 34) / 2, body, (cell_w - 16) / 2, A.SANS, t["muted"], esc(label))
+        )
+    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{alt}">
+<defs>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="{panel}"/>
+    <stop offset="100%" stop-color="{bg1}"/>
+  </linearGradient>
+</defs>
+<rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.28" stroke-width="1.5"/>
+<text x="{rx}" y="30" text-anchor="end" font-family="{sans}" font-size="12" fill="{faint}">{note}</text>
+{parts}
+</svg>
+""".format(
+        w=width, h=height, rw=width - 1.5, rh=height - 1.5,
+        panel=t["panel"], bg1=t["bg1"], gold=t["gold"], faint=t["faint"],
+        sans=A.SANS, rx=width - pad_x, note=esc(labels["skills_note"]),
+        parts="\n".join(parts), alt=esc(labels["skills"] + " · " + ", ".join(n for n, _ in tiles)),
+    )
+
+
+def works_svg(acct, key, lang):
+    """作品面板：每件作品一张卡片（图标 + 名称 + 说明 + 标签），网格排布。"""
+    t = A.THEME
+    labels = A.LABELS[lang]
+    items = []
+    for wid in acct["works"]:
+        work = A.WORKS[wid]
+        icon_name = A.WORK_ICONS.get(wid, "markdown")
+        body = icon_svg_body(icon_name, 26, A.THEME["gold_bright"])
+        if body is None:
+            body = icon_svg_body("github", 26, A.THEME["gold_bright"])
+        items.append((work["title"], work["desc"][lang], work["tags"][lang], body))
+    if not items:
+        return None
+    cols = 2
+    rows = (len(items) + cols - 1) // cols
+    cell_w, cell_h = 470, 118
+    pad_x, pad_top = 34, 24
+    width = pad_x * 2 + cell_w * cols
+    height = pad_top + cell_h * rows + 24
+    parts = []
+    for i, (title, desc, tags, body) in enumerate(items):
+        cx = pad_x + (i % cols) * cell_w
+        cy = pad_top + (i // cols) * cell_h
+        desc_short = desc if len(esc(desc)) <= 58 else esc(desc)[:56].rstrip() + "…"
+        parts.append(
+            '<g transform="translate(%s,%s)">'
+            '<rect x="0" y="0" width="%s" height="%s" rx="12" fill="%s" fill-opacity="0.55" '
+            'stroke="%s" stroke-opacity="0.22"/>'
+            '<rect x="0" y="0" width="3" height="%s" rx="1.5" fill="%s" fill-opacity="0.9"/>'
+            '<g transform="translate(22,22)">%s</g>'
+            '<text x="60" y="34" font-family="%s" font-size="16.5" fill="%s">%s</text>'
+            '<text x="60" y="58" font-family="%s" font-size="12.8" fill="%s">%s</text>'
+            '<text x="60" y="82" font-family="%s" font-size="11.5" letter-spacing="1.2" fill="%s">%s</text>'
+            '</g>'
+            % (cx, cy, cell_w - 18, cell_h - 16, t["bg1"], t["gold"], cell_h - 16, t["gold"],
+               body, A.SANS, t["ink"], esc(title), A.SANS, t["muted"], desc_short,
+               A.SANS, t["gold"], esc(tags.upper()))
+        )
+    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{alt}">
+<defs>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="{panel}"/>
+    <stop offset="100%" stop-color="{bg1}"/>
+  </linearGradient>
+</defs>
+<rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.28" stroke-width="1.5"/>
+{parts}
+</svg>
+""".format(
+        w=width, h=height, rw=width - 1.5, rh=height - 1.5,
+        panel=t["panel"], bg1=t["bg1"], gold=t["gold"], ink=t["ink"],
+        serif=A.SERIF, sans=A.SANS, pad=pad_x, rx=width - pad_x,
+        parts="\n".join(parts),
+        alt=esc(labels["works"] + " · " + ", ".join(x[0] for x in items)),
+    )
+
+
+def activity_svg(acct, key, lang, stats):
+    """活跃度条：把统计数字画成横向条形图（视觉化替代纯数字堆叠）。"""
+    t = A.THEME
+    labels = A.LABELS[lang]
+    data = acct_stats(stats, key)
+    rows = []
+    for field in STAT_FIELDS:
+        val = data.get(field)
+        if val is None:
+            continue
+        rows.append((labels["stat_%s" % field], int(val)))
+    if not rows:
+        return None
+    top = max(v for _, v in rows) or 1
+    width, pad_x = 1000, 34
+    bar_x, bar_w = 300, 600
+    row_h, pad_top = 46, 48
+    height = pad_top + row_h * len(rows) + 26
+    parts = []
+    for i, (label, val) in enumerate(rows):
+        y = pad_top + i * row_h
+        frac = max(val / top, 0.012)
+        fw = round(bar_w * frac, 1)
+        parts.append(
+            '<text x="%s" y="%s" text-anchor="end" font-family="%s" font-size="14" fill="%s">%s</text>'
+            % (bar_x - 18, y + 15, A.SANS, t["muted"], esc(label))
+        )
+        parts.append(
+            '<rect x="%s" y="%s" width="%s" height="14" rx="7" fill="%s" fill-opacity="0.55"/>'
+            % (bar_x, y, bar_w, t["bg1"])
+        )
+        parts.append(
+            '<rect x="%s" y="%s" width="%s" height="14" rx="7" fill="url(#bar)"/>'
+            % (bar_x, y, fw)
+        )
+        parts.append(
+            '<text x="%s" y="%s" font-family="%s" font-size="14.5" fill="%s">%s</text>'
+            % (bar_x + bar_w + 16, y + 13, A.SERIF, t["gold_bright"], esc(fmt_num(val)))
+        )
+    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{alt}">
+<defs>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="{panel}"/>
+    <stop offset="100%" stop-color="{bg1}"/>
+  </linearGradient>
+  <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="{gold}" stop-opacity="0.55"/>
+    <stop offset="100%" stop-color="{gold_bright}" stop-opacity="0.95"/>
+  </linearGradient>
+</defs>
+<rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.28" stroke-width="1.5"/>
+<text x="{rx}" y="30" text-anchor="end" font-family="{sans}" font-size="12" fill="{faint}">{asof}</text>
+{parts}
+</svg>
+""".format(
+        w=width, h=height, rw=width - 1.5, rh=height - 1.5,
+        panel=t["panel"], bg1=t["bg1"], gold=t["gold"], gold_bright=t["gold_bright"],
+        faint=t["faint"], sans=A.SANS, rx=width - pad_x,
+        asof=esc("%s %s" % (labels["as_of"], stats.get("as_of") or "")),
+        parts="\n".join(parts), alt=esc(" · ".join("%s: %s" % (l, fmt_num(v)) for l, v in rows)),
+    )
+
+
 def load_stats(path):
     try:
         return json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
@@ -70,6 +285,35 @@ def acct_stats(stats, key):
 
 
 SNAKE_NAMES = ("github-contribution-grid-snake.svg", "github-contribution-grid-snake-dark.svg")
+CARD_NAMES = {
+    "stats": "cards/stats-%s.svg",
+    "langs": "cards/langs-%s.svg",
+    "pin": "cards/pin-%s.svg",
+}
+
+
+def load_card_seed(key, kind, lang, base=None):
+    """官方卡片种子（data/cards/<key>/<kind>-<locale>.svg，由 scripts/render_cards.mjs 产出）。
+
+    缺失时返回 None —— README 渲染随之降级，绝不产生裂图或外链（R7/S7.2）。
+    base 允许在部署仓库内（--here）从该目录的 data/cards 读取。
+    """
+    name = CARD_NAMES[kind] % A.CARD_LOCALE[lang]
+    roots = [ROOT] if base is None else [base, ROOT]
+    for root in roots:
+        p = root / "data" / "cards" / key / pathlib.Path(name).name
+        if p.is_file():
+            return p
+    return None
+
+
+def cards_dir_for(key, base):
+    """卡片种子目录：优先部署仓库内的一份（--here 自包含），否则用 kit 源。"""
+    if base:
+        local = pathlib.Path(base) / "data" / "cards" / key
+        if local.is_dir():
+            return local
+    return ROOT / "data" / "cards" / key
 
 
 def load_writing_items():
@@ -274,9 +518,20 @@ def render_contrib(acct, key, lang):
     return "\n".join(out)
 
 
-def render_readme(acct, key, lang, stats):
+def clip_text(text, max_em):
+    """按保守字宽（拉丁 0.55em / CJK 1.0em）裁剪文本，超出以 … 结尾。"""
+    out, used = [], 0.0
+    for ch in text:
+        w = 1.0 if ord(ch) > 0x2E80 else 0.55
+        if used + w > max_em:
+            return "".join(out).rstrip() + "…"
+        out.append(ch)
+        used += w
+    return text
+
+
+def render_readme(acct, key, lang, stats, base=None):
     labels = A.LABELS[lang]
-    role = acct["role"][lang]
     tagline = acct["tagline"][lang]
     lines = []
     lines.append("[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)")
@@ -294,29 +549,53 @@ def render_readme(acct, key, lang, stats):
     suffix = "" if author in ("", "—") else " — %s" % author
     lines.append('<p align="center"><sub>%s%s</sub></p>' % (quote_text, suffix))
     lines.append("")
-    lines.append("## %s" % labels["about"])
+
+    # ---- 两栏面板：About | Now（结构化排版，避免长文堆叠） ----
+    lines.append('<table border="0">')
+    lines.append("<tr>")
+    lines.append('<td valign="top" width="58%">')
+    lines.append("")
+    lines.append("### %s" % labels["about"])
     lines.append("")
     lines.append(acct["about"][lang])
+    lines.append("")
+    lines.append("</td>")
+    lines.append('<td valign="top" width="42%">')
     lines.append("")
     lines.append("### %s" % labels["now"])
     lines.append("")
     for item in acct["now"][lang]:
         lines.append("- %s" % item)
     lines.append("")
+    lines.append("</td>")
+    lines.append("</tr>")
+    lines.append("</table>")
+    lines.append("")
+
+    # ---- 技能矩阵（图标网格，本地资产） ----
+    lines.append("## %s" % labels["skills"])
+    lines.append("")
+    lines.append('<p align="center">')
+    lines.append('  <img src="./assets/skills-%s.svg" alt="%s" width="100%%" />' % (lang, esc(labels["skills"])))
+    lines.append("</p>")
+    lines.append("")
+
+    # ---- 作品卡片网格 ----
     lines.append("## %s" % labels["works"])
     lines.append("")
-    for wid in acct["works"]:
-        work = A.WORKS[wid]
-        url = A.work_url(wid, acct)
-        lines.append("- **[%s](%s)** — %s · `%s`"
-                     % (work["title"], url, work["desc"][lang], work["tags"][lang]))
+    lines.append('<p align="center">')
+    lines.append('  <img src="./assets/works-%s.svg" alt="%s" width="100%%" />' % (lang, esc(labels["works"])))
+    lines.append("</p>")
+    lines.append("")
+    links_row = " · ".join(
+        "[%s](%s)" % (A.WORKS[wid]["title"], A.work_url(wid, acct)) for wid in acct["works"]
+    )
+    lines.append('<p align="center"><sub>%s</sub></p>' % links_row)
     lines.append("")
     lines.append("%s [%s](%s)" % (labels["all_repos"], acct["home_display"], acct["home"]))
     lines.append("")
-    lines.append("## %s" % labels["contrib"])
-    lines.append("")
-    lines.append(render_contrib(acct, key, lang))
-    lines.append("")
+
+    # ---- 数据面板：官方卡片（有种子时）否则自绘统计卡 ----
     lines.append("## %s" % labels["numbers"])
     lines.append("")
     data = acct_stats(stats, key)
@@ -326,10 +605,41 @@ def render_readme(acct, key, lang, stats):
         if val is not None:
             alt_bits.append("%s %s" % (fmt_num(val), labels["stat_%s" % field]))
     alt = " · ".join(alt_bits) if alt_bits else labels["numbers"]
+    card_stats = load_card_seed(key, "stats", lang, base)
+    card_langs = load_card_seed(key, "langs", lang, base)
     lines.append('<p align="center">')
-    lines.append('  <img src="./assets/%s" alt="%s" width="80%%" />' % (A.STATS_NAME[lang], esc(alt)))
+    if card_stats and card_langs:
+        lines.append('  <img src="./assets/cards/stats-%s.svg" alt="GitHub stats" width="49%%" />'
+                     % A.CARD_LOCALE[lang])
+        lines.append('  <img src="./assets/cards/langs-%s.svg" alt="Top languages" width="49%%" />'
+                     % A.CARD_LOCALE[lang])
+    elif card_stats:
+        lines.append('  <img src="./assets/cards/stats-%s.svg" alt="GitHub stats" width="70%%" />'
+                     % A.CARD_LOCALE[lang])
+    else:
+        lines.append('  <img src="./assets/%s" alt="%s" width="80%%" />' % (A.STATS_NAME[lang], esc(alt)))
     lines.append("</p>")
     lines.append("")
+    lines.append('<p align="center">')
+    lines.append('  <img src="./assets/activity-%s.svg" alt="%s" width="100%%" />' % (lang, esc(alt)))
+    lines.append("</p>")
+    lines.append("")
+
+    # ---- 置顶作品（官方 pin 卡；仅有种子时出现） ----
+    pin_rows = []
+    for slot in range(1, 4):
+        cand = (pathlib.Path(base) if base else ROOT) / "data" / "cards" / key / ("pin-%d-%s.svg" % (slot, A.CARD_LOCALE[lang]))
+        if cand.is_file():
+            pin_rows.append(cand.name)
+    if pin_rows:
+        lines.append("## %s" % labels["pinned"])
+        lines.append("")
+        lines.append('<p align="center">')
+        for name in pin_rows:
+            lines.append('  <img src="./assets/cards/%s" alt="pinned work" width="32%%" />' % name)
+        lines.append("</p>")
+        lines.append("")
+
     if acct.get("contrib_graph"):
         lines.append("## %s" % labels["contrib_graph"])
         lines.append("")
@@ -338,30 +648,44 @@ def render_readme(acct, key, lang, stats):
         lines.append('    <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />')
         lines.append('    <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />')
         lines.append('  </picture>')
-        lines.append('</p>')
+        lines.append("</p>")
         lines.append("")
+
+    # ---- 开源足迹（表格式，非散文） ----
+    lines.append("## %s" % labels["contrib"])
+    lines.append("")
+    lines.append(render_contrib(acct, key, lang))
+    lines.append("")
+
+    # ---- 写作（日期 | 文章 两列表） ----
     lines.append("## %s" % labels["writing"])
     lines.append("")
     writing_items = load_writing_items()
     if writing_items:
-        lines.append("### %s" % labels["writing_latest"])
-        lines.append("")
+        lines.append("| %s | %s |" % (labels["date"], labels["article"]))
+        lines.append("|---|---|")
         for item in writing_items[:5]:
-            date_bit = " · `%s`" % item["date"] if item.get("date") else ""
-            lines.append("- [%s](%s)%s" % (item["title"], item["url"], date_bit))
+            lines.append("| %s | [%s](%s) |"
+                         % (item.get("date") or "—", item["title"], item["url"]))
         lines.append("")
-    lines.append("- " + " · ".join("[%s](%s)" % w for w in A.WRITING))
+    lines.append("<sub>%s <img src=\"./assets/icons/si-csdn.svg\" width=\"15\" alt=\"CSDN\" /> [CSDN](%s) · <img src=\"./assets/icons/si-juejin.svg\" width=\"15\" alt=\"Juejin\" /> [Juejin](%s)</sub>"
+                 % (labels["also_on"], A.WRITING[0][1], A.WRITING[1][1]))
     lines.append("")
+
+    # ---- 在别处（宽表格，窄屏可横向滑动） ----
     lines.append("## %s" % labels["elsewhere"])
     lines.append("")
     lines.append("> %s" % labels["mirror_note"])
     lines.append("")
+    lines.append("| | %s | %s | %s |" % (labels["platform"], labels["account"], labels["role"]))
+    lines.append("|---|---|---|---|")
     for other_key in A.ACCOUNT_ORDER:
         other = A.ACCOUNTS[other_key]
-        marker = " ◆ %s" % labels["here"] if other_key == key else ""
-        lines.append("- **%s · [%s](%s)** — %s%s"
-                     % (PLATFORM_LABEL[other["platform"]], other["handle"], other["home"],
-                        other["role"][lang], marker))
+        icon = A.PLATFORM_ICON[other["platform"]]
+        marker = " ◆ *%s*" % labels["here"] if other_key == key else ""
+        lines.append('| <img src="./assets/icons/%s" width="18" alt="%s" /> | %s | **[%s](%s)** | %s%s |'
+                     % (icon, PLATFORM_LABEL[other["platform"]], PLATFORM_LABEL[other["platform"]],
+                        other["handle"], other["home"], other["role"][lang], marker))
     lines.append("")
     lines.append('<p align="center">')
     lines.append('  <img src="./assets/footer.svg" alt="" width="100%" />')
@@ -375,16 +699,26 @@ def render_readme(acct, key, lang, stats):
 # --------------------------------------------------------------------------
 # writing / packing
 # --------------------------------------------------------------------------
-def write_account_files(acct, key, out_dir, stats):
+def write_account_files(acct, key, out_dir, stats, base=None):
     out = pathlib.Path(out_dir)
     assets = out / "assets"
     assets.mkdir(parents=True, exist_ok=True)
-    wanted = {"hero.svg", "footer.svg"} | {A.STATS_NAME[l] for l in A.LANGS}
+    (assets / "icons").mkdir(parents=True, exist_ok=True)
+    (assets / "cards").mkdir(parents=True, exist_ok=True)
+    lang_assets = {"skills-%s.svg", "works-%s.svg", "activity-%s.svg"}
+    wanted = {"hero.svg", "footer.svg"}
+    wanted |= {A.STATS_NAME[l] for l in A.LANGS}
+    for l in A.LANGS:
+        wanted |= {t % l for t in lang_assets}
     if acct.get("contrib_graph"):
         wanted |= set(SNAKE_NAMES)
     for stale in assets.glob("*.svg"):
         if stale.name not in wanted:
             stale.unlink()
+    for stale in (assets / "icons").glob("*.svg"):
+        stale.unlink()
+    for stale in (assets / "cards").glob("*.svg"):
+        stale.unlink()
     for lang in A.LANGS:
         (out / A.README_NAME[lang]).write_text(
             render_readme(acct, key, lang, stats), encoding="utf-8", newline="\n"
@@ -392,8 +726,33 @@ def write_account_files(acct, key, out_dir, stats):
         (assets / A.STATS_NAME[lang]).write_text(
             stats_svg(acct, key, stats, lang), encoding="utf-8", newline="\n"
         )
+        for svg, fn in ((skills_svg(acct, lang), "skills-%s.svg"),
+                        (works_svg(acct, key, lang), "works-%s.svg"),
+                        (activity_svg(acct, key, lang, stats), "activity-%s.svg")):
+            if svg:
+                (assets / (fn % lang)).write_text(svg, encoding="utf-8", newline="\n")
     (assets / "hero.svg").write_text(hero_svg(acct), encoding="utf-8", newline="\n")
     (assets / "footer.svg").write_text(footer_svg(acct), encoding="utf-8", newline="\n")
+    # README 引用的图标（平台徽标 + 写作平台），只拷贝用到的那几个
+    icon_roots = [pathlib.Path(base) / "data" / "icons", ROOT / "data" / "icons"] if base else [ROOT / "data" / "icons"]
+    used_icons = sorted({A.PLATFORM_ICON[p] for p in
+                         {a["platform"] for a in A.ACCOUNTS.values()}})
+    used_icons += ["si-csdn.svg", "si-juejin.svg"]
+    for name in used_icons:
+        for root in icon_roots:
+            src = root / name
+            if src.is_file():
+                if name.startswith("si-"):
+                    # simple-icons 默认黑色，深色底上不可见 → 补浅色填充
+                    copy_icon_light(src, assets / "icons" / name, A.THEME["muted"])
+                else:
+                    shutil.copyfile(src, assets / "icons" / name)
+                break
+    # 官方卡片种子（存在才拷贝 —— 缺失即 README 自动降级，见 load_card_seed）
+    card_dir = cards_dir_for(key, base)
+    if card_dir.is_dir():
+        for f in sorted(card_dir.glob("*.svg")):
+            shutil.copyfile(f, assets / "cards" / f.name)
     if acct.get("contrib_graph"):
         seed_dir = ROOT / "data" / "contrib" / key
         for src_name, dst_name in (("snake.svg", SNAKE_NAMES[0]), ("snake-dark.svg", SNAKE_NAMES[1])):
@@ -424,6 +783,19 @@ def pack(key, out_dir):
             dst_dir.mkdir(parents=True, exist_ok=True)
             for f in sorted(seed_src.glob("*.svg")):
                 shutil.copyfile(f, dst_dir / f.name)
+    # 图标库与卡片种子随包携带（目标仓库内可 --here 重建 / 由 workflow 刷新卡片）
+    icon_src = ROOT / "data" / "icons"
+    if icon_src.is_dir():
+        dst_icons = out / "data" / "icons"
+        dst_icons.mkdir(parents=True, exist_ok=True)
+        for f in sorted(icon_src.glob("*.svg")):
+            shutil.copyfile(f, dst_icons / f.name)
+    card_src = ROOT / "data" / "cards" / key
+    if card_src.is_dir():
+        dst_cards = out / "data" / "cards" / key
+        dst_cards.mkdir(parents=True, exist_ok=True)
+        for f in sorted(card_src.glob("*.svg")):
+            shutil.copyfile(f, dst_cards / f.name)
     (out / "profile.json").write_text(
         json.dumps({"kit_version": A.KIT_VERSION, "account": key}, indent=2) + "\n",
         encoding="utf-8", newline="\n",
@@ -434,6 +806,10 @@ def pack(key, out_dir):
         shutil.copyfile(ROOT / "workflows" / "refresh.yml", wf_dir / "refresh.yml")
         if acct.get("contrib_graph"):
             shutil.copyfile(ROOT / "workflows" / "contrib.yml", wf_dir / "contrib.yml")
+        shutil.copyfile(ROOT / "workflows" / "cards.yml", wf_dir / "cards.yml")
+        (out / "scripts").mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / "scripts" / "render_cards.mjs", out / "scripts" / "render_cards.mjs")
+        shutil.copyfile(ROOT / "package.json", out / "package.json")
     (out / PACK_GITIGNORE).write_text(
         (ROOT / PACK_GITIGNORE).read_text(encoding="utf-8"), encoding="utf-8", newline="\n"
     )
@@ -445,7 +821,7 @@ def here(cwd):
     prof = json.loads((cwd / "profile.json").read_text(encoding="utf-8"))
     key = prof["account"]
     stats = load_stats(cwd / "data" / "stats.json")
-    write_account_files(A.ACCOUNTS[key], key, cwd, stats)
+    write_account_files(A.ACCOUNTS[key], key, cwd, stats, base=cwd)
     return key
 
 
@@ -460,31 +836,54 @@ def md_line_html(text):
 
 
 def md_to_html(md):
-    out, in_ul = [], False
+    out, in_ul, in_table = [], False, False
+
+    def is_sep_row(line):
+        return bool(re.fullmatch(r"\s*\|[\s:|-]*\|\s*", line)) and "-" in line
+
     for raw in md.split("\n"):
         line = raw.rstrip()
-        if in_ul and not line.startswith("- "):
+        stripped = line.strip()
+        if in_ul and not stripped.startswith("- "):
             out.append("</ul>")
             in_ul = False
-        if line.startswith("## "):
-            out.append("<h2>%s</h2>" % md_line_html(line[3:]))
-        elif line.startswith("### "):
-            out.append("<h3>%s</h3>" % md_line_html(line[4:]))
-        elif line.startswith("- "):
+        is_table_row = stripped.startswith("|") and stripped.endswith("|") and stripped.count("|") >= 2
+        if in_table and not is_table_row:
+            out.append("</table></div>")
+            in_table = False
+        if stripped.startswith("## "):
+            out.append("<h2>%s</h2>" % md_line_html(stripped[3:]))
+        elif stripped.startswith("### "):
+            out.append("<h3>%s</h3>" % md_line_html(stripped[4:]))
+        elif is_table_row:
+            if is_sep_row(stripped):
+                continue
+            cells = [c.strip() for c in stripped[1:-1].split("|")]
+            if not in_table:
+                out.append('<div class="tscroll"><table>')
+                in_table = True
+                tag = "th"
+            else:
+                tag = "td"
+            tds = "".join("<%s>%s</%s>" % (tag, md_line_html(c), tag) for c in cells)
+            out.append("<tr>%s</tr>" % tds)
+        elif stripped.startswith("- "):
             if not in_ul:
                 out.append("<ul>")
                 in_ul = True
-            out.append("<li>%s</li>" % md_line_html(line[2:]))
-        elif line.startswith("> "):
-            out.append("<blockquote>%s</blockquote>" % md_line_html(line[2:]))
-        elif line.startswith("<"):
-            out.append(line)
+            out.append("<li>%s</li>" % md_line_html(stripped[2:]))
+        elif stripped.startswith("> "):
+            out.append("<blockquote>%s</blockquote>" % md_line_html(stripped[2:]))
+        elif line.startswith("<") or (line[:1] == " " and stripped.startswith("<")):
+            out.append(line)  # 原生 HTML（含缩进的 img/picture 等），按原样输出
         elif not line:
             out.append("")
         else:
             out.append("<p>%s</p>" % md_line_html(line))
     if in_ul:
         out.append("</ul>")
+    if in_table:
+        out.append("</table></div>")
     return "\n".join(out)
 
 
@@ -516,6 +915,11 @@ PREVIEW_TPL = """<!DOCTYPE html>
                         padding-left:16px; color:#A9B4CC; }}
   .readme img {{ max-width:100%; }}
   .readme ul {{ padding-left:22px; }}
+  .readme table {{ border-collapse:collapse; margin:8px 0; }}
+  .readme th, .readme td {{ padding:6px 12px; border:1px solid rgba(201,168,106,.18); text-align:left; vertical-align:middle; }}
+  .readme th {{ color:#C9A86A; font-weight:600; }}
+  .tscroll {{ overflow-x:auto; }}
+  .readme .tscroll table {{ min-width:520px; }}
   .meta {{ color:#6B7A9B; font-size:13px; margin-top:6px; }}
 </style>
 </head>

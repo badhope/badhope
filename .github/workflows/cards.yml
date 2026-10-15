@@ -1,0 +1,62 @@
+name: Refresh stat cards
+
+# 用官方渲染核心（github-readme-stats 血统，MIT）生成统计卡/语言卡/置顶卡，
+# 提交进仓库后由 README 以本地路径引用 —— 不依赖任何第三方运行时图片服务。
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: cards-refresh
+  cancel-in-progress: true
+
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install render core
+        run: npm install --no-audit --no-fund
+
+      - name: Render cards
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/render_cards.mjs
+
+      - name: Regenerate READMEs from new cards
+        run: python3 scripts/generate.py --here
+
+      - name: Open pull request when changed
+        # 仓库若禁止默认令牌创建 PR，请在 Settings → Secrets 配置 PROFILE_PAT（classic, repo 权限）
+        env:
+          GH_TOKEN: ${{ secrets.PROFILE_PAT || secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet; then
+            echo "no changes to publish"
+            exit 0
+          fi
+          branch="profile-cards/$(date -u +%Y%m%d-%H%M)"
+          git config user.name "profile-kit"
+          git config user.email "profile-kit@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A
+          git commit -m "chore: refresh stat cards"
+          git push -u origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "chore: refresh stat cards ($(date -u +%F))" \
+            --body "自动刷新：官方渲染核心生成的统计卡/语言卡/置顶卡（本地资产，无第三方运行时依赖）。"
+          gh pr merge --auto --squash || true

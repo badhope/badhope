@@ -8,9 +8,16 @@
 
 <p align="center"><sub>First, solve the problem. Then, write the code. — John Johnson</sub></p>
 
-## について
+<table border="0">
+<tr>
+<td valign="top" width="58%">
+
+### について
 
 GitHub の拠点 — ツール・索引・小さなソフトウェア実験を公開しています。オフライン優先・シングルファイルな道具が好きです。
+
+</td>
+<td valign="top" width="42%">
 
 ### 近況
 
@@ -18,27 +25,43 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 - digilegacy と spark の継続開発
 - 49 種のツール集（DU）のドキュメント整備
 
+</td>
+</tr>
+</table>
+
+## 道具箱
+
+<p align="center">
+  <img src="./assets/skills-ja.svg" alt="道具箱" width="100%" />
+</p>
+
 ## 主な作品
 
-- **[DigiLegacy 归零](https://github.com/badhope/digilegacy)** — ローカル優先のデジタル遺産管理 · `ツール · プライバシー`
-- **[Spark](https://github.com/badhope/spark)** — ローカル優先の AI コーディングエージェント（承認ゲート付き） · `AI · 開発`
-- **[Agent Builder](https://github.com/badhope/agent-builder)** — プロダクション向け AI エージェント実装ガイド（TypeScript 24 篇） · `AI · ガイド`
-- **[Workbench](https://github.com/badhope/workbench)** — ローカル優先のデスクトップワークベンチ（Tauri 2 + React 19） · `デスクトップ · 生産性`
-- **[SciFlow](https://github.com/badhope/sciflow)** — ローカル優先の AI 研究エージェント作業台 — マルチエージェント編成 · `AI · 研究`
-- **[DU 渡](https://github.com/badhope/DU)** — クライアントサイド中国術数ツールキット — 49 ツール · `ツール · 文化`
-- **[API Market](https://github.com/badhope/API-Market)** — 14,000+ の公開 API を検索できるカタログ · `データ · 索引`
-- **[MCP Hub](https://github.com/badhope/MCP-HUB)** — 4,400+ の MCP サーバー＆リソース登録簿 · `AI · 索引`
+<p align="center">
+  <img src="./assets/works-ja.svg" alt="主な作品" width="100%" />
+</p>
+
+<p align="center"><sub>[DigiLegacy 归零](https://github.com/badhope/digilegacy) · [Spark](https://github.com/badhope/spark) · [Agent Builder](https://github.com/badhope/agent-builder) · [Workbench](https://github.com/badhope/workbench) · [SciFlow](https://github.com/badhope/sciflow) · [DU 渡](https://github.com/badhope/DU) · [API Market](https://github.com/badhope/API-Market) · [MCP Hub](https://github.com/badhope/MCP-HUB)</sub></p>
 
 全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
-
-## オープンソース
-
-パッチは ohmyzsh・tldr・icalendar・NUR などにマージ済み — 詳細は GitHub の2アカウントへ: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
 
 ## 数字で見る
 
 <p align="center">
-  <img src="./assets/stats-ja.svg" alt="45 公開リポジトリ · 236 累計スター · 18 フォロワー · 6 上流へのマージ" width="80%" />
+  <img src="./assets/cards/stats-ja.svg" alt="GitHub stats" width="49%" />
+  <img src="./assets/cards/langs-ja.svg" alt="Top languages" width="49%" />
+</p>
+
+<p align="center">
+  <img src="./assets/activity-ja.svg" alt="45 公開リポジトリ · 236 累計スター · 18 フォロワー · 6 上流へのマージ" width="100%" />
+</p>
+
+## ピン留め作品
+
+<p align="center">
+  <img src="./assets/cards/pin-1-ja.svg" alt="pinned work" width="32%" />
+  <img src="./assets/cards/pin-2-ja.svg" alt="pinned work" width="32%" />
+  <img src="./assets/cards/pin-3-ja.svg" alt="pinned work" width="32%" />
 </p>
 
 ## コントリビューション
@@ -50,27 +73,33 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
   </picture>
 </p>
 
+## オープンソース
+
+パッチは ohmyzsh・tldr・icalendar・NUR などにマージ済み — 詳細は GitHub の2アカウントへ: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
+
 ## 執筆
 
-### 最新の記事
+| 日付 | 記事 |
+|---|---|
+| 2026-09-27 | [Playwright 多平台分发：8 个踩坑与合规门禁](https://blog.csdn.net/weixin_56622231/article/details/166698802) |
+| 2026-09-25 | [AI Agent 智能体开发从零到一：2026年程序员完整学习路线与实战指南](https://blog.csdn.net/weixin_56622231/article/details/166643070) |
+| 2026-09-21 | [工作流体检验收：全链路发布完整性验证](https://blog.csdn.net/weixin_56622231/article/details/166254273) |
+| 2026-09-21 | [Python协程全景解析：从原理到生产实战](https://blog.csdn.net/weixin_56622231/article/details/166252941) |
+| 2026-09-15 | [【分布式第一课】从单机到百万级并发：一小时带你看懂分布式系统的前世今生](https://blog.csdn.net/weixin_56622231/article/details/165435117) |
 
-- [Playwright 多平台分发：8 个踩坑与合规门禁](https://blog.csdn.net/weixin_56622231/article/details/166698802) · `2026-09-27`
-- [AI Agent 智能体开发从零到一：2026年程序员完整学习路线与实战指南](https://blog.csdn.net/weixin_56622231/article/details/166643070) · `2026-09-25`
-- [工作流体检验收：全链路发布完整性验证](https://blog.csdn.net/weixin_56622231/article/details/166254273) · `2026-09-21`
-- [Python协程全景解析：从原理到生产实战](https://blog.csdn.net/weixin_56622231/article/details/166252941) · `2026-09-21`
-- [【分布式第一课】从单机到百万级并发：一小时带你看懂分布式系统的前世今生](https://blog.csdn.net/weixin_56622231/article/details/165435117) · `2026-09-15`
-
-- [CSDN](https://blog.csdn.net/weixin_56622231) · [Juejin](https://juejin.cn/user/2350111542479753)
+<sub>同時掲載 <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> [CSDN](https://blog.csdn.net/weixin_56622231) · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> [Juejin](https://juejin.cn/user/2350111542479753)</sub>
 
 ## ほかの場所
 
 > 同一人物の5つの拠点 — これらのアカウントは同じ人のミラーです。
 
-- **GitHub · [X33834](https://github.com/X33834)** — 上流 OSS · ツールと作品
-- **GitHub · [Morningstar202604](https://github.com/Morningstar202604)** — ポートフォリオ · 長期プロジェクト
-- **GitHub · [badhope](https://github.com/badhope)** — プロフィール · ツール小屋 ◆ 現在地
-- **GitCode · [badhope](https://gitcode.com/badhope)** — モバイル開発 · オフラインツール
-- **Gitee · [badhope](https://gitee.com/badhope)** — ミラー · ミニアプリ
+| | プラットフォーム | アカウント | 役割 |
+|---|---|---|---|
+| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[X33834](https://github.com/X33834)** | 上流 OSS · ツールと作品 |
+| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[Morningstar202604](https://github.com/Morningstar202604)** | ポートフォリオ · 長期プロジェクト |
+| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[badhope](https://github.com/badhope)** | プロフィール · ツール小屋 ◆ *現在地* |
+| <img src="./assets/icons/si-gitcode.svg" width="18" alt="GitCode" /> | GitCode | **[badhope](https://gitcode.com/badhope)** | モバイル開発 · オフラインツール |
+| <img src="./assets/icons/si-gitee.svg" width="18" alt="Gitee" /> | Gitee | **[badhope](https://gitee.com/badhope)** | ミラー · ミニアプリ |
 
 <p align="center">
   <img src="./assets/footer.svg" alt="" width="100%" />

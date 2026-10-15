@@ -29,6 +29,28 @@ THEME = {
 LANGS = ("md", "zh-CN", "ja")
 README_NAME = {"md": "README.md", "zh-CN": "README.zh-CN.md", "ja": "README.ja.md"}
 STATS_NAME = {"md": "stats-en.svg", "zh-CN": "stats-zh-CN.svg", "ja": "stats-ja.svg"}
+# 官方卡片渲染核心（github-readme-stats 血统）的 locale 标识与 kit 语言的映射
+CARD_LOCALE = {"md": "en", "zh-CN": "cn", "ja": "ja"}
+
+# 技能图标（vendored 于 data/icons/，来源 devicon@master 与 simple-icons@15）：
+# 键 = 图标文件名后缀，值 = (展示名, 首选文件名)。文件不存在时按 simple-icons → devicon 顺序回退。
+SKILL_LABELS = {
+    "typescript": "TypeScript", "javascript": "JavaScript", "python": "Python",
+    "rust": "Rust", "go": "Go", "java": "Java", "kotlin": "Kotlin", "dart": "Dart",
+    "react": "React", "vuejs": "Vue", "nodejs": "Node.js", "electron": "Electron",
+    "tauri": "Tauri", "flutter": "Flutter", "docker": "Docker", "git": "Git",
+    "linux": "Linux", "vscode": "VS Code", "mysql": "MySQL", "postgresql": "PostgreSQL",
+    "redis": "Redis", "nginx": "Nginx", "graphql": "GraphQL", "markdown": "Markdown",
+    "nixos": "NixOS", "vitejs": "Vite", "bash": "Bash", "swift": "Swift",
+    "wechat": "WeChat", "openai": "OpenAI", "ollama": "Ollama",
+    "huggingface": "Hugging Face", "anthropic": "Claude",
+}
+
+# 图标解析顺序：simple-icons 版优先（单 path、体积小），其次 devicon 版
+ICON_PREFIXES = ("si", "dev")
+
+# 平台徽标（「在别处」表格用，图标同样 vendored）
+PLATFORM_ICON = {"github": "si-github.svg", "gitcode": "si-gitcode.svg", "gitee": "si-gitee.svg"}
 
 # 写作区（同一个人，三处公开笔迹）
 WRITING = [
@@ -74,6 +96,17 @@ LABELS = {
         "merged_heading": "Merged upstream",
         "review_heading": "In review",
         "shared_line": "Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details on the two GitHub accounts",
+        "skills": "Toolbox",
+        "skills_note": "Icons vendored in this repository (devicon / simple-icons)",
+        "platform": "Platform",
+        "account": "Account",
+        "role": "Role",
+        "langs": "Languages",
+        "activity": "Activity",
+        "date": "Date",
+        "article": "Article",
+        "pinned": "Pinned work",
+        "also_on": "Also on",
     },
     "zh-CN": {
         "about": "关于",
@@ -96,6 +129,17 @@ LABELS = {
         "merged_heading": "已合并上游",
         "review_heading": "评审中",
         "shared_line": "补丁已合入 ohmyzsh · tldr · icalendar · NUR 等上游项目，明细见两个 GitHub 账号",
+        "skills": "工具箱",
+        "skills_note": "图标已随仓库自带（devicon / simple-icons）",
+        "platform": "平台",
+        "account": "账号",
+        "role": "定位",
+        "langs": "语言构成",
+        "activity": "活跃度",
+        "date": "日期",
+        "article": "文章",
+        "pinned": "置顶作品",
+        "also_on": "同步发布",
     },
     "ja": {
         "about": "について",
@@ -118,6 +162,17 @@ LABELS = {
         "merged_heading": "上流マージ済み",
         "review_heading": "レビュー中",
         "shared_line": "パッチは ohmyzsh・tldr・icalendar・NUR などにマージ済み — 詳細は GitHub の2アカウントへ",
+        "skills": "道具箱",
+        "skills_note": "アイコンはリポジトリに同梱（devicon / simple-icons）",
+        "platform": "プラットフォーム",
+        "account": "アカウント",
+        "role": "役割",
+        "langs": "言語構成",
+        "activity": "アクティビティ",
+        "date": "日付",
+        "article": "記事",
+        "pinned": "ピン留め作品",
+        "also_on": "同時掲載",
     },
 }
 
@@ -613,6 +668,24 @@ GITHUB_ACCOUNTS_FOR_SHARED = [
 ]
 
 # --------------------------------------------------------------------------
+# 作品卡片图标（data/icons/ 内的文件名后缀；缺图即用通用方块）
+# --------------------------------------------------------------------------
+WORK_ICONS = {
+    "xiaoman": "python", "shopcash": "typescript", "digilegacy": "typescript",
+    "naiwa-pet": "electron", "spark": "rust", "workbench": "tauri",
+    "sciflow": "python", "lingxi": "nodejs", "chushi-radar": "javascript",
+    "awesome-ai-devkit": "openai", "awesome-skillkit": "anthropic",
+    "agent-builder": "typescript", "CodePocket": "python", "zhike": "wechat",
+    "vaultx": "rust", "bot4cj": "java", "mashang-python": "python",
+    "scholarhub": "nodejs", "content-harbor": "openai", "GlobalEcom-AI": "react",
+    "melee": "ollama", "lens": "vscode", "world-walker": "markdown",
+    "KeBaiPay": "postgresql", "p2wlan": "go", "novel-engine": "huggingface",
+    "DU": "javascript", "API-Market": "graphql", "MCP-HUB": "nodejs",
+    "NetTools-Hub": "nginx", "ExamPrediction": "python", "urban-pulse": "javascript",
+    "OnlineCode": "vscode", "campushub": "vuejs",
+}
+
+# --------------------------------------------------------------------------
 # 五个账号 —— 同一套模板的五个落点
 # --------------------------------------------------------------------------
 ACCOUNTS = {
@@ -656,6 +729,7 @@ ACCOUNTS = {
             ],
         },
         "contrib_graph": True,
+        "skills": ["typescript", "python", "rust", "nodejs", "react", "docker", "git", "linux", "postgresql", "nginx"],
         "works": [
             "xiaoman", "shopcash", "digilegacy", "naiwa-pet",
             "agent-builder", "workbench", "awesome-ai-devkit", "awesome-skillkit",
@@ -702,6 +776,7 @@ ACCOUNTS = {
             ],
         },
         "contrib_graph": True,
+        "skills": ["python", "typescript", "go", "vitejs", "nixos", "docker", "postgresql", "redis", "huggingface", "ollama"],
         "works": [
             "novel-engine", "KeBaiPay", "p2wlan", "xiaoman",
             "shopcash", "naiwa-pet", "sciflow", "spark",
@@ -749,6 +824,7 @@ ACCOUNTS = {
             ],
         },
         "contrib_graph": True,
+        "skills": ["javascript", "python", "react", "nodejs", "vuejs", "electron", "docker", "mysql", "nginx", "markdown"],
         "works": [
             "digilegacy", "spark", "agent-builder", "workbench",
             "sciflow", "DU", "API-Market", "MCP-HUB",
@@ -794,6 +870,7 @@ ACCOUNTS = {
                 "ツール資料のアーカイブ整理",
             ],
         },
+        "skills": ["python", "dart", "kotlin", "java", "flutter", "wechat", "linux", "git", "markdown"],
         "works": [
             "zhike", "xiaoman", "workbench", "vaultx",
             "spark", "sciflow", "scholarhub", "bot4cj",
@@ -836,6 +913,7 @@ ACCOUNTS = {
                 "ミニアプリの実験",
             ],
         },
+        "skills": ["python", "wechat", "vuejs", "mysql", "nginx", "git", "markdown"],
         "works": ["agent-builder", "campushub", "naiwa-pet", "workbench", "zhike"],
         "contrib": "shared",
     },
