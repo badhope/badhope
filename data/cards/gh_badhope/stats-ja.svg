@@ -9,7 +9,7 @@
         aria-labelledby="descId"
       >
         <title id="titleId">badhope&#12398; GitHub &#32113;&#35336;, Rank: A-</title>
-        <desc id="descId">&#12473;&#12479;&#12540;&#12373;&#12428;&#12383;&#25968;: 237, &#21512;&#35336;&#12467;&#12511;&#12483;&#12488;&#25968;  : 471, &#21512;&#35336; PR: 225, &#21512;&#35336; issue: 12, &#36002;&#29486;&#12375;&#12383;&#12522;&#12509;&#12472;&#12488;&#12522; （&#26152;&#24180;）: 18</desc>
+        <desc id="descId">&#12473;&#12479;&#12540;&#12373;&#12428;&#12383;&#25968;: 235, &#21512;&#35336;&#12467;&#12511;&#12483;&#12488;&#25968;  : 560, &#21512;&#35336; PR: 215, &#21512;&#35336; issue: 9, &#36002;&#29486;&#12375;&#12383;&#12522;&#12509;&#12472;&#12488;&#12522; （&#26152;&#24180;）: 18</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -73,7 +73,7 @@
         stroke-dashoffset: 251.32741228718345;
       }
       to {
-        stroke-dashoffset: 73.2925811054802;
+        stroke-dashoffset: 73.3023760373982;
       }
     }
   
@@ -169,7 +169,7 @@
         x="224.01"
         y="12.5"
         data-testid="stars"
-      >237</text>
+      >235</text>
     </g>
   </g><g transform="translate(0, 25)">
     <g class="stagger" style="animation-delay: 600ms" transform="translate(25, 0)">
@@ -184,7 +184,7 @@
         x="224.01"
         y="12.5"
         data-testid="commits"
-      >471</text>
+      >560</text>
     </g>
   </g><g transform="translate(0, 50)">
     <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
@@ -199,7 +199,7 @@
         x="224.01"
         y="12.5"
         data-testid="prs"
-      >225</text>
+      >215</text>
     </g>
   </g><g transform="translate(0, 75)">
     <g class="stagger" style="animation-delay: 900ms" transform="translate(25, 0)">
@@ -214,7 +214,7 @@
         x="224.01"
         y="12.5"
         data-testid="issues"
-      >12</text>
+      >9</text>
     </g>
   </g><g transform="translate(0, 100)">
     <g class="stagger" style="animation-delay: 1050ms" transform="translate(25, 0)">
