@@ -53,7 +53,7 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 </p>
 
 <p align="center">
-  <img src="./assets/activity-ja.svg" alt="34 公開リポジトリ · 235 累計スター · 20 フォロワー · 4 上流へのマージ" width="100%" />
+  <img src="./assets/activity-ja.svg" alt="45 公開リポジトリ · 236 累計スター · 18 フォロワー · 6 上流へのマージ" width="100%" />
 </p>
 
 ## ピン留め作品
