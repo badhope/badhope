@@ -75,25 +75,30 @@ jobs:
             --title "chore: refresh contribution snake ($(date -u +%F))" \
             --body "自动刷新贡献蛇形图（Platane/snk 种子 → generate.py 派生 assets）；合入后生效。"
 
-          # 合并路径（按仓库能力自愈）：
-          #   1) 无分支保护的仓库：--auto 会被拒（no rules），退化为立即 squash；
-          #   2) 受保护仓库：--auto 成功，但并发时另一 PR 先合入会让本 PR 变成 behind，
-          #      auto-merge 会一直等待 —— 故每轮先更新分支再重试；
-          #   3) 需人工批准的场景：保留 PR 待批，下一轮 supersede。
-          for i in 1 2 3 4; do
-            if [ "$i" -gt 1 ]; then
-              gh pr update-branch "$branch" 2>/dev/null || gh pr update-branch 2>/dev/null || true
-              sleep 8
-            fi
-            if gh pr merge --auto --squash 2>/dev/null; then
-              echo "auto-merge enabled (attempt $i)"
-              exit 0
-            fi
-            if gh pr merge --squash 2>/dev/null; then
-              echo "merged immediately (attempt $i)"
-              exit 0
-            fi
-            echo "merge attempt $i pending (behind or approval required)"
-            sleep 12
+          # 合并状态机：主动收敛到「已合并」，而不是启用 auto-merge 就退出。
+          # 实测教训：GitHub 的 auto-merge 在 BEHIND 状态不会自动前进，
+          # 「启用成功即退出」会让并发场景下的 PR 永久 hanging。
+          #   CLEAN   → 立即 squash 合并（含无分支保护仓库）
+          #   BEHIND  → 更新分支后重试
+          #   BLOCKED → 检查未出/需批准，等待
+          # 轮次耗尽后保留 PR 待批（受保护仓库的 gitleaks 人工批准路径），下一轮 supersede。
+          for i in $(seq 1 10); do
+            state=$(gh pr view "$branch" --json mergeStateStatus -q .mergeStateStatus 2>/dev/null || echo UNKNOWN)
+            echo "attempt $i: mergeStateStatus=$state"
+            case "$state" in
+              CLEAN|HAS_HOOKS|UNSTABLE)
+                if gh pr merge --squash 2>/dev/null; then
+                  echo "merged"
+                  exit 0
+                fi
+                ;;
+              BEHIND)
+                gh pr update-branch "$branch" 2>/dev/null || true
+                ;;
+            esac
+            sleep 15
           done
-          echo "PR left open for approval; next run will supersede it"
+          # 仍未合并：可能是需要人工批准（受保护分支 + 机器人 PR）。
+          # 启用 auto-merge 让它在批准后自动完成，下一轮 run 负责 supersede。
+          gh pr merge --auto --squash 2>/dev/null || true
+          echo "PR left open (likely awaiting approval); next run will supersede it"
