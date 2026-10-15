@@ -761,8 +761,7 @@ def write_account_files(acct, key, out_dir, stats, base=None):
                 shutil.copyfile(src, assets / dst_name)
 
 
-PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "accounts.py", "data/stats.json", "data/writing.json",
-               "package.json", "package-lock.json")
+PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "accounts.py", "data/stats.json", "data/writing.json")
 PACK_GITIGNORE = ".gitignore"
 
 
@@ -810,7 +809,9 @@ def pack(key, out_dir):
         shutil.copyfile(ROOT / "workflows" / "cards.yml", wf_dir / "cards.yml")
         (out / "scripts").mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / "scripts" / "render_cards.mjs", out / "scripts" / "render_cards.mjs")
+        # node 依赖清单与锁文件：cards.yml 的 npm ci + 缓存需要（仅 GitHub 账号带 Actions）
         shutil.copyfile(ROOT / "package.json", out / "package.json")
+        shutil.copyfile(ROOT / "package-lock.json", out / "package-lock.json")
     (out / PACK_GITIGNORE).write_text(
         (ROOT / PACK_GITIGNORE).read_text(encoding="utf-8"), encoding="utf-8", newline="\n"
     )
