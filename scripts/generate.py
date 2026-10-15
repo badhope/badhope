@@ -588,7 +588,8 @@ def render_readme(acct, key, lang, stats, base=None):
     lines.append("</p>")
     lines.append("")
     links_row = " · ".join(
-        "[%s](%s)" % (A.WORKS[wid]["title"], A.work_url(wid, acct)) for wid in acct["works"]
+        '<a href="%s">%s</a>' % (esc(A.work_url(wid, acct)), esc(A.WORKS[wid]["title"]))
+        for wid in acct["works"]
     )
     lines.append('<p align="center"><sub>%s</sub></p>' % links_row)
     lines.append("")
@@ -668,8 +669,10 @@ def render_readme(acct, key, lang, stats, base=None):
             lines.append("| %s | [%s](%s) |"
                          % (item.get("date") or "—", item["title"], item["url"]))
         lines.append("")
-    lines.append("<sub>%s <img src=\"./assets/icons/si-csdn.svg\" width=\"15\" alt=\"CSDN\" /> [CSDN](%s) · <img src=\"./assets/icons/si-juejin.svg\" width=\"15\" alt=\"Juejin\" /> [Juejin](%s)</sub>"
-                 % (labels["also_on"], A.WRITING[0][1], A.WRITING[1][1]))
+    lines.append('<sub>%s <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> '
+                 '<a href="%s">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> '
+                 '<a href="%s">Juejin</a></sub>'
+                 % (esc(labels["also_on"]), esc(A.WRITING[0][1]), esc(A.WRITING[1][1])))
     lines.append("")
 
     # ---- 在别处（宽表格，窄屏可横向滑动） ----
