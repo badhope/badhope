@@ -7,4 +7,3 @@ __pycache__/
 
 # 卡片渲染器的依赖（CI 里 npm install 安装；本地生成用）
 node_modules/
-package-lock.json

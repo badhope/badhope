@@ -761,7 +761,8 @@ def write_account_files(acct, key, out_dir, stats, base=None):
                 shutil.copyfile(src, assets / dst_name)
 
 
-PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "accounts.py", "data/stats.json", "data/writing.json")
+PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "accounts.py", "data/stats.json", "data/writing.json",
+               "package.json", "package-lock.json")
 PACK_GITIGNORE = ".gitignore"
 
 

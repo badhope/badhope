@@ -15,41 +15,54 @@ concurrency:
   group: cards-refresh
   cancel-in-progress: true
 
+env:
+  BRANCH_PREFIX: profile-cards/
+
 jobs:
   cards:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
           node-version: "20"
           cache: npm
 
       - name: Install render core
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
-      - name: Render cards
+      - name: Render cards (this account only)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/render_cards.mjs
+        # 只渲染本仓库所属账号：避免把其它账号的数据混进本仓库产物
+        run: node scripts/render_cards.mjs "$(python3 -c "import json;print(json.load(open('profile.json'))['account'])")"
 
       - name: Regenerate READMEs from new cards
         run: python3 scripts/generate.py --here
 
-      - name: Open pull request when changed
+      - name: Publish when content changed
         # 仓库若禁止默认令牌创建 PR，请在 Settings → Secrets 配置 PROFILE_PAT（classic, repo 权限）
         env:
           GH_TOKEN: ${{ secrets.PROFILE_PAT || secrets.GITHUB_TOKEN }}
         run: |
+          set -u
           if git diff --quiet; then
             echo "no changes to publish"
             exit 0
           fi
-          branch="profile-cards/$(date -u +%Y%m%d-%H%M)"
+
+          # 同 refresh.yml：先回收上一轮遗留 PR/分支，任何时刻至多一个待办
+          stale=$(gh pr list --state open --json number,headRefName \
+            --jq ".[] | select(.headRefName | startswith(\"$BRANCH_PREFIX\")) | .number")
+          for n in $stale; do
+            gh pr close "$n" --delete-branch --comment "superseded by a newer cards run" || true
+          done
+
+          branch="${BRANCH_PREFIX}$(date -u +%Y%m%d-%H%M)"
           git config user.name "profile-kit"
           git config user.email "profile-kit@users.noreply.github.com"
           git checkout -b "$branch"
@@ -59,4 +72,17 @@ jobs:
           gh pr create --base main --head "$branch" \
             --title "chore: refresh stat cards ($(date -u +%F))" \
             --body "自动刷新：官方渲染核心生成的统计卡/语言卡/置顶卡（本地资产，无第三方运行时依赖）。"
-          gh pr merge --auto --squash || true
+
+          for i in 1 2 3; do
+            if gh pr merge --auto --squash 2>/dev/null; then
+              echo "auto-merge enabled"
+              exit 0
+            fi
+            if gh pr merge --squash 2>/dev/null; then
+              echo "merged immediately"
+              exit 0
+            fi
+            echo "merge attempt $i pending (branch protection may require approval)"
+            sleep 10
+          done
+          echo "PR left open for approval; next run will supersede it"
