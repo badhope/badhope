@@ -41,7 +41,7 @@ My GitHub home — tools, indexes and small software experiments, all in the ope
   <img src="./assets/works-md.svg" alt="Selected work" width="100%" />
 </p>
 
-<p align="center"><sub>[DigiLegacy 归零](https://github.com/badhope/digilegacy) · [Spark](https://github.com/badhope/spark) · [Agent Builder](https://github.com/badhope/agent-builder) · [Workbench](https://github.com/badhope/workbench) · [SciFlow](https://github.com/badhope/sciflow) · [DU 渡](https://github.com/badhope/DU) · [API Market](https://github.com/badhope/API-Market) · [MCP Hub](https://github.com/badhope/MCP-HUB)</sub></p>
+<p align="center"><sub><a href="https://github.com/badhope/digilegacy">DigiLegacy 归零</a> · <a href="https://github.com/badhope/spark">Spark</a> · <a href="https://github.com/badhope/agent-builder">Agent Builder</a> · <a href="https://github.com/badhope/workbench">Workbench</a> · <a href="https://github.com/badhope/sciflow">SciFlow</a> · <a href="https://github.com/badhope/DU">DU 渡</a> · <a href="https://github.com/badhope/API-Market">API Market</a> · <a href="https://github.com/badhope/MCP-HUB">MCP Hub</a></sub></p>
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 
@@ -53,7 +53,7 @@ All public repositories: [github.com/badhope](https://github.com/badhope)
 </p>
 
 <p align="center">
-  <img src="./assets/activity-md.svg" alt="35 public repos · 235 stars · 20 followers · 4 upstream merges" width="100%" />
+  <img src="./assets/activity-md.svg" alt="45 public repos · 236 stars · 18 followers · 6 upstream merges" width="100%" />
 </p>
 
 ## Pinned work
@@ -87,7 +87,7 @@ Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details 
 | 2026-09-21 | [Python协程全景解析：从原理到生产实战](https://blog.csdn.net/weixin_56622231/article/details/166252941) |
 | 2026-09-15 | [【分布式第一课】从单机到百万级并发：一小时带你看懂分布式系统的前世今生](https://blog.csdn.net/weixin_56622231/article/details/165435117) |
 
-<sub>Also on <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> [CSDN](https://blog.csdn.net/weixin_56622231) · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> [Juejin](https://juejin.cn/user/2350111542479753)</sub>
+<sub>Also on <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a></sub>
 
 ## Elsewhere
 
