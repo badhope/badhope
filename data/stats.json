@@ -1,24 +1,24 @@
 {
-  "as_of": "2026-10-14",
+  "as_of": "2026-10-15",
   "source": "scripts/refresh.py",
   "accounts": {
     "gh_x33834": {
-      "repos": 20,
+      "repos": 33,
       "stars": 3,
-      "followers": 1,
+      "followers": 4,
       "merged": 1
     },
     "gh_morningstar": {
-      "repos": 27,
+      "repos": 41,
       "stars": 4,
-      "followers": 17,
+      "followers": 18,
       "merged": 15
     },
     "gh_badhope": {
-      "repos": 45,
-      "stars": 236,
-      "followers": 18,
-      "merged": 6
+      "repos": 35,
+      "stars": 235,
+      "followers": 20,
+      "merged": 4
     },
     "gitcode_badhope": {
       "repos": 31,
@@ -27,7 +27,7 @@
       "merged": null
     },
     "gitee_badhope": {
-      "repos": 7,
+      "repos": 10,
       "stars": 2,
       "followers": null,
       "merged": null
