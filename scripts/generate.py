@@ -109,7 +109,7 @@ def skills_svg(acct, lang):
     for name in names:
         # simple-icons 是单色图标且不带 fill（默认黑），深色底上不可见 → 指定浅色
         mono = (ROOT / "data" / "icons" / ("si-%s.svg" % name)).is_file()
-        body = icon_svg_body(name, 34, A.THEME["ink"] if mono else None)
+        body = icon_svg_body(name, 34, A.THEME["star"] if mono else None)
         if body is None:
             continue
         tiles.append((A.SKILL_LABELS[name], body))
