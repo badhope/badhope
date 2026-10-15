@@ -1,5 +1,8 @@
 name: Contribution snake
 
+# 蛇形图以 data/contrib/<account>/ 种子为唯一数据源：
+# 本工作流只负责「生成种子」，assets/ 下的产物一律由 generate.py 从种子派生，
+# 与 refresh.yml 共用同一条链路 —— 避免两个工作流每日互相覆盖。
 on:
   schedule:
     - cron: "41 5 * * *"
@@ -13,33 +16,55 @@ concurrency:
   group: contrib-snake
   cancel-in-progress: true
 
+env:
+  BRANCH_PREFIX: contrib-snake/
+
 jobs:
   snake:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
-      - name: Generate snake (dark + light)
-        uses: Platane/snk@v3
+      - name: Resolve account key
+        id: acct
+        run: |
+          key=$(python3 -c "import json;print(json.load(open('profile.json'))['account'])")
+          echo "key=$key" >> "$GITHUB_OUTPUT"
+          echo "account key: $key"
+
+      - name: Generate snake seeds (dark + light)
+        uses: Platane/snk@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3.5.0
         with:
           github_user_name: ${{ github.repository_owner }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           outputs: |
-            assets/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=%23C9A86A&color_dots=%23141B33,%231F2A4A,%232C3C67,%233E528C,%23C9A86A
-            assets/github-contribution-grid-snake.svg?palette=github-light&color_snake=%23C9A86A
+            data/contrib/${{ steps.acct.outputs.key }}/snake-dark.svg?palette=github-dark&color_snake=%23C9A86A&color_dots=%23141B33,%231F2A4A,%232C3C67,%233E528C,%23C9A86A
+            data/contrib/${{ steps.acct.outputs.key }}/snake.svg?palette=github-light&color_snake=%23C9A86A
 
-      - name: Open pull request when changed
+      - name: Derive assets from seeds
+        run: python3 scripts/generate.py --here
+
+      - name: Publish when content changed
         # 仓库若禁止默认令牌创建 PR，请在 Settings → Secrets 配置 PROFILE_PAT（classic, repo 权限）
         env:
           GH_TOKEN: ${{ secrets.PROFILE_PAT || secrets.GITHUB_TOKEN }}
         run: |
+          set -u
           if git diff --quiet; then
             echo "no changes to publish"
             exit 0
           fi
-          branch="contrib-snake/$(date -u +%Y%m%d-%H%M)"
+
+          # 同 refresh.yml：先回收上一轮遗留 PR/分支，任何时刻至多一个待办
+          stale=$(gh pr list --state open --json number,headRefName \
+            --jq ".[] | select(.headRefName | startswith(\"$BRANCH_PREFIX\")) | .number")
+          for n in $stale; do
+            gh pr close "$n" --delete-branch --comment "superseded by a newer snake run" || true
+          done
+
+          branch="${BRANCH_PREFIX}$(date -u +%Y%m%d-%H%M)"
           git config user.name "profile-kit"
           git config user.email "profile-kit@users.noreply.github.com"
           git checkout -b "$branch"
@@ -48,5 +73,18 @@ jobs:
           git push -u origin "$branch"
           gh pr create --base main --head "$branch" \
             --title "chore: refresh contribution snake ($(date -u +%F))" \
-            --body "自动刷新贡献蛇形图（Platane/snk）；合入后生效。"
-          gh pr merge --auto --squash || true
+            --body "自动刷新贡献蛇形图（Platane/snk 种子 → generate.py 派生 assets）；合入后生效。"
+
+          for i in 1 2 3; do
+            if gh pr merge --auto --squash 2>/dev/null; then
+              echo "auto-merge enabled"
+              exit 0
+            fi
+            if gh pr merge --squash 2>/dev/null; then
+              echo "merged immediately"
+              exit 0
+            fi
+            echo "merge attempt $i pending (branch protection may require approval)"
+            sleep 10
+          done
+          echo "PR left open for approval; next run will supersede it"

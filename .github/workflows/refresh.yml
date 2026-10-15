@@ -13,13 +13,16 @@ concurrency:
   group: refresh-profile
   cancel-in-progress: true
 
+env:
+  BRANCH_PREFIX: profile-refresh/
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: Refresh stats (GitHub / Gitee / GitCode)
         env:
@@ -30,16 +33,26 @@ jobs:
       - name: Regenerate READMEs and assets
         run: python3 scripts/generate.py --here
 
-      - name: Open pull request when content changed
+      - name: Publish when content changed
         # 仓库若禁止默认令牌创建 PR，请在 Settings → Secrets 配置 PROFILE_PAT（classic, repo 权限）
         env:
           GH_TOKEN: ${{ secrets.PROFILE_PAT || secrets.GITHUB_TOKEN }}
         run: |
+          set -u
           if git diff --quiet; then
             echo "no changes to publish"
             exit 0
           fi
-          branch="profile-refresh/$(date -u +%Y%m%d-%H%M)"
+
+          # 清理上一轮遗留的同类 PR/分支：任何时刻至多保留一个待办。
+          # 每日任务在无人审批的仓库（受保护分支 + 机器人 PR 需批准）会产生堆积，这里自愈。
+          stale=$(gh pr list --state open --json number,headRefName \
+            --jq ".[] | select(.headRefName | startswith(\"$BRANCH_PREFIX\")) | .number")
+          for n in $stale; do
+            gh pr close "$n" --delete-branch --comment "superseded by a newer refresh run" || true
+          done
+
+          branch="${BRANCH_PREFIX}$(date -u +%Y%m%d-%H%M)"
           git config user.name "profile-kit"
           git config user.email "profile-kit@users.noreply.github.com"
           git checkout -b "$branch"
@@ -49,4 +62,19 @@ jobs:
           gh pr create --base main --head "$branch" \
             --title "chore: refresh profile stats ($(date -u +%F))" \
             --body "自动刷新：data/stats.json 及 README/资产更新；合入后生效。"
-          gh pr merge --auto --squash || true
+
+          # 有些仓库未开启 auto-merge（无分支保护时 GitHub 直接拒绝 --auto），
+          # 故失败后退回立即 squash 合并；受限仓库（需人工批准）保持 PR 待批。
+          for i in 1 2 3; do
+            if gh pr merge --auto --squash 2>/dev/null; then
+              echo "auto-merge enabled"
+              exit 0
+            fi
+            if gh pr merge --squash 2>/dev/null; then
+              echo "merged immediately"
+              exit 0
+            fi
+            echo "merge attempt $i pending (branch protection may require approval)"
+            sleep 10
+          done
+          echo "PR left open for approval; next run will supersede it"
