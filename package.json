@@ -1,0 +1,11 @@
+{
+  "name": "profile-kit-cards",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "官方卡片种子渲染（github-readme-stats 核心）——仅用于生成 data/cards/*.svg，不进部署产物运行时",
+  "license": "MIT",
+  "dependencies": {
+    "@stats-organization/github-readme-stats-core": "2.2.0"
+  }
+}
