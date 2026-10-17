@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-16",
+  "as_of": "2026-10-17",
   "source": "scripts/refresh.py",
   "accounts": {
     "gh_x33834": {
@@ -16,7 +16,7 @@
     },
     "gh_badhope": {
       "repos": 37,
-      "stars": 237,
+      "stars": 238,
       "followers": 20,
       "merged": 4
     },
