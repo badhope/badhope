@@ -25,6 +25,7 @@ import shutil
 import sys
 import xml.sax.saxutils as xu
 import zlib
+from urllib.parse import quote
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -76,6 +77,48 @@ def clip_w(text, max_w, size):
         out.append(ch)
         used += cw
     return "".join(out)
+
+
+def live_badges(acct, lang):
+    """实时数字徽章行（shields.io，国内实测可达）：repos / followers。
+
+    平台公开 API（未认证可读，实测 200）：
+      GitHub  https://api.github.com/users/<handle>    -> public_repos, followers
+      GitCode https://api.gitcode.com/api/v5/users/<handle> -> followers
+    实测限制（2026-10-18）：
+      - Gitee：shields.io 服务器无法访问 gitee.com（动态徽章返回 invalid），
+        故 Gitee 不输出徽章，数字仍由定时任务刷新。
+      - GitHub 原生 github/followers 徽章带 label 参数会失效，统一走 dynamic/json。
+      - GitCode 用户端点不含仓库数。
+    stars/merged 无公开实时聚合接口，这两个数字仍由定时任务刷新（data/stats.json）。
+    """
+    plat = acct.get("platform")
+    handle = acct.get("handle")
+    if not handle or plat == "gitee":
+        return None
+    labels = A.LABELS[lang]
+    lc, co = "0E1630", "D9B876"          # label 底=面板深蓝, 数值=主题金
+    style = "flat"
+    badges = []
+
+    def dyn(url, query, label):
+        inner = ("https://img.shields.io/badge/dynamic/json?url=%s&query=%s&style=%s"
+                 "&label=%s&labelColor=%s&color=%s"
+                 % (quote(url, safe=""), quote(query, safe=""), style,
+                    quote(label, safe=""), lc, co))
+        return '<img src="%s" alt="%s" />' % (inner, esc("%s: %s" % (label, handle)))
+
+    if plat == "github":
+        badges.append(dyn("https://api.github.com/users/%s" % handle,
+                          "public_repos", labels["badge_repos"]))
+        badges.append(dyn("https://api.github.com/users/%s" % handle,
+                          "followers", labels["badge_followers"]))
+    elif plat == "gitcode":
+        badges.append(dyn("https://api.gitcode.com/api/v5/users/%s" % handle,
+                          "followers", labels["badge_followers"]))
+    if not badges:
+        return None
+    return '<p align="center">\n  %s\n</p>' % "\n  ".join(badges)
 
 
 def copy_icon_light(src, dst, color):
@@ -707,6 +750,11 @@ def render_readme(acct, key, lang, stats, base=None):
     # ---- 数据面板：官方卡片（有种子时）否则自绘统计卡 ----
     lines.append("## %s" % labels["numbers"])
     lines.append("")
+    # 实时徽章行（shields.io）：repos / followers 每次加载即时刷新
+    badge_row = live_badges(acct, lang)
+    if badge_row:
+        lines.append(badge_row)
+        lines.append("")
     data = acct_stats(stats, key)
     alt_bits = []
     for field in STAT_FIELDS:
