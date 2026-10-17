@@ -52,10 +52,6 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
   <img src="./assets/cards/langs-ja.svg" alt="Top languages" width="49%" />
 </p>
 
-<p align="center">
-  <img src="./assets/activity-ja.svg" alt="37 公開リポジトリ · 238 累計スター · 20 フォロワー · 4 上流へのマージ" width="100%" />
-</p>
-
 ## ピン留め作品
 
 <p align="center">

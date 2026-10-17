@@ -58,6 +58,26 @@ def fmt_num(v):
         return str(v)
 
 
+def text_w(text, size):
+    """估算文本宽度：拉丁/符号按 0.6em，CJK 按 1.0em（等宽标签用）。"""
+    total = 0.0
+    for ch in text:
+        total += size if ord(ch) > 0x2E80 else size * 0.6
+    return total
+
+
+def clip_w(text, max_w, size):
+    """按估算像素宽度裁剪文本（CJK 1.0em / 拉丁 0.6em），超出以 … 结尾。"""
+    out, used = [], 0.0
+    for ch in text:
+        cw = size if ord(ch) > 0x2E80 else size * 0.6
+        if used + cw > max_w:
+            return "".join(out).rstrip() + "…"
+        out.append(ch)
+        used += cw
+    return "".join(out)
+
+
 def copy_icon_light(src, dst, color):
     """拷贝图标并确保其在深色底上可见。
 
@@ -101,7 +121,7 @@ def icon_svg_body(name, size, color=None):
 
 
 def skills_svg(acct, lang):
-    """技能矩阵：图标 + 名称的网格卡片（本地资产，无外链）。"""
+    """技能矩阵：图标瓷片 + 名称的网格卡片（本地资产，无外链）。"""
     t = A.THEME
     labels = A.LABELS[lang]
     names = [s for s in acct.get("skills", []) if s in A.SKILL_LABELS]
@@ -109,7 +129,7 @@ def skills_svg(acct, lang):
     for name in names:
         # simple-icons 是单色图标且不带 fill（默认黑），深色底上不可见 → 指定浅色
         mono = (ROOT / "data" / "icons" / ("si-%s.svg" % name)).is_file()
-        body = icon_svg_body(name, 34, A.THEME["star"] if mono else None)
+        body = icon_svg_body(name, 26, A.THEME["star"] if mono else None)
         if body is None:
             continue
         tiles.append((A.SKILL_LABELS[name], body))
@@ -117,23 +137,27 @@ def skills_svg(acct, lang):
         return None
     cols = min(5, len(tiles))
     rows = (len(tiles) + cols - 1) // cols
-    cell_w, cell_h = 196, 92
-    pad_x, pad_top = 34, 48
+    cell_w, cell_h = 192, 92
+    pad_x, pad_top = 34, 46
     width = pad_x * 2 + cell_w * cols
-    height = pad_top + cell_h * rows + 24
+    height = pad_top + cell_h * rows + 26
     parts = []
     for i, (label, body) in enumerate(tiles):
         cx = pad_x + (i % cols) * cell_w
         cy = pad_top + (i // cols) * cell_h
+        tile_cx = (cell_w - 16) / 2
         parts.append(
             '<g transform="translate(%s,%s)">'
-            '<rect x="0" y="0" width="%s" height="%s" rx="12" fill="%s" fill-opacity="0.55" '
-            'stroke="%s" stroke-opacity="0.22"/>'
-            '<g transform="translate(%s,20)">%s</g>'
-            '<text x="%s" y="76" text-anchor="middle" font-family="%s" font-size="13.5" fill="%s">%s</text>'
+            '<rect x="0" y="0" width="%s" height="%s" rx="13" fill="%s" fill-opacity="0.55" '
+            'stroke="%s" stroke-opacity="0.30"/>'
+            '<rect x="%s" y="5" width="44" height="44" rx="12" fill="url(#tile)" stroke="%s" stroke-opacity="0.5"/>'
+            '<g transform="translate(%s,15)">%s</g>'
+            '<text x="%s" y="79" text-anchor="middle" font-family="%s" font-size="12" letter-spacing="0.5" fill="%s">%s</text>'
             '</g>'
             % (cx, cy, cell_w - 16, cell_h - 16, t["bg1"], t["gold"],
-               (cell_w - 16 - 34) / 2, body, (cell_w - 16) / 2, A.SANS, t["muted"], esc(label))
+               tile_cx - 22, t["gold"],
+               tile_cx - 13, body,
+               (cell_w - 16) / 2, A.MONO, t["muted"], esc(label))
         )
     return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{alt}">
 <defs>
@@ -141,21 +165,26 @@ def skills_svg(acct, lang):
     <stop offset="0%" stop-color="{panel}"/>
     <stop offset="100%" stop-color="{bg1}"/>
   </linearGradient>
+  <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="{indigo}" stop-opacity="0.24"/>
+    <stop offset="100%" stop-color="{teal}" stop-opacity="0.15"/>
+  </linearGradient>
 </defs>
-<rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.28" stroke-width="1.5"/>
-<text x="{rx}" y="30" text-anchor="end" font-family="{sans}" font-size="12" fill="{faint}">{note}</text>
+<rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.30" stroke-width="1.5"/>
+<text x="{rx}" y="30" text-anchor="end" font-family="{mono}" font-size="11.5" letter-spacing="1.5" fill="{faint}">{note}</text>
 {parts}
 </svg>
 """.format(
         w=width, h=height, rw=width - 1.5, rh=height - 1.5,
         panel=t["panel"], bg1=t["bg1"], gold=t["gold"], faint=t["faint"],
-        sans=A.SANS, rx=width - pad_x, note=esc(labels["skills_note"]),
+        indigo=t["indigo"], teal=t["teal"],
+        sans=A.SANS, mono=A.MONO, rx=width - pad_x, note=esc(labels["skills_note"]),
         parts="\n".join(parts), alt=esc(labels["skills"] + " · " + ", ".join(n for n, _ in tiles)),
     )
 
 
 def works_svg(acct, key, lang):
-    """作品面板：每件作品一张卡片（图标 + 名称 + 说明 + 标签），网格排布。"""
+    """作品面板：每件作品一张卡片（图标瓷片 + 名称 + 说明 + 标签胶囊），网格排布。"""
     t = A.THEME
     labels = A.LABELS[lang]
     items = []
@@ -170,28 +199,46 @@ def works_svg(acct, key, lang):
         return None
     cols = 2
     rows = (len(items) + cols - 1) // cols
-    cell_w, cell_h = 470, 118
-    pad_x, pad_top = 34, 24
+    cell_w, cell_h = 474, 126
+    pad_x, pad_top = 30, 26
     width = pad_x * 2 + cell_w * cols
-    height = pad_top + cell_h * rows + 24
+    height = pad_top + cell_h * rows + 26
     parts = []
     for i, (title, desc, tags, body) in enumerate(items):
         cx = pad_x + (i % cols) * cell_w
         cy = pad_top + (i // cols) * cell_h
-        desc_short = desc if len(esc(desc)) <= 58 else esc(desc)[:56].rstrip() + "…"
+        desc_short = clip_w(desc, 356, 12.5)
+        inner_w = cell_w - 18
+        chips = []
+        tx = 80
+        for tg in [x.strip() for x in tags.split("·") if x.strip()][:2]:
+            cw = round(text_w(tg, 10.5) + 20, 1)
+            if tx + cw > inner_w - 12:
+                break
+            chips.append(
+                '<g transform="translate(%s,82)">'
+                '<rect x="0" y="0" width="%s" height="20" rx="10" fill="none" stroke="%s" stroke-opacity="0.5"/>'
+                '<text x="%s" y="13.5" text-anchor="middle" font-family="%s" font-size="10.5" '
+                'letter-spacing="1.6" fill="%s">%s</text>'
+                '</g>'
+                % (tx, cw, t["gold"], cw / 2, A.MONO, t["gold"], esc(tg.upper()))
+            )
+            tx += cw + 8
         parts.append(
             '<g transform="translate(%s,%s)">'
-            '<rect x="0" y="0" width="%s" height="%s" rx="12" fill="%s" fill-opacity="0.55" '
-            'stroke="%s" stroke-opacity="0.22"/>'
-            '<rect x="0" y="0" width="3" height="%s" rx="1.5" fill="%s" fill-opacity="0.9"/>'
-            '<g transform="translate(22,22)">%s</g>'
-            '<text x="60" y="34" font-family="%s" font-size="16.5" fill="%s">%s</text>'
-            '<text x="60" y="58" font-family="%s" font-size="12.8" fill="%s">%s</text>'
-            '<text x="60" y="82" font-family="%s" font-size="11.5" letter-spacing="1.2" fill="%s">%s</text>'
+            '<rect x="0" y="0" width="%s" height="%s" rx="14" fill="%s" fill-opacity="0.6" '
+            'stroke="%s" stroke-opacity="0.30"/>'
+            '<rect x="0" y="0" width="4" height="%s" rx="2" fill="url(#accent)"/>'
+            '<rect x="20" y="20" width="44" height="44" rx="12" fill="%s" stroke="%s" stroke-opacity="0.4"/>'
+            '<g transform="translate(29,29)">%s</g>'
+            '<text x="80" y="38" font-family="%s" font-size="16.5" fill="%s">%s</text>'
+            '<text x="80" y="63" font-family="%s" font-size="12.5" fill="%s">%s</text>'
+            '%s'
             '</g>'
-            % (cx, cy, cell_w - 18, cell_h - 16, t["bg1"], t["gold"], cell_h - 16, t["gold"],
-               body, A.SANS, t["ink"], esc(title), A.SANS, t["muted"], desc_short,
-               A.SANS, t["gold"], esc(tags.upper()))
+            % (cx, cy, inner_w, cell_h - 16, t["panel2"], t["gold"],
+               cell_h - 16, t["bg0"], t["gold"],
+               body, A.SERIF, t["ink"], esc(title), A.SANS, t["muted"], desc_short,
+               "\n".join(chips))
         )
     return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{alt}">
 <defs>
@@ -199,14 +246,19 @@ def works_svg(acct, key, lang):
     <stop offset="0%" stop-color="{panel}"/>
     <stop offset="100%" stop-color="{bg1}"/>
   </linearGradient>
+  <linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="{indigo}"/>
+    <stop offset="100%" stop-color="{teal}"/>
+  </linearGradient>
 </defs>
-<rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.28" stroke-width="1.5"/>
+<rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.30" stroke-width="1.5"/>
 {parts}
 </svg>
 """.format(
         w=width, h=height, rw=width - 1.5, rh=height - 1.5,
         panel=t["panel"], bg1=t["bg1"], gold=t["gold"], ink=t["ink"],
-        serif=A.SERIF, sans=A.SANS, pad=pad_x, rx=width - pad_x,
+        indigo=t["indigo"], teal=t["teal"],
+        serif=A.SERIF, sans=A.SANS,
         parts="\n".join(parts),
         alt=esc(labels["works"] + " · " + ", ".join(x[0] for x in items)),
     )
@@ -236,11 +288,11 @@ def activity_svg(acct, key, lang, stats):
         frac = max(val / top, 0.012)
         fw = round(bar_w * frac, 1)
         parts.append(
-            '<text x="%s" y="%s" text-anchor="end" font-family="%s" font-size="14" fill="%s">%s</text>'
-            % (bar_x - 18, y + 15, A.SANS, t["muted"], esc(label))
+            '<text x="%s" y="%s" text-anchor="end" font-family="%s" font-size="13.5" fill="%s">%s</text>'
+            % (bar_x - 18, y + 15, A.MONO, t["muted"], esc(label))
         )
         parts.append(
-            '<rect x="%s" y="%s" width="%s" height="14" rx="7" fill="%s" fill-opacity="0.55"/>'
+            '<rect x="%s" y="%s" width="%s" height="14" rx="7" fill="%s"/>'
             % (bar_x, y, bar_w, t["bg1"])
         )
         parts.append(
@@ -258,18 +310,19 @@ def activity_svg(acct, key, lang, stats):
     <stop offset="100%" stop-color="{bg1}"/>
   </linearGradient>
   <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="{gold}" stop-opacity="0.55"/>
-    <stop offset="100%" stop-color="{gold_bright}" stop-opacity="0.95"/>
+    <stop offset="0%" stop-color="{indigo}" stop-opacity="0.85"/>
+    <stop offset="100%" stop-color="{teal}" stop-opacity="0.95"/>
   </linearGradient>
 </defs>
-<rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.28" stroke-width="1.5"/>
-<text x="{rx}" y="30" text-anchor="end" font-family="{sans}" font-size="12" fill="{faint}">{asof}</text>
+<rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.30" stroke-width="1.5"/>
+<text x="{rx}" y="30" text-anchor="end" font-family="{mono}" font-size="11.5" letter-spacing="1.5" fill="{faint}">{asof}</text>
 {parts}
 </svg>
 """.format(
         w=width, h=height, rw=width - 1.5, rh=height - 1.5,
         panel=t["panel"], bg1=t["bg1"], gold=t["gold"], gold_bright=t["gold_bright"],
-        faint=t["faint"], sans=A.SANS, rx=width - pad_x,
+        indigo=t["indigo"], teal=t["teal"],
+        faint=t["faint"], sans=A.SANS, mono=A.MONO, rx=width - pad_x,
         asof=esc("%s %s" % (labels["as_of"], stats.get("as_of") or "")),
         parts="\n".join(parts), alt=esc(" · ".join("%s: %s" % (l, fmt_num(v)) for l, v in rows)),
     )
@@ -332,17 +385,27 @@ def load_writing_items():
 # --------------------------------------------------------------------------
 def starfield(acct, w, h, n, salt="hero"):
     r = rng(acct, salt)
+    t = A.THEME
     out = []
     for _ in range(n):
         x = round(r.uniform(10, w - 10), 1)
         y = round(r.uniform(8, h - 8), 1)
-        rr = round(r.uniform(0.6, 1.7), 1)
-        op = round(r.uniform(0.22, 0.9), 2)
-        fill = A.THEME["gold"] if r.random() < 0.14 else A.THEME["star"]
+        rr = round(r.uniform(0.5, 1.5), 1)
+        op = round(r.uniform(0.18, 0.95), 2)
+        fill = t["gold"] if r.random() < 0.13 else t["star"]
         out.append(
             '<circle cx="%s" cy="%s" r="%s" fill="%s" opacity="%s"/>'
             % (x, y, rr, fill, op)
         )
+        # 少量四芒星光（十字亮线），增加层次
+        if r.random() < 0.14:
+            s = round(r.uniform(3.0, 6.5), 1)
+            sp = round(r.uniform(0.35, 0.8), 2)
+            out.append(
+                '<path d="M%s %s L%s %s M%s %s L%s %s" stroke="%s" stroke-width="0.7" '
+                'stroke-linecap="round" opacity="%s"/>'
+                % (x, y - s, x, y + s, x - s, y, x + s, y, fill, sp)
+            )
     return "\n  ".join(out)
 
 
@@ -366,53 +429,76 @@ def dipper(acct, w, h, salt="dipper"):
 
 
 def hero_svg(acct):
-    w, h = 1200, 360
+    w, h = 1200, 430
     poly, dots = dipper(acct, w, h)
     handle = acct["handle"]
-    fs = 58 if len(handle) <= 12 else 46
-    ls = 6 if len(handle) <= 12 else 8
+    fs = 60 if len(handle) <= 12 else 46
+    ls = 8 if len(handle) <= 12 else 6
     t = A.THEME
-    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="{handle} — {home}">
+    grid = "\n  ".join(
+        ['<line x1="0" y1="%s" x2="1200" y2="%s" stroke="%s" stroke-opacity="0.045" stroke-width="1"/>' % (y, y, t["star"])
+         for y in range(80, h, 70)]
+        + ['<line x1="%s" y1="0" x2="%s" y2="%s" stroke="%s" stroke-opacity="0.04" stroke-width="1"/>' % (x, x, h, t["star"])
+           for x in range(120, w, 120)]
+    )
+    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" width="1200" height="430" role="img" aria-label="{handle} — {home}">
 <defs>
   <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#05070F"/>
-    <stop offset="55%" stop-color="{bg0}"/>
+    <stop offset="0%" stop-color="#03050C"/>
+    <stop offset="52%" stop-color="{bg0}"/>
     <stop offset="100%" stop-color="{bg1}"/>
   </linearGradient>
-  <radialGradient id="glow-warm" cx="50%" cy="50%" r="50%">
+  <radialGradient id="glow-indigo" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="{indigo}" stop-opacity="0.20"/>
+    <stop offset="100%" stop-color="{indigo}" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glow-teal" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="{teal}" stop-opacity="0.14"/>
+    <stop offset="100%" stop-color="{teal}" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glow-gold" cx="50%" cy="50%" r="50%">
     <stop offset="0%" stop-color="{gold}" stop-opacity="0.10"/>
     <stop offset="100%" stop-color="{gold}" stop-opacity="0"/>
   </radialGradient>
-  <radialGradient id="glow-cool" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="{deep}" stop-opacity="0.22"/>
-    <stop offset="100%" stop-color="{deep}" stop-opacity="0"/>
-  </radialGradient>
+  <linearGradient id="name-grad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="{gold_bright}"/>
+    <stop offset="50%" stop-color="{ink}"/>
+    <stop offset="100%" stop-color="{gold}"/>
+  </linearGradient>
   <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
     <stop offset="0" stop-color="{gold}" stop-opacity="0"/>
-    <stop offset="50%" stop-color="{gold}" stop-opacity="0.55"/>
+    <stop offset="50%" stop-color="{gold}" stop-opacity="0.6"/>
     <stop offset="100%" stop-color="{gold}" stop-opacity="0"/>
   </linearGradient>
 </defs>
-<rect width="1200" height="360" fill="url(#sky)"/>
-<ellipse cx="880" cy="80" rx="430" ry="200" fill="url(#glow-warm)"/>
-<ellipse cx="240" cy="300" rx="470" ry="220" fill="url(#glow-cool)"/>
+<rect width="1200" height="430" fill="url(#sky)"/>
+<g>
+  {grid}
+</g>
+<ellipse cx="190" cy="95" rx="420" ry="220" fill="url(#glow-indigo)"/>
+<ellipse cx="1010" cy="120" rx="380" ry="210" fill="url(#glow-teal)"/>
+<ellipse cx="600" cy="235" rx="520" ry="200" fill="url(#glow-gold)"/>
 <g>
   {stars}
 </g>
-<polyline points="{poly}" fill="none" stroke="{gold}" stroke-opacity="0.30" stroke-width="1.1"/>
+<polyline points="{poly}" fill="none" stroke="{gold}" stroke-opacity="0.32" stroke-width="1.1"/>
 <g>
   {dots}
 </g>
-<text x="600" y="205" text-anchor="middle" font-family="{serif}" font-size="{fs}" letter-spacing="{ls}" fill="{ink}">{handle}</text>
-<text x="600" y="252" text-anchor="middle" font-family="{sans}" font-size="19" letter-spacing="4" fill="{gold}">{home}</text>
-<rect x="260" y="296" width="680" height="1.5" fill="url(#rule)"/>
-<rect x="592" y="288" width="14" height="14" fill="none" stroke="{gold}" stroke-opacity="0.8" stroke-width="1.2" transform="rotate(45 599 295)"/>
+<text x="600" y="218" text-anchor="middle" font-family="{serif}" font-size="{fs}" letter-spacing="{ls}" fill="url(#name-grad)">{handle}</text>
+<text x="600" y="268" text-anchor="middle" font-family="{mono}" font-size="17" letter-spacing="5" fill="{gold}">{home}</text>
+<rect x="260" y="318" width="680" height="1.5" fill="url(#rule)"/>
+<rect x="592" y="308" width="15" height="15" fill="none" stroke="{gold}" stroke-opacity="0.85" stroke-width="1.3" transform="rotate(45 599 315)"/>
+<circle cx="600" cy="346" r="2.2" fill="{gold_bright}" opacity="0.9"/>
+<circle cx="571" cy="340" r="1.4" fill="{star}" opacity="0.6"/>
+<circle cx="629" cy="340" r="1.4" fill="{star}" opacity="0.6"/>
 </svg>
 """.format(
         handle=esc(handle), home=esc(acct["home_display"]),
-        bg0=t["bg0"], bg1=t["bg1"], gold=t["gold"], ink=t["ink"],
-        deep=t["deep_blue"], serif=A.SERIF, sans=A.SANS,
-        fs=fs, ls=ls, stars=starfield(acct, w, h, 84), poly=poly, dots=dots,
+        bg0=t["bg0"], bg1=t["bg1"], gold=t["gold"], gold_bright=t["gold_bright"],
+        ink=t["ink"], indigo=t["indigo"], teal=t["teal"], star=t["star"],
+        serif=A.SERIF, sans=A.SANS, mono=A.MONO,
+        fs=fs, ls=ls, stars=starfield(acct, w, h, 110), poly=poly, dots=dots, grid=grid,
     )
 
 
@@ -434,17 +520,17 @@ def stats_svg(acct, key, stats, lang):
     for i, (val, label) in enumerate(cells):
         cx = round(1000 * (i + 0.5) / n, 1)
         parts.append(
-            '<text x="%s" y="92" text-anchor="middle" font-family="%s" font-size="44" fill="%s">%s</text>'
-            % (cx, A.SERIF, t["gold_bright"], esc(val))
+            '<text x="%s" y="96" text-anchor="middle" font-family="%s" font-size="46" fill="url(#num)">%s</text>'
+            % (cx, A.SERIF, esc(val))
         )
         parts.append(
-            '<text x="%s" y="126" text-anchor="middle" font-family="%s" font-size="16" letter-spacing="1.5" fill="%s">%s</text>'
-            % (cx, A.SANS, t["muted"], esc(label))
+            '<text x="%s" y="132" text-anchor="middle" font-family="%s" font-size="12.5" letter-spacing="2.5" fill="%s">%s</text>'
+            % (cx, A.MONO, t["muted"], esc(label.upper()))
         )
     for i in range(1, n):
         x = round(1000 * i / n, 1)
         parts.append(
-            '<line x1="%s" y1="46" x2="%s" y2="146" stroke="%s" stroke-opacity="0.16"/>'
+            '<line x1="%s" y1="48" x2="%s" y2="150" stroke="%s" stroke-opacity="0.14"/>'
             % (x, x, t["gold"])
         )
     as_of = stats.get("as_of") or ""
@@ -456,16 +542,20 @@ def stats_svg(acct, key, stats, lang):
     <stop offset="0%" stop-color="{panel}"/>
     <stop offset="100%" stop-color="{bg1}"/>
   </linearGradient>
+  <linearGradient id="num" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="{gold_bright}"/>
+    <stop offset="100%" stop-color="{gold}"/>
+  </linearGradient>
 </defs>
-<rect x="0.75" y="0.75" width="998.5" height="188.5" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.28" stroke-width="1.5"/>
+<rect x="0.75" y="0.75" width="998.5" height="188.5" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.30" stroke-width="1.5"/>
 {parts}
-<text x="26" y="172" font-family="{sans}" font-size="13" letter-spacing="2" fill="{faint}">{left}</text>
-<text x="974" y="172" text-anchor="end" font-family="{sans}" font-size="13" letter-spacing="1" fill="{faint}">{right}</text>
+<text x="26" y="172" font-family="{mono}" font-size="12" letter-spacing="2.5" fill="{faint}">{left}</text>
+<text x="974" y="172" text-anchor="end" font-family="{mono}" font-size="12" letter-spacing="1.5" fill="{faint}">{right}</text>
 </svg>
 """.format(
         alt=esc(" · ".join("%s %s" % (v, l) for v, l in cells)),
-        panel=t["panel"], bg1=t["bg1"], gold=t["gold"], faint=t["faint"],
-        sans=A.SANS, parts="\n".join(parts), left=foot_left, right=esc(foot_right),
+        panel=t["panel"], bg1=t["bg1"], gold=t["gold"], gold_bright=t["gold_bright"], faint=t["faint"],
+        sans=A.SANS, mono=A.MONO, parts="\n".join(parts), left=foot_left, right=esc(foot_right),
     )
 
 
@@ -623,10 +713,12 @@ def render_readme(acct, key, lang, stats, base=None):
         lines.append('  <img src="./assets/%s" alt="%s" width="80%%" />' % (A.STATS_NAME[lang], esc(alt)))
     lines.append("</p>")
     lines.append("")
-    lines.append('<p align="center">')
-    lines.append('  <img src="./assets/activity-%s.svg" alt="%s" width="100%%" />' % (lang, esc(alt)))
-    lines.append("</p>")
-    lines.append("")
+    # 活跃度条与官方 stats 卡展示同一批数字 → 有官方卡时不再重复（避免冗余堆叠）
+    if not card_stats:
+        lines.append('<p align="center">')
+        lines.append('  <img src="./assets/activity-%s.svg" alt="%s" width="100%%" />' % (lang, esc(alt)))
+        lines.append("</p>")
+        lines.append("")
 
     # ---- 置顶作品（官方 pin 卡；仅有种子时出现） ----
     pin_rows = []
@@ -903,33 +995,33 @@ PREVIEW_TPL = """<!DOCTYPE html>
 <title>主页面 kit · 预览</title>
 <style>
   :root {{ color-scheme: dark; }}
-  body {{ margin:0; background:#070A13; color:#E9EDF6;
+  body {{ margin:0; background:#04060E; color:#F4F7FF;
          font:16px/1.65 "Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif; }}
   .page {{ max-width:900px; margin:0 auto; padding:48px 28px 96px; }}
-  .badge {{ display:inline-block; padding:2px 10px; border:1px solid rgba(201,168,106,.5);
-            border-radius:999px; color:#C9A86A; font-size:12px; letter-spacing:2px; }}
-  .kit {{ font-size:13px; color:#6B7A9B; letter-spacing:2px; }}
-  .account {{ margin-top:72px; border-top:1px solid rgba(201,168,106,.22); padding-top:40px; }}
+  .badge {{ display:inline-block; padding:2px 10px; border:1px solid rgba(217,184,118,.5);
+            border-radius:999px; color:#D9B876; font-size:12px; letter-spacing:2px; }}
+  .kit {{ font-size:13px; color:#5C6A94; letter-spacing:2px; }}
+  .account {{ margin-top:72px; border-top:1px solid rgba(217,184,118,.22); padding-top:40px; }}
   .account h1 {{ font-family:Georgia,"Times New Roman",serif; font-weight:600;
                  letter-spacing:1px; font-size:26px; }}
-  .account img.hero {{ width:100%; border-radius:14px; border:1px solid rgba(201,168,106,.25); }}
+  .account img.hero {{ width:100%; border-radius:14px; border:1px solid rgba(217,184,118,.25); }}
   .readme {{ margin-top:28px; }}
-  .readme h2 {{ font-family:Georgia,serif; font-size:21px; border-bottom:1px solid rgba(201,168,106,.2);
+  .readme h2 {{ font-family:Georgia,serif; font-size:21px; border-bottom:1px solid rgba(217,184,118,.2);
                 padding-bottom:8px; margin-top:44px; }}
-  .readme h3 {{ font-size:17px; color:#C9A86A; margin-top:28px; }}
-  .readme a {{ color:#E8CD92; text-decoration:none; }}
-  .readme code {{ background:#121A2E; border:1px solid rgba(201,168,106,.18);
-                  border-radius:6px; padding:1px 6px; font-size:13px; color:#A9B4CC; }}
-  .readme blockquote {{ border-left:3px solid rgba(201,168,106,.5); margin-left:0;
-                        padding-left:16px; color:#A9B4CC; }}
+  .readme h3 {{ font-size:17px; color:#D9B876; margin-top:28px; }}
+  .readme a {{ color:#F2DC9E; text-decoration:none; }}
+  .readme code {{ background:#131D3D; border:1px solid rgba(217,184,118,.18);
+                  border-radius:6px; padding:1px 6px; font-size:13px; color:#9AA8CC; }}
+  .readme blockquote {{ border-left:3px solid rgba(217,184,118,.5); margin-left:0;
+                        padding-left:16px; color:#9AA8CC; }}
   .readme img {{ max-width:100%; }}
   .readme ul {{ padding-left:22px; }}
   .readme table {{ border-collapse:collapse; margin:8px 0; }}
-  .readme th, .readme td {{ padding:6px 12px; border:1px solid rgba(201,168,106,.18); text-align:left; vertical-align:middle; }}
-  .readme th {{ color:#C9A86A; font-weight:600; }}
+  .readme th, .readme td {{ padding:6px 12px; border:1px solid rgba(217,184,118,.18); text-align:left; vertical-align:middle; }}
+  .readme th {{ color:#D9B876; font-weight:600; }}
   .tscroll {{ overflow-x:auto; }}
   .readme .tscroll table {{ min-width:520px; }}
-  .meta {{ color:#6B7A9B; font-size:13px; margin-top:6px; }}
+  .meta {{ color:#5C6A94; font-size:13px; margin-top:6px; }}
 </style>
 </head>
 <body>
@@ -953,14 +1045,13 @@ def build_preview(out_dir):
         acct = A.ACCOUNTS[key]
         generate_to(dist / key, key, stats)
         rel = "../dist/%s/assets" % key
-        hero = ('<img class="hero" src="%s/hero.svg" alt="%s" />' % (rel, esc(acct["handle"])))
         md = (dist / key / "README.md").read_text(encoding="utf-8")
         md = md.replace("./assets/", rel + "/")
         blocks.append(
             '<section class="account" id="%s">\n<h1>%s · %s</h1>\n'
-            '<p class="meta">%s</p>\n%s\n<div class="readme">\n%s\n</div>\n</section>'
+            '<p class="meta">%s</p>\n<div class="readme">\n%s\n</div>\n</section>'
             % (key, esc(acct["handle"]), PLATFORM_LABEL[acct["platform"]],
-               esc(acct["home"]), hero, md_to_html(md))
+               esc(acct["home"]), md_to_html(md))
         )
     html = PREVIEW_TPL.format(count=len(A.ACCOUNT_ORDER), langs=len(A.LANGS), body="\n".join(blocks))
     (out_dir / "index.html").write_text(html, encoding="utf-8", newline="\n")

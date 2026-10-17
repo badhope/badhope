@@ -10,20 +10,25 @@
 
 KIT_VERSION = "1.0.0"
 
-SERIF = "Georgia, 'Times New Roman', serif"
-SANS = "Helvetica, Arial, sans-serif"
+SERIF = "Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif"
+SANS = "Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif"
+MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace"
 
+# 设计 v2 ——「星夜极光」：午夜蓝底 + 靛蓝/青绿极光渐变 + 星光点缀
 THEME = {
-    "bg0": "#0A0F1E",
-    "bg1": "#141B33",
-    "panel": "#121A2E",
-    "gold": "#C9A86A",
-    "gold_bright": "#E8CD92",
-    "ink": "#E9EDF6",
-    "muted": "#A9B4CC",
-    "faint": "#6B7A9B",
-    "star": "#DCE4F5",
-    "deep_blue": "#3A4A7A",
+    "bg0": "#04060E",
+    "bg1": "#0A1122",
+    "panel": "#0E1630",
+    "panel2": "#131D3D",
+    "gold": "#D9B876",
+    "gold_bright": "#F2DC9E",
+    "ink": "#F4F7FF",
+    "muted": "#9AA8CC",
+    "faint": "#5C6A94",
+    "star": "#DFE8FF",
+    "deep_blue": "#24356B",
+    "indigo": "#6C8CFF",
+    "teal": "#4FE3C1",
 }
 
 LANGS = ("md", "zh-CN", "ja")

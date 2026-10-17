@@ -52,10 +52,6 @@ All public repositories: [github.com/badhope](https://github.com/badhope)
   <img src="./assets/cards/langs-en.svg" alt="Top languages" width="49%" />
 </p>
 
-<p align="center">
-  <img src="./assets/activity-md.svg" alt="37 public repos · 238 stars · 20 followers · 4 upstream merges" width="100%" />
-</p>
-
 ## Pinned work
 
 <p align="center">
