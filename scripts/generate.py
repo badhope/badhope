@@ -121,65 +121,81 @@ def icon_svg_body(name, size, color=None):
 
 
 def skills_svg(acct, lang):
-    """技能矩阵：图标瓷片 + 名称的网格卡片（本地资产，无外链）。"""
+    """技能跑马灯：一行不同大小的图标从左向右连续划过（SMIL 无缝循环，边缘淡入淡出）。
+
+    参考常见 portfolio 的 icon marquee：图标尺寸 20–60px 随机、
+    基线上下轻微浮动、少量旋转与透明度变化；内容复制两份首尾相接，
+    外层 <animateTransform> 以 strip 宽度平移实现无缝循环。
+    """
     t = A.THEME
     labels = A.LABELS[lang]
     names = [s for s in acct.get("skills", []) if s in A.SKILL_LABELS]
-    tiles = []
+    entries = []
     for name in names:
         # simple-icons 是单色图标且不带 fill（默认黑），深色底上不可见 → 指定浅色
         mono = (ROOT / "data" / "icons" / ("si-%s.svg" % name)).is_file()
-        body = icon_svg_body(name, 26, A.THEME["star"] if mono else None)
-        if body is None:
+        if icon_svg_body(name, 8) is None:
             continue
-        tiles.append((A.SKILL_LABELS[name], body))
-    if not tiles:
+        entries.append((name, mono))
+    if not entries:
         return None
-    cols = min(5, len(tiles))
-    rows = (len(tiles) + cols - 1) // cols
-    cell_w, cell_h = 192, 92
-    pad_x, pad_top = 34, 46
-    width = pad_x * 2 + cell_w * cols
-    height = pad_top + cell_h * rows + 26
-    parts = []
-    for i, (label, body) in enumerate(tiles):
-        cx = pad_x + (i % cols) * cell_w
-        cy = pad_top + (i // cols) * cell_h
-        tile_cx = (cell_w - 16) / 2
-        parts.append(
-            '<g transform="translate(%s,%s)">'
-            '<rect x="0" y="0" width="%s" height="%s" rx="13" fill="%s" fill-opacity="0.55" '
-            'stroke="%s" stroke-opacity="0.30"/>'
-            '<rect x="%s" y="5" width="44" height="44" rx="12" fill="url(#tile)" stroke="%s" stroke-opacity="0.5"/>'
-            '<g transform="translate(%s,15)">%s</g>'
-            '<text x="%s" y="79" text-anchor="middle" font-family="%s" font-size="12" letter-spacing="0.5" fill="%s">%s</text>'
-            '</g>'
-            % (cx, cy, cell_w - 16, cell_h - 16, t["bg1"], t["gold"],
-               tile_cx - 22, t["gold"],
-               tile_cx - 13, body,
-               (cell_w - 16) / 2, A.MONO, t["muted"], esc(label))
-        )
+
+    W, H = 1200, 206
+    r = rng(acct, "skills-marquee-v2")
+    sizes = (20, 24, 30, 36, 42, 50, 60)
+    baseline = 122
+    items = []
+    x = 84.0
+    for name, mono in entries:
+        size = r.choice(sizes)
+        dy = r.uniform(-14, 14)          # 上下轻微浮动
+        gap = r.uniform(38, 70)
+        items.append((name, mono, round(x, 1), round(baseline - size + dy, 1),
+                      size, round(r.uniform(0.60, 1.0), 2), round(r.uniform(-5, 5), 1)))
+        x += size + gap
+    strip = int(x) + 80
+
+    def copy(offset):
+        parts = []
+        for (name, mono, ix, iy, size, op, rot) in items:
+            body = icon_svg_body(name, size, t["star"] if mono else None)
+            cx = cy = size / 2.0
+            parts.append(
+                '<g transform="translate(%.1f,%.1f)" opacity="%.2f">'
+                '<g transform="rotate(%.1f %.1f %.1f)">%s</g></g>'
+                % (offset + ix, iy, op, rot, cx, cy, body))
+        return "".join(parts)
+
+    dur = max(18, round(strip / 30.0, 1))
     return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{alt}">
 <defs>
   <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0%" stop-color="{panel}"/>
     <stop offset="100%" stop-color="{bg1}"/>
   </linearGradient>
-  <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="{indigo}" stop-opacity="0.24"/>
-    <stop offset="100%" stop-color="{teal}" stop-opacity="0.15"/>
+  <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+    <stop offset="6%" stop-color="#fff" stop-opacity="1"/>
+    <stop offset="94%" stop-color="#fff" stop-opacity="1"/>
+    <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
   </linearGradient>
+  <mask id="fade"><rect x="0" y="0" width="{w}" height="{h}" fill="url(#edge)"/></mask>
 </defs>
 <rect x="0.75" y="0.75" width="{rw}" height="{rh}" rx="16" fill="url(#panel)" stroke="{gold}" stroke-opacity="0.30" stroke-width="1.5"/>
-<text x="{rx}" y="30" text-anchor="end" font-family="{mono}" font-size="11.5" letter-spacing="1.5" fill="{faint}">{note}</text>
-{parts}
+<text x="{tx}" y="30" text-anchor="end" font-family="{mono}" font-size="11.5" letter-spacing="1.5" fill="{faint}">{note}</text>
+<g mask="url(#fade)">
+  <g>
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-{strip} 0" dur="{dur}s" repeatCount="indefinite"/>
+    {c0}{c1}
+  </g>
+</g>
 </svg>
 """.format(
-        w=width, h=height, rw=width - 1.5, rh=height - 1.5,
+        w=W, h=H, rw=W - 1.5, rh=H - 1.5,
         panel=t["panel"], bg1=t["bg1"], gold=t["gold"], faint=t["faint"],
-        indigo=t["indigo"], teal=t["teal"],
-        sans=A.SANS, mono=A.MONO, rx=width - pad_x, note=esc(labels["skills_note"]),
-        parts="\n".join(parts), alt=esc(labels["skills"] + " · " + ", ".join(n for n, _ in tiles)),
+        mono=A.MONO, tx=W - 34, note=esc(labels["skills_note"]),
+        strip=strip, dur=dur, c0=copy(0), c1=copy(strip),
+        alt=esc(labels["skills"] + " · " + ", ".join(n for n, _ in entries)),
     )
 
 
