@@ -10,20 +10,25 @@
 
 KIT_VERSION = "1.0.0"
 
-SERIF = "Georgia, 'Times New Roman', serif"
-SANS = "Helvetica, Arial, sans-serif"
+SERIF = "Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif"
+SANS = "Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif"
+MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace"
 
+# 设计 v2 ——「星夜极光」：午夜蓝底 + 靛蓝/青绿极光渐变 + 星光点缀
 THEME = {
-    "bg0": "#0A0F1E",
-    "bg1": "#141B33",
-    "panel": "#121A2E",
-    "gold": "#C9A86A",
-    "gold_bright": "#E8CD92",
-    "ink": "#E9EDF6",
-    "muted": "#A9B4CC",
-    "faint": "#6B7A9B",
-    "star": "#DCE4F5",
-    "deep_blue": "#3A4A7A",
+    "bg0": "#04060E",
+    "bg1": "#0A1122",
+    "panel": "#0E1630",
+    "panel2": "#131D3D",
+    "gold": "#D9B876",
+    "gold_bright": "#F2DC9E",
+    "ink": "#F4F7FF",
+    "muted": "#9AA8CC",
+    "faint": "#5C6A94",
+    "star": "#DFE8FF",
+    "deep_blue": "#24356B",
+    "indigo": "#6C8CFF",
+    "teal": "#4FE3C1",
 }
 
 LANGS = ("md", "zh-CN", "ja")
@@ -120,6 +125,8 @@ LABELS = {
         "shared_line": "Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details on the two GitHub accounts",
         "skills": "Toolbox",
         "skills_note": "Icons vendored in this repository (devicon / simple-icons)",
+        "badge_repos": "repos",
+        "badge_followers": "followers",
         "platform": "Platform",
         "account": "Account",
         "role": "Role",
@@ -153,6 +160,8 @@ LABELS = {
         "shared_line": "补丁已合入 ohmyzsh · tldr · icalendar · NUR 等上游项目，明细见两个 GitHub 账号",
         "skills": "工具箱",
         "skills_note": "图标已随仓库自带（devicon / simple-icons）",
+        "badge_repos": "仓库",
+        "badge_followers": "关注者",
         "platform": "平台",
         "account": "账号",
         "role": "定位",
@@ -186,6 +195,8 @@ LABELS = {
         "shared_line": "パッチは ohmyzsh・tldr・icalendar・NUR などにマージ済み — 詳細は GitHub の2アカウントへ",
         "skills": "道具箱",
         "skills_note": "アイコンはリポジトリに同梱（devicon / simple-icons）",
+        "badge_repos": "リポジトリ",
+        "badge_followers": "フォロワー",
         "platform": "プラットフォーム",
         "account": "アカウント",
         "role": "役割",

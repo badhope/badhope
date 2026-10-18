@@ -48,12 +48,13 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 ## 数字で見る
 
 <p align="center">
-  <img src="./assets/cards/stats-ja.svg" alt="GitHub stats" width="49%" />
-  <img src="./assets/cards/langs-ja.svg" alt="Top languages" width="49%" />
+  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=public_repos&style=flat&label=%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA&labelColor=0E1630&color=D9B876" alt="リポジトリ: badhope" />
+  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=followers&style=flat&label=%E3%83%95%E3%82%A9%E3%83%AD%E3%83%AF%E3%83%BC&labelColor=0E1630&color=D9B876" alt="フォロワー: badhope" />
 </p>
 
 <p align="center">
-  <img src="./assets/activity-ja.svg" alt="37 公開リポジトリ · 238 累計スター · 20 フォロワー · 4 上流へのマージ" width="100%" />
+  <img src="./assets/cards/stats-ja.svg" alt="GitHub stats" width="49%" />
+  <img src="./assets/cards/langs-ja.svg" alt="Top languages" width="49%" />
 </p>
 
 ## ピン留め作品

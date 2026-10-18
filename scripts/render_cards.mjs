@@ -24,12 +24,12 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CARD_LOCALE = { md: "en", "zh-CN": "cn", ja: "ja" };
 const THEME = {
-  title_color: "C9A86A",
-  icon_color: "E8CD92",
-  text_color: "E9EDF6",
-  bg_color: "0A0F1E",
-  border_color: "C9A86A",
-  border_radius: 12,
+  title_color: "D9B876",
+  icon_color: "F2DC9E",
+  text_color: "F4F7FF",
+  bg_color: "0E1630",
+  border_color: "24356B",
+  border_radius: 14,
   // 关闭入场动画：官方卡片默认 opacity:0 + 动画淡入，在不执行 CSS 动画的
   // 渲染器（部分 Markdown 预览、图片代理、静态截图）里会整卡空白。
   disable_animations: true,

@@ -4,7 +4,7 @@ name: Refresh stat cards
 # 提交进仓库后由 README 以本地路径引用 —— 不依赖任何第三方运行时图片服务。
 on:
   schedule:
-    - cron: "17 5 * * *"
+    - cron: "17 */6 * * *"
   workflow_dispatch:
 
 permissions:

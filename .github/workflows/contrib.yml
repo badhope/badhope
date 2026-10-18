@@ -5,7 +5,7 @@ name: Contribution snake
 # 与 refresh.yml 共用同一条链路 —— 避免两个工作流每日互相覆盖。
 on:
   schedule:
-    - cron: "41 5 * * *"
+    - cron: "41 */6 * * *"
   workflow_dispatch:
 
 permissions:

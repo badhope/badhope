@@ -48,12 +48,13 @@ All public repositories: [github.com/badhope](https://github.com/badhope)
 ## Numbers
 
 <p align="center">
-  <img src="./assets/cards/stats-en.svg" alt="GitHub stats" width="49%" />
-  <img src="./assets/cards/langs-en.svg" alt="Top languages" width="49%" />
+  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=public_repos&style=flat&label=repos&labelColor=0E1630&color=D9B876" alt="repos: badhope" />
+  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=followers&style=flat&label=followers&labelColor=0E1630&color=D9B876" alt="followers: badhope" />
 </p>
 
 <p align="center">
-  <img src="./assets/activity-md.svg" alt="37 public repos · 238 stars · 20 followers · 4 upstream merges" width="100%" />
+  <img src="./assets/cards/stats-en.svg" alt="GitHub stats" width="49%" />
+  <img src="./assets/cards/langs-en.svg" alt="Top languages" width="49%" />
 </p>
 
 ## Pinned work

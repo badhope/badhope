@@ -48,12 +48,13 @@
 ## 数据
 
 <p align="center">
-  <img src="./assets/cards/stats-cn.svg" alt="GitHub stats" width="49%" />
-  <img src="./assets/cards/langs-cn.svg" alt="Top languages" width="49%" />
+  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=public_repos&style=flat&label=%E4%BB%93%E5%BA%93&labelColor=0E1630&color=D9B876" alt="仓库: badhope" />
+  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=followers&style=flat&label=%E5%85%B3%E6%B3%A8%E8%80%85&labelColor=0E1630&color=D9B876" alt="关注者: badhope" />
 </p>
 
 <p align="center">
-  <img src="./assets/activity-zh-CN.svg" alt="37 公开仓库 · 238 累计 Star · 20 关注者 · 4 上游合并" width="100%" />
+  <img src="./assets/cards/stats-cn.svg" alt="GitHub stats" width="49%" />
+  <img src="./assets/cards/langs-cn.svg" alt="Top languages" width="49%" />
 </p>
 
 ## 置顶作品
