@@ -4,20 +4,20 @@
   "accounts": {
     "gh_x33834": {
       "repos": 30,
-      "stars": 3,
+      "stars": 5,
       "followers": 4,
       "merged": 1
     },
     "gh_morningstar": {
-      "repos": 38,
+      "repos": 36,
       "stars": 3,
       "followers": 18,
       "merged": 16
     },
     "gh_badhope": {
       "repos": 28,
-      "stars": 236,
-      "followers": 20,
+      "stars": 237,
+      "followers": 21,
       "merged": 7
     },
     "gitcode_badhope": {
@@ -27,7 +27,7 @@
       "merged": null
     },
     "gitee_badhope": {
-      "repos": 26,
+      "repos": 24,
       "stars": 2,
       "followers": null,
       "merged": null
