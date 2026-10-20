@@ -455,7 +455,7 @@ WORKS = {
             "ja": "Cangjie 言語によるハードウェアロボット制御フレームワーク",
         },
         "tags": {"md": "Hardware · Robotics", "zh-CN": "硬件 · 机器人", "ja": "ハードウェア · ロボット"},
-        "links": {"gitcode": "https://gitcode.com/badhope/bot4cj"},
+        "links": {"gitcode": "https://gitcode.com/qingss0/bot4cj"},
     },
     "mashang-python": {
         "title": "码上 Python · PY//NOW",
@@ -764,7 +764,7 @@ ACCOUNTS = {
         "contrib_graph": True,
         "skills": ["typescript", "python", "rust", "nodejs", "react", "docker", "git", "linux", "postgresql", "nginx"],
         "works": [
-            "xiaoman", "shopcash", "digilegacy", "naiwa-pet",
+            "xiaoman", "shopcash", "digilegacy",
             "agent-builder", "workbench", "awesome-ai-devkit", "awesome-skillkit",
         ],
         "contrib": "own",
@@ -812,7 +812,7 @@ ACCOUNTS = {
         "skills": ["python", "typescript", "go", "vitejs", "nixos", "docker", "postgresql", "redis", "huggingface", "ollama"],
         "works": [
             "novel-engine", "KeBaiPay", "p2wlan", "xiaoman",
-            "shopcash", "naiwa-pet", "sciflow", "spark",
+            "shopcash", "sciflow", "spark",
         ],
         "contrib": "own",
     },
@@ -905,7 +905,7 @@ ACCOUNTS = {
         },
         "skills": ["python", "dart", "kotlin", "java", "flutter", "wechat", "linux", "git", "markdown"],
         "works": [
-            "zhike", "xiaoman", "workbench", "vaultx",
+            "zhike", "xiaoman", "workbench",
             "spark", "sciflow", "scholarhub", "bot4cj",
         ],
         "contrib": "shared",
@@ -947,7 +947,7 @@ ACCOUNTS = {
             ],
         },
         "skills": ["python", "wechat", "vuejs", "mysql", "nginx", "git", "markdown"],
-        "works": ["agent-builder", "campushub", "naiwa-pet", "workbench", "zhike"],
+        "works": ["agent-builder", "campushub", "workbench", "zhike"],
         "contrib": "shared",
     },
 }

@@ -924,8 +924,18 @@ def write_account_files(acct, key, out_dir, stats, base=None):
                 shutil.copyfile(src, assets / dst_name)
 
 
-PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "accounts.py", "data/stats.json", "data/writing.json")
+PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "scripts/refresh_sections.py",
+                "accounts.py", "data/stats.json", "data/writing.json")
 PACK_GITIGNORE = ".gitignore"
+
+
+def _has_mirror(key):
+    """该账号是否在 GitCode / Gitee 另有主页（需要镜像作业）。
+
+    目前仅 github/badhope 在 GitCode、Gitee 均有同名主页；其余账号只在 GitHub。
+    """
+    acct = A.ACCOUNTS.get(key, {})
+    return acct.get("platform") == "github" and acct.get("handle") == "badhope"
 
 
 def pack(key, out_dir):
@@ -966,15 +976,27 @@ def pack(key, out_dir):
     if acct["platform"] == "github":
         wf_dir = out / ".github" / "workflows"
         wf_dir.mkdir(parents=True, exist_ok=True)
+        # 动态刷新工作流（分区刷新、变更闸门、配额安全）
         shutil.copyfile(ROOT / "workflows" / "refresh.yml", wf_dir / "refresh.yml")
-        if acct.get("contrib_graph"):
-            shutil.copyfile(ROOT / "workflows" / "contrib.yml", wf_dir / "contrib.yml")
-        shutil.copyfile(ROOT / "workflows" / "cards.yml", wf_dir / "cards.yml")
+        # 仅 badhope 需在 GitCode / Gitee 镜像（其余账号只在 GitHub）
+        if _has_mirror(key):
+            shutil.copyfile(ROOT / "workflows" / "mirror.yml", wf_dir / "mirror.yml")
+        # 分支保护把 "Scan for secrets (gitleaks)" 列为必需检查，缺失会导致 main 无法推送
+        shutil.copyfile(ROOT / "workflows" / "gitleaks.yml", wf_dir / "gitleaks.yml")
+        shutil.copyfile(ROOT / ".gitleaks.toml", out / ".gitleaks.toml")
         (out / "scripts").mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / "scripts" / "refresh_sections.py", out / "scripts" / "refresh_sections.py")
         shutil.copyfile(ROOT / "scripts" / "render_cards.mjs", out / "scripts" / "render_cards.mjs")
-        # node 依赖清单与锁文件：cards.yml 的 npm ci + 缓存需要（仅 GitHub 账号带 Actions）
+        # node 依赖清单与锁文件：cards 作业的 npm ci 需要（仅 GitHub 账号带 Actions）
         shutil.copyfile(ROOT / "package.json", out / "package.json")
         shutil.copyfile(ROOT / "package-lock.json", out / "package-lock.json")
+        # 动态刷新说明文档（docs/ 下全部 .md 随包携带）
+        doc_src_dir = ROOT / "docs"
+        if doc_src_dir.is_dir():
+            doc_dir = out / "docs"
+            doc_dir.mkdir(parents=True, exist_ok=True)
+            for d in sorted(doc_src_dir.glob("*.md")):
+                shutil.copyfile(d, doc_dir / d.name)
     (out / PACK_GITIGNORE).write_text(
         (ROOT / PACK_GITIGNORE).read_text(encoding="utf-8"), encoding="utf-8", newline="\n"
     )

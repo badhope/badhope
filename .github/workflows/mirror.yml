@@ -1,0 +1,62 @@
+# ============================================================================
+# 镜像工作流 —— 仅 badhope 仓库携带（github/badhope 在 GitCode / Gitee 也有主页）。
+#
+# GitCode / Gitee 没有原生定时器，所以由 GitHub Actions 充当驱动器：
+#   refresh.yml 在 github/badhope 仓库提交到 main 后，本工作流把成品推过去，
+#   保证「同一人、五处主页」内容一致。
+#
+# 触发：push 到 main（即刷新提交合入后）。workflow_dispatch 可手动全量同步。
+#
+# 前置 Secret：
+#   GITCODE_TOKEN   GitCode 令牌（Basic 鉴权，写入用 oauth2:TOKEN@）
+#   GITEE_TOKEN     Gitee 令牌（Authorization: token 头；本处以 oauth2:TOKEN@ 推送）
+# ============================================================================
+
+name: Mirror to GitCode & Gitee
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to GitCode
+        env:
+          TOKEN: ${{ secrets.GITCODE_TOKEN }}
+          OWNER: badhope
+          REPO: badhope
+        run: |
+          set -e
+          if [ -z "${TOKEN:-}" ]; then
+            echo "GITCODE_TOKEN 未设置 —— 跳过 GitCode 镜像"
+            exit 0
+          fi
+          git push "https://oauth2:${TOKEN}@gitcode.com/${OWNER}/${REPO}.git" main --force \
+            && echo "gitcode mirrored" \
+            || echo "gitcode mirror failed (检查令牌/仓库权限)"
+
+      - name: Push to Gitee
+        env:
+          TOKEN: ${{ secrets.GITEE_TOKEN }}
+          OWNER: badhope
+          REPO: badhope
+        run: |
+          set -e
+          if [ -z "${TOKEN:-}" ]; then
+            echo "GITEE_TOKEN 未设置 —— 跳过 Gitee 镜像"
+            exit 0
+          fi
+          git push "https://oauth2:${TOKEN}@gitee.com/${OWNER}/${REPO}.git" main --force \
+            && echo "gitee mirrored" \
+            || echo "gitee mirror failed (检查令牌/仓库权限)"
