@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-10-19",
+  "as_of": "2026-10-20",
   "source": "scripts/refresh.py",
   "accounts": {
     "gh_x33834": {
-      "repos": 30,
+      "repos": 28,
       "stars": 5,
       "followers": 4,
       "merged": 1
@@ -15,8 +15,8 @@
       "merged": 16
     },
     "gh_badhope": {
-      "repos": 28,
-      "stars": 237,
+      "repos": 26,
+      "stars": 239,
       "followers": 21,
       "merged": 7
     },
