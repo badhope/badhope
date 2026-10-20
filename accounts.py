@@ -263,24 +263,6 @@ WORKS = {
             "gitcode": "https://gitcode.com/badhope/digilegacy",
         },
     },
-    "naiwa-pet": {
-        "title": "Naiwa 奶蛙",
-        "desc": {
-            "md": "A Live2D desktop pet — eye tracking, expressions, always on top (Electron + PixiJS)",
-            "zh-CN": "Live2D 桌面宠物 —— 眼神跟随、动作表情、可拖动置顶（Electron + PixiJS）",
-            "ja": "Live2D デスクトップペット — 視線追従・表情モーション（Electron + PixiJS）",
-        },
-        "tags": {"md": "Desktop · Fun", "zh-CN": "桌面 · 趣味", "ja": "デスクトップ · お楽しみ"},
-        "links": {
-            "github": [
-                "https://github.com/X33834/naiwa-pet",
-                "https://github.com/Morningstar202604/naiwa-pet",
-                "https://github.com/badhope/naiwa-pet",
-            ],
-            "gitcode": "https://gitcode.com/badhope/naiwa-pet",
-            "gitee": "https://gitee.com/badhope/naiwa-pet",
-        },
-    },
     "spark": {
         "title": "Spark",
         "desc": {
@@ -436,16 +418,6 @@ WORKS = {
             "gitcode": "https://gitcode.com/badhope/zhike",
             "gitee": "https://gitee.com/badhope/zhike",
         },
-    },
-    "vaultx": {
-        "title": "VaultX",
-        "desc": {
-            "md": "Agent-first personal vault — one encrypted local file, CLI / Web / MCP access",
-            "zh-CN": "agent-first 个人密钥库 —— 单个加密本地文件，CLI / Web / MCP 三种入口",
-            "ja": "エージェント優先の個人鍵保管庫 — 暗号化ローカルファイル + MCP",
-        },
-        "tags": {"md": "Security · Tools", "zh-CN": "安全 · 工具", "ja": "セキュリティ · ツール"},
-        "links": {"gitcode": "https://gitcode.com/badhope/vaultx"},
     },
     "bot4cj": {
         "title": "bot4cj",
@@ -705,11 +677,11 @@ GITHUB_ACCOUNTS_FOR_SHARED = [
 # --------------------------------------------------------------------------
 WORK_ICONS = {
     "xiaoman": "python", "shopcash": "typescript", "digilegacy": "typescript",
-    "naiwa-pet": "electron", "spark": "rust", "workbench": "tauri",
+    "spark": "rust", "workbench": "tauri",
     "sciflow": "python", "lingxi": "nodejs", "chushi-radar": "javascript",
     "awesome-ai-devkit": "openai", "awesome-skillkit": "anthropic",
     "agent-builder": "typescript", "CodePocket": "python", "zhike": "wechat",
-    "vaultx": "rust", "bot4cj": "java", "mashang-python": "python",
+    "bot4cj": "java", "mashang-python": "python",
     "scholarhub": "nodejs", "content-harbor": "openai", "GlobalEcom-AI": "react",
     "melee": "ollama", "lens": "vscode", "world-walker": "markdown",
     "KeBaiPay": "postgresql", "p2wlan": "go", "novel-engine": "huggingface",
