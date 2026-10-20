@@ -106,6 +106,21 @@ function pickPinnedRepos(acct, site) {
 async function main() {
   const only = process.argv[2];
   const site = loadSite();
+  // 渲染核心在模块加载时读 process.env.PAT_1，函数参数里的 token 不参与鉴权。
+  // 必须在 import 之前把各账号 token 注入 PAT_1/PAT_2/...，否则全部卡片渲染失败。
+  const handles = site.order
+    .map((k) => site.accounts[k])
+    .filter((a) => a && a.platform === "github")
+    .map((a) => a.handle);
+  const tokens = [...new Set(handles.map(resolveToken).filter(Boolean))];
+  if (!tokens.length) {
+    console.error("无可用 GitHub token（GITHUB_TOKEN / GH_<HANDLE>_TOKEN / 本机凭据库）");
+    process.exit(2);
+  }
+  tokens.forEach((t, i) => {
+    process.env[`PAT_${i + 1}`] = t;
+  });
+
   let core;
   try {
     core = await import("@stats-organization/github-readme-stats-core");
@@ -113,6 +128,10 @@ async function main() {
     console.error(
       "缺少渲染核心：请先 `npm install`（@stats-organization/github-readme-stats-core）\n" + err.message
     );
+    process.exit(2);
+  }
+  if (!core.getConfig().pats.length) {
+    console.error("渲染核心未识别任何 token（check PAT_1）");
     process.exit(2);
   }
 

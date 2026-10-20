@@ -43,6 +43,9 @@ NETWORK_ERRORS = (urllib.error.URLError, OSError, ValueError, ET.ParseError)
 WRITING_PATH = ROOT / "data" / "writing.json"
 CSDN_RSS = "https://blog.csdn.net/weixin_56622231/rss/list"
 
+# 账号专属环境变量的平台前缀：GH_<HANDLE>_TOKEN / GITEE_<HANDLE>_TOKEN / GITCODE_<HANDLE>_TOKEN
+PLATFORM_ENV_PREFIX = {"github": "GH", "gitee": "GITEE", "gitcode": "GITCODE"}
+
 
 def http_json(url, headers=None, timeout=30):
     req = urllib.request.Request(url, headers={"User-Agent": UA, **(headers or {})})
@@ -72,6 +75,8 @@ def _load_store():
 def resolve_token(platform, handle, generic_env=()):
     """凭据解析顺序：账号专属环境变量（含库中记录的变量名）→ 本机凭据库 → 通用环境变量。
 
+    账号专属变量按平台加前缀（GH_/GITEE_/GITCODE_），因为 badhope 在三个平台同名，
+    共用 GH_<HANDLE>_TOKEN 会让 Gitee/GitCode 抢到 GitHub 的令牌。
     token 只在内存中传递；不要在日志/异常消息里拼接含 token 的 URL。
     """
     store = _load_store()
@@ -79,7 +84,7 @@ def resolve_token(platform, handle, generic_env=()):
     names = []
     if account.get("env"):
         names.append(account["env"])
-    names.append("GH_%s_TOKEN" % handle.upper())
+    names.append("%s_%s_TOKEN" % (PLATFORM_ENV_PREFIX.get(platform, platform.upper()), handle.upper()))
     for name in names:
         value = os.environ.get(name, "").strip()
         if value:
@@ -119,6 +124,9 @@ def refresh_github(handle, block):
             if not repos:
                 break
             for repo in repos:
+                # 与 GitHub 个人页口径一致：fork 的 star 不计入本人获星
+                if repo.get("fork"):
+                    continue
                 stars += repo.get("stargazers_count", 0)
             got = True
             if len(repos) < 100:
@@ -142,7 +150,7 @@ def refresh_github(handle, block):
 
 
 def refresh_gitee(owner, block):
-    token = resolve_token("gitee", owner)
+    token = resolve_token("gitee", owner, generic_env=("GITEE_TOKEN",))
     headers = {"Authorization": "token " + token} if token else None
     try:
         repos = http_json("https://gitee.com/api/v5/users/%s/repos?per_page=100" % owner, headers)
@@ -154,13 +162,24 @@ def refresh_gitee(owner, block):
 
 
 def refresh_gitcode(owner, block):
-    token = resolve_token("gitcode", owner)
+    token = resolve_token("gitcode", owner, generic_env=("GITCODE_TOKEN",))
     if not token:
         warn("no gitcode credential (env or local secrets store); gitcode numbers not refreshed")
         return
     try:
-        url = "https://api.gitcode.com/api/v5/users/%s/repos?per_page=100&page=1" % owner
-        repos = http_json(url, {"Authorization": "Bearer " + token})
+        repos = []
+        page = 1
+        while True:
+            batch = http_json(
+                "https://api.gitcode.com/api/v5/users/%s/repos?per_page=100&page=%d" % (owner, page),
+                {"Authorization": "Bearer " + token},
+            )
+            if not batch:
+                break
+            repos += batch
+            if len(batch) < 100:
+                break
+            page += 1
         block["repos"] = len(repos)
         block["stars"] = sum(r.get("stargazers_count", 0) for r in repos)
         print("gitcode %s: repos=%s stars=%s" % (owner, block["repos"], block["stars"]))
