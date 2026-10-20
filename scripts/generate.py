@@ -981,6 +981,7 @@ def pack(key, out_dir):
         # 仅 badhope 需在 GitCode / Gitee 镜像（其余账号只在 GitHub）
         if _has_mirror(key):
             shutil.copyfile(ROOT / "workflows" / "mirror.yml", wf_dir / "mirror.yml")
+            shutil.copyfile(ROOT / "workflows" / "mirror-shared.sh", out / "scripts" / "mirror-shared.sh")
         # 分支保护把 "Scan for secrets (gitleaks)" 列为必需检查，缺失会导致 main 无法推送
         shutil.copyfile(ROOT / "workflows" / "gitleaks.yml", wf_dir / "gitleaks.yml")
         shutil.copyfile(ROOT / ".gitleaks.toml", out / ".gitleaks.toml")

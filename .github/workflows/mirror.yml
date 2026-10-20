@@ -1,15 +1,18 @@
 # ============================================================================
 # 镜像工作流 —— 仅 badhope 仓库携带（github/badhope 在 GitCode / Gitee 也有主页）。
 #
-# GitCode / Gitee 没有原生定时器，所以由 GitHub Actions 充当驱动器：
-#   refresh.yml 在 github/badhope 仓库提交到 main 后，本工作流把成品推过去，
-#   保证「同一人、五处主页」内容一致。
+# 设计前提（重要）：三个平台的主页文案本来就不同 ——
+#   github/badhope  面向 GitHub 读者（109 行 README）
+#   gitcode/badhope 面向国内读者（94 行，强调"国内镜像站 + 移动端实验场"）
+#   gitee/badhope   同上（89 行）
+# 因此镜像**只同步共享层**（accounts.py、data/ 数据、assets/ 自绘资产、scripts/），
+# **不覆盖 README 与 profile.json**，否则会把国内站的文案改回 GitHub 版。
 #
-# 触发：push 到 main（即刷新提交合入后）。workflow_dispatch 可手动全量同步。
+# 触发：push 到 main 后自动跑；也可 workflow_dispatch 手动同步。
 #
 # 前置 Secret：
 #   GITCODE_TOKEN   GitCode 令牌（Basic 鉴权，写入用 oauth2:TOKEN@）
-#   GITEE_TOKEN     Gitee 令牌（Authorization: token 头；本处以 oauth2:TOKEN@ 推送）
+#   GITEE_TOKEN     Gitee 令牌
 # ============================================================================
 
 name: Mirror to GitCode & Gitee
@@ -26,37 +29,20 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      SHARED_PATHS: accounts.py data assets scripts .gitignore
+      KEEP_PATHS: README.md README.zh-CN.md README.ja.md profile.json .github
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Push to GitCode
+      - name: Mirror shared layer to GitCode
         env:
           TOKEN: ${{ secrets.GITCODE_TOKEN }}
-          OWNER: badhope
-          REPO: badhope
-        run: |
-          set -e
-          if [ -z "${TOKEN:-}" ]; then
-            echo "GITCODE_TOKEN 未设置 —— 跳过 GitCode 镜像"
-            exit 0
-          fi
-          git push "https://oauth2:${TOKEN}@gitcode.com/${OWNER}/${REPO}.git" main --force \
-            && echo "gitcode mirrored" \
-            || echo "gitcode mirror failed (检查令牌/仓库权限)"
+        run: bash scripts/mirror-shared.sh gitcode
 
-      - name: Push to Gitee
+      - name: Mirror shared layer to Gitee
         env:
           TOKEN: ${{ secrets.GITEE_TOKEN }}
-          OWNER: badhope
-          REPO: badhope
-        run: |
-          set -e
-          if [ -z "${TOKEN:-}" ]; then
-            echo "GITEE_TOKEN 未设置 —— 跳过 Gitee 镜像"
-            exit 0
-          fi
-          git push "https://oauth2:${TOKEN}@gitee.com/${OWNER}/${REPO}.git" main --force \
-            && echo "gitee mirrored" \
-            || echo "gitee mirror failed (检查令牌/仓库权限)"
+        run: bash scripts/mirror-shared.sh gitee
