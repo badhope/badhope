@@ -1,0 +1,276 @@
+{
+  "as_of": "2026-10-21",
+  "source": "scripts/discover_works.py",
+  "accounts": {
+    "gh_x33834": {
+      "platform": "github",
+      "handle": "X33834",
+      "repos": [
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://github.com/X33834/world-walker",
+          "stars": 1,
+          "updated": "2026-10-21",
+          "desc": "World Walker — an AI-driven text interactive fiction engine: a worldview-agnostic rule core (85+ academic models) with an MCP server, SillyTavern card / world-info support and a live panel."
+        },
+        {
+          "name": "mashang",
+          "title": "mashang",
+          "url": "https://github.com/X33834/mashang",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · Kotlin · MIT"
+        },
+        {
+          "name": "pocketmind",
+          "title": "pocketmind",
+          "url": "https://github.com/X33834/pocketmind",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "PocketMind — Termux 常驻手机 Agent"
+        },
+        {
+          "name": "workbench",
+          "title": "workbench",
+          "url": "https://github.com/X33834/workbench",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed."
+        },
+        {
+          "name": "xiaoman",
+          "title": "xiaoman",
+          "url": "https://github.com/X33834/xiaoman",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "Xiaoman (小满) — a conversation-first, local-first personal finance AI agent · FastAPI + LangGraph + React · data 100% local · MIT"
+        },
+        {
+          "name": "zhike",
+          "title": "zhike",
+          "url": "https://github.com/X33834/zhike",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "知客 Zhike — 知识问答平台"
+        }
+      ]
+    },
+    "gh_morningstar": {
+      "platform": "github",
+      "handle": "Morningstar202604",
+      "repos": [
+        {
+          "name": "workbench",
+          "title": "workbench",
+          "url": "https://github.com/Morningstar202604/workbench",
+          "stars": 1,
+          "updated": "2026-10-21",
+          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed."
+        },
+        {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://github.com/Morningstar202604/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "AI-operated wastewater treatment plant simulator. Topology-driven solvers, ASM1 kinetics, Takacs clarifier."
+        },
+        {
+          "name": "mashang",
+          "title": "mashang",
+          "url": "https://github.com/Morningstar202604/mashang",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · Kotlin · MIT"
+        },
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://github.com/Morningstar202604/world-walker",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "World Walker — an AI-driven text interactive fiction engine: a worldview-agnostic rule core (85+ academic models) with an MCP server, SillyTavern card / world-info support and a live panel."
+        },
+        {
+          "name": "xiaoman",
+          "title": "xiaoman",
+          "url": "https://github.com/Morningstar202604/xiaoman",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "Xiaoman (小满) — a conversation-first, local-first personal finance AI agent · FastAPI + LangGraph + React · data 100% local · MIT"
+        },
+        {
+          "name": "zhike",
+          "title": "zhike",
+          "url": "https://github.com/Morningstar202604/zhike",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "知客 Zhike — 知识问答平台"
+        }
+      ]
+    },
+    "gh_badhope": {
+      "platform": "github",
+      "handle": "badhope",
+      "repos": [
+        {
+          "name": "xiaoman",
+          "title": "xiaoman",
+          "url": "https://github.com/badhope/xiaoman",
+          "stars": 81,
+          "updated": "2026-10-21",
+          "desc": "Xiaoman (小满) — a conversation-first, local-first personal finance AI agent · FastAPI + LangGraph + React · data 100% local · MIT"
+        },
+        {
+          "name": "workbench",
+          "title": "workbench",
+          "url": "https://github.com/badhope/workbench",
+          "stars": 47,
+          "updated": "2026-10-21",
+          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed."
+        },
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://github.com/badhope/world-walker",
+          "stars": 16,
+          "updated": "2026-10-21",
+          "desc": "World Walker — an AI-driven text interactive fiction engine: a worldview-agnostic rule core (85+ academic models) with an MCP server, SillyTavern card / world-info support and a live panel."
+        },
+        {
+          "name": "digilegacy",
+          "title": "digilegacy",
+          "url": "https://github.com/badhope/digilegacy",
+          "stars": 6,
+          "updated": "2026-10-21",
+          "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
+        },
+        {
+          "name": "mashang",
+          "title": "mashang",
+          "url": "https://github.com/badhope/mashang",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · Kotlin · MIT"
+        },
+        {
+          "name": "zhike",
+          "title": "zhike",
+          "url": "https://github.com/badhope/zhike",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "Zhike — customer-service agent: QQ/WeChat channel gateway + visual console + RAG/tools"
+        }
+      ]
+    },
+    "gitcode_badhope": {
+      "platform": "gitcode",
+      "handle": "badhope",
+      "repos": [
+        {
+          "name": "mashang",
+          "title": "badhope / mashang",
+          "url": "https://gitcode.com/badhope/mashang",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · MIT"
+        },
+        {
+          "name": "aquapilot",
+          "title": "badhope / aquapilot",
+          "url": "https://gitcode.com/badhope/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "AquaPilot — AI-operated wastewater treatment plant simulator with topology-driven solvers, ASM1 kinetics and a Takacs clarifier."
+        },
+        {
+          "name": "spark",
+          "title": "badhope / spark",
+          "url": "https://gitcode.com/badhope/spark",
+          "stars": 0,
+          "updated": "2026-10-18",
+          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent"
+        },
+        {
+          "name": "shopcash",
+          "title": "badhope / shopcash",
+          "url": "https://gitcode.com/badhope/shopcash",
+          "stars": 0,
+          "updated": "2026-10-18",
+          "desc": "单机门店收银与收款记账软件（软件零资金介入）"
+        },
+        {
+          "name": "melee",
+          "title": "badhope / melee",
+          "url": "https://gitcode.com/badhope/melee",
+          "stars": 0,
+          "updated": "2026-10-16",
+          "desc": "melee · AI 大乱斗 — an arena where multiple LLMs compete on the same stage: live-streamed answers, spectator votes + AI judge, and code battles executed in a WASM sandbox."
+        },
+        {
+          "name": "flexcalc-pro",
+          "title": "badhope / flexcalc-pro",
+          "url": "https://gitcode.com/badhope/flexcalc-pro",
+          "stars": 0,
+          "updated": "2026-10-16",
+          "desc": "LingSuan Pro — income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3."
+        }
+      ]
+    },
+    "gitee_badhope": {
+      "platform": "gitee",
+      "handle": "badhope",
+      "repos": [
+        {
+          "name": "campushub",
+          "title": "badhope/campushub",
+          "url": "https://gitee.com/badhope/campushub",
+          "stars": 1,
+          "updated": "2026-10-21",
+          "desc": "CampusHub — self-hosted open-source campus community platform. Vue 3   NestJS   PostgreSQL   Prisma. Second-hand marketplace, lost"
+        },
+        {
+          "name": "xiaoman",
+          "title": "badhope/xiaoman",
+          "url": "https://gitee.com/badhope/xiaoman",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "Xiaoman — conversation-first, local-first personal finance AI agent (English README first; 中文见 README.zh.md)"
+        },
+        {
+          "name": "mashang",
+          "title": "badhope/mashang",
+          "url": "https://gitee.com/badhope/mashang",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · MIT"
+        },
+        {
+          "name": "zhike",
+          "title": "badhope/知客 Zhike",
+          "url": "https://gitee.com/badhope/zhike",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "知客 Zhike · 在线客服 Agent：QQ/微信渠道网关 + 可视化控制台 + RAG/工具/护栏管线。MIT"
+        },
+        {
+          "name": "pocketmind",
+          "title": "badhope/pocketmind",
+          "url": "https://gitee.com/badhope/pocketmind",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "PocketMind — Termux 常驻手机 Agent"
+        },
+        {
+          "name": "world-walker",
+          "title": "badhope/world-walker",
+          "url": "https://gitee.com/badhope/world-walker",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "万界·行者 World Walker —— AI 驱动的文字互动游戏引擎：世界观无关规则内核（85+ 学术模型）+ MCP 服务器 + 酒馆生态兼容（角色卡/世界书）+ 实况面板"
+        }
+      ]
+    }
+  }
+}

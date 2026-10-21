@@ -78,6 +78,13 @@ jobs:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
         run: python3 scripts/refresh_sections.py --section all
 
+      - name: Discover real repos for works section
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: python3 scripts/discover_works.py --limit 6
+
       - name: Regenerate README + assets (offline, deterministic)
         run: python3 scripts/generate.py --here
 

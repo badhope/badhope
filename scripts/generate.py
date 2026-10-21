@@ -80,45 +80,51 @@ def clip_w(text, max_w, size):
 
 
 def live_badges(acct, lang):
-    """实时数字徽章行（shields.io，国内实测可达）：repos / followers。
+    """实时数字徽章（shields.io）。数字在浏览器渲染时才向 API 取值，仓库不存写死数字。
 
-    平台公开 API（未认证可读，实测 200）：
-      GitHub  https://api.github.com/users/<handle>    -> public_repos, followers
-      GitCode https://api.gitcode.com/api/v5/users/<handle> -> followers
-    实测限制（2026-10-18）：
-      - Gitee：shields.io 服务器无法访问 gitee.com（动态徽章返回 invalid），
-        故 Gitee 不输出徽章，数字仍由定时任务刷新。
-      - GitHub 原生 github/followers 徽章带 label 参数会失效，统一走 dynamic/json。
-      - GitCode 用户端点不含仓库数。
-    stars/merged 无公开实时聚合接口，这两个数字仍由定时任务刷新（data/stats.json）。
+    实测（2026-10-21）：
+      原生徽章  github/stars/<u>、github/followers/<u>        —— 稳定，优先用
+      动态徽章  dynamic/json + /users/<u>?query=...           —— GitHub/Gitee/GitCode 均可用
+      GitHub 的 repos 走 dynamic/json（原生 repos 端点已下线）。
     """
     plat = acct.get("platform")
     handle = acct.get("handle")
-    if not handle or plat == "gitee":
+    if not handle:
         return None
     labels = A.LABELS[lang]
     lc, co = "0E1630", "D9B876"          # label 底=面板深蓝, 数值=主题金
-    style = "flat"
     badges = []
 
-    def dyn(url, query, label):
-        inner = ("https://img.shields.io/badge/dynamic/json?url=%s&query=%s&style=%s"
+    def raw(spec, alt):
+        inner = "https://img.shields.io/%s?style=flat&labelColor=%s&color=%s" % (spec, lc, co)
+        return '<img src="%s" alt="%s" />' % (inner, esc(alt))
+
+    def dyn(api, query, label, alt):
+        inner = ("https://img.shields.io/badge/dynamic/json?url=%s&query=%s&style=flat"
                  "&label=%s&labelColor=%s&color=%s"
-                 % (quote(url, safe=""), quote(query, safe=""), style,
+                 % (quote(api, safe=""), quote(query, safe=""),
                     quote(label, safe=""), lc, co))
-        return '<img src="%s" alt="%s" />' % (inner, esc("%s: %s" % (label, handle)))
+        return '<img src="%s" alt="%s" />' % (inner, esc(alt))
 
     if plat == "github":
-        badges.append(dyn("https://api.github.com/users/%s" % handle,
-                          "public_repos", labels["badge_repos"]))
-        badges.append(dyn("https://api.github.com/users/%s" % handle,
-                          "followers", labels["badge_followers"]))
+        badges.append(dyn("https://api.github.com/users/%s" % handle, "public_repos",
+                          labels["badge_repos"], "%s: %s" % (labels["badge_repos"], handle)))
+        badges.append(raw("github/stars/%s" % handle,
+                          "%s: %s" % (labels.get("stat_stars", "stars"), handle)))
+        badges.append(raw("github/followers/%s" % handle,
+                          "%s: %s" % (labels["badge_followers"], handle)))
+    elif plat == "gitee":
+        api = "https://gitee.com/api/v5/users/%s" % handle
+        badges.append(dyn(api, "followers", labels["badge_followers"],
+                          "%s: %s" % (labels["badge_followers"], handle)))
     elif plat == "gitcode":
-        badges.append(dyn("https://api.gitcode.com/api/v5/users/%s" % handle,
-                          "followers", labels["badge_followers"]))
+        api = "https://api.gitcode.com/api/v5/users/%s" % handle
+        badges.append(dyn(api, "followers", labels["badge_followers"],
+                          "%s: %s" % (labels["badge_followers"], handle)))
     if not badges:
         return None
-    return '<p align="center">\n  %s\n</p>' % "\n  ".join(badges)
+    joined = "\n  ".join(badges)
+    return '<p align="center">\n  %s\n</p>' % joined
 
 
 def copy_icon_light(src, dst, color):
@@ -385,6 +391,15 @@ def activity_svg(acct, key, lang, stats):
         asof=esc("%s %s" % (labels["as_of"], stats.get("as_of") or "")),
         parts="\n".join(parts), alt=esc(" · ".join("%s: %s" % (l, fmt_num(v)) for l, v in rows)),
     )
+
+
+def load_works(base=None):
+    """读取已发现的真实仓库列表（data/works.json）。缺失时返回空 dict。"""
+    root = pathlib.Path(base) if base else ROOT
+    try:
+        return json.loads((root / "data" / "works.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
 
 
 def load_stats(path):
@@ -681,7 +696,7 @@ def clip_text(text, max_em):
     return text
 
 
-def render_readme(acct, key, lang, stats, base=None):
+def render_readme(acct, key, lang, stats, base=None, discovered=None):
     labels = A.LABELS[lang]
     tagline = acct["tagline"][lang]
     lines = []
@@ -739,16 +754,37 @@ def render_readme(acct, key, lang, stats, base=None):
     # ---- 作品卡片网格 ----
     lines.append("## %s" % labels["works"])
     lines.append("")
-    lines.append('<p align="center">')
-    lines.append('  <img src="./assets/works-%s.svg" alt="%s" width="100%%" />' % (lang, esc(labels["works"])))
-    lines.append("</p>")
-    lines.append("")
-    links_row = " · ".join(
-        '<a href="%s">%s</a>' % (esc(A.work_url(wid, acct)), esc(A.WORKS[wid]["title"]))
-        for wid in acct["works"]
-    )
-    lines.append('<p align="center"><sub>%s</sub></p>' % links_row)
-    lines.append("")
+    # 作品清单来自 data/works.json（每次刷新从平台 API 重新发现，按更新时间倒序）。
+    # 不再用写死的 SVG 卡片：图片是死的，项目会过期。
+    live_works = (((discovered or {}).get("accounts") or {}).get(key) or {}).get("repos") or []
+    if live_works:
+        lines.append("| %s | %s | %s |" % (
+            labels["works_col_name"], labels["works_col_stars"], labels["works_col_updated"]))
+        lines.append("| --- | --- | --- |")
+        for repo in live_works:
+            title = repo.get("title") or repo.get("name")
+            desc = (repo.get("desc") or "").strip()
+            label = title if not desc else "%s — %s" % (title, desc)
+            # 描述过长时截断，保证表格在窄屏也可读
+            if len(label) > 68:
+                label = label[:67].rstrip() + "…"
+            lines.append("| [%s](%s) | %s | %s |" % (
+                esc(label), esc(repo.get("url") or ""),
+                repo.get("stars", 0), esc(repo.get("updated") or "")))
+        lines.append("")
+    else:
+        # 没有实时数据时退回作品 SVG（保证不空白）
+        lines.append('<p align="center">')
+        lines.append('  <img src="./assets/works-%s.svg" alt="%s" width="100%%" />'
+                     % (lang, esc(labels["works"])))
+        lines.append("</p>")
+        lines.append("")
+        links_row = " · ".join(
+            '<a href="%s">%s</a>' % (esc(A.work_url(wid, acct)), esc(A.WORKS[wid]["title"]))
+            for wid in acct["works"]
+        )
+        lines.append('<p align="center"><sub>%s</sub></p>' % links_row)
+        lines.append("")
     lines.append("%s [%s](%s)" % (labels["all_repos"], acct["home_display"], acct["home"]))
     lines.append("")
 
@@ -888,9 +924,11 @@ def write_account_files(acct, key, out_dir, stats, base=None):
         stale.unlink()
     for stale in (assets / "cards").glob("*.svg"):
         stale.unlink()
+    works_data = load_works(base)
     for lang in A.LANGS:
         (out / A.README_NAME[lang]).write_text(
-            render_readme(acct, key, lang, stats), encoding="utf-8", newline="\n"
+            render_readme(acct, key, lang, stats, base=base, discovered=works_data),
+            encoding="utf-8", newline="\n"
         )
         (assets / A.STATS_NAME[lang]).write_text(
             stats_svg(acct, key, stats, lang), encoding="utf-8", newline="\n"
@@ -940,7 +978,8 @@ def write_account_files(acct, key, out_dir, stats, base=None):
 
 
 PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "scripts/refresh_sections.py",
-                "accounts.py", "data/stats.json", "data/writing.json")
+                "accounts.py", "data/stats.json", "data/writing.json", "data/works.json",
+                "scripts/discover_works.py")
 PACK_GITIGNORE = ".gitignore"
 
 

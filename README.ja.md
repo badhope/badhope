@@ -40,11 +40,14 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 
 ## 主な作品
 
-<p align="center">
-  <img src="./assets/works-ja.svg" alt="主な作品" width="100%" />
-</p>
-
-<p align="center"><sub><a href="https://github.com/badhope/digilegacy">DigiLegacy 归零</a> · <a href="https://github.com/badhope/spark">Spark</a> · <a href="https://github.com/badhope/agent-builder">Agent Builder</a> · <a href="https://github.com/badhope/workbench">Workbench</a> · <a href="https://github.com/badhope/sciflow">SciFlow</a> · <a href="https://github.com/badhope/DU">DU 渡</a> · <a href="https://github.com/badhope/API-Market">API Market</a> · <a href="https://github.com/badhope/MCP-HUB">MCP Hub</a></sub></p>
+| プロジェクト | スター | 更新日 |
+| --- | --- | --- |
+| [xiaoman — Xiaoman (小满) — a conversation-first, local-first personal…](https://github.com/badhope/xiaoman) | 81 | 2026-10-21 |
+| [workbench — Workbench - a local-first desktop workbench (Tauri 2 +…](https://github.com/badhope/workbench) | 47 | 2026-10-21 |
+| [world-walker — World Walker — an AI-driven text interactive fiction…](https://github.com/badhope/world-walker) | 16 | 2026-10-21 |
+| [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-21 |
+| [mashang — 码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运…](https://github.com/badhope/mashang) | 0 | 2026-10-21 |
+| [zhike — Zhike — customer-service agent: QQ/WeChat channel gateway +…](https://github.com/badhope/zhike) | 0 | 2026-10-21 |
 
 全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
 
@@ -52,7 +55,8 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 
 <p align="center">
   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=public_repos&style=flat&label=%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA&labelColor=0E1630&color=D9B876" alt="リポジトリ: badhope" />
-  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=followers&style=flat&label=%E3%83%95%E3%82%A9%E3%83%AD%E3%83%AF%E3%83%BC&labelColor=0E1630&color=D9B876" alt="フォロワー: badhope" />
+  <img src="https://img.shields.io/github/stars/badhope?style=flat&labelColor=0E1630&color=D9B876" alt="累計スター: badhope" />
+  <img src="https://img.shields.io/github/followers/badhope?style=flat&labelColor=0E1630&color=D9B876" alt="フォロワー: badhope" />
 </p>
 
 <p align="center">
