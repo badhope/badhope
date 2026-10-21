@@ -224,8 +224,12 @@ async function main() {
     process.exit(1);
   }
   if (skipped > 0) {
-    console.warn(`部分卡片未渲染（${skipped} 张）：${failedAccounts.join(", ") || "见上方日志"}`);
-    process.exit(1);
+    // 部分失败：保留旧卡片并告警，但不阻断整条流水线。
+    // 单张卡偶发限流不该让整个 refresh 失败；全量失败（上面）才是硬错误。
+    console.warn(`::warning::部分卡片未渲染（${skipped} 张），已保留旧图`);
+    if (failedAccounts.length) {
+      console.warn(`::warning::受影响账号：${failedAccounts.join(", ")}`);
+    }
   }
   process.exit(0);
 }
