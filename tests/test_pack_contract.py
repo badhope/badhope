@@ -22,10 +22,17 @@ import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 GEN = ROOT / "scripts" / "generate.py"
+
+# 部署仓库里只有打包产物，没有 workflows/ 等源码目录；
+# 依赖源码树的测试在那里无法运行，应跳过而不是失败。
+IS_SOURCE_TREE = (ROOT / "workflows").is_dir()
+NEEDS_SOURCE = unittest.skipUnless(
+    IS_SOURCE_TREE, "仅源码树可运行（部署仓库缺少 workflows/ 等源文件）")
 ACCOUNTS = ["gh_badhope", "gh_x33834", "gh_morningstar", "gitcode_badhope", "gitee_badhope"]
 GITHUB_KEYS = ["gh_badhope", "gh_x33834", "gh_morningstar"]
 
 
+@NEEDS_SOURCE
 class PackedTreeContractTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -215,6 +222,7 @@ class PackedTreeContractTest(unittest.TestCase):
             self.assertTrue(list(tdir.glob("test_*.py")), "%s 的 tests 为空" % key)
 
 
+@NEEDS_SOURCE
 class RegenerationTest(unittest.TestCase):
     def test_here_regeneration_reproduces_every_file(self):
         """--here 必须真正重写全部文件，且不多不少、内容一致。"""
@@ -252,6 +260,7 @@ if __name__ == "__main__":
     unittest.main()
 
 
+@NEEDS_SOURCE
 class CiWiringTest(unittest.TestCase):
     """测试必须真的接入 CI，否则永远不在门禁里（审计指出从未执行）。"""
 
