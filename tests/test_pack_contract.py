@@ -213,6 +213,17 @@ class PackedTreeContractTest(unittest.TestCase):
                             "`git diff` 出现在 `git add` 之前，新增文件永远检测不到")
         self.assertGreaterEqual(checked, 2, "应有 refresh 与 cards 两个提交步骤")
 
+    def test_jobs_that_push_are_serialized(self):
+        """refresh 与 cards 都会推 main，必须串行，否则并行时必有一个 push 被拒。"""
+        import yaml
+        text = (ROOT / "workflows" / "refresh.yml").read_text(encoding="utf-8")
+        jobs = yaml.safe_load(text)["jobs"]
+        cards_needs = jobs["cards"].get("needs")
+        needs = cards_needs if isinstance(cards_needs, list) else [cards_needs]
+        self.assertIn("refresh", needs,
+                      "cards 必须依赖 refresh 串行执行（两者都推 main）")
+        self.assertIn("pull --rebase", text, "push 失败时缺少 rebase 重试")
+
     def test_tests_are_shipped_for_ci(self):
         """CI 的 test job 在部署仓库里跑，因此 tests/ 必须随包。"""
         for key in GITHUB_KEYS:
@@ -272,8 +283,9 @@ class CiWiringTest(unittest.TestCase):
         runs = " ".join(str(st.get("run", "")) for st in jobs["test"]["steps"])
         self.assertIn("unittest", runs, "test job 未执行 unittest")
         for name in ("refresh", "cards"):
-            self.assertEqual(jobs[name].get("needs"), "test",
-                             "%s job 必须依赖 test 通过" % name)
+            needs = jobs[name].get("needs")
+            needs = needs if isinstance(needs, list) else [needs]
+            self.assertIn("test", needs, "%s job 必须依赖 test 通过" % name)
 
 
 class CiEnvironmentTest(unittest.TestCase):

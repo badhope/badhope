@@ -102,7 +102,11 @@ jobs:
           git config user.name  "profile-kit"
           git config user.email "profile-kit@users.noreply.github.com"
           git commit -m "chore: refresh profile (${{ github.run_id }})"
-          git push origin HEAD:main
+          git push origin HEAD:main || {
+            echo "push rejected — rebasing on latest main and retrying once"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          }
 
       # 用 GITHUB_TOKEN 发起的 push 不会触发新的 workflow run，
       # 所以镜像不能靠 mirror.yml 的 push 事件，必须在这里同一次 run 内直接调用。
@@ -124,7 +128,8 @@ jobs:
   # --------------------------------------------------------------------------
   cards:
     name: Render cards (weekly)
-    needs: test
+    # 串行在 refresh 之后：两个 job 都会推 main，并行必然有一个 push 被拒
+    needs: [test, refresh]
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'schedule' && github.event.schedule == '47 4 * * 1')
@@ -165,4 +170,8 @@ jobs:
           git config user.name  "profile-kit"
           git config user.email "profile-kit@users.noreply.github.com"
           git commit -m "chore: re-render cards (${{ github.run_id }})"
-          git push origin HEAD:main
+          git push origin HEAD:main || {
+            echo "push rejected — rebasing on latest main and retrying once"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          }
