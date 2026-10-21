@@ -974,6 +974,10 @@ def pack(key, out_dir):
         encoding="utf-8", newline="\n",
     )
     if acct["platform"] == "github":
+        # CI 的 test job 需要 tests/，不打进包就等于门禁必然失败
+        if (ROOT / "tests").is_dir():
+            shutil.copytree(ROOT / "tests", out / "tests",
+                            ignore=shutil.ignore_patterns("__pycache__", "*.pyc"), dirs_exist_ok=True)
         wf_dir = out / ".github" / "workflows"
         wf_dir.mkdir(parents=True, exist_ok=True)
         # 动态刷新工作流（分区刷新、变更闸门、配额安全）
@@ -1122,6 +1126,24 @@ PREVIEW_TPL = """<!DOCTYPE html>
 """
 
 
+def LOCALIZE_BADGES(md):
+    """把 shields.io 动态徽章替换为本地静态文本块（预览页专用，不改动部署产物）。"""
+    def repl(m):
+        label = m.group(1) or ""
+        value = m.group(2) or ""
+        return ('<span class="staticbadge"><b>%s</b>%s</span>'
+                % (esc(label.replace("+", " ")), esc(value.replace("+", " "))))
+    # 形如 https://img.shields.io/badge/dynamic/json?...&label=xxx  → 用 label 文本占位
+    md = re.sub(r'<img[^>]*src="https://img\.shields\.io[^"]*label=([^"&]*)[^"]*"[^>]*/?>',
+                lambda m: repl_static(m.group(1)), md)
+    return md
+
+
+def repl_static(label):
+    from urllib.parse import unquote_plus
+    return '<span class="staticbadge">%s</span>' % esc(unquote_plus(label))
+
+
 def strip_preview_dupes(md):
     """预览页自带语言 tab 与 hero，剥离 README 里重复的那两段。"""
     lines = md.split("\n")
@@ -1177,6 +1199,9 @@ def build_preview(out_dir):
             md = (dist / key / A.README_NAME[lang]).read_text(encoding="utf-8")
             md = strip_preview_dupes(md)
             md = md.replace("./assets/", rel + "/")
+            # 预览页必须离线可开：把实时 shields 徽章换成等价的本地静态条，
+            # 否则内网/离线环境下 <img> 永不加载完成，整页卡在 loading。
+            md = LOCALIZE_BADGES(md)
             langs_data[lang] = {
                 "label": lang_labels.get(lang, lang),
                 "labels": A.LABELS[lang],
