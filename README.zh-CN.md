@@ -46,8 +46,8 @@
 | [workbench — Workbench - a local-first desktop workbench (Tauri 2 +…](https://github.com/badhope/workbench) | 47 | 2026-10-21 |
 | [world-walker — World Walker — an AI-driven text interactive fiction…](https://github.com/badhope/world-walker) | 16 | 2026-10-21 |
 | [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-21 |
-| [campushub — CampusHub — self-hosted open-source campus community pl…](https://github.com/badhope/campushub) | 0 | 2026-10-21 |
 | [mashang — 码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运…](https://github.com/badhope/mashang) | 0 | 2026-10-21 |
+| [zhike — Zhike — customer-service agent: QQ/WeChat channel gateway +…](https://github.com/badhope/zhike) | 0 | 2026-10-21 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 

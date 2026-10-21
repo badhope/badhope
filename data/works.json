@@ -15,14 +15,6 @@
           "desc": "World Walker — an AI-driven text interactive fiction engine: a worldview-agnostic rule core (85+ academic models) with an MCP server, SillyTavern card / world-info support and a live panel."
         },
         {
-          "name": "campushub",
-          "title": "campushub",
-          "url": "https://github.com/X33834/campushub",
-          "stars": 0,
-          "updated": "2026-10-21",
-          "desc": "CampusHub — 校园服务平台"
-        },
-        {
           "name": "mashang",
           "title": "mashang",
           "url": "https://github.com/X33834/mashang",
@@ -53,6 +45,14 @@
           "stars": 0,
           "updated": "2026-10-21",
           "desc": "Xiaoman (小满) — a conversation-first, local-first personal finance AI agent · FastAPI + LangGraph + React · data 100% local · MIT"
+        },
+        {
+          "name": "zhike",
+          "title": "zhike",
+          "url": "https://github.com/X33834/zhike",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "知客 Zhike — 知识问答平台"
         }
       ]
     },
@@ -77,14 +77,6 @@
           "desc": "AI-operated wastewater treatment plant simulator. Topology-driven solvers, ASM1 kinetics, Takacs clarifier."
         },
         {
-          "name": "campushub",
-          "title": "campushub",
-          "url": "https://github.com/Morningstar202604/campushub",
-          "stars": 0,
-          "updated": "2026-10-21",
-          "desc": "CampusHub — 校园服务平台"
-        },
-        {
           "name": "mashang",
           "title": "mashang",
           "url": "https://github.com/Morningstar202604/mashang",
@@ -107,6 +99,14 @@
           "stars": 0,
           "updated": "2026-10-21",
           "desc": "Xiaoman (小满) — a conversation-first, local-first personal finance AI agent · FastAPI + LangGraph + React · data 100% local · MIT"
+        },
+        {
+          "name": "zhike",
+          "title": "zhike",
+          "url": "https://github.com/Morningstar202604/zhike",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "知客 Zhike — 知识问答平台"
         }
       ]
     },
@@ -147,20 +147,20 @@
           "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
         },
         {
-          "name": "campushub",
-          "title": "campushub",
-          "url": "https://github.com/badhope/campushub",
-          "stars": 0,
-          "updated": "2026-10-21",
-          "desc": "CampusHub — self-hosted open-source campus community platform: Vue 3 + NestJS + PostgreSQL"
-        },
-        {
           "name": "mashang",
           "title": "mashang",
           "url": "https://github.com/badhope/mashang",
           "stars": 0,
           "updated": "2026-10-21",
           "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · Kotlin · MIT"
+        },
+        {
+          "name": "zhike",
+          "title": "zhike",
+          "url": "https://github.com/badhope/zhike",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "Zhike — customer-service agent: QQ/WeChat channel gateway + visual console + RAG/tools"
         }
       ]
     },
@@ -174,7 +174,7 @@
           "url": "https://gitcode.com/badhope/mashang",
           "stars": 0,
           "updated": "2026-10-21",
-          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · Kotlin · MIT"
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · MIT"
         },
         {
           "name": "aquapilot",
@@ -231,20 +231,28 @@
           "desc": "CampusHub — self-hosted open-source campus community platform. Vue 3   NestJS   PostgreSQL   Prisma. Second-hand marketplace, lost"
         },
         {
+          "name": "xiaoman",
+          "title": "badhope/xiaoman",
+          "url": "https://gitee.com/badhope/xiaoman",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "Xiaoman — conversation-first, local-first personal finance AI agent (English README first; 中文见 README.zh.md)"
+        },
+        {
+          "name": "mashang",
+          "title": "badhope/mashang",
+          "url": "https://gitee.com/badhope/mashang",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · MIT"
+        },
+        {
           "name": "zhike",
           "title": "badhope/知客 Zhike",
           "url": "https://gitee.com/badhope/zhike",
           "stars": 0,
           "updated": "2026-10-21",
           "desc": "知客 Zhike · 在线客服 Agent：QQ/微信渠道网关 + 可视化控制台 + RAG/工具/护栏管线。MIT"
-        },
-        {
-          "name": "world-walker",
-          "title": "badhope/world-walker",
-          "url": "https://gitee.com/badhope/world-walker",
-          "stars": 0,
-          "updated": "2026-10-21",
-          "desc": "万界·行者 World Walker —— AI 驱动的文字互动游戏引擎：世界观无关规则内核（85+ 学术模型）+ MCP 服务器 + 酒馆生态兼容（角色卡/世界书）+ 实况面板"
         },
         {
           "name": "pocketmind",
@@ -255,20 +263,12 @@
           "desc": "PocketMind — Termux 常驻手机 Agent"
         },
         {
-          "name": "mashang",
-          "title": "badhope/mashang",
-          "url": "https://gitee.com/badhope/mashang",
+          "name": "world-walker",
+          "title": "badhope/world-walker",
+          "url": "https://gitee.com/badhope/world-walker",
           "stars": 0,
           "updated": "2026-10-21",
-          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · Kotlin · MIT"
-        },
-        {
-          "name": "xiaoman",
-          "title": "badhope/xiaoman",
-          "url": "https://gitee.com/badhope/xiaoman",
-          "stars": 0,
-          "updated": "2026-10-21",
-          "desc": "Xiaoman — conversation-first, local-first personal finance AI agent (English README first; 中文见 README.zh.md)"
+          "desc": "万界·行者 World Walker —— AI 驱动的文字互动游戏引擎：世界观无关规则内核（85+ 学术模型）+ MCP 服务器 + 酒馆生态兼容（角色卡/世界书）+ 实况面板"
         }
       ]
     }
