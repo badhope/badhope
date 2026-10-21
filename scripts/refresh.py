@@ -242,10 +242,11 @@ def merge_writing(rss_items, curated_items, old_items=()):
     return merged
 
 
-def fetch_writing():
-    """抓 CSDN RSS 最新文章，与人工维护的 CURATED_POSTS 合并 → data/writing.json。
+def build_writing():
+    """抓 CSDN RSS 并与人工维护的 CURATED_POSTS 合并，返回待写入的数据（不落盘）。
 
-    失败保留旧内容；文件总会写出（R13）。
+    网络失败时退回旧条目 —— fail-closed，绝不丢失已有内容。
+    把"取数"和"写盘"分开，调用方才能做到"无变化不写盘"。
     """
     items = []
     try:
@@ -269,13 +270,18 @@ def fetch_writing():
     except (OSError, ValueError, AttributeError):
         pass
     merged = merge_writing(items, A.CURATED_POSTS, old_items)
-    out = {
+    print("writing: %d items total (curated %d + rss %d)" % (
+        len(merged), len(A.CURATED_POSTS), len(items)))
+    return {
         "fetched": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
         "source": "CSDN RSS + curated",
         "items": merged,
     }
-    print("writing: %d items total (curated %d + rss %d)" % (
-        len(merged), len(A.CURATED_POSTS), len(items)))
+
+
+def fetch_writing():
+    """抓取并写盘（保留旧版行为，供 refresh.py --all 直接调用）。"""
+    out = build_writing()
     WRITING_PATH.parent.mkdir(parents=True, exist_ok=True)
     WRITING_PATH.write_text(
         json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"

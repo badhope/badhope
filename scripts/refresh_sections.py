@@ -109,18 +109,27 @@ def refresh_stats():
 
 
 def refresh_writing():
-    """刷新文章列表（CSDN RSS + 人工维护），失败保留旧内容。"""
+    """刷新文章列表（CSDN RSS + 人工维护），失败保留旧内容。
+
+    真正"无变化不写盘"：先取数（build_writing，不落盘），
+    与磁盘旧值比对后**仅在有内容变化时**才写文件。
+    """
     before_obj = _load_json(WRITING_PATH, {"items": []})
     try:
-        R.fetch_writing()
+        new_obj = R.build_writing()
     except Exception as err:
         print("writing: FAIL %s (kept old)" % err)
         return False
-    after_obj = _load_json(WRITING_PATH, {"items": []})
-    if _same_data(before_obj, after_obj):
-        print("writing: no data change — skip")
+    if _same_data(before_obj, new_obj):
+        print("writing: no data change — skip write (fetched kept at %s)"
+              % before_obj.get("fetched"))
         return False
-    print("writing: updated")
+    WRITING_PATH.parent.mkdir(parents=True, exist_ok=True)
+    WRITING_PATH.write_text(
+        json.dumps(new_obj, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8", newline="\n",
+    )
+    print("writing: written")
     return True
 
 
