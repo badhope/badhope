@@ -13,6 +13,12 @@ GEN = ROOT / "scripts" / "generate.py"
 sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT))
 
+# 部署仓库里没有 workflows/ 等源码目录，--pack 无法运行；
+# 与 test_pack_contract 一致：这类测试只应在源码树执行。
+IS_SOURCE_TREE = (ROOT / "workflows").is_dir()
+NEEDS_SOURCE = unittest.skipUnless(
+    IS_SOURCE_TREE, "仅源码树可运行（部署仓库缺少 workflows/）")
+
 
 class WorksRealDataTest(unittest.TestCase):
     def test_works_json_has_real_repos(self):
@@ -77,6 +83,7 @@ class LiveBadgeTest(unittest.TestCase):
             self.assertNotIn("./assets/", html, "%s 的徽章用了本地静态图" % key)
 
 
+@NEEDS_SOURCE
 class WorksTableRenderTest(unittest.TestCase):
     def test_readme_works_section_is_a_linked_table(self):
         with tempfile.TemporaryDirectory() as tmp:
