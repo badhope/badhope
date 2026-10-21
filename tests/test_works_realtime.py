@@ -59,16 +59,21 @@ class LiveBadgeTest(unittest.TestCase):
         self.assertIn("github/followers/badhope", html)
         self.assertIn("dynamic/json", html)
 
-    def test_gitee_and_gitcode_have_badges(self):
+    def test_gitee_and_gitcode_emit_no_broken_badges(self):
+        """shields 对这两个平台没有可用端点（实测稳定 invalid），
+        宁可不显示徽章，也不能挂一个 invalid 出去。"""
         for key in ("gitee_badhope", "gitcode_badhope"):
             html = self.G.live_badges(self.A.ACCOUNTS[key], "md")
-            self.assertIsNotNone(html, "%s 没有实时徽章" % key)
-            self.assertIn("img.shields.io", html)
+            if html is not None:
+                self.assertNotIn("dynamic/json", html,
+                                 "%s 用了会返回 invalid 的动态徽章" % key)
 
     def test_badges_are_not_local_images(self):
         """徽章必须是外链 shields，不能是仓库内的静态图。"""
         for key in ("gh_badhope", "gitee_badhope", "gitcode_badhope"):
             html = self.G.live_badges(self.A.ACCOUNTS[key], "md")
+            if html is None:
+                continue          # 该平台没有可靠徽章端点，不显示是对的
             self.assertNotIn("./assets/", html, "%s 的徽章用了本地静态图" % key)
 
 

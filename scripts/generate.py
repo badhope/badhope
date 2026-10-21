@@ -113,14 +113,9 @@ def live_badges(acct, lang):
                           "%s: %s" % (labels.get("stat_stars", "stars"), handle)))
         badges.append(raw("github/followers/%s" % handle,
                           "%s: %s" % (labels["badge_followers"], handle)))
-    elif plat == "gitee":
-        api = "https://gitee.com/api/v5/users/%s" % handle
-        badges.append(dyn(api, "followers", labels["badge_followers"],
-                          "%s: %s" % (labels["badge_followers"], handle)))
-    elif plat == "gitcode":
-        api = "https://api.gitcode.com/api/v5/users/%s" % handle
-        badges.append(dyn(api, "followers", labels["badge_followers"],
-                          "%s: %s" % (labels["badge_followers"], handle)))
+    # Gitee / GitCode：shields 没有原生端点，dynamic/json 实测稳定返回 invalid
+    # （shields 侧访问被拒）。宁可不显示徽章，也不要挂一个 "invalid" 出去；
+    # 这两个平台的数字由定时任务刷新进 stats.json，再由统计卡呈现。
     if not badges:
         return None
     joined = "\n  ".join(badges)
