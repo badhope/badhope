@@ -1,7 +1,10 @@
 [English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)
 
 <p align="center">
+  <picture>
+  <source type="image/png" srcset="./assets/png/hero.png" />
   <img src="./assets/hero.svg" alt="badhope · github.com/badhope" width="100%" />
+  </picture>
 </p>
 
 <p align="center"><i>抽象的なアイデアを、動くインターフェースに落とし込む開発者。</i></p>
@@ -69,8 +72,8 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />
-    <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />
+  <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />
   </picture>
 </p>
 

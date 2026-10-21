@@ -688,8 +688,13 @@ def render_readme(acct, key, lang, stats, base=None):
     lines.append("[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)")
     lines.append("")
     lines.append('<p align="center">')
+    # hero 用 <picture> 提供 PNG 兜底：GitHub camo / GitCode raw 对 SVG 的支持不稳定，
+    # PNG 是位图，各平台渲染策略一致，优先使用。
+    lines.append('  <picture>')
+    lines.append('  <source type="image/png" srcset="./assets/png/hero.png" />')
     lines.append('  <img src="./assets/hero.svg" alt="%s · %s" width="100%%" />'
                  % (esc(acct["handle"]), esc(acct["home_display"])))
+    lines.append('  </picture>')
     lines.append("</p>")
     lines.append("")
     lines.append("<p align=\"center\"><i>%s</i></p>" % tagline)
@@ -804,8 +809,9 @@ def render_readme(acct, key, lang, stats, base=None):
         lines.append("")
         lines.append('<p align="center">')
         lines.append('  <picture>')
-        lines.append('    <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />')
-        lines.append('    <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />')
+        # 缩进不得超过 3 空格：HTML 块内 4 空格缩进在部分 Markdown 解析器会被当成代码文本
+        lines.append('  <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />')
+        lines.append('  <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />')
         lines.append('  </picture>')
         lines.append("</p>")
         lines.append("")
@@ -895,6 +901,15 @@ def write_account_files(acct, key, out_dir, stats, base=None):
             if svg:
                 (assets / (fn % lang)).write_text(svg, encoding="utf-8", newline="\n")
     (assets / "hero.svg").write_text(hero_svg(acct), encoding="utf-8", newline="\n")
+    # hero 的 PNG 兜底（由 scripts/rasterize.py 预先生成；缺失时 <picture> 自动回落 SVG）
+    png_dir = assets / "png"
+    png_dir.mkdir(parents=True, exist_ok=True)
+    hero_png_dst = png_dir / "hero.png"
+    # 每个账号的 hero 都不同，PNG 必须按账号生成（src/assets/png/<key>/hero.png）；
+    # 缺失时 <picture> 自动回落到同目录的 hero.svg，不影响显示。
+    hero_png_src = ROOT / "assets" / "png" / key / "hero.png"
+    if hero_png_src.is_file() and hero_png_src.resolve() != hero_png_dst.resolve():
+        shutil.copyfile(hero_png_src, hero_png_dst)
     (assets / "footer.svg").write_text(footer_svg(acct), encoding="utf-8", newline="\n")
     # README 引用的图标（平台徽标 + 写作平台），只拷贝用到的那几个
     icon_roots = [pathlib.Path(base) / "data" / "icons", ROOT / "data" / "icons"] if base else [ROOT / "data" / "icons"]

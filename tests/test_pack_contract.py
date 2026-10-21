@@ -224,6 +224,39 @@ class PackedTreeContractTest(unittest.TestCase):
                       "cards 必须依赖 refresh 串行执行（两者都推 main）")
         self.assertIn("pull --rebase", text, "push 失败时缺少 rebase 重试")
 
+    def test_readme_has_no_markdown_code_block_traps(self):
+        """HTML 块内 4 空格缩进会被部分解析器当成代码块，导致整段显示成原始代码。"""
+        for key in ACCOUNTS:
+            for readme in (self.out / key).glob("README*.md"):
+                for i, line in enumerate(readme.read_text(encoding="utf-8").splitlines(), 1):
+                    if line.startswith("    ") and line.strip():
+                        self.fail("%s:%d 存在 4 空格缩进，可能被渲染成代码块: %r"
+                                  % (readme.name, i, line[:60]))
+
+    def test_hero_has_png_fallback(self):
+        """hero 必须提供 PNG 兜底（GitHub camo / GitCode raw 对 SVG 支持不稳定）。"""
+        for key in GITHUB_KEYS:
+            tree = self.out / key
+            self.assertIn("<picture>", (tree / "README.md").read_text(encoding="utf-8"),
+                          "%s README 的 hero 没有 picture 兜底" % key)
+            png = tree / "assets" / "png" / "hero.png"
+            self.assertTrue(png.is_file(), "%s 缺 assets/png/hero.png" % key)
+            self.assertGreater(png.stat().st_size, 5000, "%s 的 hero.png 过小" % key)
+            self.assertLess(png.stat().st_size, 1_200_000, "%s 的 hero.png 过大" % key)
+
+    def test_hero_png_differs_per_account(self):
+        """每个账号的 hero 内容不同，PNG 不能是同一张图。"""
+        import hashlib
+        digests = {}
+        for key in ACCOUNTS:
+            png = self.out / key / "assets" / "png" / "hero.png"
+            if not png.is_file():
+                continue
+            digests[key] = hashlib.md5(png.read_bytes()).hexdigest()
+        self.assertGreaterEqual(len(digests), 2, "没有可比较的 hero.png")
+        self.assertEqual(len(set(digests.values())), len(digests),
+                         "多个账号共用了同一张 hero.png: %s" % digests)
+
     def test_tests_are_shipped_for_ci(self):
         """CI 的 test job 在部署仓库里跑，因此 tests/ 必须随包。"""
         for key in GITHUB_KEYS:
