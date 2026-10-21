@@ -1171,13 +1171,20 @@ def strip_preview_dupes(md):
                 and st.startswith("[")):
             i += 1
             continue
-        # hero 块：<p ...> 后紧跟含 hero.svg 的 <img>，直到 </p>
-        if st.startswith("<p") and i + 1 < len(lines) and 'src="./assets/hero.svg"' in lines[i + 1]:
-            i += 1
-            while i < len(lines) and "</p>" not in lines[i]:
-                i += 1
-            i += 1
-            continue
+        # hero 块：<p ...> 起始，内部含 hero.svg（可能包在 <picture>/<source> 里），直到 </p>
+        if st.startswith("<p"):
+            # 向后看最多 6 行，找到 </p>
+            j = i
+            block = []
+            while j < len(lines) and j < i + 6:
+                block.append(lines[j])
+                if "</p>" in lines[j]:
+                    break
+                j += 1
+            joined = "\n".join(block)
+            if 'assets/hero.svg' in joined and "</p>" in joined:
+                i = j + 1
+                continue
         out.append(lines[i])
         i += 1
     return "\n".join(out)

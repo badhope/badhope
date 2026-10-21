@@ -257,6 +257,17 @@ class PackedTreeContractTest(unittest.TestCase):
         self.assertEqual(len(set(digests.values())), len(digests),
                          "多个账号共用了同一张 hero.png: %s" % digests)
 
+    def test_preview_strips_duplicate_hero(self):
+        """预览页自带 hero，README 里的 hero 块（含 picture 包装）必须被剥离。"""
+        import sys as _sys
+        _sys.path.insert(0, str(ROOT / "scripts"))
+        import generate as G
+        md = (self.out / "gh_x33834" / "README.md").read_text(encoding="utf-8")
+        out = G.strip_preview_dupes(md)
+        self.assertNotIn("assets/hero.svg", out, "README 的 hero.svg 未被剥离")
+        self.assertNotIn("assets/png/hero.png", out, "README 的 hero.png 未被剥离")
+        self.assertIn("Ship small, ship often", out, "剥离时误删了正文")
+
     def test_tests_are_shipped_for_ci(self):
         """CI 的 test job 在部署仓库里跑，因此 tests/ 必须随包。"""
         for key in GITHUB_KEYS:
