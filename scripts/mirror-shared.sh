@@ -40,14 +40,15 @@ for p in $SHARED_PATHS; do
 done
 
 cd "$target"
-if git diff --quiet && git diff --cached --quiet; then
+git add -A
+# 同样必须在 add 之后判定：镜像端新增文件也是变更
+if git diff --cached --quiet; then
   echo "$PLATFORM: 共享层无变化，跳过"
   exit 0
 fi
 
 git config user.name  "profile-kit"
 git config user.email "profile-kit@users.noreply.github.com"
-git add -A
 git commit -m "chore: sync shared layer from github/badhope"
 git push --quiet origin HEAD:main
 echo "$PLATFORM: 共享层已同步（README/profile.json 保持不变）"

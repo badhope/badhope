@@ -121,14 +121,15 @@ def refresh_github(handle, block):
                 "https://api.github.com/users/%s/repos?per_page=100&page=%d" % (handle, page),
                 gh_headers(handle),
             )
-            if not repos:
-                break
+            if not isinstance(repos, list):
+                raise ValueError("unexpected repos payload: %r" % (type(repos),))
+            # 空列表说明"确实没有仓库"——必须视为成功并清零，否则删除仓库后星数永远不降
+            got = True
             for repo in repos:
                 # 与 GitHub 个人页口径一致：fork 的 star 不计入本人获星
                 if repo.get("fork"):
                     continue
                 stars += repo.get("stargazers_count", 0)
-            got = True
             if len(repos) < 100:
                 break
             page += 1
@@ -153,12 +154,32 @@ def refresh_gitee(owner, block):
     token = resolve_token("gitee", owner, generic_env=("GITEE_TOKEN",))
     headers = {"Authorization": "token " + token} if token else None
     try:
-        repos = http_json("https://gitee.com/api/v5/users/%s/repos?per_page=100" % owner, headers)
+        repos = []
+        page = 1
+        while True:
+            batch = http_json(
+                "https://gitee.com/api/v5/users/%s/repos?per_page=100&page=%d" % (owner, page),
+                headers,
+            )
+            if not isinstance(batch, list):
+                raise ValueError("unexpected repos payload")
+            repos += batch
+            if len(batch) < 100:
+                break
+            page += 1
         block["repos"] = len(repos)
         block["stars"] = sum(r.get("stargazers_count", 0) for r in repos)
         print("gitee %s: repos=%s stars=%s" % (owner, block["repos"], block["stars"]))
     except NETWORK_ERRORS as err:
         warn("gitee %s unavailable (%s); keeping old values" % (owner, err))
+        return
+    try:
+        user = http_json("https://gitee.com/api/v5/users/%s" % owner, headers)
+        if isinstance(user, dict) and user.get("followers") is not None:
+            block["followers"] = user["followers"]
+            print("gitee %s: followers=%s" % (owner, block["followers"]))
+    except NETWORK_ERRORS as err:
+        warn("gitee profile %s unavailable (%s); keeping old followers" % (owner, err))
 
 
 def refresh_gitcode(owner, block):
@@ -166,16 +187,17 @@ def refresh_gitcode(owner, block):
     if not token:
         warn("no gitcode credential (env or local secrets store); gitcode numbers not refreshed")
         return
+    headers = {"Authorization": "Bearer " + token}
     try:
         repos = []
         page = 1
         while True:
             batch = http_json(
                 "https://api.gitcode.com/api/v5/users/%s/repos?per_page=100&page=%d" % (owner, page),
-                {"Authorization": "Bearer " + token},
+                headers,
             )
-            if not batch:
-                break
+            if not isinstance(batch, list):
+                raise ValueError("unexpected repos payload")
             repos += batch
             if len(batch) < 100:
                 break
@@ -185,6 +207,14 @@ def refresh_gitcode(owner, block):
         print("gitcode %s: repos=%s stars=%s" % (owner, block["repos"], block["stars"]))
     except NETWORK_ERRORS as err:
         warn("gitcode %s unavailable (%s); keeping old values" % (owner, err))
+        return
+    try:
+        user = http_json("https://api.gitcode.com/api/v5/users/%s" % owner, headers)
+        if isinstance(user, dict) and user.get("followers") is not None:
+            block["followers"] = user["followers"]
+            print("gitcode %s: followers=%s" % (owner, block["followers"]))
+    except NETWORK_ERRORS as err:
+        warn("gitcode profile %s unavailable (%s); keeping old followers" % (owner, err))
 
 
 def _fmt_pubdate(raw):

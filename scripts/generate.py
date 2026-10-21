@@ -1122,25 +1122,80 @@ PREVIEW_TPL = """<!DOCTYPE html>
 """
 
 
+def strip_preview_dupes(md):
+    """预览页自带语言 tab 与 hero，剥离 README 里重复的那两段。"""
+    lines = md.split("\n")
+    out = []
+    i = 0
+    while i < len(lines):
+        st = lines[i].strip()
+        # 顶部语言导航行：[English](...) | [中文](...) | [日本語](...)
+        if ("README.md)" in st and "README.zh-CN.md)" in st and "README.ja.md)" in st
+                and st.startswith("[")):
+            i += 1
+            continue
+        # hero 块：<p ...> 后紧跟含 hero.svg 的 <img>，直到 </p>
+        if st.startswith("<p") and i + 1 < len(lines) and 'src="./assets/hero.svg"' in lines[i + 1]:
+            i += 1
+            while i < len(lines) and "</p>" not in lines[i]:
+                i += 1
+            i += 1
+            continue
+        out.append(lines[i])
+        i += 1
+    return "\n".join(out)
+
+
 def build_preview(out_dir):
+    """构建多账号、多语言、可导航的预览界面（单文件 + 相对路径资产）。"""
+    import brand
+    import preview as P
+
     out_dir = pathlib.Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     dist = ROOT / "dist"
     stats = load_stats(ROOT / "data" / "stats.json")
-    blocks = []
+
+    brand_dir = dist / "brand"
+    brand_dir.mkdir(parents=True, exist_ok=True)
+    (brand_dir / "mark.svg").write_text(brand.logo_mark(64, with_wordmark=False), encoding="utf-8", newline="\n")
+    (brand_dir / "logo.svg").write_text(brand.logo_mark(64, with_wordmark=True), encoding="utf-8", newline="\n")
+    (brand_dir / "favicon.svg").write_text(brand.favicon_svg(), encoding="utf-8", newline="\n")
+    (brand_dir / "mark-light.svg").write_text(brand.logo_light(), encoding="utf-8", newline="\n")
+
+    lang_labels = {"md": "English", "zh-CN": "中文", "ja": "日本語"}
+    accent = {"gh_x33834": "#7C9CFF", "gh_morningstar": "#C9A0FF",
+              "gh_badhope": "#D9B876", "gitcode_badhope": "#3FD9C0", "gitee_badhope": "#FF8FA3"}
+
+    nav, panels = [], []
     for key in A.ACCOUNT_ORDER:
         acct = A.ACCOUNTS[key]
         generate_to(dist / key, key, stats)
         rel = "../dist/%s/assets" % key
-        md = (dist / key / "README.md").read_text(encoding="utf-8")
-        md = md.replace("./assets/", rel + "/")
-        blocks.append(
-            '<section class="account" id="%s">\n<h1>%s · %s</h1>\n'
-            '<p class="meta">%s</p>\n<div class="readme">\n%s\n</div>\n</section>'
-            % (key, esc(acct["handle"]), PLATFORM_LABEL[acct["platform"]],
-               esc(acct["home"]), md_to_html(md))
+        langs_data = {}
+        for lang in A.LANGS:
+            md = (dist / key / A.README_NAME[lang]).read_text(encoding="utf-8")
+            md = strip_preview_dupes(md)
+            md = md.replace("./assets/", rel + "/")
+            langs_data[lang] = {
+                "label": lang_labels.get(lang, lang),
+                "labels": A.LABELS[lang],
+                "html": md_to_html(md),
+                "hero": rel + "/hero.svg",
+            }
+        block = (stats.get("accounts") or {}).get(key) or {}
+        panels.append(P._account_panel(key, acct, langs_data, block, accent.get(key, "#D9B876")))
+        nav.append(
+            '<li><button class="navitem%s" data-target="%s" style="--accent:%s">'
+            '<span class="dot"></span><span>%s</span>'
+            '<span class="nav-plat">%s</span></button></li>'
+            % (" is-active" if key == A.ACCOUNT_ORDER[0] else "", key,
+               accent.get(key, "#D9B876"), esc(acct["handle"]),
+               esc(PLATFORM_LABEL[acct["platform"]]))
         )
-    html = PREVIEW_TPL.format(count=len(A.ACCOUNT_ORDER), langs=len(A.LANGS), body="\n".join(blocks))
+
+    html = P.TEMPLATE.format(count=len(A.ACCOUNT_ORDER), langs=len(A.LANGS),
+                             nav="".join(nav), panels="".join(panels))
     (out_dir / "index.html").write_text(html, encoding="utf-8", newline="\n")
     return out_dir / "index.html"
 

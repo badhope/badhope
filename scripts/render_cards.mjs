@@ -76,7 +76,11 @@ function resolveToken(handle) {
   }
   try {
     const store = JSON.parse(
-      fs.readFileSync(path.join(os.homedir(), ".zcode", "secrets", "accounts.json"), "utf8")
+      fs.readFileSync(
+        process.env.PROFILE_KIT_SECRETS ||
+          path.join(os.homedir(), ".zcode", "secrets", "accounts.json"),
+        "utf8"
+      )
     );
     const accts = (store.platforms?.github?.accounts) || {};
     const rec = accts[handle] || {};
@@ -101,6 +105,13 @@ function pickPinnedRepos(acct, site) {
     if (out.length >= PIN_COUNT) break;
   }
   return out.slice(0, PIN_COUNT);
+}
+
+function writeAtomic(file, content) {
+  // 先写临时文件再 rename：避免进程被杀留下截断的 SVG
+  const tmp = `${file}.tmp-${process.pid}`;
+  fs.writeFileSync(tmp, content, "utf8");
+  fs.renameSync(tmp, file);
 }
 
 async function main() {
@@ -137,6 +148,7 @@ async function main() {
 
   let rendered = 0;
   let skipped = 0;
+  let failedAccounts = [];
   for (const key of site.order) {
     const acct = site.accounts[key];
     if (!acct) continue;
@@ -169,7 +181,7 @@ async function main() {
         try {
           const res = await fn(params, token);
           if (res?.status === "success" && res.content?.includes("<svg")) {
-            fs.writeFileSync(path.join(outDir, `${kind}-${locale}.svg`), res.content, "utf8");
+            writeAtomic(path.join(outDir, `${kind}-${locale}.svg`), res.content);
             rendered++;
           } else {
             console.warn(`  ${key}/${kind}-${locale}: ${res?.status || "empty"} — 保留旧文件`);
@@ -190,7 +202,7 @@ async function main() {
             token
           );
           if (res?.status === "success" && res.content?.includes("<svg")) {
-            fs.writeFileSync(path.join(outDir, `pin-${i + 1}-${locale}.svg`), res.content, "utf8");
+            writeAtomic(path.join(outDir, `pin-${i + 1}-${locale}.svg`), res.content);
             rendered++;
           } else {
             skipped++;
@@ -201,10 +213,21 @@ async function main() {
         }
       }
     }
+    if (rendered === 0 && skipped > 0) failedAccounts.push(key);
     console.log(`rendered ${key}: ${acct.handle}`);
   }
   console.log(`\ncards: ${rendered} written, ${skipped} skipped`);
-  process.exit(rendered === 0 ? 1 : 0);
+  // 一张都没渲染 = 硬失败；有渲染但仍有跳过 = 部分失败，也应以非 0 退出让 CI 暴露，
+  // 否则线上会静默保留上一次的旧卡片，数字与 stats 长期分叉。
+  if (rendered === 0) {
+    console.error("渲染全部失败");
+    process.exit(1);
+  }
+  if (skipped > 0) {
+    console.warn(`部分卡片未渲染（${skipped} 张）：${failedAccounts.join(", ") || "见上方日志"}`);
+    process.exit(1);
+  }
+  process.exit(0);
 }
 
 main().catch((err) => {
