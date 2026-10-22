@@ -42,12 +42,12 @@ My GitHub home — tools, indexes and small software experiments, all in the ope
 
 | Project | Stars | Updated |
 | --- | --- | --- |
-| [xiaoman — Xiaoman (小满) — a conversation-first, local-first personal…](https://github.com/badhope/xiaoman) | 81 | 2026-10-21 |
-| [workbench — Workbench - a local-first desktop workbench (Tauri 2 +…](https://github.com/badhope/workbench) | 47 | 2026-10-21 |
-| [world-walker — World Walker — an AI-driven text interactive fiction…](https://github.com/badhope/world-walker) | 16 | 2026-10-21 |
-| [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-21 |
-| [campushub — CampusHub — self-hosted open-source campus community pl…](https://github.com/badhope/campushub) | 0 | 2026-10-21 |
-| [GlobalEcom-AI — AI-native cross-border export e-commerce platform:…](https://github.com/badhope/GlobalEcom-AI) | 0 | 2026-10-21 |
+| [xiaoman — Xiaoman (小满) — a conversation-first, local-first personal…](https://github.com/badhope/xiaoman) | 83 | 2026-10-22 |
+| [workbench — Workbench - a local-first desktop workbench (Tauri 2 +…](https://github.com/badhope/workbench) | 47 | 2026-10-22 |
+| [world-walker — World Walker — an AI-driven text interactive fiction…](https://github.com/badhope/world-walker) | 16 | 2026-10-22 |
+| [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-22 |
+| [melee — melee 转播台 — AI 对抗赛事转播层：6 种确定性赛制、实时 SSE、回放、导播、事实校验战报、高光渲染 ·…](https://github.com/badhope/melee) | 3 | 2026-10-22 |
+| [campushub — CampusHub — self-hosted open-source campus community pl…](https://github.com/badhope/campushub) | 0 | 2026-10-22 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 
