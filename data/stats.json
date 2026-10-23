@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-22",
+  "as_of": "2026-10-23",
   "source": "scripts/refresh_sections.py",
   "accounts": {
     "gh_x33834": {
@@ -10,12 +10,12 @@
     },
     "gh_morningstar": {
       "repos": 37,
-      "stars": 3,
+      "stars": 2,
       "followers": 18,
       "merged": 16
     },
     "gh_badhope": {
-      "repos": 26,
+      "repos": 25,
       "stars": 244,
       "followers": 22,
       "merged": 7
@@ -27,7 +27,7 @@
       "merged": null
     },
     "gitee_badhope": {
-      "repos": 24,
+      "repos": 23,
       "stars": 2,
       "followers": 0,
       "merged": null
