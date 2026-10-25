@@ -42,12 +42,12 @@ My GitHub home — tools, indexes and small software experiments, all in the ope
 
 | Project | Stars | Updated |
 | --- | --- | --- |
-| [xiaoman — Xiaoman (小满) — a conversation-first, local-first personal…](https://github.com/badhope/xiaoman) | 83 | 2026-10-24 |
-| [workbench — Workbench - a local-first desktop workbench (Tauri 2 +…](https://github.com/badhope/workbench) | 47 | 2026-10-24 |
-| [spark — Spark — local-first coding agent (Python + React), self-hos…](https://github.com/badhope/spark) | 21 | 2026-10-24 |
-| [world-walker — World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34…](https://github.com/badhope/world-walker) | 16 | 2026-10-24 |
-| [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 12 | 2026-10-24 |
-| [mashang — 码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript(R…](https://github.com/badhope/mashang) | 9 | 2026-10-24 |
+| [xiaoman — Xiaoman (小满) — a conversation-first, local-first personal…](https://github.com/badhope/xiaoman) | 85 | 2026-10-25 |
+| [workbench — Workbench - a local-first desktop workbench (Tauri 2 +…](https://github.com/badhope/workbench) | 48 | 2026-10-25 |
+| [spark — Spark — local-first coding agent (Python + React), self-hos…](https://github.com/badhope/spark) | 21 | 2026-10-25 |
+| [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 12 | 2026-10-25 |
+| [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-25 |
+| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-25 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 

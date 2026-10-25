@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-24",
+  "as_of": "2026-10-25",
   "source": "scripts/discover_works.py",
   "accounts": {
     "gh_x33834": {
@@ -7,52 +7,52 @@
       "handle": "X33834",
       "repos": [
         {
-          "name": "world-walker",
-          "title": "world-walker",
-          "url": "https://github.com/X33834/world-walker",
-          "stars": 1,
-          "updated": "2026-10-24",
-          "desc": "World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34 个 MCP 工具 + 只读实况主舞台，四套可直接开玩的设定包。Deterministic rule engine for AI-driven interactive fiction (MCP server + read-only live panel)."
-        },
-        {
           "name": "aquapilot",
           "title": "aquapilot",
           "url": "https://github.com/X33834/aquapilot",
           "stars": 0,
-          "updated": "2026-10-24",
+          "updated": "2026-10-25",
           "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/Takács solver, robust AI operator, auditable flowsheet"
-        },
-        {
-          "name": "campushub",
-          "title": "campushub",
-          "url": "https://github.com/X33834/campushub",
-          "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "CampusHub — 校园服务平台"
-        },
-        {
-          "name": "creator-studio",
-          "title": "creator-studio",
-          "url": "https://github.com/X33834/creator-studio",
-          "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "稿台 Creator Studio: 本地优先的创作者 AI 制片台（选题→资料→脚本→分镜→包装→发布包→复盘），带审批、预算与审计"
         },
         {
           "name": "digilegacy",
           "title": "digilegacy",
           "url": "https://github.com/X33834/digilegacy",
           "stars": 0,
-          "updated": "2026-10-24",
+          "updated": "2026-10-25",
           "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
         },
         {
-          "name": "Flow",
-          "title": "Flow",
-          "url": "https://github.com/X33834/Flow",
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/X33834/rubbish",
           "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "ScholarHub — 期刊/预印本平台"
+        },
+        {
+          "name": "sciflow",
+          "title": "sciflow",
+          "url": "https://github.com/X33834/sciflow",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)"
+        },
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://github.com/X33834/spark",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "Spark — local-first AI coding agent (Ember)"
+        },
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://github.com/X33834/world-walker",
+          "stars": 1,
           "updated": "2026-10-24",
-          "desc": "Flow · AI 原生跨境出口电商平台｜买家商城 + 卖家 AI 工作台，5 个真实 LLM Agent、人工审批式运营副驾、真实支付与退款闭环。TypeScript 全栈开源。"
+          "desc": "World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34 个 MCP 工具 + 只读实况主舞台，四套可直接开玩的设定包。Deterministic rule engine for AI-driven interactive fiction (MCP server + read-only live panel)."
         }
       ]
     },
@@ -61,52 +61,52 @@
       "handle": "Morningstar202604",
       "repos": [
         {
-          "name": "workbench",
-          "title": "workbench",
-          "url": "https://github.com/Morningstar202604/workbench",
-          "stars": 1,
-          "updated": "2026-10-24",
-          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed."
-        },
-        {
           "name": "aquapilot",
           "title": "aquapilot",
           "url": "https://github.com/Morningstar202604/aquapilot",
           "stars": 0,
-          "updated": "2026-10-24",
+          "updated": "2026-10-25",
           "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/Takács solver, robust AI operator, auditable flowsheet. 347 tests, BSM1 Table 6 gate, live React control room."
-        },
-        {
-          "name": "campushub",
-          "title": "campushub",
-          "url": "https://github.com/Morningstar202604/campushub",
-          "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "CampusHub — 校园服务平台"
-        },
-        {
-          "name": "creator-studio",
-          "title": "creator-studio",
-          "url": "https://github.com/Morningstar202604/creator-studio",
-          "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "稿台 Creator Studio: 本地优先的创作者 AI 制片台（选题→资料→脚本→分镜→包装→发布包→复盘），带审批、预算与审计"
         },
         {
           "name": "digilegacy",
           "title": "digilegacy",
           "url": "https://github.com/Morningstar202604/digilegacy",
           "stars": 0,
-          "updated": "2026-10-24",
+          "updated": "2026-10-25",
           "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
         },
         {
-          "name": "Flow",
-          "title": "Flow",
-          "url": "https://github.com/Morningstar202604/Flow",
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/Morningstar202604/rubbish",
           "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "ScholarHub — 期刊/预印本平台"
+        },
+        {
+          "name": "sciflow",
+          "title": "sciflow",
+          "url": "https://github.com/Morningstar202604/sciflow",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)"
+        },
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://github.com/Morningstar202604/spark",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent"
+        },
+        {
+          "name": "workbench",
+          "title": "workbench",
+          "url": "https://github.com/Morningstar202604/workbench",
+          "stars": 1,
           "updated": "2026-10-24",
-          "desc": "Flow · AI 原生跨境出口电商平台｜买家商城 + 卖家 AI 工作台，5 个真实 LLM Agent、人工审批式运营副驾、真实支付与退款闭环。TypeScript 全栈开源。"
+          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed."
         }
       ]
     },
@@ -118,16 +118,16 @@
           "name": "xiaoman",
           "title": "xiaoman",
           "url": "https://github.com/badhope/xiaoman",
-          "stars": 83,
-          "updated": "2026-10-24",
+          "stars": 85,
+          "updated": "2026-10-25",
           "desc": "Xiaoman (小满) — a conversation-first, local-first personal finance AI agent · FastAPI + LangGraph + React · data 100% local · MIT"
         },
         {
           "name": "workbench",
           "title": "workbench",
           "url": "https://github.com/badhope/workbench",
-          "stars": 47,
-          "updated": "2026-10-24",
+          "stars": 48,
+          "updated": "2026-10-25",
           "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed."
         },
         {
@@ -135,32 +135,32 @@
           "title": "spark",
           "url": "https://github.com/badhope/spark",
           "stars": 21,
-          "updated": "2026-10-24",
+          "updated": "2026-10-25",
           "desc": "Spark — local-first coding agent (Python + React), self-hosted, MCP-native, with tool sandbox, repo-map context and OTel observability. 本地自托管的 AI 编程智能体。"
-        },
-        {
-          "name": "world-walker",
-          "title": "world-walker",
-          "url": "https://github.com/badhope/world-walker",
-          "stars": 16,
-          "updated": "2026-10-24",
-          "desc": "World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34 个 MCP 工具 + 只读实况主舞台，四套可直接开玩的设定包。Deterministic rule engine for AI-driven interactive fiction (MCP server + read-only live panel)."
         },
         {
           "name": "sciflow",
           "title": "sciflow",
           "url": "https://github.com/badhope/sciflow",
           "stars": 12,
-          "updated": "2026-10-24",
+          "updated": "2026-10-25",
           "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)"
         },
         {
-          "name": "mashang",
-          "title": "mashang",
-          "url": "https://github.com/badhope/mashang",
-          "stars": 9,
-          "updated": "2026-10-24",
-          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript(Rhino)，38 讲 + 17 讲扩展、assert 判题、变量快照；同源网页版可直接试玩。Android 7.0+ · Kotlin · MIT"
+          "name": "digilegacy",
+          "title": "digilegacy",
+          "url": "https://github.com/badhope/digilegacy",
+          "stars": 6,
+          "updated": "2026-10-25",
+          "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
+        },
+        {
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/badhope/rubbish",
+          "stars": 4,
+          "updated": "2026-10-25",
+          "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)"
         }
       ]
     },
@@ -223,52 +223,52 @@
       "handle": "badhope",
       "repos": [
         {
-          "name": "mashang",
-          "title": "badhope/mashang",
-          "url": "https://gitee.com/badhope/mashang",
+          "name": "digilegacy",
+          "title": "badhope/digilegacy",
+          "url": "https://gitee.com/badhope/digilegacy",
           "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript(Rhino)，38 讲 + 17 讲扩展、assert 判题、变量快照；同源网页版可直接试玩。Android 7.0+ · Kotlin · MIT"
+          "updated": "2026-10-26",
+          "desc": "DigiLegacy 归零 · 开源数字遗产管理及继承系统。150+ 平台政策库、AES-256-GCM 字段级加密、三级确认链。Tauri 2 + Rust + Vue 3，无服务器无遥测。官网：https://badhope.github.io/digilegacy/"
         },
         {
-          "name": "pocketmind",
-          "title": "badhope/pocketmind",
-          "url": "https://gitee.com/badhope/pocketmind",
+          "name": "spark",
+          "title": "badhope/spark",
+          "url": "https://gitee.com/badhope/spark",
           "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "PocketMind 口袋智灵 — 运行在安卓 Termux 里的本地优先常驻 Agent：41 个工具、服务端强制审批、MCP 双端、定时任务、备份恢复（Apache-2.0）"
+          "updated": "2026-10-26",
+          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent"
         },
         {
-          "name": "campushub",
-          "title": "badhope/campushub",
-          "url": "https://gitee.com/badhope/campushub",
-          "stars": 1,
-          "updated": "2026-10-24",
-          "desc": "CampusHub — self-hosted open-source campus community platform. Vue 3   NestJS   PostgreSQL   Prisma. Second-hand marketplace, lost"
+          "name": "zhike",
+          "title": "badhope/知客 Zhike",
+          "url": "https://gitee.com/badhope/zhike",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "知客 Zhike · 在线客服 Agent：QQ/微信渠道网关 + 可视化控制台 + RAG/工具/护栏管线。MIT"
         },
         {
           "name": "rubbish",
           "title": "badhope/rubbish",
           "url": "https://gitee.com/badhope/rubbish",
           "stars": 0,
-          "updated": "2026-10-24",
+          "updated": "2026-10-25",
           "desc": "ScholarHub — 期刊/预印本平台"
         },
         {
-          "name": "world-walker",
-          "title": "badhope/world-walker",
-          "url": "https://gitee.com/badhope/world-walker",
+          "name": "sciflow",
+          "title": "badhope/sciflow",
+          "url": "https://gitee.com/badhope/sciflow",
           "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "万界·行者 World Walker —— AI 驱动的文字互动游戏引擎：世界观无关规则内核（85+ 学术模型）+ MCP 服务器 + 酒馆生态兼容（角色卡/世界书）+ 实况面板"
+          "updated": "2026-10-25",
+          "desc": "SciFlow - 本地优先的全自动 AI 科研助手：LangGraph 编排流水线 / Agentic RAG / 8 种引用样式 / Electron 桌面端"
         },
         {
-          "name": "creator-studio",
-          "title": "badhope/creator-studio",
-          "url": "https://gitee.com/badhope/creator-studio",
+          "name": "mashang",
+          "title": "badhope/mashang",
+          "url": "https://gitee.com/badhope/mashang",
           "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "稿台 Creator Studio：本地优先的创作者 AI 制片台（选题→资料→脚本→分镜→包装→发布包→复盘）"
+          "updated": "2026-10-25",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript(Rhino)，38 讲 + 17 讲扩展、assert 判题、变量快照；同源网页版可直接试玩。Android 7.0+ · Kotlin · MIT"
         }
       ]
     }
