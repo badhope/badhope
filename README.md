@@ -42,12 +42,12 @@ My GitHub home — tools, indexes and small software experiments, all in the ope
 
 | Project | Stars | Updated |
 | --- | --- | --- |
+| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-26 |
+| [zhike — Zhike — self-hosted agent harness for personal assistants:…](https://github.com/badhope/zhike) | 0 | 2026-10-26 |
 | [xiaoman — Xiaoman (小满) — a conversation-first, local-first personal…](https://github.com/badhope/xiaoman) | 85 | 2026-10-25 |
 | [workbench — Workbench - a local-first desktop workbench (Tauri 2 +…](https://github.com/badhope/workbench) | 48 | 2026-10-25 |
 | [spark — Spark — local-first coding agent (Python + React), self-hos…](https://github.com/badhope/spark) | 21 | 2026-10-25 |
 | [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 12 | 2026-10-25 |
-| [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-25 |
-| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-25 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 

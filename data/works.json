@@ -1,11 +1,27 @@
 {
-  "as_of": "2026-10-25",
+  "as_of": "2026-10-26",
   "source": "scripts/discover_works.py",
   "accounts": {
     "gh_x33834": {
       "platform": "github",
       "handle": "X33834",
       "repos": [
+        {
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/X33834/rubbish",
+          "stars": 0,
+          "updated": "2026-10-26",
+          "desc": "ScholarHub — 期刊/预印本平台"
+        },
+        {
+          "name": "zhike",
+          "title": "zhike",
+          "url": "https://github.com/X33834/zhike",
+          "stars": 0,
+          "updated": "2026-10-26",
+          "desc": "Zhike — self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct loop, RAG, reminders, audit. 知客 · 通用个人助理 Agent 底座"
+        },
         {
           "name": "aquapilot",
           "title": "aquapilot",
@@ -23,14 +39,6 @@
           "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
         },
         {
-          "name": "rubbish",
-          "title": "rubbish",
-          "url": "https://github.com/X33834/rubbish",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "ScholarHub — 期刊/预印本平台"
-        },
-        {
           "name": "sciflow",
           "title": "sciflow",
           "url": "https://github.com/X33834/sciflow",
@@ -45,14 +53,6 @@
           "stars": 0,
           "updated": "2026-10-25",
           "desc": "Spark — local-first AI coding agent (Ember)"
-        },
-        {
-          "name": "world-walker",
-          "title": "world-walker",
-          "url": "https://github.com/X33834/world-walker",
-          "stars": 1,
-          "updated": "2026-10-24",
-          "desc": "World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34 个 MCP 工具 + 只读实况主舞台，四套可直接开玩的设定包。Deterministic rule engine for AI-driven interactive fiction (MCP server + read-only live panel)."
         }
       ]
     },
@@ -60,6 +60,22 @@
       "platform": "github",
       "handle": "Morningstar202604",
       "repos": [
+        {
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/Morningstar202604/rubbish",
+          "stars": 0,
+          "updated": "2026-10-26",
+          "desc": "ScholarHub — 期刊/预印本平台"
+        },
+        {
+          "name": "zhike",
+          "title": "zhike",
+          "url": "https://github.com/Morningstar202604/zhike",
+          "stars": 0,
+          "updated": "2026-10-26",
+          "desc": "Zhike — self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct loop, RAG, reminders, audit. 知客 · 通用个人助理 Agent 底座"
+        },
         {
           "name": "aquapilot",
           "title": "aquapilot",
@@ -77,14 +93,6 @@
           "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
         },
         {
-          "name": "rubbish",
-          "title": "rubbish",
-          "url": "https://github.com/Morningstar202604/rubbish",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "ScholarHub — 期刊/预印本平台"
-        },
-        {
           "name": "sciflow",
           "title": "sciflow",
           "url": "https://github.com/Morningstar202604/sciflow",
@@ -99,14 +107,6 @@
           "stars": 0,
           "updated": "2026-10-25",
           "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent"
-        },
-        {
-          "name": "workbench",
-          "title": "workbench",
-          "url": "https://github.com/Morningstar202604/workbench",
-          "stars": 1,
-          "updated": "2026-10-24",
-          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed."
         }
       ]
     },
@@ -114,6 +114,22 @@
       "platform": "github",
       "handle": "badhope",
       "repos": [
+        {
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/badhope/rubbish",
+          "stars": 4,
+          "updated": "2026-10-26",
+          "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)"
+        },
+        {
+          "name": "zhike",
+          "title": "zhike",
+          "url": "https://github.com/badhope/zhike",
+          "stars": 0,
+          "updated": "2026-10-26",
+          "desc": "Zhike — self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct loop, RAG, reminders, audit. 知客 · 通用个人助理 Agent 底座"
+        },
         {
           "name": "xiaoman",
           "title": "xiaoman",
@@ -145,22 +161,6 @@
           "stars": 12,
           "updated": "2026-10-25",
           "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)"
-        },
-        {
-          "name": "digilegacy",
-          "title": "digilegacy",
-          "url": "https://github.com/badhope/digilegacy",
-          "stars": 6,
-          "updated": "2026-10-25",
-          "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
-        },
-        {
-          "name": "rubbish",
-          "title": "rubbish",
-          "url": "https://github.com/badhope/rubbish",
-          "stars": 4,
-          "updated": "2026-10-25",
-          "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)"
         }
       ]
     },
@@ -168,6 +168,14 @@
       "platform": "gitcode",
       "handle": "badhope",
       "repos": [
+        {
+          "name": "zhike",
+          "title": "badhope / zhike",
+          "url": "https://gitcode.com/badhope/zhike",
+          "stars": 0,
+          "updated": "2026-10-26",
+          "desc": "Zhike · 通用个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + QQ/Web 双渠道 + RAG + 提醒 + 审计"
+        },
         {
           "name": "pocketmind",
           "title": "badhope / pocketmind",
@@ -207,14 +215,6 @@
           "stars": 0,
           "updated": "2026-10-24",
           "desc": "稿台 Creator Studio：本地优先的创作者 AI 制片台"
-        },
-        {
-          "name": "rubbish",
-          "title": "badhope / rubbish",
-          "url": "https://gitcode.com/badhope/rubbish",
-          "stars": 1,
-          "updated": "2026-10-23",
-          "desc": "ScholarHub · 学术期刊与预印本多租户平台（投稿/评审/目录/阅读/导出等 10 模块，FastAPI+React19+PostgreSQL RLS）"
         }
       ]
     },
@@ -222,6 +222,22 @@
       "platform": "gitee",
       "handle": "badhope",
       "repos": [
+        {
+          "name": "zhike",
+          "title": "badhope/zhike",
+          "url": "https://gitee.com/badhope/zhike",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "Zhike · 通用个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + QQ/Web 双渠道 + RAG + 提醒 + 审计"
+        },
+        {
+          "name": "rubbish",
+          "title": "badhope/rubbish",
+          "url": "https://gitee.com/badhope/rubbish",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "ScholarHub — 期刊/预印本平台"
+        },
         {
           "name": "digilegacy",
           "title": "badhope/digilegacy",
@@ -237,22 +253,6 @@
           "stars": 0,
           "updated": "2026-10-26",
           "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent"
-        },
-        {
-          "name": "zhike",
-          "title": "badhope/知客 Zhike",
-          "url": "https://gitee.com/badhope/zhike",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "知客 Zhike · 在线客服 Agent：QQ/微信渠道网关 + 可视化控制台 + RAG/工具/护栏管线。MIT"
-        },
-        {
-          "name": "rubbish",
-          "title": "badhope/rubbish",
-          "url": "https://gitee.com/badhope/rubbish",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "ScholarHub — 期刊/预印本平台"
         },
         {
           "name": "sciflow",
