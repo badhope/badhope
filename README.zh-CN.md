@@ -42,12 +42,12 @@
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
-| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-26 |
-| [zhike — Zhike — self-hosted agent harness for personal assistants:…](https://github.com/badhope/zhike) | 0 | 2026-10-26 |
-| [xiaoman — Xiaoman (小满) — a conversation-first, local-first personal…](https://github.com/badhope/xiaoman) | 85 | 2026-10-25 |
+| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 85 | 2026-10-27 |
+| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-27 |
+| [EQ-Worker — EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v…](https://github.com/badhope/EQ-Worker) | 0 | 2026-10-27 |
+| [zhike — Zhike — self-hosted agent harness for personal assistants:…](https://github.com/badhope/zhike) | 0 | 2026-10-27 |
 | [workbench — Workbench - a local-first desktop workbench (Tauri 2 +…](https://github.com/badhope/workbench) | 48 | 2026-10-25 |
 | [spark — Spark — local-first coding agent (Python + React), self-hos…](https://github.com/badhope/spark) | 21 | 2026-10-25 |
-| [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 12 | 2026-10-25 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 

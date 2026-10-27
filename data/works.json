@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-26",
+  "as_of": "2026-10-27",
   "source": "scripts/discover_works.py",
   "accounts": {
     "gh_x33834": {
@@ -7,11 +7,27 @@
       "handle": "X33834",
       "repos": [
         {
+          "name": "EQ-Worker",
+          "title": "EQ-Worker",
+          "url": "https://github.com/X33834/EQ-Worker",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
+        },
+        {
+          "name": "moneyhelper",
+          "title": "moneyhelper",
+          "url": "https://github.com/X33834/moneyhelper",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
+        },
+        {
           "name": "rubbish",
           "title": "rubbish",
           "url": "https://github.com/X33834/rubbish",
           "stars": 0,
-          "updated": "2026-10-26",
+          "updated": "2026-10-27",
           "desc": "ScholarHub — 期刊/预印本平台"
         },
         {
@@ -19,7 +35,7 @@
           "title": "zhike",
           "url": "https://github.com/X33834/zhike",
           "stars": 0,
-          "updated": "2026-10-26",
+          "updated": "2026-10-27",
           "desc": "Zhike — self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct loop, RAG, reminders, audit. 知客 · 通用个人助理 Agent 底座"
         },
         {
@@ -37,22 +53,6 @@
           "stars": 0,
           "updated": "2026-10-25",
           "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
-        },
-        {
-          "name": "sciflow",
-          "title": "sciflow",
-          "url": "https://github.com/X33834/sciflow",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)"
-        },
-        {
-          "name": "spark",
-          "title": "spark",
-          "url": "https://github.com/X33834/spark",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "Spark — local-first AI coding agent (Ember)"
         }
       ]
     },
@@ -61,11 +61,27 @@
       "handle": "Morningstar202604",
       "repos": [
         {
+          "name": "EQ-Worker",
+          "title": "EQ-Worker",
+          "url": "https://github.com/Morningstar202604/EQ-Worker",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
+        },
+        {
+          "name": "moneyhelper",
+          "title": "moneyhelper",
+          "url": "https://github.com/Morningstar202604/moneyhelper",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
+        },
+        {
           "name": "rubbish",
           "title": "rubbish",
           "url": "https://github.com/Morningstar202604/rubbish",
           "stars": 0,
-          "updated": "2026-10-26",
+          "updated": "2026-10-27",
           "desc": "ScholarHub — 期刊/预印本平台"
         },
         {
@@ -73,7 +89,7 @@
           "title": "zhike",
           "url": "https://github.com/Morningstar202604/zhike",
           "stars": 0,
-          "updated": "2026-10-26",
+          "updated": "2026-10-27",
           "desc": "Zhike — self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct loop, RAG, reminders, audit. 知客 · 通用个人助理 Agent 底座"
         },
         {
@@ -91,22 +107,6 @@
           "stars": 0,
           "updated": "2026-10-25",
           "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
-        },
-        {
-          "name": "sciflow",
-          "title": "sciflow",
-          "url": "https://github.com/Morningstar202604/sciflow",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)"
-        },
-        {
-          "name": "spark",
-          "title": "spark",
-          "url": "https://github.com/Morningstar202604/spark",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent"
         }
       ]
     },
@@ -115,28 +115,36 @@
       "handle": "badhope",
       "repos": [
         {
+          "name": "moneyhelper",
+          "title": "moneyhelper",
+          "url": "https://github.com/badhope/moneyhelper",
+          "stars": 85,
+          "updated": "2026-10-27",
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
+        },
+        {
           "name": "rubbish",
           "title": "rubbish",
           "url": "https://github.com/badhope/rubbish",
           "stars": 4,
-          "updated": "2026-10-26",
+          "updated": "2026-10-27",
           "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)"
+        },
+        {
+          "name": "EQ-Worker",
+          "title": "EQ-Worker",
+          "url": "https://github.com/badhope/EQ-Worker",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
         },
         {
           "name": "zhike",
           "title": "zhike",
           "url": "https://github.com/badhope/zhike",
           "stars": 0,
-          "updated": "2026-10-26",
+          "updated": "2026-10-27",
           "desc": "Zhike — self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct loop, RAG, reminders, audit. 知客 · 通用个人助理 Agent 底座"
-        },
-        {
-          "name": "xiaoman",
-          "title": "xiaoman",
-          "url": "https://github.com/badhope/xiaoman",
-          "stars": 85,
-          "updated": "2026-10-25",
-          "desc": "Xiaoman (小满) — a conversation-first, local-first personal finance AI agent · FastAPI + LangGraph + React · data 100% local · MIT"
         },
         {
           "name": "workbench",
@@ -153,14 +161,6 @@
           "stars": 21,
           "updated": "2026-10-25",
           "desc": "Spark — local-first coding agent (Python + React), self-hosted, MCP-native, with tool sandbox, repo-map context and OTel observability. 本地自托管的 AI 编程智能体。"
-        },
-        {
-          "name": "sciflow",
-          "title": "sciflow",
-          "url": "https://github.com/badhope/sciflow",
-          "stars": 12,
-          "updated": "2026-10-25",
-          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)"
         }
       ]
     },
@@ -168,6 +168,30 @@
       "platform": "gitcode",
       "handle": "badhope",
       "repos": [
+        {
+          "name": "no-money",
+          "title": "badhope / no-money",
+          "url": "https://gitcode.com/badhope/no-money",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "没钱 No Money — 灵活就业者收入精算与权益决策平台。收入/税务/社保/权益测算，纯前端离线。"
+        },
+        {
+          "name": "moneyhelper",
+          "title": "badhope / moneyhelper",
+          "url": "https://gitcode.com/badhope/moneyhelper",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
+        },
+        {
+          "name": "harbour",
+          "title": "badhope / harbour",
+          "url": "https://gitcode.com/badhope/harbour",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "内容港 Harbour —— 多平台内容发布中枢：AI 写稿（程序内写作风格档案）、AIGC 合规门禁（安全扫描+双模型二审+显式标识）、10 个平台一键分发与原地更新。"
+        },
         {
           "name": "zhike",
           "title": "badhope / zhike",
@@ -191,30 +215,6 @@
           "stars": 0,
           "updated": "2026-10-24",
           "desc": "把 AI 对抗做成节目：六种确定性赛制、SSE 直播、可拖动回放、自动+人工导播、事实校验战报、高光视频与分享卡。Self-hosted AI arena broadcaster."
-        },
-        {
-          "name": "Flow",
-          "title": "badhope / Flow",
-          "url": "https://gitcode.com/badhope/Flow",
-          "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "Flow · AI 原生跨境出口电商平台｜买家商城 + 卖家 AI 工作台，5 个真实 LLM Agent、人工审批式运营副驾、真实支付与退款闭环。TypeScript 全栈开源。"
-        },
-        {
-          "name": "EQ-Worker",
-          "title": "badhope / EQ-Worker",
-          "url": "https://gitcode.com/badhope/EQ-Worker",
-          "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
-        },
-        {
-          "name": "creator-studio",
-          "title": "badhope / creator-studio",
-          "url": "https://gitcode.com/badhope/creator-studio",
-          "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "稿台 Creator Studio：本地优先的创作者 AI 制片台"
         }
       ]
     },
@@ -227,7 +227,7 @@
           "title": "badhope/zhike",
           "url": "https://gitee.com/badhope/zhike",
           "stars": 0,
-          "updated": "2026-10-27",
+          "updated": "2026-10-28",
           "desc": "Zhike · 通用个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + QQ/Web 双渠道 + RAG + 提醒 + 审计"
         },
         {
@@ -235,8 +235,24 @@
           "title": "badhope/rubbish",
           "url": "https://gitee.com/badhope/rubbish",
           "stars": 0,
-          "updated": "2026-10-27",
+          "updated": "2026-10-28",
           "desc": "ScholarHub — 期刊/预印本平台"
+        },
+        {
+          "name": "EQ-Worker",
+          "title": "badhope/EQ-Worker",
+          "url": "https://gitee.com/badhope/EQ-Worker",
+          "stars": 0,
+          "updated": "2026-10-28",
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
+        },
+        {
+          "name": "moneyhelper",
+          "title": "badhope/moneyhelper",
+          "url": "https://gitee.com/badhope/moneyhelper",
+          "stars": 0,
+          "updated": "2026-10-28",
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
         },
         {
           "name": "digilegacy",
@@ -253,22 +269,6 @@
           "stars": 0,
           "updated": "2026-10-26",
           "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent"
-        },
-        {
-          "name": "sciflow",
-          "title": "badhope/sciflow",
-          "url": "https://gitee.com/badhope/sciflow",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "SciFlow - 本地优先的全自动 AI 科研助手：LangGraph 编排流水线 / Agentic RAG / 8 种引用样式 / Electron 桌面端"
-        },
-        {
-          "name": "mashang",
-          "title": "badhope/mashang",
-          "url": "https://gitee.com/badhope/mashang",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript(Rhino)，38 讲 + 17 讲扩展、assert 判题、变量快照；同源网页版可直接试玩。Android 7.0+ · Kotlin · MIT"
         }
       ]
     }
