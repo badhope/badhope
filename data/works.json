@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-28",
+  "as_of": "2026-10-29",
   "source": "scripts/discover_works.py",
   "accounts": {
     "gh_x33834": {
@@ -7,11 +7,19 @@
       "handle": "X33834",
       "repos": [
         {
-          "name": "agent-work-contract",
-          "title": "agent-work-contract",
-          "url": "https://github.com/X33834/agent-work-contract",
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/X33834/rubbish",
           "stars": 0,
-          "updated": "2026-10-28",
+          "updated": "2026-10-29",
+          "desc": "ScholarHub — 期刊/预印本平台"
+        },
+        {
+          "name": "rules",
+          "title": "rules",
+          "url": "https://github.com/X33834/rules",
+          "stars": 0,
+          "updated": "2026-10-29",
           "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks for ZCode / Claude Code / opencode / Codex."
         },
         {
@@ -29,14 +37,6 @@
           "stars": 0,
           "updated": "2026-10-28",
           "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
-        },
-        {
-          "name": "rubbish",
-          "title": "rubbish",
-          "url": "https://github.com/X33834/rubbish",
-          "stars": 0,
-          "updated": "2026-10-28",
-          "desc": "ScholarHub — 期刊/预印本平台"
         },
         {
           "name": "zhike",
@@ -61,11 +61,27 @@
       "handle": "Morningstar202604",
       "repos": [
         {
-          "name": "agent-work-contract",
-          "title": "agent-work-contract",
-          "url": "https://github.com/Morningstar202604/agent-work-contract",
+          "name": "EQ-Worker",
+          "title": "EQ-Worker",
+          "url": "https://github.com/Morningstar202604/EQ-Worker",
+          "stars": 1,
+          "updated": "2026-10-29",
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
+        },
+        {
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/Morningstar202604/rubbish",
           "stars": 0,
-          "updated": "2026-10-28",
+          "updated": "2026-10-29",
+          "desc": "ScholarHub — 期刊/预印本平台"
+        },
+        {
+          "name": "rules",
+          "title": "rules",
+          "url": "https://github.com/Morningstar202604/rules",
+          "stars": 0,
+          "updated": "2026-10-29",
           "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands and 8 runtime hooks for ZCode / Claude Code / opencode / Codex — one command install, idempotent, reversible."
         },
         {
@@ -85,28 +101,12 @@
           "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
         },
         {
-          "name": "rubbish",
-          "title": "rubbish",
-          "url": "https://github.com/Morningstar202604/rubbish",
-          "stars": 0,
-          "updated": "2026-10-28",
-          "desc": "ScholarHub — 期刊/预印本平台"
-        },
-        {
           "name": "zhike",
           "title": "zhike",
           "url": "https://github.com/Morningstar202604/zhike",
           "stars": 0,
           "updated": "2026-10-28",
           "desc": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. 知客 · 可自托管的个人助理 Agent 底座"
-        },
-        {
-          "name": "EQ-Worker",
-          "title": "EQ-Worker",
-          "url": "https://github.com/Morningstar202604/EQ-Worker",
-          "stars": 0,
-          "updated": "2026-10-27",
-          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
         }
       ]
     },
@@ -118,9 +118,33 @@
           "name": "moneyhelper",
           "title": "moneyhelper",
           "url": "https://github.com/badhope/moneyhelper",
-          "stars": 85,
-          "updated": "2026-10-28",
+          "stars": 86,
+          "updated": "2026-10-29",
           "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
+        },
+        {
+          "name": "sciflow",
+          "title": "sciflow",
+          "url": "https://github.com/badhope/sciflow",
+          "stars": 11,
+          "updated": "2026-10-29",
+          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)"
+        },
+        {
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/badhope/rubbish",
+          "stars": 4,
+          "updated": "2026-10-29",
+          "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)"
+        },
+        {
+          "name": "rules",
+          "title": "rules",
+          "url": "https://github.com/badhope/rules",
+          "stars": 0,
+          "updated": "2026-10-29",
+          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks for ZCode / Claude Code / opencode / Codex."
         },
         {
           "name": "digilegacy",
@@ -131,36 +155,12 @@
           "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
         },
         {
-          "name": "rubbish",
-          "title": "rubbish",
-          "url": "https://github.com/badhope/rubbish",
-          "stars": 4,
-          "updated": "2026-10-28",
-          "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)"
-        },
-        {
-          "name": "agent-work-contract",
-          "title": "agent-work-contract",
-          "url": "https://github.com/badhope/agent-work-contract",
-          "stars": 0,
-          "updated": "2026-10-28",
-          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks for ZCode / Claude Code / opencode / Codex."
-        },
-        {
           "name": "zhike",
           "title": "zhike",
           "url": "https://github.com/badhope/zhike",
           "stars": 0,
           "updated": "2026-10-28",
           "desc": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. 知客 · 可自托管的个人助理 Agent 底座"
-        },
-        {
-          "name": "EQ-Worker",
-          "title": "EQ-Worker",
-          "url": "https://github.com/badhope/EQ-Worker",
-          "stars": 0,
-          "updated": "2026-10-27",
-          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
         }
       ]
     },
@@ -177,11 +177,11 @@
           "desc": "可自托管的个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + 混合检索 RAG + 提醒 + 权限分级 + 审计链，QQ/Web 双渠道 · Self-hosted AI personal assistant"
         },
         {
-          "name": "agent-work-contract",
-          "title": "badhope / agent-work-contract",
-          "url": "https://gitcode.com/badhope/agent-work-contract",
+          "name": "rules",
+          "title": "badhope / rules",
+          "url": "https://gitcode.com/badhope/rules",
           "stars": 0,
-          "updated": "2026-10-28",
+          "updated": "2026-10-29",
           "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks."
         },
         {
@@ -223,28 +223,36 @@
       "handle": "badhope",
       "repos": [
         {
-          "name": "zhike",
-          "title": "badhope/zhike",
-          "url": "https://gitee.com/badhope/zhike",
-          "stars": 0,
-          "updated": "2026-10-28",
-          "desc": "Zhike · 通用个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + QQ/Web 双渠道 + RAG + 提醒 + 审计"
-        },
-        {
           "name": "rubbish",
           "title": "badhope/rubbish",
           "url": "https://gitee.com/badhope/rubbish",
           "stars": 0,
-          "updated": "2026-10-28",
+          "updated": "2026-10-29",
           "desc": "ScholarHub — 期刊/预印本平台"
         },
         {
-          "name": "EQ-Worker",
-          "title": "badhope/EQ-Worker",
-          "url": "https://gitee.com/badhope/EQ-Worker",
+          "name": "zhike",
+          "title": "badhope/zhike",
+          "url": "https://gitee.com/badhope/zhike",
+          "stars": 0,
+          "updated": "2026-10-29",
+          "desc": "可自托管的个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + 混合检索 RAG + 提醒 + 权限分级 + 审计链，QQ/Web 双渠道 · Self-hosted AI personal assistant"
+        },
+        {
+          "name": "agent-builder",
+          "title": "badhope/agent-builder",
+          "url": "https://gitee.com/badhope/agent-builder",
+          "stars": 1,
+          "updated": "2026-10-28",
+          "desc": "AI Agent 全栈构建参考：24 篇生产级 TypeScript 指南（ReAct / MCP / RAG / 多 Agent / 记忆 / 护栏 / 部署 / 产品化），坚持不重复造轮子，逐层对标业界成熟方案，附 2026 技术生态现状与开源项目二次开发对标清单。"
+        },
+        {
+          "name": "digilegacy",
+          "title": "badhope/digilegacy",
+          "url": "https://gitee.com/badhope/digilegacy",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
+          "desc": "DigiLegacy 归零 · 开源数字遗产管理及继承系统。150+ 平台政策库、AES-256-GCM 字段级加密、三级确认链。Tauri 2 + Rust + Vue 3，无服务器无遥测。官网：https://badhope.github.io/digilegacy/"
         },
         {
           "name": "moneyhelper",
@@ -255,20 +263,12 @@
           "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
         },
         {
-          "name": "digilegacy",
-          "title": "badhope/digilegacy",
-          "url": "https://gitee.com/badhope/digilegacy",
+          "name": "EQ-Worker",
+          "title": "badhope/EQ-Worker",
+          "url": "https://gitee.com/badhope/EQ-Worker",
           "stars": 0,
-          "updated": "2026-10-26",
-          "desc": "DigiLegacy 归零 · 开源数字遗产管理及继承系统。150+ 平台政策库、AES-256-GCM 字段级加密、三级确认链。Tauri 2 + Rust + Vue 3，无服务器无遥测。官网：https://badhope.github.io/digilegacy/"
-        },
-        {
-          "name": "spark",
-          "title": "badhope/spark",
-          "url": "https://gitee.com/badhope/spark",
-          "stars": 0,
-          "updated": "2026-10-26",
-          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent"
+          "updated": "2026-10-28",
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
         }
       ]
     }

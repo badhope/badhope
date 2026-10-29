@@ -42,12 +42,12 @@
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
-| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 85 | 2026-10-28 |
+| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
+| [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
+| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-29 |
+| [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-10-29 |
 | [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
-| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-28 |
-| [agent-work-contract — Portable AI working contract: rules, 71 skill…](https://github.com/badhope/agent-work-contract) | 0 | 2026-10-28 |
 | [zhike — Self-hosted agent harness for personal assistants: OpenAI f…](https://github.com/badhope/zhike) | 0 | 2026-10-28 |
-| [EQ-Worker — EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v…](https://github.com/badhope/EQ-Worker) | 0 | 2026-10-27 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 
