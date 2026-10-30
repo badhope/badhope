@@ -118,12 +118,13 @@ def achievements_svg(acct, key, stats, lang, discovered=None, theme=None, years=
     else:
         panel_def = ""
         bg_attr = 'fill="none"'
+    # 没配渐变就不输出 defs：空 <defs></defs> 是纯噪声，还会破坏产物字节级复现。
+    defs_block = ("<defs>%s</defs>\n" % panel_def) if panel_def else ""
     return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{alt}">
-<defs>{panel_def}</defs>
-<rect width="{w}" height="{h}" {bg_attr}/>
+{defs_block}<rect width="{w}" height="{h}" {bg_attr}/>
 {parts}
 </svg>
 """.format(
-        w=width, h=height, panel_def=panel_def, bg_attr=bg_attr, parts="\n".join(parts),
+        w=width, h=height, defs_block=defs_block, bg_attr=bg_attr, parts="\n".join(parts),
         alt=esc(labels["achievements"] if "achievements" in labels else "Achievements"),
     )

@@ -13,6 +13,7 @@ from .textutil import esc
 from .achievements import achievements_svg as _achievements_svg
 from .badge import make_badge
 from .data import _snake_available
+from .emoji import parse_emojis
 from .plugins import card
 from .snake import generate as snake_generate
 from .typing import typing_svg
