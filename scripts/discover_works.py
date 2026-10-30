@@ -51,7 +51,12 @@ def _norm(repo, platform):
       - Gitee 的 html_url 带 .git 后缀，展示时要剥掉。
     """
     ident = _repo_ident(repo, platform)
-    title = (repo.get("human_name") or "").strip() or ident
+    # GitCode / Gitee 的 human_name 形如「badhope / no-money」「badhope/zhike」，
+    # 表格里再拼一次 owner 会重复；只保留仓库名。
+    title = (repo.get("human_name") or "").strip()
+    if "/" in title:
+        title = title.rsplit("/", 1)[-1].strip()
+    title = title or ident
     updated = (repo.get("updated_at") or repo.get("pushed_at") or "")[:10]
     desc = (repo.get("description") or "").strip()
     stars = repo.get("stargazers_count") or 0
@@ -64,8 +69,11 @@ def _norm(repo, platform):
         url = (repo.get("html_url") or ("https://gitee.com/%s/%s" % (owner, ident))).removesuffix(".git")
     else:
         url = repo.get("html_url") or ("https://github.com/%s/%s" % (owner, ident))
+    # language 用于本地生成「语言构成」卡（不需要额外 API，也不依赖 GitHub 的
+    # linguist 统计）。Gitee 多数仓库该字段为空，缺失时留空串由渲染层跳过。
+    language = (repo.get("language") or "").strip()
     return {"name": ident, "title": title, "url": url, "stars": stars,
-            "updated": updated, "desc": desc}
+            "updated": updated, "desc": desc, "language": language}
 
 
 def fetch_repos(platform, handle):
@@ -159,7 +167,9 @@ def refresh_works(limit=None):
         if limit:
             repos = repos[:limit]
         old = (accounts.get(key) or {}).get("repos") or []
-        if [r["name"] for r in old] != [r["name"] for r in repos]:
+        # 全字段比对：仓库名不变但 star / 描述 / 更新时间变化也必须落盘，
+        # 否则作品表会长期停留在首次发现时的旧数字。
+        if old != repos:
             changed = True
         accounts[key] = {
             "platform": acct["platform"],

@@ -1,13 +1,12 @@
 [English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)
 
 <p align="center">
-  <picture>
-  <source type="image/png" srcset="./assets/png/hero.png" />
   <img src="./assets/hero.svg" alt="badhope · github.com/badhope" width="100%" />
-  </picture>
 </p>
 
-<p align="center"><i>把抽象想法落地为可交互界面的全栈开发者。</i></p>
+<p align="center">
+  <img src="./assets/typing-zh-CN.svg" alt="把抽象想法落地为可交互界面的全栈开发者。" width="600" />
+</p>
 
 <p align="center"><sub>先解决问题，再写代码。 — John Johnson</sub></p>
 
@@ -42,10 +41,10 @@
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
-| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
 | [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
 | [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-29 |
 | [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-10-29 |
+| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 85 | 2026-10-28 |
 | [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
 | [zhike — Self-hosted agent harness for personal assistants: OpenAI f…](https://github.com/badhope/zhike) | 0 | 2026-10-28 |
 
@@ -60,30 +59,26 @@
 </p>
 
 <p align="center">
-  <img src="./assets/cards/stats-cn.svg" alt="GitHub stats" width="49%" />
-  <img src="./assets/cards/langs-cn.svg" alt="Top languages" width="49%" />
+  <img src="./assets/stats-zh-CN.svg" alt="26 公开仓库 · 238 累计 Star · 20 关注者 · 24 上游合并" width="49%" />
+  <img src="./assets/langs-zh-CN.svg" alt="语言构成" width="49%" />
 </p>
-
-## 置顶作品
 
 <p align="center">
-  <img src="./assets/cards/pin-1-cn.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-2-cn.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-3-cn.svg" alt="pinned work" width="32%" />
+  <img src="./assets/activity-zh-CN.svg" alt="26 公开仓库 · 238 累计 Star · 20 关注者 · 24 上游合并" width="100%" />
 </p>
 
-## 贡献图
+## 成就
 
 <p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />
-  <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />
-  </picture>
+  <img src="./assets/snake-zh-CN.svg" alt="contribution snake" width="100%" />
 </p>
 
-## 开源足迹
+<details>
+<summary>开源足迹</summary>
 
 补丁已合入 ohmyzsh · tldr · icalendar · NUR 等上游项目，明细见两个 GitHub 账号: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
+
+</details>
 
 ## 写作
 

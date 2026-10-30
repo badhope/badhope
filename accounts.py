@@ -4,11 +4,11 @@
 五个账号同一套模板：WORKS 是作品目录，ACCOUNTS 是每处主页的配置，
 生成器（scripts/generate.py）据此渲染出各账号的 README + SVG 资产。
 
-数据来源：2026-10-14 对各平台 API 的实查结果（仓库列表、star 数、
+数据来源：2026-10-28 对各平台 API 的实查结果（仓库列表、star 数、
 已合并/在评 PR 清单见 CONTRIB_* 注释）。改文案只改本文件。
 """
 
-KIT_VERSION = "1.0.0"
+KIT_VERSION = "2.0.0"
 
 SERIF = "Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif"
 SANS = "Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif"
@@ -136,6 +136,7 @@ LABELS = {
         "date": "Date",
         "article": "Article",
         "pinned": "Pinned work",
+        "achievements": "Achievements",
         "also_on": "Also on",
     },
     "zh-CN": {
@@ -172,6 +173,7 @@ LABELS = {
         "date": "日期",
         "article": "文章",
         "pinned": "置顶作品",
+        "achievements": "成就",
         "also_on": "同步发布",
     },
     "ja": {
@@ -208,16 +210,17 @@ LABELS = {
         "date": "日付",
         "article": "記事",
         "pinned": "ピン留め作品",
+        "achievements": "実績",
         "also_on": "同時掲載",
     },
 }
 
 # --------------------------------------------------------------------------
-# 作品目录（只收录 2026-10-14 实查存在的仓库；links 里的 URL 均来自当日 API）
+# 作品目录（2026-10-28 经三平台 API 实查：每个链接都必须指向真实存在的仓库）
 # --------------------------------------------------------------------------
 WORKS = {
-    "xiaoman": {
-        "title": "Xiaoman 小满",
+    "moneyhelper": {
+        "title": "Moneyhelper",
         "desc": {
             "md": "Chat-first personal finance agent — local-first, LangGraph orchestration",
             "zh-CN": "对话优先的个人理财 Agent —— 本地优先，LangGraph 编排",
@@ -226,11 +229,12 @@ WORKS = {
         "tags": {"md": "AI · Finance", "zh-CN": "AI · 金融", "ja": "AI · 金融"},
         "links": {
             "github": [
-                "https://github.com/X33834/xiaoman",
-                "https://github.com/Morningstar202604/xiaoman",
-                "https://github.com/badhope/xiaoman",
+                "https://github.com/X33834/moneyhelper",
+                "https://github.com/Morningstar202604/moneyhelper",
+                "https://github.com/badhope/moneyhelper",
             ],
-            "gitcode": "https://gitcode.com/badhope/xiaoman",
+            "gitcode": "https://gitcode.com/badhope/moneyhelper",
+            "gitee": "https://gitee.com/badhope/moneyhelper",
         },
     },
     "shopcash": {
@@ -264,6 +268,7 @@ WORKS = {
                 "https://github.com/badhope/digilegacy",
             ],
             "gitcode": "https://gitcode.com/badhope/digilegacy",
+            "gitee": "https://gitee.com/badhope/digilegacy",
         },
     },
     "spark": {
@@ -281,6 +286,7 @@ WORKS = {
                 "https://github.com/badhope/spark",
             ],
             "gitcode": "https://gitcode.com/badhope/spark",
+            "gitee": "https://gitee.com/badhope/spark",
         },
     },
     "workbench": {
@@ -318,64 +324,6 @@ WORKS = {
             "gitcode": "https://gitcode.com/badhope/sciflow",
         },
     },
-    "lingxi": {
-        "title": "ZhiXi 智犀",
-        "desc": {
-            "md": "A 24/7 full-stack digital-employee engine",
-            "zh-CN": "24 小时全栈数字员工引擎",
-            "ja": "24時間フルスタック「デジタル従業員」エンジン",
-        },
-        "tags": {"md": "AI · Agents", "zh-CN": "AI · Agent", "ja": "AI · エージェント"},
-        "links": {
-            "github": [
-                "https://github.com/X33834/lingxi",
-                "https://github.com/Morningstar202604/lingxi",
-                "https://github.com/badhope/lingxi",
-            ],
-            "gitcode": "https://gitcode.com/badhope/lingxi",
-        },
-    },
-    "chushi-radar": {
-        "title": "Chushi Radar 人情世故雷达",
-        "desc": {
-            "md": "A lightweight local-first social-intelligence assistant",
-            "zh-CN": "人脉经营 · 人情账本 · 社交修炼，本地优先的轻量个人助手",
-            "ja": "ローカル優先の軽量ソーシャル知能アシスタント",
-        },
-        "tags": {"md": "Tools · Social", "zh-CN": "工具 · 社交", "ja": "ツール · ソーシャル"},
-        "links": {
-            "github": [
-                "https://github.com/X33834/chushi-radar",
-                "https://github.com/Morningstar202604/chushi-radar",
-            ],
-            "gitcode": "https://gitcode.com/badhope/chushi-radar",
-        },
-    },
-    "awesome-ai-devkit": {
-        "title": "Awesome AI DevKit",
-        "desc": {
-            "md": "Cross-platform AI coding config ecosystem — turn CLI agents into a full dev team",
-            "zh-CN": "跨平台场景化 AI 编程配置生态 —— 把 CLI Agent 变成完整 AI 开发团队",
-            "ja": "クロスプラットフォーム AI 開発設定エコシステム",
-        },
-        "tags": {"md": "AI · Toolchain", "zh-CN": "AI · 工具链", "ja": "AI · ツールチェーン"},
-        "links": {
-            "github": [
-                "https://github.com/X33834/awesome-ai-devkit",
-                "https://github.com/Morningstar202604/awesome-ai-devkit",
-            ],
-        },
-    },
-    "awesome-skillkit": {
-        "title": "Awesome SkillKit",
-        "desc": {
-            "md": "Curated Agent Skills scene packs (57 packs / 403 skills)",
-            "zh-CN": "Agent Skills 场景包精选集（57 packs / 403 skills）",
-            "ja": "Agent Skills シーンパック集（57 packs / 403 skills）",
-        },
-        "tags": {"md": "AI · Skills", "zh-CN": "AI · 技能库", "ja": "AI · スキル"},
-        "links": {"github": ["https://github.com/X33834/awesome-skillkit"]},
-    },
     "agent-builder": {
         "title": "Agent Builder",
         "desc": {
@@ -407,6 +355,7 @@ WORKS = {
                 "https://github.com/X33834/CodePocket",
             ],
             "gitcode": "https://gitcode.com/badhope/CodePocket",
+            "gitee": "https://gitee.com/badhope/CodePocket",
         },
     },
     "zhike": {
@@ -418,6 +367,11 @@ WORKS = {
         },
         "tags": {"md": "AI · Support", "zh-CN": "AI · 客服", "ja": "AI · サポート"},
         "links": {
+            "github": [
+                "https://github.com/X33834/zhike",
+                "https://github.com/Morningstar202604/zhike",
+                "https://github.com/badhope/zhike",
+            ],
             "gitcode": "https://gitcode.com/badhope/zhike",
             "gitee": "https://gitee.com/badhope/zhike",
         },
@@ -430,19 +384,29 @@ WORKS = {
             "ja": "Cangjie 言語によるハードウェアロボット制御フレームワーク",
         },
         "tags": {"md": "Hardware · Robotics", "zh-CN": "硬件 · 机器人", "ja": "ハードウェア · ロボット"},
-        "links": {"gitcode": "https://gitcode.com/qingss0/bot4cj"},
+        "links": {
+            "gitcode": "https://gitcode.com/qingss0/bot4cj",
+        },
     },
-    "mashang-python": {
-        "title": "码上 Python · PY//NOW",
+    "mashang": {
+        "title": "码上 Mashang · PY//NOW",
         "desc": {
             "md": "Cyberpunk offline Python learning terminal — 30 quests, assert grading",
             "zh-CN": "赛博朋克风离线 Python 学习终端 —— 30 讲闯关 · assert 判题",
             "ja": "サイバーパンク風オフライン Python 学習ターミナル",
         },
         "tags": {"md": "Education", "zh-CN": "教育", "ja": "教育"},
-        "links": {"gitcode": "https://gitcode.com/badhope/mashang-python"},
+        "links": {
+            "github": [
+                "https://github.com/X33834/mashang",
+                "https://github.com/Morningstar202604/mashang",
+                "https://github.com/badhope/mashang",
+            ],
+            "gitcode": "https://gitcode.com/badhope/mashang",
+            "gitee": "https://gitee.com/badhope/mashang",
+        },
     },
-    "scholarhub": {
+    "rubbish": {
         "title": "ScholarHub",
         "desc": {
             "md": "Multi-tenant journal and preprint platform — submission / review / reading",
@@ -450,9 +414,17 @@ WORKS = {
             "ja": "学術ジャーナル・プレプリントのマルチテナント基盤",
         },
         "tags": {"md": "SaaS · Academia", "zh-CN": "SaaS · 学术", "ja": "SaaS · 学術"},
-        "links": {"gitcode": "https://gitcode.com/badhope/scholarhub"},
+        "links": {
+            "github": [
+                "https://github.com/X33834/rubbish",
+                "https://github.com/Morningstar202604/rubbish",
+                "https://github.com/badhope/rubbish",
+            ],
+            "gitcode": "https://gitcode.com/badhope/rubbish",
+            "gitee": "https://gitee.com/badhope/rubbish",
+        },
     },
-    "content-harbor": {
+    "harbour": {
         "title": "Harbor 内容港",
         "desc": {
             "md": "Multi-platform publishing hub — AI drafting, compliance gate, one-click delivery",
@@ -461,19 +433,32 @@ WORKS = {
         },
         "tags": {"md": "Content · Toolchain", "zh-CN": "内容 · 工具链", "ja": "コンテンツ · ツール"},
         "links": {
-            "github": ["https://github.com/X33834/content-harbor-fixed"],
-            "gitcode": "https://gitcode.com/badhope/content-harbor",
+            "github": [
+                "https://github.com/X33834/content-harbor",
+                "https://github.com/Morningstar202604/content-harbor",
+                "https://github.com/badhope/content-harbor",
+            ],
+            "gitcode": "https://gitcode.com/badhope/harbour",
+            "gitee": "https://gitee.com/badhope/content-harbor",
         },
     },
-    "GlobalEcom-AI": {
-        "title": "GlobalEcom AI",
+    "Flow": {
+        "title": "Flow",
         "desc": {
             "md": "AI-native cross-border commerce platform — storefront, seller desk, 5 agents",
             "zh-CN": "AI 原生跨境出货台 —— 买家商城 + 卖家工作台 + 5 个 AI Agent",
             "ja": "AI ネイティブ越境EC基盤 — ストアフロント・セラー台・5 エージェント",
         },
         "tags": {"md": "Commerce · AI", "zh-CN": "电商 · AI", "ja": "EC · AI"},
-        "links": {"gitcode": "https://gitcode.com/badhope/GlobalEcom-AI"},
+        "links": {
+            "github": [
+                "https://github.com/X33834/Flow",
+                "https://github.com/Morningstar202604/Flow",
+                "https://github.com/badhope/Flow",
+            ],
+            "gitcode": "https://gitcode.com/badhope/Flow",
+            "gitee": "https://gitee.com/badhope/Flow",
+        },
     },
     "melee": {
         "title": "Melee AI 大乱斗",
@@ -483,17 +468,15 @@ WORKS = {
             "ja": "LLM バトルアリーナ — リアルタイム観戦・二重審判・サンドボックス",
         },
         "tags": {"md": "AI · Playground", "zh-CN": "AI · 实验", "ja": "AI · 実験"},
-        "links": {"gitcode": "https://gitcode.com/badhope/melee"},
-    },
-    "lens": {
-        "title": "Lens",
-        "desc": {
-            "md": "A lens for your AI coding agent — turn transcripts into a visual map",
-            "zh-CN": "AI 编程代理透镜 —— 把对话流转为可视化全景",
-            "ja": "AI コーディングエージェントのレンズ — 対話ログを可視化",
+        "links": {
+            "github": [
+                "https://github.com/X33834/melee",
+                "https://github.com/Morningstar202604/melee",
+                "https://github.com/badhope/melee",
+            ],
+            "gitcode": "https://gitcode.com/badhope/melee",
+            "gitee": "https://gitee.com/badhope/melee",
         },
-        "tags": {"md": "AI · Visualisation", "zh-CN": "AI · 可视化", "ja": "AI · 可視化"},
-        "links": {"gitcode": "https://gitcode.com/badhope/lens"},
     },
     "world-walker": {
         "title": "World Walker 万界·行者",
@@ -503,40 +486,15 @@ WORKS = {
             "ja": "AI 駆動のテキストインタラクティブ小説エンジン",
         },
         "tags": {"md": "Games · Writing", "zh-CN": "游戏 · 写作", "ja": "ゲーム · 執筆"},
-        "links": {"gitcode": "https://gitcode.com/badhope/world-walker"},
-    },
-    "KeBaiPay": {
-        "title": "KeBaiPay 科佰收单",
-        "desc": {
-            "md": "Self-hosted compliant payment intake — licensed channels, open API, reconciliation",
-            "zh-CN": "自托管开源合规聚合收单 —— 持牌通道 + 开放 API + 渠道对账",
-            "ja": "セルフホスト型コンプライアント決済収単基盤",
-        },
-        "tags": {"md": "Payments · Compliance", "zh-CN": "支付 · 合规", "ja": "決済 · コンプラ"},
         "links": {
-            "github": ["https://github.com/Morningstar202604/KeBaiPay"],
-            "gitcode": "https://gitcode.com/badhope/KeBaiPay",
+            "github": [
+                "https://github.com/X33834/world-walker",
+                "https://github.com/Morningstar202604/world-walker",
+                "https://github.com/badhope/world-walker",
+            ],
+            "gitcode": "https://gitcode.com/badhope/world-walker",
+            "gitee": "https://gitee.com/badhope/world-walker",
         },
-    },
-    "p2wlan": {
-        "title": "p2wlan",
-        "desc": {
-            "md": "Cross-platform P2P virtual LAN — NAT traversal, IPv6 direct, room networking",
-            "zh-CN": "跨平台 P2P 虚拟局域网 —— NAT 穿透 / IPv6 直连 / 房间组网",
-            "ja": "クロスプラットフォーム P2P 仮想 LAN — NAT 穿越・IPv6・ルーム網",
-        },
-        "tags": {"md": "Networking · Tools", "zh-CN": "网络 · 工具", "ja": "ネットワーク · ツール"},
-        "links": {"github": ["https://github.com/Morningstar202604/p2wlan"]},
-    },
-    "novel-engine": {
-        "title": "Novel Engine",
-        "desc": {
-            "md": "Novel-writing engine — story bible, cross-chapter memory, rule-based consistency audit",
-            "zh-CN": "长篇小说写作引擎 —— 设定集 / 跨章记忆 / 一致性审计（0 LLM 成本规则审计）",
-            "ja": "長編小説エンジン — 設定集・章間記憶・一貫性監査",
-        },
-        "tags": {"md": "Writing · AI", "zh-CN": "写作 · AI", "ja": "執筆 · AI"},
-        "links": {"github": ["https://github.com/Morningstar202604/novel-engine"]},
     },
     "DU": {
         "title": "DU 渡",
@@ -546,67 +504,11 @@ WORKS = {
             "ja": "クライアントサイド中国術数ツールキット — 49 ツール",
         },
         "tags": {"md": "Tools · Culture", "zh-CN": "工具 · 文化", "ja": "ツール · 文化"},
-        "links": {"github": ["https://github.com/badhope/DU"]},
-    },
-    "API-Market": {
-        "title": "API Market",
-        "desc": {
-            "md": "A searchable catalogue of 14,000+ public APIs",
-            "zh-CN": "14,000+ 公共 API 的可搜索目录",
-            "ja": "14,000+ の公開 API を検索できるカタログ",
+        "links": {
+            "github": [
+                "https://github.com/badhope/DU",
+            ],
         },
-        "tags": {"md": "Data · Index", "zh-CN": "数据 · 索引", "ja": "データ · 索引"},
-        "links": {"github": ["https://github.com/badhope/API-Market"]},
-    },
-    "MCP-HUB": {
-        "title": "MCP Hub",
-        "desc": {
-            "md": "A curated registry of 4,400+ MCP servers and resources",
-            "zh-CN": "4,400+ MCP 服务器与资源精选登记册",
-            "ja": "4,400+ の MCP サーバー＆リソース登録簿",
-        },
-        "tags": {"md": "AI · Index", "zh-CN": "AI · 索引", "ja": "AI · 索引"},
-        "links": {"github": ["https://github.com/badhope/MCP-HUB"]},
-    },
-    "NetTools-Hub": {
-        "title": "NetTools Hub",
-        "desc": {
-            "md": "An index of 120+ actively maintained networking tools",
-            "zh-CN": "120+ 活跃维护的网络工具索引",
-            "ja": "120+ のネットワークツール索引",
-        },
-        "tags": {"md": "Networking · Index", "zh-CN": "网络 · 索引", "ja": "ネットワーク · 索引"},
-        "links": {"github": ["https://github.com/badhope/NetTools-Hub"]},
-    },
-    "ExamPrediction": {
-        "title": "ExamPrediction",
-        "desc": {
-            "md": "CET-6 option-pattern research — measured hit rate 27–30% vs 25% random",
-            "zh-CN": "CET-6 选项规律研究 —— 实测命中率 27–30% vs 随机 25%",
-            "ja": "CET-6 選択肢パターン研究 — 実測 27〜30% vs ランダム 25%",
-        },
-        "tags": {"md": "Research · Education", "zh-CN": "研究 · 教育", "ja": "研究 · 教育"},
-        "links": {"github": ["https://github.com/badhope/ExamPrediction"]},
-    },
-    "urban-pulse": {
-        "title": "Urban Pulse",
-        "desc": {
-            "md": "An open urban-economy observatory — 10 Chinese cities, 16 years of data",
-            "zh-CN": "开源城市经济观测站 —— 10 座中国城市 × 16 年数据",
-            "ja": "オープンな都市経済観測所 — 中国 10 都市・16 年分のデータ",
-        },
-        "tags": {"md": "Data · Visualisation", "zh-CN": "数据 · 可视化", "ja": "データ · 可視化"},
-        "links": {"github": ["https://github.com/badhope/urban-pulse"]},
-    },
-    "OnlineCode": {
-        "title": "OnlineCode / DocForge",
-        "desc": {
-            "md": "An offline-first dev toolbox — 20 browser tools and multi-language notes",
-            "zh-CN": "离线优先的开发者工具箱 —— 20 个浏览器工具 + 多语言笔记",
-            "ja": "オフライン優先の開発者ツールボックス — ブラウザツール 20 種",
-        },
-        "tags": {"md": "Tools · Offline", "zh-CN": "工具 · 离线", "ja": "ツール · オフライン"},
-        "links": {"github": ["https://github.com/badhope/OnlineCode"]},
     },
     "campushub": {
         "title": "CampusHub",
@@ -617,6 +519,11 @@ WORKS = {
         },
         "tags": {"md": "SaaS · Campus", "zh-CN": "SaaS · 校园", "ja": "SaaS · キャンパス"},
         "links": {
+            "github": [
+                "https://github.com/X33834/campushub",
+                "https://github.com/Morningstar202604/campushub",
+                "https://github.com/badhope/campushub",
+            ],
             "gitcode": "https://gitcode.com/badhope/campushub",
             "gitee": "https://gitee.com/badhope/campushub",
         },
@@ -679,18 +586,24 @@ GITHUB_ACCOUNTS_FOR_SHARED = [
 # 作品卡片图标（data/icons/ 内的文件名后缀；缺图即用通用方块）
 # --------------------------------------------------------------------------
 WORK_ICONS = {
-    "xiaoman": "python", "shopcash": "typescript", "digilegacy": "typescript",
-    "spark": "rust", "workbench": "tauri",
-    "sciflow": "python", "lingxi": "nodejs", "chushi-radar": "javascript",
-    "awesome-ai-devkit": "openai", "awesome-skillkit": "anthropic",
-    "agent-builder": "typescript", "CodePocket": "python", "zhike": "wechat",
-    "bot4cj": "java", "mashang-python": "python",
-    "scholarhub": "nodejs", "content-harbor": "openai", "GlobalEcom-AI": "react",
-    "melee": "ollama", "lens": "vscode", "world-walker": "markdown",
-    "KeBaiPay": "postgresql", "p2wlan": "go", "novel-engine": "huggingface",
-    "DU": "javascript", "API-Market": "graphql", "MCP-HUB": "nodejs",
-    "NetTools-Hub": "nginx", "ExamPrediction": "python", "urban-pulse": "javascript",
-    "OnlineCode": "vscode", "campushub": "vuejs",
+    "moneyhelper": "python",
+    "shopcash": "typescript",
+    "digilegacy": "typescript",
+    "spark": "rust",
+    "workbench": "tauri",
+    "sciflow": "python",
+    "agent-builder": "typescript",
+    "CodePocket": "python",
+    "zhike": "wechat",
+    "bot4cj": "java",
+    "mashang": "python",
+    "rubbish": "nodejs",
+    "harbour": "openai",
+    "Flow": "react",
+    "melee": "ollama",
+    "world-walker": "markdown",
+    "DU": "javascript",
+    "campushub": "vuejs",
 }
 
 # --------------------------------------------------------------------------
@@ -739,7 +652,7 @@ ACCOUNTS = {
         "contrib_graph": True,
         "skills": ["typescript", "python", "rust", "nodejs", "react", "docker", "git", "linux", "postgresql", "nginx"],
         "works": [
-            "xiaoman", "shopcash", "digilegacy",
+            "moneyhelper", "shopcash", "digilegacy",
             "agent-builder", "workbench",
         ],
         "contrib": "own",
@@ -786,7 +699,7 @@ ACCOUNTS = {
         "contrib_graph": True,
         "skills": ["python", "typescript", "go", "vitejs", "nixos", "docker", "postgresql", "redis", "huggingface", "ollama"],
         "works": [
-            "KeBaiPay", "xiaoman",
+            "moneyhelper", "moneyhelper",
             "shopcash", "sciflow", "spark",
         ],
         "contrib": "own",
@@ -880,8 +793,8 @@ ACCOUNTS = {
         },
         "skills": ["python", "dart", "kotlin", "java", "flutter", "wechat", "linux", "git", "markdown"],
         "works": [
-            "zhike", "xiaoman", "workbench",
-            "spark", "sciflow", "scholarhub", "bot4cj",
+            "zhike", "moneyhelper", "workbench",
+            "spark", "sciflow", "rubbish", "bot4cj",
         ],
         "contrib": "shared",
     },

@@ -1,13 +1,12 @@
 [English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)
 
 <p align="center">
-  <picture>
-  <source type="image/png" srcset="./assets/png/hero.png" />
   <img src="./assets/hero.svg" alt="badhope · github.com/badhope" width="100%" />
-  </picture>
 </p>
 
-<p align="center"><i>A full-stack developer turning abstract ideas into working interfaces.</i></p>
+<p align="center">
+  <img src="./assets/typing-md.svg" alt="A full-stack developer turning abstract ideas into working interfaces." width="600" />
+</p>
 
 <p align="center"><sub>First, solve the problem. Then, write the code. — John Johnson</sub></p>
 
@@ -42,10 +41,10 @@ My GitHub home — tools, indexes and small software experiments, all in the ope
 
 | Project | Stars | Updated |
 | --- | --- | --- |
-| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
 | [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
 | [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-29 |
 | [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-10-29 |
+| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 85 | 2026-10-28 |
 | [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
 | [zhike — Self-hosted agent harness for personal assistants: OpenAI f…](https://github.com/badhope/zhike) | 0 | 2026-10-28 |
 
@@ -60,30 +59,30 @@ All public repositories: [github.com/badhope](https://github.com/badhope)
 </p>
 
 <p align="center">
-  <img src="./assets/cards/stats-en.svg" alt="GitHub stats" width="49%" />
-  <img src="./assets/cards/langs-en.svg" alt="Top languages" width="49%" />
+  <img src="./assets/stats-en.svg" alt="26 public repos · 238 stars · 20 followers · 24 upstream merges" width="49%" />
+  <img src="./assets/langs-md.svg" alt="Languages" width="49%" />
 </p>
-
-## Pinned work
 
 <p align="center">
-  <img src="./assets/cards/pin-1-en.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-2-en.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-3-en.svg" alt="pinned work" width="32%" />
+  <img src="./assets/activity-md.svg" alt="26 public repos · 238 stars · 20 followers · 24 upstream merges" width="100%" />
 </p>
 
-## Contribution graph
+## Achievements
 
 <p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />
-  <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />
-  </picture>
+  <img src="./assets/snake-md.svg" alt="contribution snake" width="100%" />
 </p>
 
-## Open source
+<p align="center">
+  <img src="./assets/achievements-en.svg" alt="Achievements" width="90%" />
+</p>
+
+<details>
+<summary>Open source</summary>
 
 Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details on the two GitHub accounts: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
+
+</details>
 
 ## Writing
 

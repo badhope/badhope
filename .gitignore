@@ -1,9 +1,23 @@
 # build outputs
 dist/
 preview/
+pack/
+.tmp/
 __pycache__/
 *.pyc
 .aqg/
 
 # 卡片渲染器的依赖（CI 里 npm install 安装；本地生成用）
 node_modules/
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# 运行态缓存（HTTP 条件请求缓存 / 虚拟环境 / 本地基线）
+.cache/
+.venv/
+.baseline/
+.build-manifest.json

@@ -29,9 +29,9 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      SHARED_PATHS: accounts.py data assets scripts .gitignore
-      KEEP_PATHS: README.md README.zh-CN.md README.ja.md profile.json .github
+    # 共享层清单统一由 scripts/mirror-shared.sh 的默认 SHARED_PATHS 维护；
+    # 这里不要再覆盖 —— 旧版曾因两处清单漂移（缺 kit/、带整个 assets/）
+    # 造成镜像端 ImportError 与跨账号资产污染（回灌事故的直接根因）。
     steps:
       - uses: actions/checkout@v4
         with:

@@ -12,7 +12,8 @@
           "url": "https://github.com/X33834/rubbish",
           "stars": 0,
           "updated": "2026-10-29",
-          "desc": "ScholarHub — 期刊/预印本平台"
+          "desc": "ScholarHub — 期刊/预印本平台",
+          "language": "Python"
         },
         {
           "name": "rules",
@@ -20,7 +21,8 @@
           "url": "https://github.com/X33834/rules",
           "stars": 0,
           "updated": "2026-10-29",
-          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks for ZCode / Claude Code / opencode / Codex."
+          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks for ZCode / Claude Code / opencode / Codex.",
+          "language": "Python"
         },
         {
           "name": "digilegacy",
@@ -28,7 +30,8 @@
           "url": "https://github.com/X33834/digilegacy",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
+          "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry.",
+          "language": "Rust"
         },
         {
           "name": "moneyhelper",
@@ -36,7 +39,8 @@
           "url": "https://github.com/X33834/moneyhelper",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。",
+          "language": "Python"
         },
         {
           "name": "zhike",
@@ -44,7 +48,8 @@
           "url": "https://github.com/X33834/zhike",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. 知客 · 可自托管的个人助理 Agent 底座"
+          "desc": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. 知客 · 可自托管的个人助理 Agent 底座",
+          "language": "Python"
         },
         {
           "name": "EQ-Worker",
@@ -52,7 +57,170 @@
           "url": "https://github.com/X33834/EQ-Worker",
           "stars": 0,
           "updated": "2026-10-27",
-          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0",
+          "language": "HTML"
+        },
+        {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://github.com/X33834/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/Takács solver, robust AI operator, auditable flowsheet",
+          "language": "TypeScript"
+        },
+        {
+          "name": "sciflow",
+          "title": "sciflow",
+          "url": "https://github.com/X33834/sciflow",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)",
+          "language": "TypeScript"
+        },
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://github.com/X33834/spark",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "Spark — local-first AI coding agent (Ember)",
+          "language": "Python"
+        },
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://github.com/X33834/world-walker",
+          "stars": 1,
+          "updated": "2026-10-24",
+          "desc": "World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34 个 MCP 工具 + 只读实况主舞台，四套可直接开玩的设定包。Deterministic rule engine for AI-driven interactive fiction (MCP server + read-only live panel).",
+          "language": "Python"
+        },
+        {
+          "name": "campushub",
+          "title": "campushub",
+          "url": "https://github.com/X33834/campushub",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "CampusHub — 校园服务平台",
+          "language": "JavaScript"
+        },
+        {
+          "name": "creator-studio",
+          "title": "creator-studio",
+          "url": "https://github.com/X33834/creator-studio",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "稿台 Creator Studio: 本地优先的创作者 AI 制片台（选题→资料→脚本→分镜→包装→发布包→复盘），带审批、预算与审计",
+          "language": "TypeScript"
+        },
+        {
+          "name": "Flow",
+          "title": "Flow",
+          "url": "https://github.com/X33834/Flow",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "Flow · AI 原生跨境出口电商平台｜买家商城 + 卖家 AI 工作台，5 个真实 LLM Agent、人工审批式运营副驾、真实支付与退款闭环。TypeScript 全栈开源。",
+          "language": "TypeScript"
+        },
+        {
+          "name": "mashang",
+          "title": "mashang",
+          "url": "https://github.com/X33834/mashang",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript(Rhino)，38 讲 + 17 讲扩展、assert 判题、变量快照；同源网页版可直接试玩。Android 7.0+ · Kotlin · MIT",
+          "language": "Kotlin"
+        },
+        {
+          "name": "melee",
+          "title": "melee",
+          "url": "https://github.com/X33834/melee",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "把 AI 对抗做成节目：六种确定性赛制、SSE 直播、可拖动回放、自动+人工导播、事实校验战报、高光视频与分享卡。",
+          "language": "Python"
+        },
+        {
+          "name": "pocketmind",
+          "title": "pocketmind",
+          "url": "https://github.com/X33834/pocketmind",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "PocketMind 口袋智灵 — a local-first, always-on AI agent that runs inside Android (Termux): 41 tools, server-enforced approval, MCP server+client, scheduled jobs, backup/restore. Apache-2.0.",
+          "language": "Python"
+        },
+        {
+          "name": "workbench",
+          "title": "workbench",
+          "url": "https://github.com/X33834/workbench",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "task-digest",
+          "title": "task-digest",
+          "url": "https://github.com/X33834/task-digest",
+          "stars": 0,
+          "updated": "2026-10-23",
+          "desc": "ZCode 任务摘要插件：MCP 工具 + 侧栏可视化面板 + /digest 命令（只读本地任务与会话数据库）",
+          "language": "JavaScript"
+        },
+        {
+          "name": "CodePocket",
+          "title": "CodePocket",
+          "url": "https://github.com/X33834/CodePocket",
+          "stars": 2,
+          "updated": "2026-10-19",
+          "desc": "CodePocket — an offline-first Python IDE for Android. Native CPython 3.13 bundled in the APK; install, open, code. No downloads, no network, no ads. Apache-2.0.",
+          "language": "Kotlin"
+        },
+        {
+          "name": "shopcash",
+          "title": "shopcash",
+          "url": "https://github.com/X33834/shopcash",
+          "stars": 0,
+          "updated": "2026-10-18",
+          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
+          "language": "JavaScript"
+        },
+        {
+          "name": "content-harbor",
+          "title": "content-harbor",
+          "url": "https://github.com/X33834/content-harbor",
+          "stars": 2,
+          "updated": "2026-10-17",
+          "desc": "Content Harbor — 桌面 + Web 双形态 AI 内容发布中枢：AI 写稿、一键多投、原地更新、三档发布模式、AIGC 合规门禁",
+          "language": "Python"
+        },
+        {
+          "name": "agent-builder",
+          "title": "agent-builder",
+          "url": "https://github.com/X33834/agent-builder",
+          "stars": 0,
+          "updated": "2026-10-17",
+          "desc": "Production-grade AI Agent reference for any coding agent (Claude Code / Cursor / Copilot / Codex). 24 reference nodes: ReAct Loop, MCP, RAG, Multi-Agent, Memory, Guardrails. Includes build-vs-buy decision tree + integration patterns. No deprecated stack, all TypeScript production code. https://morningstar202604.github.io/agent-builder",
+          "language": "JavaScript"
+        },
+        {
+          "name": "flexcalc-pro",
+          "title": "flexcalc-pro",
+          "url": "https://github.com/X33834/flexcalc-pro",
+          "stars": 0,
+          "updated": "2026-10-17",
+          "desc": "LingSuan Pro — income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3. 灵算 Pro 灵活就业者收入精算。",
+          "language": "TypeScript"
+        },
+        {
+          "name": "mutual-follow",
+          "title": "mutual-follow",
+          "url": "https://github.com/X33834/mutual-follow",
+          "stars": 0,
+          "updated": "2026-10-13",
+          "desc": "Mutual follow with X33834 / Morningstar202604 / badhope",
+          "language": ""
         }
       ]
     },
@@ -61,20 +229,13 @@
       "handle": "Morningstar202604",
       "repos": [
         {
-          "name": "EQ-Worker",
-          "title": "EQ-Worker",
-          "url": "https://github.com/Morningstar202604/EQ-Worker",
-          "stars": 1,
-          "updated": "2026-10-29",
-          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
-        },
-        {
           "name": "rubbish",
           "title": "rubbish",
           "url": "https://github.com/Morningstar202604/rubbish",
           "stars": 0,
           "updated": "2026-10-29",
-          "desc": "ScholarHub — 期刊/预印本平台"
+          "desc": "ScholarHub — 期刊/预印本平台",
+          "language": "Python"
         },
         {
           "name": "rules",
@@ -82,7 +243,8 @@
           "url": "https://github.com/Morningstar202604/rules",
           "stars": 0,
           "updated": "2026-10-29",
-          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands and 8 runtime hooks for ZCode / Claude Code / opencode / Codex — one command install, idempotent, reversible."
+          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands and 8 runtime hooks for ZCode / Claude Code / opencode / Codex — one command install, idempotent, reversible.",
+          "language": "Python"
         },
         {
           "name": "digilegacy",
@@ -90,7 +252,8 @@
           "url": "https://github.com/Morningstar202604/digilegacy",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
+          "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry.",
+          "language": "Rust"
         },
         {
           "name": "moneyhelper",
@@ -98,7 +261,8 @@
           "url": "https://github.com/Morningstar202604/moneyhelper",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。",
+          "language": "Python"
         },
         {
           "name": "zhike",
@@ -106,7 +270,170 @@
           "url": "https://github.com/Morningstar202604/zhike",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. 知客 · 可自托管的个人助理 Agent 底座"
+          "desc": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. 知客 · 可自托管的个人助理 Agent 底座",
+          "language": "Python"
+        },
+        {
+          "name": "EQ-Worker",
+          "title": "EQ-Worker",
+          "url": "https://github.com/Morningstar202604/EQ-Worker",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0",
+          "language": "HTML"
+        },
+        {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://github.com/Morningstar202604/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/Takács solver, robust AI operator, auditable flowsheet. 347 tests, BSM1 Table 6 gate, live React control room.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "sciflow",
+          "title": "sciflow",
+          "url": "https://github.com/Morningstar202604/sciflow",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)",
+          "language": "TypeScript"
+        },
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://github.com/Morningstar202604/spark",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent",
+          "language": "Python"
+        },
+        {
+          "name": "workbench",
+          "title": "workbench",
+          "url": "https://github.com/Morningstar202604/workbench",
+          "stars": 1,
+          "updated": "2026-10-24",
+          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "campushub",
+          "title": "campushub",
+          "url": "https://github.com/Morningstar202604/campushub",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "CampusHub — 校园服务平台",
+          "language": "JavaScript"
+        },
+        {
+          "name": "creator-studio",
+          "title": "creator-studio",
+          "url": "https://github.com/Morningstar202604/creator-studio",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "稿台 Creator Studio: 本地优先的创作者 AI 制片台（选题→资料→脚本→分镜→包装→发布包→复盘），带审批、预算与审计",
+          "language": "TypeScript"
+        },
+        {
+          "name": "Flow",
+          "title": "Flow",
+          "url": "https://github.com/Morningstar202604/Flow",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "Flow · AI 原生跨境出口电商平台｜买家商城 + 卖家 AI 工作台，5 个真实 LLM Agent、人工审批式运营副驾、真实支付与退款闭环。TypeScript 全栈开源。",
+          "language": "TypeScript"
+        },
+        {
+          "name": "mashang",
+          "title": "mashang",
+          "url": "https://github.com/Morningstar202604/mashang",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript(Rhino)，38 讲 + 17 讲扩展、assert 判题、变量快照；同源网页版可直接试玩。Android 7.0+ · Kotlin · MIT",
+          "language": "Kotlin"
+        },
+        {
+          "name": "melee",
+          "title": "melee",
+          "url": "https://github.com/Morningstar202604/melee",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "把 AI 对抗做成节目：六种确定性赛制、SSE 直播、可拖动回放、自动+人工导播、事实校验战报、高光视频与分享卡。",
+          "language": "Python"
+        },
+        {
+          "name": "pocketmind",
+          "title": "pocketmind",
+          "url": "https://github.com/Morningstar202604/pocketmind",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "PocketMind 口袋智灵 — a local-first, always-on AI agent that runs inside Android (Termux): 41 tools, server-enforced approval, MCP server+client, scheduled jobs, backup/restore. Apache-2.0.",
+          "language": "Python"
+        },
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://github.com/Morningstar202604/world-walker",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34 个 MCP 工具 + 只读实况主舞台，四套可直接开玩的设定包。Deterministic rule engine for AI-driven interactive fiction (MCP server + read-only live panel).",
+          "language": "Python"
+        },
+        {
+          "name": "task-digest",
+          "title": "task-digest",
+          "url": "https://github.com/Morningstar202604/task-digest",
+          "stars": 0,
+          "updated": "2026-10-23",
+          "desc": "ZCode 任务摘要插件：MCP 工具 + 侧栏可视化面板 + /digest 命令（只读本地任务与会话数据库）",
+          "language": "JavaScript"
+        },
+        {
+          "name": "agent-builder",
+          "title": "agent-builder",
+          "url": "https://github.com/Morningstar202604/agent-builder",
+          "stars": 1,
+          "updated": "2026-10-17",
+          "desc": "Production-grade AI Agent reference for any coding agent (Claude Code / Cursor / Copilot / Codex). 24 reference nodes: ReAct Loop, MCP, RAG, Multi-Agent, Memory, Guardrails. Includes build-vs-buy decision tree + integration patterns. No deprecated stack, all TypeScript production code. https://morningstar202604.github.io/agent-builder",
+          "language": "JavaScript"
+        },
+        {
+          "name": "CodePocket",
+          "title": "CodePocket",
+          "url": "https://github.com/Morningstar202604/CodePocket",
+          "stars": 0,
+          "updated": "2026-10-17",
+          "desc": "CodePocket — 离线优先的安卓 Python IDE（内置 CPython 3.13）",
+          "language": "Kotlin"
+        },
+        {
+          "name": "content-harbor",
+          "title": "content-harbor",
+          "url": "https://github.com/Morningstar202604/content-harbor",
+          "stars": 0,
+          "updated": "2026-10-17",
+          "desc": "Content Harbor — 桌面 + Web 双形态 AI 内容发布中枢：AI 写稿、一键多投、原地更新、三档发布模式、AIGC 合规门禁",
+          "language": "Python"
+        },
+        {
+          "name": "flexcalc-pro",
+          "title": "flexcalc-pro",
+          "url": "https://github.com/Morningstar202604/flexcalc-pro",
+          "stars": 0,
+          "updated": "2026-10-17",
+          "desc": "LingSuan Pro — income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3. 灵算 Pro 灵活就业者收入精算。",
+          "language": "TypeScript"
+        },
+        {
+          "name": "shopcash",
+          "title": "shopcash",
+          "url": "https://github.com/Morningstar202604/shopcash",
+          "stars": 0,
+          "updated": "2026-10-17",
+          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
+          "language": "JavaScript"
         }
       ]
     },
@@ -115,20 +442,13 @@
       "handle": "badhope",
       "repos": [
         {
-          "name": "moneyhelper",
-          "title": "moneyhelper",
-          "url": "https://github.com/badhope/moneyhelper",
-          "stars": 86,
-          "updated": "2026-10-29",
-          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
-        },
-        {
           "name": "sciflow",
           "title": "sciflow",
           "url": "https://github.com/badhope/sciflow",
           "stars": 11,
           "updated": "2026-10-29",
-          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)"
+          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)",
+          "language": "TypeScript"
         },
         {
           "name": "rubbish",
@@ -136,7 +456,8 @@
           "url": "https://github.com/badhope/rubbish",
           "stars": 4,
           "updated": "2026-10-29",
-          "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)"
+          "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)",
+          "language": "Python"
         },
         {
           "name": "rules",
@@ -144,7 +465,17 @@
           "url": "https://github.com/badhope/rules",
           "stars": 0,
           "updated": "2026-10-29",
-          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks for ZCode / Claude Code / opencode / Codex."
+          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks for ZCode / Claude Code / opencode / Codex.",
+          "language": "Python"
+        },
+        {
+          "name": "moneyhelper",
+          "title": "moneyhelper",
+          "url": "https://github.com/badhope/moneyhelper",
+          "stars": 85,
+          "updated": "2026-10-28",
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。",
+          "language": "Python"
         },
         {
           "name": "digilegacy",
@@ -152,7 +483,8 @@
           "url": "https://github.com/badhope/digilegacy",
           "stars": 6,
           "updated": "2026-10-28",
-          "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry."
+          "desc": "DigiLegacy 归零 — open-source, local-first digital legacy & digital inheritance manager. 150+ platform policy DB, AES-256-GCM field-level encryption, dead man's switch with three-stage chain. Tauri 2 + Rust + Vue 3. No servers, no telemetry.",
+          "language": "Rust"
         },
         {
           "name": "zhike",
@@ -160,7 +492,179 @@
           "url": "https://github.com/badhope/zhike",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. 知客 · 可自托管的个人助理 Agent 底座"
+          "desc": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. 知客 · 可自托管的个人助理 Agent 底座",
+          "language": "Python"
+        },
+        {
+          "name": "EQ-Worker",
+          "title": "EQ-Worker",
+          "url": "https://github.com/badhope/EQ-Worker",
+          "stars": 0,
+          "updated": "2026-10-27",
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0",
+          "language": "HTML"
+        },
+        {
+          "name": "workbench",
+          "title": "workbench",
+          "url": "https://github.com/badhope/workbench",
+          "stars": 48,
+          "updated": "2026-10-25",
+          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://github.com/badhope/spark",
+          "stars": 21,
+          "updated": "2026-10-25",
+          "desc": "Spark — local-first coding agent (Python + React), self-hosted, MCP-native, with tool sandbox, repo-map context and OTel observability. 本地自托管的 AI 编程智能体。",
+          "language": "Python"
+        },
+        {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://github.com/badhope/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/Takács solver, robust AI operator, auditable flowsheet",
+          "language": "TypeScript"
+        },
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://github.com/badhope/world-walker",
+          "stars": 16,
+          "updated": "2026-10-24",
+          "desc": "World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34 个 MCP 工具 + 只读实况主舞台，四套可直接开玩的设定包。Deterministic rule engine for AI-driven interactive fiction (MCP server + read-only live panel).",
+          "language": "Python"
+        },
+        {
+          "name": "mashang",
+          "title": "mashang",
+          "url": "https://github.com/badhope/mashang",
+          "stars": 9,
+          "updated": "2026-10-24",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript(Rhino)，38 讲 + 17 讲扩展、assert 判题、变量快照；同源网页版可直接试玩。Android 7.0+ · Kotlin · MIT",
+          "language": "Kotlin"
+        },
+        {
+          "name": "melee",
+          "title": "melee",
+          "url": "https://github.com/badhope/melee",
+          "stars": 3,
+          "updated": "2026-10-24",
+          "desc": "把 AI 对抗做成节目：六种确定性赛制、SSE 直播、可拖动回放、自动+人工导播、事实校验战报、高光视频与分享卡。Self-hosted AI arena broadcaster.",
+          "language": "Python"
+        },
+        {
+          "name": "pocketmind",
+          "title": "pocketmind",
+          "url": "https://github.com/badhope/pocketmind",
+          "stars": 3,
+          "updated": "2026-10-24",
+          "desc": "PocketMind 口袋智灵 — a local-first, always-on AI agent that runs inside Android (Termux): 41 tools, server-enforced approval, MCP server+client, scheduled jobs, backup/restore. Apache-2.0.",
+          "language": "Python"
+        },
+        {
+          "name": "campushub",
+          "title": "campushub",
+          "url": "https://github.com/badhope/campushub",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "CampusHub — self-hosted open-source campus community platform: Vue 3 + NestJS + PostgreSQL",
+          "language": "JavaScript"
+        },
+        {
+          "name": "creator-studio",
+          "title": "creator-studio",
+          "url": "https://github.com/badhope/creator-studio",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "稿台 Creator Studio: 本地优先的创作者 AI 制片台（选题→资料→脚本→分镜→包装→发布包→复盘），带审批、预算与审计",
+          "language": "TypeScript"
+        },
+        {
+          "name": "Flow",
+          "title": "Flow",
+          "url": "https://github.com/badhope/Flow",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "Flow · AI 原生跨境出口电商平台｜买家商城 + 卖家 AI 工作台，5 个真实 LLM Agent、人工审批式运营副驾、真实支付与退款闭环。TypeScript 全栈开源。",
+          "language": "TypeScript"
+        },
+        {
+          "name": "task-digest",
+          "title": "task-digest",
+          "url": "https://github.com/badhope/task-digest",
+          "stars": 0,
+          "updated": "2026-10-23",
+          "desc": "ZCode 任务摘要插件：MCP 工具 + 侧栏可视化面板 + /digest 命令（只读本地任务与会话数据库）",
+          "language": "JavaScript"
+        },
+        {
+          "name": "CodePocket",
+          "title": "CodePocket",
+          "url": "https://github.com/badhope/CodePocket",
+          "stars": 3,
+          "updated": "2026-10-19",
+          "desc": "CodePocket — offline-first Python IDE for Android, native CPython",
+          "language": "Kotlin"
+        },
+        {
+          "name": "content-harbor",
+          "title": "content-harbor",
+          "url": "https://github.com/badhope/content-harbor",
+          "stars": 11,
+          "updated": "2026-10-17",
+          "desc": "Content Harbor — 桌面 + Web 双形态 AI 内容发布中枢：AI 写稿、一键多投、原地更新、三档发布模式、AIGC 合规门禁",
+          "language": "Python"
+        },
+        {
+          "name": "shopcash",
+          "title": "shopcash",
+          "url": "https://github.com/badhope/shopcash",
+          "stars": 0,
+          "updated": "2026-10-17",
+          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
+          "language": "JavaScript"
+        },
+        {
+          "name": "agent-builder",
+          "title": "agent-builder",
+          "url": "https://github.com/badhope/agent-builder",
+          "stars": 4,
+          "updated": "2026-10-15",
+          "desc": "Production-grade AI Agent reference for any coding agent (Claude Code / Cursor / Copilot / Codex). 24 reference nodes: ReAct Loop, MCP, RAG, Multi-Agent, Memory, Guardrails. Includes build-vs-buy decision tree + integration patterns. No deprecated stack, all TypeScript production code. https://morningstar202604.github.io/agent-builder",
+          "language": "JavaScript"
+        },
+        {
+          "name": "flexcalc-pro",
+          "title": "flexcalc-pro",
+          "url": "https://github.com/badhope/flexcalc-pro",
+          "stars": 0,
+          "updated": "2026-10-15",
+          "desc": "LingSuan Pro — income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3. 灵算 Pro 灵活就业者收入精算。",
+          "language": "TypeScript"
+        },
+        {
+          "name": "DU",
+          "title": "DU",
+          "url": "https://github.com/badhope/DU",
+          "stars": 11,
+          "updated": "2026-10-11",
+          "desc": "DU (渡) — A client-side Chinese metaphysics toolkit: 49 tools across fate, divination, ancient arts, wellness, cultivation, life. 渡己渡人。",
+          "language": "TypeScript"
+        },
+        {
+          "name": "WindowsTools",
+          "title": "WindowsTools",
+          "url": "https://github.com/badhope/WindowsTools",
+          "stars": 3,
+          "updated": "2026-06-17",
+          "desc": "Windows desktop toolkit for power users and sysadmins. Tauri 2 + Vue 3.5, wt-service runs as SYSTEM for the high-privilege ops (services, registry, hosts, scheduled tasks). 35-command palette to skip the menus.",
+          "language": "Rust"
         }
       ]
     },
@@ -170,51 +674,228 @@
       "repos": [
         {
           "name": "zhike",
-          "title": "badhope / zhike",
+          "title": "zhike",
           "url": "https://gitcode.com/badhope/zhike",
           "stars": 0,
           "updated": "2026-10-29",
-          "desc": "可自托管的个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + 混合检索 RAG + 提醒 + 权限分级 + 审计链，QQ/Web 双渠道 · Self-hosted AI personal assistant"
+          "desc": "可自托管的个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + 混合检索 RAG + 提醒 + 权限分级 + 审计链，QQ/Web 双渠道 · Self-hosted AI personal assistant",
+          "language": "Python"
         },
         {
           "name": "rules",
-          "title": "badhope / rules",
+          "title": "rules",
           "url": "https://gitcode.com/badhope/rules",
           "stars": 0,
           "updated": "2026-10-29",
-          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks."
+          "desc": "Portable AI working contract: rules, 71 skills, 220 subagents, 4 commands, 8 runtime hooks.",
+          "language": "Markdown"
         },
         {
           "name": "no-money",
-          "title": "badhope / no-money",
+          "title": "no-money",
           "url": "https://gitcode.com/badhope/no-money",
           "stars": 0,
           "updated": "2026-10-27",
-          "desc": "没钱 No Money — 灵活就业者收入精算与权益决策平台。收入/税务/社保/权益测算，纯前端离线。"
+          "desc": "没钱 No Money — 灵活就业者收入精算与权益决策平台。收入/税务/社保/权益测算，纯前端离线。",
+          "language": "TypeScript"
         },
         {
           "name": "moneyhelper",
-          "title": "badhope / moneyhelper",
+          "title": "moneyhelper",
           "url": "https://gitcode.com/badhope/moneyhelper",
           "stars": 0,
           "updated": "2026-10-27",
-          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。",
+          "language": "Python"
         },
         {
           "name": "harbour",
-          "title": "badhope / harbour",
+          "title": "harbour",
           "url": "https://gitcode.com/badhope/harbour",
           "stars": 0,
           "updated": "2026-10-27",
-          "desc": "内容港 Harbour —— 多平台内容发布中枢：AI 写稿（程序内写作风格档案）、AIGC 合规门禁（安全扫描+双模型二审+显式标识）、10 个平台一键分发与原地更新。"
+          "desc": "内容港 Harbour —— 多平台内容发布中枢：AI 写稿（程序内写作风格档案）、AIGC 合规门禁（安全扫描+双模型二审+显式标识）、10 个平台一键分发与原地更新。",
+          "language": "Python"
         },
         {
           "name": "pocketmind",
-          "title": "badhope / pocketmind",
+          "title": "pocketmind",
           "url": "https://gitcode.com/badhope/pocketmind",
           "stars": 0,
           "updated": "2026-10-24",
-          "desc": "PocketMind 口袋智灵 — 运行在安卓 Termux 里的本地优先常驻 Agent：41 个工具、服务端强制审批、MCP 双端、定时任务、备份恢复（Apache-2.0）"
+          "desc": "PocketMind 口袋智灵 — 运行在安卓 Termux 里的本地优先常驻 Agent：41 个工具、服务端强制审批、MCP 双端、定时任务、备份恢复（Apache-2.0）",
+          "language": "Python"
+        },
+        {
+          "name": "melee",
+          "title": "melee",
+          "url": "https://gitcode.com/badhope/melee",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "把 AI 对抗做成节目：六种确定性赛制、SSE 直播、可拖动回放、自动+人工导播、事实校验战报、高光视频与分享卡。Self-hosted AI arena broadcaster.",
+          "language": "Python"
+        },
+        {
+          "name": "Flow",
+          "title": "Flow",
+          "url": "https://gitcode.com/badhope/Flow",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "Flow · AI 原生跨境出口电商平台｜买家商城 + 卖家 AI 工作台，5 个真实 LLM Agent、人工审批式运营副驾、真实支付与退款闭环。TypeScript 全栈开源。",
+          "language": "TypeScript"
+        },
+        {
+          "name": "EQ-Worker",
+          "title": "EQ-Worker",
+          "url": "https://gitcode.com/badhope/EQ-Worker",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0",
+          "language": "HTML"
+        },
+        {
+          "name": "creator-studio",
+          "title": "creator-studio",
+          "url": "https://gitcode.com/badhope/creator-studio",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "稿台 Creator Studio：本地优先的创作者 AI 制片台",
+          "language": "TypeScript"
+        },
+        {
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://gitcode.com/badhope/rubbish",
+          "stars": 1,
+          "updated": "2026-10-23",
+          "desc": "ScholarHub · 学术期刊与预印本多租户平台（投稿/评审/目录/阅读/导出等 10 模块，FastAPI+React19+PostgreSQL RLS）",
+          "language": "Python"
+        },
+        {
+          "name": "task-digest",
+          "title": "task-digest",
+          "url": "https://gitcode.com/badhope/task-digest",
+          "stars": 0,
+          "updated": "2026-10-23",
+          "desc": "ZCode 任务摘要插件：MCP 工具 + 侧栏可视化面板 + /digest 命令",
+          "language": "JavaScript"
+        },
+        {
+          "name": "mashang",
+          "title": "mashang",
+          "url": "https://gitcode.com/badhope/mashang",
+          "stars": 0,
+          "updated": "2026-10-23",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript 运行时，38 讲闯关课程、assert 判题、变量可视化 | Android · Kotlin · MIT",
+          "language": "Kotlin"
+        },
+        {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://gitcode.com/badhope/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-21",
+          "desc": "AquaPilot — AI-operated wastewater treatment plant simulator with topology-driven solvers, ASM1 kinetics and a Takacs clarifier.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://gitcode.com/badhope/spark",
+          "stars": 0,
+          "updated": "2026-10-18",
+          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent",
+          "language": "Python"
+        },
+        {
+          "name": "shopcash",
+          "title": "shopcash",
+          "url": "https://gitcode.com/badhope/shopcash",
+          "stars": 0,
+          "updated": "2026-10-18",
+          "desc": "单机门店收银与收款记账软件（软件零资金介入）",
+          "language": "JavaScript"
+        },
+        {
+          "name": "sciflow",
+          "title": "sciflow",
+          "url": "https://gitcode.com/badhope/sciflow",
+          "stars": 0,
+          "updated": "2026-10-15",
+          "desc": "SciFlow - 本地优先的全自动 AI 科研助手：LangGraph 编排流水线 / Agentic RAG / 8 种引用样式 / Electron 桌面端",
+          "language": "TypeScript"
+        },
+        {
+          "name": "digilegacy",
+          "title": "digilegacy",
+          "url": "https://gitcode.com/badhope/digilegacy",
+          "stars": 0,
+          "updated": "2026-10-15",
+          "desc": "DigiLegacy 归零 · 开源数字遗产管理及继承系统。150+ 平台政策库、AES-256-GCM 字段级加密、三级确认链。Tauri 2 + Rust + Vue 3，无服务器无遥测。官网：https://badhope.github.io/digilegacy/",
+          "language": "Rust"
+        },
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://gitcode.com/badhope/world-walker",
+          "stars": 0,
+          "updated": "2026-10-14",
+          "desc": "万界·行者 World Walker —— AI 驱动的文字互动游戏引擎：世界观无关规则内核（85+ 学术模型）+ MCP 服务器 + 酒馆生态兼容（角色卡/世界书）+ 实况面板",
+          "language": "Python"
+        },
+        {
+          "name": "workbench",
+          "title": "workbench",
+          "url": "https://gitcode.com/badhope/workbench",
+          "stars": 0,
+          "updated": "2026-10-12",
+          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "agent-builder",
+          "title": "agent-builder",
+          "url": "https://gitcode.com/badhope/agent-builder",
+          "stars": 0,
+          "updated": "2026-10-12",
+          "desc": "AI Agent 全栈构建参考：24 篇生产级 TypeScript 指南（ReAct / MCP / RAG / 多 Agent / 记忆 / 护栏 / 部署 / 产品化），坚持不重复造轮子，逐层对标业界成熟方案（Vercel AI SDK / LangGraph / LlamaIndex / Langfuse / LiteLLM），附 2026 技术生态现状与开源项目二次开发对标清单。Production-grade AI Agent reference for any coding agent, with build-vs-buy decision tree + benchmark vs industry open-source.",
+          "language": "Markdown"
+        },
+        {
+          "name": "bot4cj",
+          "title": "bot4cj",
+          "url": "https://gitcode.com/qingss0/bot4cj",
+          "stars": 11,
+          "updated": "2026-10-07",
+          "desc": "基于仓颉的硬件机器人控制框架",
+          "language": "Lua"
+        },
+        {
+          "name": "campushub",
+          "title": "campushub",
+          "url": "https://gitcode.com/badhope/campushub",
+          "stars": 0,
+          "updated": "2026-10-01",
+          "desc": "CampusHub — 自托管开源校园社区平台：Vue 3   NestJS   PostgreSQL。二手市集/失物招领/表白墙/校园指南/签到/通知/管理后台。CampusHub — self-hosted open-source campus community platform. Vue 3   NestJS   PostgreSQL   Prisma.",
+          "language": "JavaScript"
+        },
+        {
+          "name": "CodePocket",
+          "title": "CodePocket",
+          "url": "https://gitcode.com/badhope/CodePocket",
+          "stars": 0,
+          "updated": "2026-09-28",
+          "desc": "CodePocket — an offline-first Python IDE for Android. Native CPython 3.13 bundled in the APK; install, open, code. No downloads, no network, no ads. Apache-2.0.",
+          "language": "Kotlin"
+        },
+        {
+          "name": "ctype4cj",
+          "title": "ctype4cj",
+          "url": "https://gitcode.com/qingss0/ctype4cj",
+          "stars": 0,
+          "updated": "2026-06-01",
+          "desc": "用于仓颉语言的ARM64架构C语言变量类型抽象层",
+          "language": "Cangjie"
         }
       ]
     },
@@ -224,51 +905,192 @@
       "repos": [
         {
           "name": "rubbish",
-          "title": "badhope/rubbish",
+          "title": "rubbish",
           "url": "https://gitee.com/badhope/rubbish",
           "stars": 0,
           "updated": "2026-10-29",
-          "desc": "ScholarHub — 期刊/预印本平台"
+          "desc": "ScholarHub — 期刊/预印本平台",
+          "language": ""
         },
         {
           "name": "zhike",
-          "title": "badhope/zhike",
+          "title": "zhike",
           "url": "https://gitee.com/badhope/zhike",
           "stars": 0,
           "updated": "2026-10-29",
-          "desc": "可自托管的个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + 混合检索 RAG + 提醒 + 权限分级 + 审计链，QQ/Web 双渠道 · Self-hosted AI personal assistant"
+          "desc": "可自托管的个人助理 Agent 底座：OpenAI function calling + MCP + ReAct + 混合检索 RAG + 提醒 + 权限分级 + 审计链，QQ/Web 双渠道 · Self-hosted AI personal assistant",
+          "language": ""
         },
         {
           "name": "agent-builder",
-          "title": "badhope/agent-builder",
+          "title": "agent-builder",
           "url": "https://gitee.com/badhope/agent-builder",
           "stars": 1,
           "updated": "2026-10-28",
-          "desc": "AI Agent 全栈构建参考：24 篇生产级 TypeScript 指南（ReAct / MCP / RAG / 多 Agent / 记忆 / 护栏 / 部署 / 产品化），坚持不重复造轮子，逐层对标业界成熟方案，附 2026 技术生态现状与开源项目二次开发对标清单。"
+          "desc": "AI Agent 全栈构建参考：24 篇生产级 TypeScript 指南（ReAct / MCP / RAG / 多 Agent / 记忆 / 护栏 / 部署 / 产品化），坚持不重复造轮子，逐层对标业界成熟方案，附 2026 技术生态现状与开源项目二次开发对标清单。",
+          "language": ""
         },
         {
           "name": "digilegacy",
-          "title": "badhope/digilegacy",
+          "title": "digilegacy",
           "url": "https://gitee.com/badhope/digilegacy",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "DigiLegacy 归零 · 开源数字遗产管理及继承系统。150+ 平台政策库、AES-256-GCM 字段级加密、三级确认链。Tauri 2 + Rust + Vue 3，无服务器无遥测。官网：https://badhope.github.io/digilegacy/"
+          "desc": "DigiLegacy 归零 · 开源数字遗产管理及继承系统。150+ 平台政策库、AES-256-GCM 字段级加密、三级确认链。Tauri 2 + Rust + Vue 3，无服务器无遥测。官网：https://badhope.github.io/digilegacy/",
+          "language": ""
         },
         {
           "name": "moneyhelper",
-          "title": "badhope/moneyhelper",
+          "title": "moneyhelper",
           "url": "https://gitee.com/badhope/moneyhelper",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。"
+          "desc": "Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、股票投研、财报分析、策略回测、团队模拟盘。FastAPI + LangGraph + React，本地优先、数字可复核、MCP 开放。",
+          "language": ""
         },
         {
           "name": "EQ-Worker",
-          "title": "badhope/EQ-Worker",
+          "title": "EQ-Worker",
           "url": "https://gitee.com/badhope/EQ-Worker",
           "stars": 0,
           "updated": "2026-10-28",
-          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0"
+          "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0",
+          "language": ""
+        },
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://gitee.com/badhope/spark",
+          "stars": 0,
+          "updated": "2026-10-26",
+          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent",
+          "language": ""
+        },
+        {
+          "name": "sciflow",
+          "title": "sciflow",
+          "url": "https://gitee.com/badhope/sciflow",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "SciFlow - 本地优先的全自动 AI 科研助手：LangGraph 编排流水线 / Agentic RAG / 8 种引用样式 / Electron 桌面端",
+          "language": ""
+        },
+        {
+          "name": "mashang",
+          "title": "mashang",
+          "url": "https://gitee.com/badhope/mashang",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "码上 Mashang — 赛博朋克风离线编程学习终端：内置 CPython 3.13 + JavaScript(Rhino)，38 讲 + 17 讲扩展、assert 判题、变量快照；同源网页版可直接试玩。Android 7.0+ · Kotlin · MIT",
+          "language": ""
+        },
+        {
+          "name": "pocketmind",
+          "title": "pocketmind",
+          "url": "https://gitee.com/badhope/pocketmind",
+          "stars": 0,
+          "updated": "2026-10-25",
+          "desc": "PocketMind 口袋智灵 — 运行在安卓 Termux 里的本地优先常驻 Agent：41 个工具、服务端强制审批、MCP 双端、定时任务、备份恢复（Apache-2.0）",
+          "language": ""
+        },
+        {
+          "name": "campushub",
+          "title": "campushub",
+          "url": "https://gitee.com/badhope/campushub",
+          "stars": 1,
+          "updated": "2026-10-24",
+          "desc": "CampusHub — self-hosted open-source campus community platform. Vue 3   NestJS   PostgreSQL   Prisma. Second-hand marketplace, lost",
+          "language": ""
+        },
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://gitee.com/badhope/world-walker",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "万界·行者 World Walker —— AI 驱动的文字互动游戏引擎：世界观无关规则内核（85+ 学术模型）+ MCP 服务器 + 酒馆生态兼容（角色卡/世界书）+ 实况面板",
+          "language": ""
+        },
+        {
+          "name": "creator-studio",
+          "title": "creator-studio",
+          "url": "https://gitee.com/badhope/creator-studio",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "稿台 Creator Studio：本地优先的创作者 AI 制片台（选题→资料→脚本→分镜→包装→发布包→复盘）",
+          "language": ""
+        },
+        {
+          "name": "Flow",
+          "title": "Flow",
+          "url": "https://gitee.com/badhope/Flow",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "Flow · AI 原生跨境出口电商平台｜买家商城 + 卖家 AI 工作台，5 个真实 LLM Agent、人工审批式运营副驾、真实支付与退款闭环。TypeScript 全栈开源。",
+          "language": ""
+        },
+        {
+          "name": "melee",
+          "title": "melee",
+          "url": "https://gitee.com/badhope/melee",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "把 AI 对抗做成节目：六种确定性赛制、SSE 直播、可拖动回放、自动+人工导播、事实校验战报、高光视频与分享卡。Self-hosted AI arena broadcaster.",
+          "language": ""
+        },
+        {
+          "name": "workbench",
+          "title": "workbench",
+          "url": "https://gitee.com/badhope/workbench",
+          "stars": 0,
+          "updated": "2026-10-24",
+          "desc": "Workbench - a local-first desktop workbench (Tauri 2 + React 19): live process / port / dev-server visibility + AI session token cost metering. All data stays on-device. MIT licensed.",
+          "language": ""
+        },
+        {
+          "name": "flexcalc-pro",
+          "title": "flexcalc-pro",
+          "url": "https://gitee.com/badhope/flexcalc-pro",
+          "stars": 0,
+          "updated": "2026-10-18",
+          "desc": "LingSuan Pro — income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3.",
+          "language": ""
+        },
+        {
+          "name": "content-harbor",
+          "title": "content-harbor",
+          "url": "https://gitee.com/badhope/content-harbor",
+          "stars": 0,
+          "updated": "2026-10-18",
+          "desc": "内容港 content-harbor — 多平台自动化发布工具",
+          "language": ""
+        },
+        {
+          "name": "CodePocket",
+          "title": "CodePocket",
+          "url": "https://gitee.com/badhope/CodePocket",
+          "stars": 0,
+          "updated": "2026-10-18",
+          "desc": "CodePocket — 离线优先的安卓 Python IDE（内置 CPython 3.13）",
+          "language": ""
+        },
+        {
+          "name": "MyFlowers",
+          "title": "我的小花",
+          "url": "https://gitee.com/qingsong-gap/MyFlowers",
+          "stars": 0,
+          "updated": "2026-09-19",
+          "desc": "",
+          "language": "C"
+        },
+        {
+          "name": "cybersecurity-agent",
+          "title": "网安智能体",
+          "url": "https://gitee.com/qingsong-gap/cybersecurity-agent",
+          "stars": 1,
+          "updated": "2026-08-23",
+          "desc": "",
+          "language": "Python"
         }
       ]
     }

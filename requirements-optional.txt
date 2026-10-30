@@ -1,0 +1,10 @@
+# 可选加速依赖。核心生成器只依赖 Python 标准库；装了下面这些会启用对应的
+# 加速/增强路径，没装则自动降级，功能不减（见 kit/net.py、kit/mdrender.py、
+# kit/schema.py 里的 try/except ImportError）。
+#
+#   python -m pip install -r requirements-optional.txt
+
+httpx>=0.27          # HTTP/2 + 连接池（否则用 http.client 长连接）
+markdown-it-py>=3    # 完整 CommonMark 渲染（否则用内置子集解析器）
+jsonschema>=4        # stats/works/writing 的第二遍结构校验
+pillow>=10           # PNG 调色板化（否则用 zlib 重压缩）

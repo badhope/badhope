@@ -78,16 +78,20 @@ function resolveToken(handle) {
     const store = JSON.parse(
       fs.readFileSync(
         process.env.PROFILE_KIT_SECRETS ||
-          path.join(os.homedir(), ".zcode", "secrets", "accounts.json"),
+          (() => {
+            try {
+              return path.join(os.homedir(), ".zcode", "secrets", "accounts.json");
+            } catch {
+              return path.join(".", ".zcode", "secrets", "accounts.json");
+            }
+          })(),
         "utf8"
       )
     );
     const accts = (store.platforms?.github?.accounts) || {};
     const rec = accts[handle] || {};
+    // 只认本账号的 token：借用另一个账号的 token 会让卡片渲染成别人的数据。
     if (rec.token && rec.token.trim()) return rec.token.trim();
-    for (const v of Object.values(accts)) {
-      if (v && v.default && v.token) return v.token.trim();
-    }
   } catch {
     /* 无本机凭据库：继续降级 */
   }
@@ -148,8 +152,10 @@ async function main() {
 
   let rendered = 0;
   let skipped = 0;
-  let failedAccounts = [];
+  const failedAccounts = [];
   for (const key of site.order) {
+    let acctRendered = 0;
+    let acctSkipped = 0;
     const acct = site.accounts[key];
     if (!acct) continue;
     if (only && key !== only) continue;
@@ -183,13 +189,16 @@ async function main() {
           if (res?.status === "success" && res.content?.includes("<svg")) {
             writeAtomic(path.join(outDir, `${kind}-${locale}.svg`), res.content);
             rendered++;
+            acctRendered++;
           } else {
             console.warn(`  ${key}/${kind}-${locale}: ${res?.status || "empty"} — 保留旧文件`);
             skipped++;
+            acctSkipped++;
           }
         } catch (err) {
           console.warn(`  ${key}/${kind}-${locale}: ${err.message} — 保留旧文件`);
           skipped++;
+          acctSkipped++;
         }
       }
     }
@@ -204,17 +213,21 @@ async function main() {
           if (res?.status === "success" && res.content?.includes("<svg")) {
             writeAtomic(path.join(outDir, `pin-${i + 1}-${locale}.svg`), res.content);
             rendered++;
+            acctRendered++;
           } else {
             skipped++;
+            acctSkipped++;
           }
         } catch (err) {
           console.warn(`  ${key}/pin-${i + 1}-${locale}: ${err.message}`);
           skipped++;
+          acctSkipped++;
         }
       }
     }
-    if (rendered === 0 && skipped > 0) failedAccounts.push(key);
-    console.log(`rendered ${key}: ${acct.handle}`);
+    // 用账号自己的计数判断：全局计数会让"前面的账号成功、本账号全失败"漏报。
+    if (acctRendered === 0 && acctSkipped > 0) failedAccounts.push(key);
+    console.log(`rendered ${key}: ${acct.handle} (${acctRendered} written, ${acctSkipped} skipped)`);
   }
   console.log(`\ncards: ${rendered} written, ${skipped} skipped`);
   // 一张都没渲染 = 硬失败；有渲染但仍有跳过 = 部分失败，也应以非 0 退出让 CI 暴露，

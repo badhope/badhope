@@ -1,13 +1,12 @@
 [English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)
 
 <p align="center">
-  <picture>
-  <source type="image/png" srcset="./assets/png/hero.png" />
   <img src="./assets/hero.svg" alt="badhope · github.com/badhope" width="100%" />
-  </picture>
 </p>
 
-<p align="center"><i>抽象的なアイデアを、動くインターフェースに落とし込む開発者。</i></p>
+<p align="center">
+  <img src="./assets/typing-ja.svg" alt="抽象的なアイデアを、動くインターフェースに落とし込む開発者。" width="600" />
+</p>
 
 <p align="center"><sub>First, solve the problem. Then, write the code. — John Johnson</sub></p>
 
@@ -42,10 +41,10 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 
 | プロジェクト | スター | 更新日 |
 | --- | --- | --- |
-| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
 | [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
 | [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-29 |
 | [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-10-29 |
+| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 85 | 2026-10-28 |
 | [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
 | [zhike — Self-hosted agent harness for personal assistants: OpenAI f…](https://github.com/badhope/zhike) | 0 | 2026-10-28 |
 
@@ -60,30 +59,30 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 </p>
 
 <p align="center">
-  <img src="./assets/cards/stats-ja.svg" alt="GitHub stats" width="49%" />
-  <img src="./assets/cards/langs-ja.svg" alt="Top languages" width="49%" />
+  <img src="./assets/stats-ja.svg" alt="26 公開リポジトリ · 238 累計スター · 20 フォロワー · 24 上流へのマージ" width="49%" />
+  <img src="./assets/langs-ja.svg" alt="言語構成" width="49%" />
 </p>
-
-## ピン留め作品
 
 <p align="center">
-  <img src="./assets/cards/pin-1-ja.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-2-ja.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-3-ja.svg" alt="pinned work" width="32%" />
+  <img src="./assets/activity-ja.svg" alt="26 公開リポジトリ · 238 累計スター · 20 フォロワー · 24 上流へのマージ" width="100%" />
 </p>
 
-## コントリビューション
+## 実績
 
 <p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/github-contribution-grid-snake-dark.svg" />
-  <img src="./assets/github-contribution-grid-snake.svg" alt="contribution snake" width="100%" />
-  </picture>
+  <img src="./assets/snake-ja.svg" alt="contribution snake" width="100%" />
 </p>
 
-## オープンソース
+<p align="center">
+  <img src="./assets/achievements-ja.svg" alt="実績" width="90%" />
+</p>
+
+<details>
+<summary>オープンソース</summary>
 
 パッチは ohmyzsh・tldr・icalendar・NUR などにマージ済み — 詳細は GitHub の2アカウントへ: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
+
+</details>
 
 ## 執筆
 

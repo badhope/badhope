@@ -105,7 +105,6 @@ def refresh_stats():
     )
     print("stats: written (updated %d accounts, %d failed)" % (ok_count, len(failures)))
     return True
-    return False
 
 
 def refresh_writing():

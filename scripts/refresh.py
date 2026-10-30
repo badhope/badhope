@@ -17,6 +17,7 @@
 """
 
 import argparse
+import concurrent.futures
 import datetime
 import email.utils
 import json
@@ -24,7 +25,6 @@ import os
 import pathlib
 import sys
 import urllib.error
-import urllib.request
 import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -32,13 +32,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 import accounts as A  # noqa: E402
+from kit.net import HttpClient, HttpError  # noqa: E402
 
 UA = "profile-kit-refresh/1.0"
 STATS_PATH = ROOT / "data" / "stats.json"
 STAT_FIELDS = ("repos", "stars", "followers", "merged")
 
 # 网络/解析失败的收窄捕获集合（refresh 对每个数据源失败软处理，绝不整体崩溃）
-NETWORK_ERRORS = (urllib.error.URLError, OSError, ValueError, ET.ParseError)
+NETWORK_ERRORS = (urllib.error.URLError, OSError, ValueError, ET.ParseError, HttpError)
 
 WRITING_PATH = ROOT / "data" / "writing.json"
 CSDN_RSS = "https://blog.csdn.net/weixin_56622231/rss/list"
@@ -47,10 +48,21 @@ CSDN_RSS = "https://blog.csdn.net/weixin_56622231/rss/list"
 PLATFORM_ENV_PREFIX = {"github": "GH", "gitee": "GITEE", "gitcode": "GITCODE"}
 
 
+_CLIENT = HttpClient(cache_dir=os.environ.get("PROFILE_KIT_HTTP_CACHE", ".cache/http"),
+                    timeout=30, min_interval=0.15)
+
+
 def http_json(url, headers=None, timeout=30):
-    req = urllib.request.Request(url, headers={"User-Agent": UA, **(headers or {})})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.load(resp)
+    """GET JSON。走 kit.net：连接复用 + 重试退避 + ETag 条件请求。
+
+    相同 URL 在数据未变化时返回 304，直接复用本地缓存 —— 定时任务几乎不消耗
+    API 配额，也不会因为一次限流就把统计清零。
+    """
+    return _CLIENT.get_json(url, headers=headers, timeout=timeout)
+
+
+def http_stats():
+    return dict(_CLIENT.stats)
 
 
 def warn(msg):
@@ -58,9 +70,17 @@ def warn(msg):
     return None
 
 
+def _default_secrets_path():
+    """默认凭据库路径。HOME 不可判定（容器 / 精简 shell）时退回空路径。"""
+    try:
+        home = pathlib.Path.home()
+    except RuntimeError:
+        return pathlib.Path(".zcode") / "secrets" / "accounts.json"
+    return home / ".zcode" / "secrets" / "accounts.json"
+
+
 SECRETS_FILE = pathlib.Path(
-    os.environ.get("PROFILE_KIT_SECRETS", "").strip()
-    or (pathlib.Path.home() / ".zcode" / "secrets" / "accounts.json")
+    os.environ.get("PROFILE_KIT_SECRETS", "").strip() or _default_secrets_path()
 )
 
 
@@ -350,14 +370,25 @@ def main(argv=None):
             current = {}
     accounts = current.get("accounts") or {}
     for key in A.ACCOUNT_ORDER:
-        block = accounts.setdefault(key, {})
+        accounts.setdefault(key, {})
+
+    def _one(key):
         acct = A.ACCOUNTS[key]
-        if acct["platform"] == "github":
-            refresh_github(acct["handle"], block)
-        elif acct["platform"] == "gitee":
-            refresh_gitee(acct["handle"], block)
-        elif acct["platform"] == "gitcode":
-            refresh_gitcode(acct["handle"], block)
+        block = accounts[key]
+        try:
+            if acct["platform"] == "github":
+                refresh_github(acct["handle"], block)
+            elif acct["platform"] == "gitee":
+                refresh_gitee(acct["handle"], block)
+            elif acct["platform"] == "gitcode":
+                refresh_gitcode(acct["handle"], block)
+        except Exception as err:  # 单账号失败不影响其他账号
+            warn("%s failed (%r); keeping old values" % (key, err))
+        return key
+
+    # 账号之间互不依赖：并发跑，整体耗时从「五倍串行」降到「最慢一个」
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(A.ACCOUNT_ORDER)) as pool:
+        list(pool.map(_one, A.ACCOUNT_ORDER))
     fetch_writing()
     stats = {
         "as_of": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
@@ -368,6 +399,7 @@ def main(argv=None):
     STATS_PATH.write_text(
         json.dumps(stats, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
     )
+    print("http: %s" % http_stats())
     print("stats written: %s" % STATS_PATH)
     return 0
 
