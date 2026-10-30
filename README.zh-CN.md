@@ -41,12 +41,12 @@
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
+| [world-walker — World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34…](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
+| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
+| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
 | [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
-| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-29 |
 | [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-10-29 |
-| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 85 | 2026-10-28 |
 | [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
-| [zhike — Self-hosted agent harness for personal assistants: OpenAI f…](https://github.com/badhope/zhike) | 0 | 2026-10-28 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 
@@ -59,12 +59,12 @@
 </p>
 
 <p align="center">
-  <img src="./assets/stats-zh-CN.svg" alt="26 公开仓库 · 238 累计 Star · 20 关注者 · 24 上游合并" width="49%" />
+  <img src="./assets/stats-zh-CN.svg" alt="26 公开仓库 · 241 累计 Star · 20 关注者 · 24 上游合并" width="49%" />
   <img src="./assets/langs-zh-CN.svg" alt="语言构成" width="49%" />
 </p>
 
 <p align="center">
-  <img src="./assets/activity-zh-CN.svg" alt="26 公开仓库 · 238 累计 Star · 20 关注者 · 24 上游合并" width="100%" />
+  <img src="./assets/activity-zh-CN.svg" alt="26 公开仓库 · 241 累计 Star · 20 关注者 · 24 上游合并" width="100%" />
 </p>
 
 ## 成就
