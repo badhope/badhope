@@ -135,8 +135,20 @@ jobs:
   # --------------------------------------------------------------------------
   cards:
     name: Render cards (weekly)
-    # 串行在 refresh 之后：两个 job 都会推 main，并行必然有一个 push 被拒
+    # 串行在 refresh 之后：两个 job 都会推 main，并行必然有一个 push 被拒。
+    # checkout 必须取 main 分支头而不是 run 起始 SHA —— refresh job 刚把新数据
+    # 推上 main，cards 若基于旧数据重建 README，push 被拒后 rebase 必撞
+    # README 内容冲突（run 41100787982 的 failure 就是这么来的）。
     needs: [test, refresh]
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && github.event.schedule == '47 4 * * 1')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'schedule' && github.event.schedule == '47 4 * * 1')
