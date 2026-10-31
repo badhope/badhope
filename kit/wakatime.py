@@ -9,6 +9,8 @@ github-readme-stats 的 wakatime 卡（src/cards/wakatime.js）移植：
 
 import json
 
+import accounts as A
+
 from .net import HttpError, default_client
 
 SUPPORTED_RANGES = ("last_7_days", "last_30_days", "last_6_months", "last_year")

@@ -41,12 +41,12 @@
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
-| [world-walker — World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34…](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
-| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
-| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
-| [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
-| [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-10-29 |
-| [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
+| [world-walker — AI 驱动的文字互动小说引擎](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
+| [rubbish — 学术期刊与预印本多租户平台 —— 投稿 / 评审 / 阅读](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
+| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
+| [sciflow — 本地优先的 AI 科研智能体工作台 —— 多 Agent 编排与记忆](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
+| [rules](https://github.com/badhope/rules) | 0 | 2026-10-29 |
+| [digilegacy — 数字遗产管理系统 —— 本地优先](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 

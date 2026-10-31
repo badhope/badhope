@@ -85,20 +85,43 @@ CURATED_POSTS = [
     },
 ]
 
+WRITING_TITLE_OVERRIDES = {
+    "https://blog.csdn.net/weixin_56622231/article/details/168251657": {
+        "md": "Gemini 4 Argon Opens to Everyone: Can Google's Half-Year Flagship Deliver?",
+        "ja": "Gemini 4 Argon が全面公開：半年ぶりの Google フラッグシップは期待に応えるか？",
+    },
+    "https://zhuanlan.zhihu.com/p/2094232145015453253": {
+        "md": "A Year of MCP in Production: Six Engineering Truths Nobody Told Me",
+        "ja": "MCP 実装1年で分かった、誰も教えてくれなかった6つの現実",
+    },
+    "https://zhuanlan.zhihu.com/p/2094233605513991576": {
+        "md": "Local-First AI: Why I Put AI Back on My Own Computer",
+        "ja": "ローカルファースト AI：なぜ AI を自分の PC に戻したのか",
+    },
+    "https://zhuanlan.zhihu.com/p/2094218858789856836": {
+        "md": "Five Gates Before Shipping an AI Agent: Notes from a Real Project",
+        "ja": "AI Agent を公開する前に越える5つの関門：実案件の記録",
+    },
+    "https://blog.csdn.net/weixin_56622231/article/details/166698802": {
+        "md": "Cross-Platform Playwright Delivery: Eight Pitfalls and Compliance Gates",
+        "ja": "Playwright のマルチプラットフォーム配布：8つの落とし穴とコンプライアンスゲート",
+    },
+}
+
 # 精选格言（离线、确定性轮换：index = (月-1) % len；每月一句，避免每日变更造成刷新 PR 噪音）
 QUOTES = [
-    {"en": "Make it work, make it right, make it fast.", "zh": "先能跑，再跑对，再跑快。", "author": "Kent Beck"},
-    {"en": "Simplicity is the soul of efficiency.", "zh": "简洁是效率的灵魂。", "author": "Austin Freeman"},
-    {"en": "The best way to predict the future is to invent it.", "zh": "预测未来的最好方式，是把它创造出来。", "author": "Alan Kay"},
-    {"en": "Talk is cheap. Show me the code.", "zh": "少废话，放码过来。", "author": "Linus Torvalds"},
-    {"en": "Premature optimization is the root of all evil.", "zh": "过早优化是万恶之源。", "author": "Donald Knuth"},
-    {"en": "Programs must be written for people to read.", "zh": "程序首先是写给人读的。", "author": "Harold Abelson"},
-    {"en": "Done is better than perfect.", "zh": "完成胜于完美。", "author": "Sheryl Sandberg"},
-    {"en": "Stay hungry, stay foolish.", "zh": "求知若饥，虚心若愚。", "author": "Steve Jobs"},
-    {"en": "Everything should be made as simple as possible, but not simpler.", "zh": "尽可能简单，但不过于简单。", "author": "Albert Einstein"},
-    {"en": "First, solve the problem. Then, write the code.", "zh": "先解决问题，再写代码。", "author": "John Johnson"},
-    {"en": "Slow is smooth, and smooth is fast.", "zh": "慢即是稳，稳即是快。", "author": "—"},
-    {"en": "An investment in knowledge pays the best interest.", "zh": "对知识的投资，回报最丰厚。", "author": "Benjamin Franklin"},
+    {"en": "Make it work, make it right, make it fast.", "zh": "先能跑，再跑对，再跑快。", "ja": "まず動かし、正しく直し、速くする。", "author": "Kent Beck"},
+    {"en": "Simplicity is the soul of efficiency.", "zh": "简洁是效率的灵魂。", "ja": "シンプルさは効率の魂だ。", "author": "Austin Freeman"},
+    {"en": "The best way to predict the future is to invent it.", "zh": "预测未来的最好方式，是把它创造出来。", "ja": "未来を予測する最良の方法は、それを発明することだ。", "author": "Alan Kay"},
+    {"en": "Talk is cheap. Show me the code.", "zh": "少废话，放码过来。", "ja": "言葉は安い。コードを見せてくれ。", "author": "Linus Torvalds"},
+    {"en": "Premature optimization is the root of all evil.", "zh": "过早优化是万恶之源。", "ja": "早すぎる最適化は諸悪の根源だ。", "author": "Donald Knuth"},
+    {"en": "Programs must be written for people to read.", "zh": "程序首先是写给人读的。", "ja": "プログラムは人が読むために書くものだ。", "author": "Harold Abelson"},
+    {"en": "Done is better than perfect.", "zh": "完成胜于完美。", "ja": "完璧より、まず完成。", "author": "Sheryl Sandberg"},
+    {"en": "Stay hungry, stay foolish.", "zh": "求知若饥，虚心若愚。", "ja": "ハングリーであれ、愚かであれ。", "author": "Steve Jobs"},
+    {"en": "Everything should be made as simple as possible, but not simpler.", "zh": "尽可能简单，但不过于简单。", "ja": "できる限りシンプルに、ただし単純すぎないように。", "author": "Albert Einstein"},
+    {"en": "First, solve the problem. Then, write the code.", "zh": "先解决问题，再写代码。", "ja": "まず問題を解き、それからコードを書く。", "author": "John Johnson"},
+    {"en": "Slow is smooth, and smooth is fast.", "zh": "慢即是稳，稳即是快。", "ja": "ゆっくりは滑らか、滑らかは速い。", "author": "—"},
+    {"en": "An investment in knowledge pays the best interest.", "zh": "对知识的投资，回报最丰厚。", "ja": "知識への投資が、最も大きな利息を生む。", "author": "Benjamin Franklin"},
 ]
 
 LABELS = {
@@ -770,25 +793,25 @@ ACCOUNTS = {
             "ja": "オフラインでも動くソフトウェアを。",
         },
         "about": {
-            "md": "The domestic mirror of my GitHub work, plus a mobile lab — an offline Python IDE, a cyberpunk learning terminal, a Cangjie robot framework.",
-            "zh-CN": "GitHub 作品的国内镜像站 + 移动端实验场：离线 Python IDE、学习终端、仓颉机器人框架都在这里。",
-            "ja": "GitHub 作品の中国ミラー＋モバイル実験場 — オフライン IDE・学習ターミナル・Cangjie ロボットフレームワーク。",
+            "md": "GitCode is the domestic mirror and mobile-tool workspace: offline Python IDEs, a learning terminal, and a Cangjie hardware-robot framework.",
+            "zh-CN": "GitCode 是国内镜像与移动工具工作区：这里维护离线 Python IDE、学习终端，以及仓颉硬件机器人框架。",
+            "ja": "GitCode は国内向けミラー兼モバイル開発拠点です。オフライン Python IDE、学習ターミナル、Cangjie 製ハードウェアロボット基盤を公開しています。",
         },
         "now": {
             "md": [
                 "Polishing the CodePocket offline IDE",
-                "Demoing the bot4cj robot framework in Cangjie",
-                "Archiving notes for the tool directory",
+                "Demonstrating the bot4cj hardware-robot framework in Cangjie",
+                "Keeping the tool catalog and build notes current",
             ],
             "zh-CN": [
                 "打磨 CodePocket 离线 IDE",
-                "仓颉语言机器人框架 bot4cj 的演示",
-                "把工具站的资料陆续归档",
+                "演示仓颉语言 bot4cj 硬件机器人框架",
+                "持续更新工具目录与构建记录",
             ],
             "ja": [
-                "CodePocket オフライン IDE の磨き込み",
-                "Cangjie 製ロボットフレームワーク bot4cj",
-                "ツール資料のアーカイブ整理",
+                "CodePocket オフライン IDE を改良",
+                "Cangjie 製ハードウェアロボット基盤 bot4cj を検証",
+                "ツールカタログとビルド記録を更新",
             ],
         },
         "skills": ["python", "dart", "kotlin", "java", "flutter", "wechat", "linux", "git", "markdown"],
@@ -816,22 +839,22 @@ ACCOUNTS = {
             "ja": "作品のもうひとつの置き場。",
         },
         "about": {
-            "md": "The Gitee mirror of selected works — synced from GitHub and GitCode, with room for mini-program experiments on the side.",
-            "zh-CN": "Gitee 镜像站：同步 GitHub / GitCode 的部分作品，顺带做小程序方向的实验。",
-            "ja": "Gitee ミラー — GitHub / GitCode の作品を同期し、ミニアプリの実験も。",
+            "md": "Gitee is the lightweight mirror for selected works, with a small space for WeChat mini-program experiments.",
+            "zh-CN": "Gitee 是精选作品的轻量镜像，也用于存放微信小程序方向的小型实验。",
+            "ja": "Gitee は選択した作品の軽量ミラーで、WeChat ミニアプリの小規模な実験にも使っています。",
         },
         "now": {
             "md": [
-                "Syncing the latest agent-builder and campushub",
-                "Mini-program experiments",
+                "Keeping agent-builder and campushub mirrors current",
+                "Small WeChat mini-program experiments",
             ],
             "zh-CN": [
-                "同步 agent-builder / campushub 最新版",
-                "小程序方向的小实验",
+                "同步 agent-builder / campushub 镜像",
+                "微信小程序方向的小型实验",
             ],
             "ja": [
-                "agent-builder / campushub の同期",
-                "ミニアプリの実験",
+                "agent-builder / campushub のミラーを更新",
+                "WeChat ミニアプリの小規模な実験",
             ],
         },
         "skills": ["python", "wechat", "vuejs", "mysql", "nginx", "git", "markdown"],

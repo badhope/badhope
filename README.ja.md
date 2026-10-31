@@ -8,7 +8,7 @@
   <img src="./assets/typing-ja.svg" alt="抽象的なアイデアを、動くインターフェースに落とし込む開発者。" width="600" />
 </p>
 
-<p align="center"><sub>First, solve the problem. Then, write the code. — John Johnson</sub></p>
+<p align="center"><sub>まず問題を解き、それからコードを書く。 — John Johnson</sub></p>
 
 <table border="0">
 <tr>
@@ -41,12 +41,12 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 
 | プロジェクト | スター | 更新日 |
 | --- | --- | --- |
-| [world-walker — World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34…](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
-| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
-| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
-| [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
-| [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-10-29 |
-| [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
+| [world-walker — AI 駆動のテキストインタラクティブ小説エンジン](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
+| [rubbish — 学術ジャーナル・プレプリントのマルチテナント基盤](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
+| [moneyhelper — 会話ファーストの個人金融エージェント — ローカル優先・LangGraph 編成](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
+| [sciflow — ローカル優先の AI 研究エージェント作業台 — マルチエージェント編成](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
+| [rules](https://github.com/badhope/rules) | 0 | 2026-10-29 |
+| [digilegacy — ローカル優先のデジタル遺産管理](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
 
 全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
 
@@ -92,11 +92,11 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 
 | 日付 | 記事 |
 |---|---|
-| 2026-10-18 | [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
-| 2026-10-16 | [MCP 落地一年，我总结了 6 个没人告诉你的工程真相](https://zhuanlan.zhihu.com/p/2094232145015453253) |
-| 2026-10-16 | [本地优先 AI：当所有人都在上云，我为什么把 AI 装回自己电脑](https://zhuanlan.zhihu.com/p/2094233605513991576) |
-| 2026-10-16 | [AI Agent 上线前必须过的 5 道关：一个真实项目的工程手记](https://zhuanlan.zhihu.com/p/2094218858789856836) |
-| 2026-09-27 | [Playwright 多平台分发：8 个踩坑与合规门禁](https://blog.csdn.net/weixin_56622231/article/details/166698802) |
+| 2026-10-18 | [Gemini 4 Argon が全面公開：半年ぶりの Google フラッグシップは期待に応えるか？](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
+| 2026-10-16 | [MCP 実装1年で分かった、誰も教えてくれなかった6つの現実](https://zhuanlan.zhihu.com/p/2094232145015453253) |
+| 2026-10-16 | [ローカルファースト AI：なぜ AI を自分の PC に戻したのか](https://zhuanlan.zhihu.com/p/2094233605513991576) |
+| 2026-10-16 | [AI Agent を公開する前に越える5つの関門：実案件の記録](https://zhuanlan.zhihu.com/p/2094218858789856836) |
+| 2026-09-27 | [Playwright のマルチプラットフォーム配布：8つの落とし穴とコンプライアンスゲート](https://blog.csdn.net/weixin_56622231/article/details/166698802) |
 
 <sub>同時掲載 <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a> · <img src="./assets/icons/si-zhihu.svg" width="15" alt="Zhihu" /> <a href="https://www.zhihu.com/people/e7c851hd">Zhihu</a></sub>
 

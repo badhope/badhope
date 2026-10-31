@@ -64,6 +64,38 @@ class WorkUrlTests(unittest.TestCase):
                 self.assertTrue(url.startswith("http"), "%s/%s -> %s" % (key, wid, url))
 
 
+class ReadmeCopyTests(unittest.TestCase):
+    def test_japanese_quote_is_localized(self):
+        quote = A.QUOTES[0]
+        self.assertIn("ja", quote)
+        self.assertNotEqual(quote["ja"], quote["en"])
+
+    def test_japanese_work_label_omits_incompatible_description(self):
+        from kit.readme import _work_label
+        label = _work_label({"title": "demo", "desc": "A local-first tool"}, "ja")
+        self.assertEqual(label, "demo")
+
+    def test_chinese_work_label_keeps_cjk_description(self):
+        from kit.readme import _work_label
+        label = _work_label({"title": "演示", "desc": "本地工具"}, "zh-CN")
+        self.assertIn("本地工具", label)
+
+    def test_wakatime_card_renders_with_stats(self):
+        from kit.wakatime import wakatime_svg
+        svg = wakatime_svg({"data": {"range": "last_7_days", "categories": [{"text": "1 hr"}],
+                                      "languages": [{"name": "Python", "text": "1 hr", "percent": 100}]}},
+                            theme=A.THEME)
+        self.assertIn("WakaTime", svg)
+        self.assertNotIn("card failed", svg)
+
+    def test_writing_title_is_localized(self):
+        from kit.readme import render_readme
+        text = render_readme(A.ACCOUNTS["gitcode_badhope"], "gitcode_badhope", "ja",
+                             {"as_of": "", "accounts": {}}, discovered={"accounts": {}})
+        self.assertIn("ローカルファースト AI", text)
+        self.assertNotIn("本地优先 AI", text)
+
+
 class GenerateTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

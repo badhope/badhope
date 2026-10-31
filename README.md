@@ -41,12 +41,12 @@ My GitHub home — tools, indexes and small software experiments, all in the ope
 
 | Project | Stars | Updated |
 | --- | --- | --- |
-| [world-walker — World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34…](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
-| [rubbish — ScholarHub — multi-tenant academic journal &amp; preprint pla…](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
-| [moneyhelper — Moneyhelper ｜ 算清每一笔，攒稳每一步 —— 对话优先的个人理财智能体：一句话记账、持仓风控、…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
-| [sciflow — SciFlow - fully automated AI research assistant: local-fi…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
+| [world-walker — AI-driven interactive text fiction engine](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
+| [rubbish — Multi-tenant journal and preprint platform — submission /…](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
+| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
+| [sciflow — Local-first AI research agent workbench — multi-agent pip…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
 | [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-10-29 |
-| [digilegacy — DigiLegacy 归零 — open-source, local-first digital legac…](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
+| [digilegacy — Local-first digital legacy planner](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 
@@ -92,11 +92,11 @@ Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details 
 
 | Date | Article |
 |---|---|
-| 2026-10-18 | [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
-| 2026-10-16 | [MCP 落地一年，我总结了 6 个没人告诉你的工程真相](https://zhuanlan.zhihu.com/p/2094232145015453253) |
-| 2026-10-16 | [本地优先 AI：当所有人都在上云，我为什么把 AI 装回自己电脑](https://zhuanlan.zhihu.com/p/2094233605513991576) |
-| 2026-10-16 | [AI Agent 上线前必须过的 5 道关：一个真实项目的工程手记](https://zhuanlan.zhihu.com/p/2094218858789856836) |
-| 2026-09-27 | [Playwright 多平台分发：8 个踩坑与合规门禁](https://blog.csdn.net/weixin_56622231/article/details/166698802) |
+| 2026-10-18 | [Gemini 4 Argon Opens to Everyone: Can Google's Half-Year Flagship Deliver?](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
+| 2026-10-16 | [A Year of MCP in Production: Six Engineering Truths Nobody Told Me](https://zhuanlan.zhihu.com/p/2094232145015453253) |
+| 2026-10-16 | [Local-First AI: Why I Put AI Back on My Own Computer](https://zhuanlan.zhihu.com/p/2094233605513991576) |
+| 2026-10-16 | [Five Gates Before Shipping an AI Agent: Notes from a Real Project](https://zhuanlan.zhihu.com/p/2094218858789856836) |
+| 2026-09-27 | [Cross-Platform Playwright Delivery: Eight Pitfalls and Compliance Gates](https://blog.csdn.net/weixin_56622231/article/details/166698802) |
 
 <sub>Also on <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a> · <img src="./assets/icons/si-zhihu.svg" width="15" alt="Zhihu" /> <a href="https://www.zhihu.com/people/e7c851hd">Zhihu</a></sub>
 

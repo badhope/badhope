@@ -19,8 +19,8 @@
 | Rank 配色 | metrics | 同上 rank colors | ✅ | `ACHIEVEMENT_COLORS` |
 | **卡片** | | | | |
 | 统计卡 | GRS | `src/cards/stats.js` | ✅ | `kit/cards.py:stats_svg` |
-| 语言构成卡（多布局） | GRS | `src/cards/top-languages.js` | 🔄 | `langs_svg`：横向条形图（normal 模式）；donut/pie/compact 未做 |
-| Repo pin 卡 | GRS | `src/cards/repo.js` | ❌ | 单 repo 卡需要 API 明细（stars/forks/language per repo） |
+| 语言构成卡（多布局） | GRS | `src/cards/top-languages.js` | ✅ | `langs_svg`：bar / donut / compact / pie 四布局，`ACCOUNTS[key]["cards"]["langs_layout"]` 可选 |
+| Repo pin 卡 | GRS | `src/cards/repo.js` | ✅ | `scripts/render_cards.mjs` 通过 GitHub 卡片核心写入 `data/cards/<account>/pin-*.svg`，README 仅在种子存在时引用 |
 | Gist 卡 | GRS | `src/cards/gist.js` | ❌ | 本项目无 gist 数据源 |
 | WakaTime 卡 | GRS | `src/cards/wakatime.js` | ✅ | `kit/wakatime.py`（token 可选插件） |
 | 打字机动画 | typing-svg | `src/templates/main.php` | ✅ | `kit/typing.py`（SMIL 单行/多行模式） |
@@ -33,7 +33,7 @@
 | 错误徽章语义 | shields | `core/base-service/errors.js` | ✅ | 卡片失败降级为占位卡（`plugins.py:_error_svg`） |
 | **工程能力** | | | | |
 | 逐卡开关/显示 | GRS | `?hide= / show=` | ✅ | `ACCOUNTS[key]["cards"]` dict |
-| 自定义标题 | GRS | `?custom_title=` | ✅ | `ACCOUNTS[key]["cards"]["<name>_title"]`（渲染层） |
+| 自定义标题 | GRS | `?custom_title=` | ❌ | 当前仅支持逐卡开关与主题覆盖；没有通用 `<name>_title` 渲染逻辑，避免把未实现能力写成已实现 |
 | 逐卡失败降级 | metrics | `data.plugins[name]=error` + `.field.error` | ✅ | `plugins.py:_error_svg` |
 | 明暗双主题 | snk | `@media (prefers-color-scheme: dark)` | ✅ | snake 卡 CSS 变量；其余卡单色（与 GRS 一致） |
 | 字宽精确测量 | shields | `anafanafo`（Verdana 11px 表） | 🔄 | `text_w()` 估算（CJK 1.0em/拉丁 0.6em）；Python 无 Verdana 表 |
@@ -52,7 +52,7 @@
 | 重试 + token 池 | GRS | `src/common/retryer.js` | 🔄 | `net.py` 指数退避；token 池因单 token 无多池需求 |
 | 速率限制处理 | shields | `config/default.yml` | ✅ | `net.py` 按主机最小间隔 |
 | 预设组合 | metrics | `presets.mjs` | ❌ | 单用户场景暂不需要 |
-| Actions 自动提交 | metrics/GRS | `action/*.mjs` | ❌ | GitCode Actions 即将支持（.gitcode/workflows/verify.yml） |
+| Actions 自动提交 | metrics/GRS | `action/*.mjs` | ✅ | GitHub `refresh.yml` 日更/周卡自动提交并镜像到 GitCode/Gitee；GitCode `.gitcode/workflows/verify.yml` 负责验证门禁 |
 
 ## 未移植项的原因说明
 

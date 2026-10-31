@@ -2,6 +2,7 @@
 """README 渲染：三语言模板、贡献表、写作区、在别处表格。"""
 
 import pathlib
+import re
 
 import accounts as A
 
@@ -14,6 +15,40 @@ from .textutil import _stats_month, esc, fmt_num
 
 def pr_links(repo_url, nums):
     return " · ".join("[#%s](%s/pull/%s)" % (n, repo_url, n) for n in nums)
+
+
+def _has_cjk(text):
+    return bool(re.search(r"[\u3400-\u9fff]", text or ""))
+
+
+def _has_japanese(text):
+    return bool(re.search(r"[\u3040-\u30ff]", text or ""))
+
+
+def _curated_description(name, lang):
+    for work_id, work in A.WORKS.items():
+        if work_id.casefold() == (name or "").casefold():
+            return (work.get("desc") or {}).get(lang)
+    return None
+
+
+def _work_label(repo, lang):
+    """Return a localized label without leaking an incompatible source language."""
+    name = (repo.get("name") or "").strip()
+    title = (repo.get("title") or name).strip()
+    desc = _curated_description(name, lang) or (repo.get("desc") or "").strip()
+    if not _curated_description(name, lang):
+        if lang == "ja" and desc and not _has_japanese(desc):
+            desc = ""
+        elif lang == "md" and desc and _has_cjk(desc):
+            desc = ""
+        elif lang == "zh-CN" and desc and not _has_cjk(desc):
+            desc = ""
+    label = title if not desc else "%s — %s" % (title, desc)
+    if len(label) > 68:
+        label = label[:67].rstrip() + "…"
+    return label.replace("|", "\\|").replace("[", "(").replace("]", ")")
+
 
 def render_contrib(acct, key, lang):
     labels = A.LABELS[lang]
@@ -64,7 +99,7 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     # 完全一致的字节，否则每月 1 号会在没有任何数据变化时产生一个噪声提交。
     month = _stats_month(stats)
     quote = A.QUOTES[(month - 1) % len(A.QUOTES)]
-    quote_text = quote["zh"] if lang == "zh-CN" else quote["en"]
+    quote_text = quote.get(lang) or (quote["zh"] if lang == "zh-CN" else quote["en"])
     author = quote.get("author") or ""
     suffix = "" if author in ("", "—") else " — %s" % author
     lines.append('<p align="center"><sub>%s%s</sub></p>' % (quote_text, suffix))
@@ -111,17 +146,9 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
             labels["works_col_name"], labels["works_col_stars"], labels["works_col_updated"]))
         lines.append("| --- | --- | --- |")
         for repo in live_works[:WORKS_LIMIT]:
-            title = repo.get("title") or repo.get("name")
-            desc = (repo.get("desc") or "").strip()
-            label = title if not desc else "%s — %s" % (title, desc)
-            # 描述过长时截断，保证表格在窄屏也可读
-            if len(label) > 68:
-                label = label[:67].rstrip() + "…"
-            # 仓库描述是外部输入：竖线会截断表格列，方括号会伪造链接语法，
-            # 都要在渲染前中和掉（不能指望数据源永远干净）。
-            label = label.replace("|", "\\|").replace("[", "(").replace("]", ")")
-            # emoji 短代码 → Unicode（GRS parseEmojis 移植）
-            label = parse_emojis(label)
+            # 外部描述按目标语言过滤，避免日文页出现整段中文/英文机翻腔；
+            # 名称仍保留，确保没有本地化描述时作品不会消失。
+            label = parse_emojis(_work_label(repo, lang))
             lines.append("| [%s](%s) | %s | %s |" % (
                 esc(label), esc(repo.get("url") or ""),
                 repo.get("stars", 0), esc(repo.get("updated") or "")))
@@ -254,8 +281,10 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
         lines.append("| %s | %s |" % (labels["date"], labels["article"]))
         lines.append("|---|---|")
         for item in writing_items[:5]:
+            title = (A.WRITING_TITLE_OVERRIDES.get(item["url"], {}).get(lang)
+                     or item["title"])
             lines.append("| %s | [%s](%s) |"
-                         % (item.get("date") or "—", item["title"], item["url"]))
+                         % (item.get("date") or "—", title, item["url"]))
         lines.append("")
     platform_bits = " · ".join(
         '<img src="./assets/icons/%s" width="15" alt="%s" /> <a href="%s">%s</a>'
