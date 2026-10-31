@@ -88,14 +88,9 @@ jobs:
       - name: Regenerate README + assets (offline, deterministic)
         run: python3 scripts/generate.py --here
 
-      - name: Generate contribution snake (overwrites assets/ directly)
-        uses: Platane/snk@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            assets/github-contribution-grid-snake.svg
-            assets/github-contribution-grid-snake-dark.svg?palette=github-dark
-
+      # 贡献蛇由 kit 插件卡在 generate.py 里渲染（snake-<lang>.svg，README 引用
+      # 的就是它）。v1 的 Platane/snk 步骤产出旧命名文件，README 不再引用，
+      # 每次 CI 还会重建造成提交噪声，已移除。
       - name: Commit & push if changed
         run: |
           set -euo pipefail
