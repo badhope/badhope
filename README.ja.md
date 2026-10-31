@@ -59,12 +59,8 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 </p>
 
 <p align="center">
-  <img src="./assets/stats-ja.svg" alt="28 公開リポジトリ · 241 累計スター · 20 フォロワー · 24 上流へのマージ" width="49%" />
-  <img src="./assets/langs-ja.svg" alt="言語構成" width="49%" />
-</p>
-
-<p align="center">
-  <img src="./assets/activity-ja.svg" alt="28 公開リポジトリ · 241 累計スター · 20 フォロワー · 24 上流へのマージ" width="100%" />
+  <img src="./assets/cards/stats-ja.svg" alt="GitHub stats" width="49%" />
+  <img src="./assets/cards/langs-ja.svg" alt="Top languages" width="49%" />
 </p>
 
 ## 実績
@@ -83,6 +79,14 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 パッチは ohmyzsh・tldr・icalendar・NUR などにマージ済み — 詳細は GitHub の2アカウントへ: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
 
 </details>
+
+## ピン留め作品
+
+<p align="center">
+  <img src="./assets/cards/pin-1-ja.svg" alt="pinned work" width="32%" />
+  <img src="./assets/cards/pin-2-ja.svg" alt="pinned work" width="32%" />
+  <img src="./assets/cards/pin-3-ja.svg" alt="pinned work" width="32%" />
+</p>
 
 ## 執筆
 

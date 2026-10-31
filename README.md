@@ -59,12 +59,8 @@ All public repositories: [github.com/badhope](https://github.com/badhope)
 </p>
 
 <p align="center">
-  <img src="./assets/stats-en.svg" alt="28 public repos · 241 stars · 20 followers · 24 upstream merges" width="49%" />
-  <img src="./assets/langs-md.svg" alt="Languages" width="49%" />
-</p>
-
-<p align="center">
-  <img src="./assets/activity-md.svg" alt="28 public repos · 241 stars · 20 followers · 24 upstream merges" width="100%" />
+  <img src="./assets/cards/stats-en.svg" alt="GitHub stats" width="49%" />
+  <img src="./assets/cards/langs-en.svg" alt="Top languages" width="49%" />
 </p>
 
 ## Achievements
@@ -83,6 +79,14 @@ All public repositories: [github.com/badhope](https://github.com/badhope)
 Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details on the two GitHub accounts: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
 
 </details>
+
+## Pinned work
+
+<p align="center">
+  <img src="./assets/cards/pin-1-en.svg" alt="pinned work" width="32%" />
+  <img src="./assets/cards/pin-2-en.svg" alt="pinned work" width="32%" />
+  <img src="./assets/cards/pin-3-en.svg" alt="pinned work" width="32%" />
+</p>
 
 ## Writing
 

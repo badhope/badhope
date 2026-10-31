@@ -59,12 +59,8 @@
 </p>
 
 <p align="center">
-  <img src="./assets/stats-zh-CN.svg" alt="28 公开仓库 · 241 累计 Star · 20 关注者 · 24 上游合并" width="49%" />
-  <img src="./assets/langs-zh-CN.svg" alt="语言构成" width="49%" />
-</p>
-
-<p align="center">
-  <img src="./assets/activity-zh-CN.svg" alt="28 公开仓库 · 241 累计 Star · 20 关注者 · 24 上游合并" width="100%" />
+  <img src="./assets/cards/stats-cn.svg" alt="GitHub stats" width="49%" />
+  <img src="./assets/cards/langs-cn.svg" alt="Top languages" width="49%" />
 </p>
 
 ## 成就
@@ -79,6 +75,14 @@
 补丁已合入 ohmyzsh · tldr · icalendar · NUR 等上游项目，明细见两个 GitHub 账号: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
 
 </details>
+
+## 置顶作品
+
+<p align="center">
+  <img src="./assets/cards/pin-1-cn.svg" alt="pinned work" width="32%" />
+  <img src="./assets/cards/pin-2-cn.svg" alt="pinned work" width="32%" />
+  <img src="./assets/cards/pin-3-cn.svg" alt="pinned work" width="32%" />
+</p>
 
 ## 写作
 
