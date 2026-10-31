@@ -76,6 +76,10 @@ def check_generated_tree(c, key, tmp_root):
         c.check(bool(refs), "%s %s 没有任何本地资产引用" % (key, readme.name))
         for ref in sorted(refs):
             c.check((out / ref[2:]).is_file(), "%s %s 引用了不存在的资产 %s" % (key, readme.name, ref))
+        if acct.get("platform") in ("gitcode", "gitee"):
+            expected_badge = out / "assets" / ("badges-%s.svg" % lang)
+            c.check(expected_badge.is_file() == ('./assets/%s' % expected_badge.name in text),
+                    "%s %s 徽章产物与 README 引用不一致" % (key, readme.name))
         # fail-soft 把渲染异常降级成「card failed」错误卡；那是诊断信息，
         # 绝不能当正常产物出库。这里把它的出现变成硬门禁：任何一张错误卡
         # 都说明某张卡在当前数据/环境下真的坏了，必须修，而不是静默降级。

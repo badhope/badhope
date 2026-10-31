@@ -183,11 +183,12 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
         lines.append(badge_row)
         lines.append("")
     else:
-        badge_path = assets_root / ("badges-%s.svg" % A.CARD_LOCALE[lang])
+        badge_name = "badges-%s.svg" % lang
+        badge_path = assets_root / badge_name
         if badge_path.is_file():
             lines.append('<p align="center">')
-            lines.append('  <img src="./assets/badges-%s.svg" alt="%s" />'
-                         % (A.CARD_LOCALE[lang], esc(labels["numbers"])))
+            lines.append('  <img src="./assets/%s" alt="%s" />'
+                         % (badge_name, esc(labels["numbers"])))
             lines.append("</p>")
             lines.append("")
     data = acct_stats(stats, key)

@@ -95,6 +95,23 @@ class ReadmeCopyTests(unittest.TestCase):
         self.assertIn("ローカルファースト AI", text)
         self.assertNotIn("本地优先 AI", text)
 
+    def test_chinese_badge_uses_internal_language_key(self):
+        from kit.readme import render_readme
+        assets = pathlib.Path(tempfile.mkdtemp())
+        (assets / "badges-zh-CN.svg").write_text("<svg/>", encoding="utf-8")
+        text = render_readme(A.ACCOUNTS["gitcode_badhope"], "gitcode_badhope", "zh-CN",
+                             {"as_of": "", "accounts": {}}, discovered={"accounts": {}},
+                             assets_dir=assets)
+        self.assertIn("./assets/badges-zh-CN.svg", text)
+        self.assertNotIn("badges-cn.svg", text)
+
+    def test_wakatime_localized_range_label(self):
+        from kit.wakatime import wakatime_svg
+        svg = wakatime_svg({"data": {"range": "last_7_days", "categories": [{"text": "1 hr"}],
+                                      "languages": [{"name": "Python", "text": "1 hr", "percent": 100}]}},
+                            lang="ja", theme=A.THEME)
+        self.assertIn("過去7日間", svg)
+
 
 class GenerateTests(unittest.TestCase):
     def setUp(self):

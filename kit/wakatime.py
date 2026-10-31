@@ -8,6 +8,7 @@ github-readme-stats 的 wakatime 卡（src/cards/wakatime.js）移植：
 """
 
 import json
+import os
 
 import accounts as A
 
@@ -17,20 +18,32 @@ SUPPORTED_RANGES = ("last_7_days", "last_30_days", "last_6_months", "last_year")
 RANGE_LABELS = {
     "md": {"last_7_days": "Last 7 Days", "last_30_days": "Last 30 Days",
            "last_6_months": "Last 6 Months", "last_year": "Last Year"},
+    "zh-CN": {"last_7_days": "近 7 天", "last_30_days": "近 30 天",
+               "last_6_months": "近 6 个月", "last_year": "近一年"},
+    "ja": {"last_7_days": "過去7日間", "last_30_days": "過去30日間",
+           "last_6_months": "過去6か月", "last_year": "過去1年"},
 }
 
 
 def _api_key():
-    import os
     return (os.environ.get("WAKATIME_API_KEY") or "").strip()
 
 
-def fetch_stats(api_key=None, api_domain="wakatime.com", timeout=30):
+def _api_domain():
+    return (os.environ.get("WAKATIME_API_URL") or "wakatime.com").strip().rstrip("/")
+
+
+def fetch_stats(api_key=None, api_domain=None, timeout=30):
     key = api_key or _api_key()
     if not key:
         return None
-    url = "https://%s/api/v1/users/current/stats/%s?is_including_today=true" % (
-        api_domain.rstrip("/"), SUPPORTED_RANGES[0])
+    domain = api_domain or _api_domain()
+    if domain.startswith("http://") or domain.startswith("https://"):
+        base = domain
+    else:
+        base = "https://%s" % domain
+    url = "%s/api/v1/users/current/stats/%s?is_including_today=true" % (
+        base, SUPPORTED_RANGES[0])
     try:
         return default_client().get_json(
             url, headers={"Authorization": "Basic " + key}, timeout=timeout)
@@ -88,7 +101,7 @@ def wakatime_svg(stats, lang="md", theme=None, layout="normal", langs_count=5, w
                 '<text x="%d" y="%d" font-family="%s" font-size="13" fill="%s">%s</text>'
                 % (width - padding, y + 14, A.MONO, t.get("muted", "#aaa"),
                    esc("%s - %s" % (item["name"], item["text"]))))
-    title = esc("WakaTime · %s" % total_text)
+    title = esc("%s · %s" % (label, total_text))
     return (
         '<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" '
         'role="img" aria-label="%s">'
