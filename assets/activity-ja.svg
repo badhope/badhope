@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 258" width="1000" height="258" role="img" aria-label="公開リポジトリ: 28 · 累計スター: 241 · フォロワー: 20 · 上流へのマージ: 24">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 258" width="1000" height="258" role="img" aria-label="公開リポジトリ: 28 · 累計スター: 241 · フォロワー: 20 · 上流へのマージ: 25">
 <defs>
   <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0%" stop-color="#0E1630"/>
@@ -25,6 +25,6 @@
 <text x="916" y="153" font-family="Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif" font-size="14.5" fill="#F2DC9E">20</text>
 <text x="282" y="201" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="13.5" fill="#9AA8CC">上流へのマージ</text>
 <rect x="300" y="186" width="600" height="14" rx="7" fill="#0A1122"/>
-<rect x="300" y="186" width="59.8" height="14" rx="7" fill="url(#bar)"/>
-<text x="916" y="199" font-family="Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif" font-size="14.5" fill="#F2DC9E">24</text>
+<rect x="300" y="186" width="62.2" height="14" rx="7" fill="url(#bar)"/>
+<text x="916" y="199" font-family="Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif" font-size="14.5" fill="#F2DC9E">25</text>
 </svg>

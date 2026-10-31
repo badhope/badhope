@@ -41,12 +41,12 @@ My GitHub home — tools, indexes and small software experiments, all in the ope
 
 | Project | Stars | Updated |
 | --- | --- | --- |
+| [rubbish — Multi-tenant journal and preprint platform — submission /…](https://github.com/badhope/rubbish) | 4 | 2026-10-31 |
+| [aquapilot — AI-operated wastewater treatment plant simulator — topo…](https://github.com/badhope/aquapilot) | 0 | 2026-10-31 |
+| [shopcash — Offline shop checkout and ledger — the software never to…](https://github.com/badhope/shopcash) | 0 | 2026-10-31 |
 | [world-walker — AI-driven interactive text fiction engine](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
-| [rubbish — Multi-tenant journal and preprint platform — submission /…](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
 | [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
 | [sciflow — Local-first AI research agent workbench — multi-agent pip…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
-| [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-10-29 |
-| [digilegacy — Local-first digital legacy planner](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 

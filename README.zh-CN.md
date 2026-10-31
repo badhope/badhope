@@ -41,12 +41,12 @@
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
+| [rubbish — 学术期刊与预印本多租户平台 —— 投稿 / 评审 / 阅读](https://github.com/badhope/rubbish) | 4 | 2026-10-31 |
+| [aquapilot](https://github.com/badhope/aquapilot) | 0 | 2026-10-31 |
+| [shopcash — 单机门店收银与收款记账 —— 软件零资金介入，钱只进商家自己的商户号](https://github.com/badhope/shopcash) | 0 | 2026-10-31 |
 | [world-walker — AI 驱动的文字互动小说引擎](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
-| [rubbish — 学术期刊与预印本多租户平台 —— 投稿 / 评审 / 阅读](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
 | [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
 | [sciflow — 本地优先的 AI 科研智能体工作台 —— 多 Agent 编排与记忆](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
-| [rules](https://github.com/badhope/rules) | 0 | 2026-10-29 |
-| [digilegacy — 数字遗产管理系统 —— 本地优先](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 

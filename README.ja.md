@@ -41,12 +41,12 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 
 | プロジェクト | スター | 更新日 |
 | --- | --- | --- |
+| [rubbish — 学術ジャーナル・プレプリントのマルチテナント基盤](https://github.com/badhope/rubbish) | 4 | 2026-10-31 |
+| [aquapilot](https://github.com/badhope/aquapilot) | 0 | 2026-10-31 |
+| [shopcash — 単店舗向けレジ・売上帳 — ソフトは資金に一切関与しません](https://github.com/badhope/shopcash) | 0 | 2026-10-31 |
 | [world-walker — AI 駆動のテキストインタラクティブ小説エンジン](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
-| [rubbish — 学術ジャーナル・プレプリントのマルチテナント基盤](https://github.com/badhope/rubbish) | 4 | 2026-10-30 |
 | [moneyhelper — 会話ファーストの個人金融エージェント — ローカル優先・LangGraph 編成](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
 | [sciflow — ローカル優先の AI 研究エージェント作業台 — マルチエージェント編成](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
-| [rules](https://github.com/badhope/rules) | 0 | 2026-10-29 |
-| [digilegacy — ローカル優先のデジタル遺産管理](https://github.com/badhope/digilegacy) | 6 | 2026-10-28 |
 
 全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
 

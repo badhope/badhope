@@ -7,11 +7,20 @@
       "handle": "X33834",
       "repos": [
         {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://github.com/X33834/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-31",
+          "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/ASM2d/ADM1 solvers, guardrailed AI decisions, calibration and state estimation. Runnable web app.",
+          "language": "TypeScript"
+        },
+        {
           "name": "rubbish",
           "title": "rubbish",
           "url": "https://github.com/X33834/rubbish",
           "stars": 0,
-          "updated": "2026-10-30",
+          "updated": "2026-10-31",
           "desc": "ScholarHub — 期刊/预印本平台",
           "language": "Python"
         },
@@ -59,15 +68,6 @@
           "updated": "2026-10-27",
           "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0",
           "language": "HTML"
-        },
-        {
-          "name": "aquapilot",
-          "title": "aquapilot",
-          "url": "https://github.com/X33834/aquapilot",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/Takács solver, robust AI operator, auditable flowsheet",
-          "language": "TypeScript"
         },
         {
           "name": "sciflow",
@@ -229,11 +229,20 @@
       "handle": "Morningstar202604",
       "repos": [
         {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://github.com/Morningstar202604/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-31",
+          "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/ASM2d/ADM1 solvers, guardrailed AI decisions, calibration and state estimation. Runnable web app.",
+          "language": "TypeScript"
+        },
+        {
           "name": "rubbish",
           "title": "rubbish",
           "url": "https://github.com/Morningstar202604/rubbish",
           "stars": 0,
-          "updated": "2026-10-30",
+          "updated": "2026-10-31",
           "desc": "ScholarHub — 期刊/预印本平台",
           "language": "Python"
         },
@@ -281,15 +290,6 @@
           "updated": "2026-10-28",
           "desc": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. 知客 · 可自托管的个人助理 Agent 底座",
           "language": "Python"
-        },
-        {
-          "name": "aquapilot",
-          "title": "aquapilot",
-          "url": "https://github.com/Morningstar202604/aquapilot",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/Takács solver, robust AI operator, auditable flowsheet. 347 tests, BSM1 Table 6 gate, live React control room.",
-          "language": "TypeScript"
         },
         {
           "name": "sciflow",
@@ -442,21 +442,39 @@
       "handle": "badhope",
       "repos": [
         {
+          "name": "rubbish",
+          "title": "rubbish",
+          "url": "https://github.com/badhope/rubbish",
+          "stars": 4,
+          "updated": "2026-10-31",
+          "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)",
+          "language": "Python"
+        },
+        {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://github.com/badhope/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-31",
+          "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/ASM2d/ADM1 solvers, guardrailed AI decisions, calibration and state estimation. Runnable web app.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "shopcash",
+          "title": "shopcash",
+          "url": "https://github.com/badhope/shopcash",
+          "stars": 0,
+          "updated": "2026-10-31",
+          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
+          "language": "JavaScript"
+        },
+        {
           "name": "world-walker",
           "title": "world-walker",
           "url": "https://github.com/badhope/world-walker",
           "stars": 18,
           "updated": "2026-10-30",
           "desc": "World Walker 万界·行者 — 世界观无关的 AI 文字互动游戏内核：确定性规则结算 + 34 个 MCP 工具 + 只读实况主舞台，四套可直接开玩的设定包。Deterministic rule engine for AI-driven interactive fiction (MCP server + read-only live panel).",
-          "language": "Python"
-        },
-        {
-          "name": "rubbish",
-          "title": "rubbish",
-          "url": "https://github.com/badhope/rubbish",
-          "stars": 4,
-          "updated": "2026-10-30",
-          "desc": "ScholarHub — multi-tenant academic journal & preprint platform: 10 modules (submission/peer review/catalog/reading/export)",
           "language": "Python"
         },
         {
@@ -530,15 +548,6 @@
           "updated": "2026-10-25",
           "desc": "Spark — local-first coding agent (Python + React), self-hosted, MCP-native, with tool sandbox, repo-map context and OTel observability. 本地自托管的 AI 编程智能体。",
           "language": "Python"
-        },
-        {
-          "name": "aquapilot",
-          "title": "aquapilot",
-          "url": "https://github.com/badhope/aquapilot",
-          "stars": 0,
-          "updated": "2026-10-25",
-          "desc": "AI-operated wastewater treatment plant simulator — topology-driven ASM1/Takács solver, robust AI operator, auditable flowsheet",
-          "language": "TypeScript"
         },
         {
           "name": "mashang",
@@ -620,15 +629,6 @@
           "updated": "2026-10-17",
           "desc": "Content Harbor — 桌面 + Web 双形态 AI 内容发布中枢：AI 写稿、一键多投、原地更新、三档发布模式、AIGC 合规门禁",
           "language": "Python"
-        },
-        {
-          "name": "shopcash",
-          "title": "shopcash",
-          "url": "https://github.com/badhope/shopcash",
-          "stars": 0,
-          "updated": "2026-10-17",
-          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
-          "language": "JavaScript"
         },
         {
           "name": "agent-builder",
@@ -917,8 +917,17 @@
           "title": "rubbish",
           "url": "https://gitee.com/badhope/rubbish",
           "stars": 0,
-          "updated": "2026-10-30",
+          "updated": "2026-10-31",
           "desc": "ScholarHub — 期刊/预印本平台",
+          "language": ""
+        },
+        {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://gitee.com/badhope/aquapilot",
+          "stars": 0,
+          "updated": "2026-10-31",
+          "desc": "AI 值守的污水处理仿真台：拓扑驱动 ASM1/ASM2d/ADM1 求解、带护栏的 AI 决策、参数校准与状态估计。可直接运行的 Web 应用。",
           "language": ""
         },
         {
