@@ -59,12 +59,12 @@ All public repositories: [github.com/badhope](https://github.com/badhope)
 </p>
 
 <p align="center">
-  <img src="./assets/stats-en.svg" alt="26 public repos · 241 stars · 20 followers · 24 upstream merges" width="49%" />
+  <img src="./assets/stats-en.svg" alt="28 public repos · 241 stars · 20 followers · 24 upstream merges" width="49%" />
   <img src="./assets/langs-md.svg" alt="Languages" width="49%" />
 </p>
 
 <p align="center">
-  <img src="./assets/activity-md.svg" alt="26 public repos · 241 stars · 20 followers · 24 upstream merges" width="100%" />
+  <img src="./assets/activity-md.svg" alt="28 public repos · 241 stars · 20 followers · 24 upstream merges" width="100%" />
 </p>
 
 ## Achievements

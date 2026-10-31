@@ -59,12 +59,12 @@
 </p>
 
 <p align="center">
-  <img src="./assets/stats-zh-CN.svg" alt="26 公开仓库 · 241 累计 Star · 20 关注者 · 24 上游合并" width="49%" />
+  <img src="./assets/stats-zh-CN.svg" alt="28 公开仓库 · 241 累计 Star · 20 关注者 · 24 上游合并" width="49%" />
   <img src="./assets/langs-zh-CN.svg" alt="语言构成" width="49%" />
 </p>
 
 <p align="center">
-  <img src="./assets/activity-zh-CN.svg" alt="26 公开仓库 · 241 累计 Star · 20 关注者 · 24 上游合并" width="100%" />
+  <img src="./assets/activity-zh-CN.svg" alt="28 公开仓库 · 241 累计 Star · 20 关注者 · 24 上游合并" width="100%" />
 </p>
 
 ## 成就

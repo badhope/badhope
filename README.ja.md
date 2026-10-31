@@ -59,12 +59,12 @@ GitHub の拠点 — ツール・索引・小さなソフトウェア実験を�
 </p>
 
 <p align="center">
-  <img src="./assets/stats-ja.svg" alt="26 公開リポジトリ · 241 累計スター · 20 フォロワー · 24 上流へのマージ" width="49%" />
+  <img src="./assets/stats-ja.svg" alt="28 公開リポジトリ · 241 累計スター · 20 フォロワー · 24 上流へのマージ" width="49%" />
   <img src="./assets/langs-ja.svg" alt="言語構成" width="49%" />
 </p>
 
 <p align="center">
-  <img src="./assets/activity-ja.svg" alt="26 公開リポジトリ · 241 累計スター · 20 フォロワー · 24 上流へのマージ" width="100%" />
+  <img src="./assets/activity-ja.svg" alt="28 公開リポジトリ · 241 累計スター · 20 フォロワー · 24 上流へのマージ" width="100%" />
 </p>
 
 ## 実績
