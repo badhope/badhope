@@ -71,11 +71,21 @@ def warn(msg):
 
 
 def _default_secrets_path():
-    """默认凭据库路径。HOME 不可判定（容器 / 精简 shell）时退回空路径。"""
+    """默认凭据库路径。HOME 不可判定（容器 / 精简 shell）时退回空路径。
+
+    规范路径是 ~/.agent-secrets/accounts.json（AGENT_SECRETS_DIR 可覆盖）；
+    ~/.zcode/secrets/ 是历史环境，仅作兜底。
+    """
     try:
         home = pathlib.Path.home()
     except RuntimeError:
-        return pathlib.Path(".zcode") / "secrets" / "accounts.json"
+        return pathlib.Path(".agent-secrets") / "accounts.json"
+    base = os.environ.get("AGENT_SECRETS_DIR", "").strip()
+    if base:
+        return pathlib.Path(base) / "accounts.json"
+    canonical = home / ".agent-secrets" / "accounts.json"
+    if canonical.is_file():
+        return canonical
     return home / ".zcode" / "secrets" / "accounts.json"
 
 

@@ -172,7 +172,9 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     alt = " · ".join(alt_bits) if alt_bits else labels["numbers"]
     card_stats = load_card_seed(key, "stats", lang, base)
     card_langs = load_card_seed(key, "langs", lang, base)
-    has_langs = card_langs or ((discovered or {}).get("accounts", {}).get(key, {}).get("repos"))
+    # langs 卡是否真的产出：README 渲染在卡片之后，直接看本次输出目录里的
+    # langs 卡文件 —— 数据里"有仓库"不等于卡片渲染成功（CI 曾因此挂空引用）。
+    has_langs = (assets_root / ("langs-%s.svg" % lang)).is_file()
     # stats + langs 并排（GRS 经典双卡布局）
     lines.append('<p align="center">')
     if card_stats and card_langs:

@@ -1,14 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 220" width="500" height="220" role="img" aria-label="语言构成 · Python 4, Rust 1, TypeScript 1">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 220" width="500" height="220" role="img" aria-label="语言构成 · Python 9, TypeScript 7, JavaScript 4, Kotlin 2, Rust 2, HTML 1">
 <defs>
   <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0E1630"/><stop offset="100%" stop-color="#0A1122"/></linearGradient>
 </defs>
 <rect x="0.75" y="0.75" width="498.5" height="218.5" rx="16" fill="url(#panel)" stroke="#D9B876" stroke-opacity="0.30" stroke-width="1.5"/>
 <text x="26" y="38" font-family="Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif" font-size="15" fill="#F4F7FF">语言构成</text>
-<text x="474" y="38" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="11" letter-spacing="1.2" fill="#5C6A94">6 repos</text>
-<rect x="26.0" y="62" width="296.7" height="12" rx="3" fill="#3572A5"/>
-<rect x="324.7" y="62" width="72.7" height="12" rx="3" fill="#dea584"/>
-<rect x="399.3" y="62" width="72.7" height="12" rx="3" fill="#3178c6"/>
-<circle cx="26" cy="104" r="4.5" fill="#3572A5"/><text x="38" y="108" font-family="Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12.5" fill="#F4F7FF">Python</text><text x="236" y="108" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="12" fill="#9AA8CC">66.7%</text>
-<circle cx="258" cy="104" r="4.5" fill="#dea584"/><text x="270" y="108" font-family="Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12.5" fill="#F4F7FF">Rust</text><text x="468" y="108" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="12" fill="#9AA8CC">16.7%</text>
-<circle cx="26" cy="134" r="4.5" fill="#3178c6"/><text x="38" y="138" font-family="Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12.5" fill="#F4F7FF">TypeScript</text><text x="236" y="138" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="12" fill="#9AA8CC">16.7%</text>
+<text x="474" y="38" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="11" letter-spacing="1.2" fill="#5C6A94">25 repos</text>
+<rect x="26.0" y="62" width="159.3" height="12" rx="3" fill="#3572A5"/>
+<rect x="187.3" y="62" width="123.4" height="12" rx="3" fill="#3178c6"/>
+<rect x="312.7" y="62" width="69.7" height="12" rx="3" fill="#f1e05a"/>
+<rect x="384.4" y="62" width="33.8" height="12" rx="3" fill="#A97BFF"/>
+<rect x="420.2" y="62" width="33.8" height="12" rx="3" fill="#dea584"/>
+<rect x="456.1" y="62" width="15.9" height="12" rx="3" fill="#e34c26"/>
+<circle cx="26" cy="104" r="4.5" fill="#3572A5"/><text x="38" y="108" font-family="Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12.5" fill="#F4F7FF">Python</text><text x="236" y="108" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="12" fill="#9AA8CC">36.0%</text>
+<circle cx="258" cy="104" r="4.5" fill="#3178c6"/><text x="270" y="108" font-family="Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12.5" fill="#F4F7FF">TypeScript</text><text x="468" y="108" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="12" fill="#9AA8CC">28.0%</text>
+<circle cx="26" cy="134" r="4.5" fill="#f1e05a"/><text x="38" y="138" font-family="Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12.5" fill="#F4F7FF">JavaScript</text><text x="236" y="138" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="12" fill="#9AA8CC">16.0%</text>
+<circle cx="258" cy="134" r="4.5" fill="#A97BFF"/><text x="270" y="138" font-family="Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12.5" fill="#F4F7FF">Kotlin</text><text x="468" y="138" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="12" fill="#9AA8CC">8.0%</text>
+<circle cx="26" cy="164" r="4.5" fill="#dea584"/><text x="38" y="168" font-family="Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12.5" fill="#F4F7FF">Rust</text><text x="236" y="168" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="12" fill="#9AA8CC">8.0%</text>
+<circle cx="258" cy="164" r="4.5" fill="#e34c26"/><text x="270" y="168" font-family="Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12.5" fill="#F4F7FF">HTML</text><text x="468" y="168" text-anchor="end" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace" font-size="12" fill="#9AA8CC">4.0%</text>
 </svg>
