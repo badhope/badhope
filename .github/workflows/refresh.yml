@@ -149,13 +149,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'schedule' && github.event.schedule == '47 4 * * 1')
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
