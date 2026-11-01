@@ -37,6 +37,11 @@ WORKS_PATH = ROOT / "data" / "works.json"
 EXCLUDE_NAMES = {"badhope", ".github", "profile", "test", "tmp", "scratch"}
 
 
+def account_keys(platform=None):
+    return [key for key in A.ACCOUNT_ORDER
+            if platform is None or A.ACCOUNTS[key]["platform"] == platform]
+
+
 def _repo_ident(repo, platform):
     """仓库的稳定标识：优先用 path（Gitee 的 name 可能是中文标题）。"""
     return (repo.get("path") or repo.get("name") or "").strip()
@@ -148,7 +153,7 @@ def fetch_repos(platform, handle):
     return out
 
 
-def refresh_works(limit=None):
+def refresh_works(limit=None, platform=None):
     """刷新全部账号的作品列表。返回 True 表示有数据变化。"""
     cur = {}
     try:
@@ -158,7 +163,7 @@ def refresh_works(limit=None):
     accounts = cur.get("accounts") or {}
     changed = False
 
-    for key in A.ACCOUNT_ORDER:
+    for key in account_keys(platform):
         acct = A.ACCOUNTS[key]
         repos = fetch_repos(acct["platform"], acct["handle"])
         if repos is None:
@@ -199,8 +204,10 @@ def refresh_works(limit=None):
 def main(argv=None):
     ap = argparse.ArgumentParser(description="discover real repos for profile works section")
     ap.add_argument("--limit", type=int, default=None, help="每账号最多保留几个")
+    ap.add_argument("--platform", choices=["github", "gitee", "gitcode"],
+                    help="refresh only accounts on one platform")
     args = ap.parse_args(argv)
-    return 0 if refresh_works(limit=args.limit) is not None else 1
+    return 0 if refresh_works(limit=args.limit, platform=args.platform) is not None else 1
 
 
 if __name__ == "__main__":

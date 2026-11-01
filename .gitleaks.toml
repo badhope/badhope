@@ -5,39 +5,11 @@
 
 title = "badhope gitleaks config"
 
+[extend]
+useDefault = true
+
 [allowlist]
-description = "Global allowlist for known false-positive categories"
-
-# Test files, fixtures, snapshots, and generated test data
-paths = [
-  '''(^|/)tests?/.*''',
-  '''(^|/)__tests__/.*''',
-  '''(^|/)spec/.*\.md$''',
-  '''(^|/)testdata/.*''',
-  '''(^|/)fixtures?/.*''',
-  '''(^|/)mocks?/.*''',
-  '''.*_test\.go$''',
-  '''.*\.test\.(ts|js|tsx|jsx|py)$''',
-  '''.*_test\.(py|ts|js)$''',
-  '''.*test_[^/]*\.py$''',
-  '''.*_fixture\.(json|ya?ml|toml)$''',
-  '''.*\.spec\.(ts|js|tsx|jsx)$''',
-]
-
-# Documentation and example files (curl examples, README snippets)
-paths2 = [
-  '''(^|/)docs?/.*\.(md|mdx|rst|txt)$''',
-  '''(^|/)README\.(md|rst|txt)$''',
-  '''(^|/)CHANGELOG\.(md|rst|txt)$''',
-  '''(^|/)CONTRIBUTING\.(md|rst|txt)$''',
-  '''(^|/)SECURITY\.(md|rst|txt)$''',
-  '''(^|/)\.github/.*\.(md|mdx)$''',
-  '''.*\.example$''',
-  '''.*\.sample$''',
-  '''.*\.template$''',
-]
-
-# Environment variable templates are USUALLY placeholders
+description = "Only explicit placeholder values are ignored; repository paths are scanned."
 regexes = [
   '''(?i)(api[_-]?key|secret|token|password|passwd|access[_-]?key)\s*[:=]\s*['"]?(CHANGE_?ME|YOUR_|EXAMPLE_|PLACEHOLDER|XXXX|REDACTED|TEST|FAKE|DUMMY|<|<%|<<|<<%)''',
   '''(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*\$\{?[A-Z_][A-Z0-9_]*\}?''',

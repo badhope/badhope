@@ -16,7 +16,7 @@
 
 ### About
 
-My GitHub home — tools, indexes and small software experiments, all in the open. I like offline-first, single-file things that just run; the craft is in the details.
+My GitHub home for open tools, indexes, and small software experiments. Current work spans profile tooling, AI agents, and data-driven utilities.
 
 </td>
 <td valign="top" width="42%">

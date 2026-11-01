@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """HTTP 层与增量构建的单元测试（全部离线，用本地 HTTP 服务）。"""
 
+import contextlib
 import http.server
+import io
 import pathlib
 import sys
 import tempfile
@@ -14,6 +16,22 @@ for candidate in (ROOT, ROOT / "scripts"):
         sys.path.insert(0, str(candidate))
 
 from kit.net import HttpClient, HttpError  # noqa: E402
+
+
+class DoctorConsoleTests(unittest.TestCase):
+    def test_check_writes_cp936_safe_status(self):
+        import doctor
+
+        raw = io.BytesIO()
+        stream = io.TextIOWrapper(raw, encoding="cp936")
+        results = []
+        with contextlib.redirect_stdout(stream):
+            doctor._check(results, doctor.OK, "probe", "正常")
+        stream.flush()
+        output = raw.getvalue().decode("cp936")
+        self.assertIn("[+]", output)
+        self.assertNotIn("✓", output)
+        self.assertEqual(results, [(doctor.OK, "probe", "正常")])
 
 
 class _Handler(http.server.BaseHTTPRequestHandler):
@@ -97,6 +115,11 @@ class NetTests(unittest.TestCase):
             with self.assertRaises(HttpError) as ctx:
                 c.get(self.base + "/missing")
         self.assertEqual(ctx.exception.status, 404)
+
+    def test_http_error_redacts_query(self):
+        err = HttpError(401, "https://example.test/api?access_token=secret&x=1")
+        self.assertEqual(err.url, "https://example.test/api")
+        self.assertNotIn("secret", str(err))
 
 
 class ManifestTests(unittest.TestCase):

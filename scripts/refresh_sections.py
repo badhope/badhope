@@ -33,6 +33,11 @@ STATS_PATH = ROOT / "data" / "stats.json"
 WRITING_PATH = ROOT / "data" / "writing.json"
 
 
+def account_keys(platform=None):
+    return [key for key in A.ACCOUNT_ORDER
+            if platform is None or A.ACCOUNTS[key]["platform"] == platform]
+
+
 def _load_json(path, default):
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -50,7 +55,7 @@ def _same_data(old, new):
     return _strip_meta(old) == _strip_meta(new)
 
 
-def refresh_stats():
+def refresh_stats(platform=None):
     """刷新全部账号的统计数字（repos/stars/followers/merged），逐账号容错。
 
     返回 True 表示**数据**有变化并已写盘；只有时间戳变化时返回 False 且不落盘。
@@ -60,7 +65,7 @@ def refresh_stats():
     old_snapshot = json.loads(json.dumps(cur))
     accounts = cur.setdefault("accounts", {})
     failures, ok_count = [], 0
-    for key in A.ACCOUNT_ORDER:
+    for key in account_keys(platform):
         block = accounts.setdefault(key, {})
         before = dict(block)
         acct = A.ACCOUNTS[key]
@@ -136,11 +141,13 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="sectioned profile refresh (fail-soft, change-aware)")
     ap.add_argument("--section", choices=["stats", "writing", "all"], default="all",
                     help="which section to refresh (default: all)")
+    ap.add_argument("--platform", choices=["github", "gitee", "gitcode"],
+                    help="refresh only accounts on one platform")
     args = ap.parse_args(argv)
 
     results = []
     if args.section in ("stats", "all"):
-        results.append(("stats", refresh_stats()))
+        results.append(("stats", refresh_stats(args.platform)))
     if args.section in ("writing", "all"):
         results.append(("writing", refresh_writing()))
 

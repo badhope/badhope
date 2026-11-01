@@ -7,7 +7,7 @@
 #   - 卡片（stats/langs/pin）：每周一 04:47 UTC 重渲染——GitHub API 调用较多，故低频。
 #   - README + 资产：每次数据变动后离线重建（generate.py 纯 stdlib，确定可复现）。
 #   - 变更闸门：git diff 无变化即跳过提交 —— 大多数日子是空跑，几乎零配额消耗。
-#   - 任一分区失败都不影响整体（continue-on-error / 异常被吞）。
+#   - 数据抓取按账号 fail-soft 保留旧值；构建、镜像和推送失败必须阻断工作流。
 #
 # 前置 Secret（仓库 Settings → Secrets and variables → Actions）：
 #   GITHUB_TOKEN   自动提供（无需手动建），用于 GitHub API 与推送本仓库。
@@ -24,7 +24,7 @@ on:
   workflow_dispatch:          # 手动触发：跑全部分区
 
 permissions:
-  contents: write             # 直接提交到 main（见 docs/DYNAMIC_REFRESH.md 的配额与保护说明）
+  contents: read
 
 concurrency:
   group: profile-refresh
@@ -43,8 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.11"
       - name: Install test deps
@@ -57,6 +59,8 @@ jobs:
   # --------------------------------------------------------------------------
   refresh:
     name: Data + README (daily)
+    permissions:
+      contents: write
     needs: test
     if: >-
       github.event_name == 'workflow_dispatch' ||
@@ -64,26 +68,47 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.11"
 
-      - name: Refresh stats + writing (fail-soft, change-aware)
+      - name: Refresh GitHub stats (fail-soft, change-aware)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
-          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
-        run: python3 scripts/refresh_sections.py --section all
+        run: python3 scripts/refresh_sections.py --section stats --platform github
 
-      - name: Discover real repos for works section
+      - name: Refresh Gitee stats (fail-soft, change-aware)
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: python3 scripts/refresh_sections.py --section stats --platform gitee
+
+      - name: Refresh GitCode stats (fail-soft, change-aware)
+        env:
+          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
+        run: python3 scripts/refresh_sections.py --section stats --platform gitcode
+
+      - name: Refresh writing (fail-soft, change-aware)
+        run: python3 scripts/refresh_sections.py --section writing
+
+      - name: Discover GitHub repos for works section
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
+        run: python3 scripts/discover_works.py --platform github
+
+      - name: Discover Gitee repos for works section
+        env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
-        run: python3 scripts/discover_works.py
+        run: python3 scripts/discover_works.py --platform gitee
+
+      - name: Discover GitCode repos for works section
+        env:
+          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
+        run: python3 scripts/discover_works.py --platform gitcode
 
       - name: Regenerate README + assets (offline, deterministic)
         run: python3 scripts/generate.py --here
@@ -92,6 +117,9 @@ jobs:
       # 的就是它）。v1 的 Platane/snk 步骤产出旧命名文件，README 不再引用，
       # 每次 CI 还会重建造成提交噪声，已移除。
       - name: Commit & push if changed
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_MIRROR_USERNAME: x-access-token
         run: |
           set -euo pipefail
           git add -A
@@ -101,29 +129,35 @@ jobs:
             echo "no content change — skip commit (quota saved)"
             exit 0
           fi
+          export GIT_ASKPASS="$GITHUB_WORKSPACE/scripts/git-askpass.sh"
+          export GIT_TERMINAL_PROMPT=0
           git config user.name  "profile-kit"
           git config user.email "profile-kit@users.noreply.github.com"
           git commit -m "chore: refresh profile (${{ github.run_id }})"
-          git push origin HEAD:main || {
-            echo "push rejected — rebasing on latest main and retrying once"
-            git pull --rebase origin main
-            git push origin HEAD:main
-          }
+          git push origin HEAD:main
+          unset GIT_ASKPASS GIT_TERMINAL_PROMPT
 
       # 用 GITHUB_TOKEN 发起的 push 不会触发新的 workflow run，
       # 所以镜像不能靠 mirror.yml 的 push 事件，必须在这里同一次 run 内直接调用。
-      - name: Mirror shared layer to GitCode & Gitee
+      - name: Mirror shared layer to GitCode
         env:
-          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
-          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          TOKEN: ${{ secrets.GITCODE_TOKEN }}
         run: |
-          set -euo pipefail
-          if [ -z "${GITCODE_TOKEN:-}" ] && [ -z "${GITEE_TOKEN:-}" ]; then
-            echo "未配置镜像令牌，跳过"
+          if [ -z "${TOKEN:-}" ]; then
+            echo "未配置 GITCODE_TOKEN，跳过 GitCode 镜像"
             exit 0
           fi
-          [ -n "${GITCODE_TOKEN:-}" ] && TOKEN="$GITCODE_TOKEN" bash scripts/mirror-shared.sh gitcode || echo "gitcode 镜像跳过"
-          [ -n "${GITEE_TOKEN:-}" ] && TOKEN="$GITEE_TOKEN" bash scripts/mirror-shared.sh gitee || echo "gitee 镜像跳过"
+          bash scripts/mirror-shared.sh gitcode
+
+      - name: Mirror shared layer to Gitee
+        env:
+          TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          if [ -z "${TOKEN:-}" ]; then
+            echo "未配置 GITEE_TOKEN，跳过 Gitee 镜像"
+            exit 0
+          fi
+          bash scripts/mirror-shared.sh gitee
 
   # --------------------------------------------------------------------------
   # 每周：重渲染 stats/langs/pin 卡片（GitHub API 调用较多 → 低频执行）
@@ -139,19 +173,22 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'schedule' && github.event.schedule == '47 4 * * 1')
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 12
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: main
+          persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.11"
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: "20"
 
@@ -167,6 +204,9 @@ jobs:
         run: python3 scripts/generate.py --here
 
       - name: Commit & push if changed
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_MIRROR_USERNAME: x-access-token
         run: |
           set -euo pipefail
           git add -A
@@ -174,11 +214,10 @@ jobs:
             echo "cards unchanged — skip commit (quota saved)"
             exit 0
           fi
+          export GIT_ASKPASS="$GITHUB_WORKSPACE/scripts/git-askpass.sh"
+          export GIT_TERMINAL_PROMPT=0
           git config user.name  "profile-kit"
           git config user.email "profile-kit@users.noreply.github.com"
           git commit -m "chore: re-render cards (${{ github.run_id }})"
-          git push origin HEAD:main || {
-            echo "push rejected — rebasing on latest main and retrying once"
-            git pull --rebase origin main
-            git push origin HEAD:main
-          }
+          git push origin HEAD:main
+          unset GIT_ASKPASS GIT_TERMINAL_PROMPT

@@ -72,8 +72,8 @@ def pack(key, out_dir):
         # 以下文件只有 kit 源仓库才有；镜像/精简 checkout 里缺失时跳过并告警，
         # 不能因为一次 pack 就整体抛 FileNotFoundError。
         optional = [
-            ("workflows/refresh.yml", ".github/workflows/refresh.yml"),
-            ("workflows/gitleaks.yml", ".github/workflows/gitleaks.yml"),
+            (".github/workflows/refresh.yml", ".github/workflows/refresh.yml"),
+            (".github/workflows/gitleaks.yml", ".github/workflows/gitleaks.yml"),
             (".gitleaks.toml", ".gitleaks.toml"),
             ("scripts/render_cards.mjs", "scripts/render_cards.mjs"),
             ("package.json", "package.json"),
@@ -81,8 +81,8 @@ def pack(key, out_dir):
         ]
         if _has_mirror(key):
             optional += [
-                ("workflows/mirror.yml", ".github/workflows/mirror.yml"),
-                ("workflows/mirror-shared.sh", "scripts/mirror-shared.sh"),
+                (".github/workflows/mirror.yml", ".github/workflows/mirror.yml"),
+                ("scripts/mirror-shared.sh", "scripts/mirror-shared.sh"),
             ]
         for rel_src, rel_dst in optional:
             src = ROOT / rel_src

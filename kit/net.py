@@ -4,7 +4,7 @@
 设计取舍：
 - **优先用 httpx**（若已安装）：HTTP/1.1 连接池、自动重试钩子、更完整的超时模型；
 - **零依赖兜底**：没有 httpx 时用 `http.client` 自己维护长连接池，
-  功能不减（ETag / 重试 / 限流全部由本模块实现），只是少了 HTTP/2。
+  核心请求能力保留（ETag / 重试 / 限流由本模块实现），但不提供 HTTP/2。
 - 条件请求缓存写 `.cache/http/<sha1>.json`，命中 304 直接返回上次的 body，
   每日定时任务在数据没变时几乎不消耗 API 配额。
 """
@@ -34,11 +34,23 @@ MAX_RETRIES = 3
 RETRY_STATUS = {408, 425, 429, 500, 502, 503, 504}
 
 
+def _safe_url(url):
+    try:
+        parts = urllib.parse.urlsplit(url)
+        host = parts.hostname or ""
+        if parts.port:
+            host = "%s:%d" % (host, parts.port)
+        return urllib.parse.urlunsplit((parts.scheme, host, parts.path, "", ""))
+    except ValueError:
+        return "<redacted-url>"
+
+
 class HttpError(RuntimeError):
     def __init__(self, status, url, body=""):
-        super().__init__("HTTP %s for %s" % (status, url))
+        safe_url = _safe_url(url)
+        super().__init__("HTTP %s for %s" % (status, safe_url))
         self.status = status
-        self.url = url
+        self.url = safe_url
         self.body = body
 
 

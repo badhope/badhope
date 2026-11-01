@@ -38,7 +38,7 @@ profile.json（部署账号）    ─┘                        ↓
 ### 1.3 次要但真实的优势
 
 - **零依赖可跑，增强全部可选**：核心只吃 Python 3.10+ 标准库，`httpx` /
-  `markdown-it-py` / `jsonschema` / `Pillow` 装了才启用，没装自动降级且功能不减
+  `markdown-it-py` / `jsonschema` / `Pillow` 装了才启用，没装使用内置降级路径，部分增强能力可能受限
   （`python scripts/doctor.py` 会列出当前走哪条路径）。这是「部署面最小」，不是
   「本地优先」。
 - **数据准确性有硬门禁**：`kit/schema.py` 对 accounts + 三份快照做声明式校验；
@@ -102,11 +102,11 @@ metadata.yml + 代码生成的复杂度）。
 | 无分级缓存 | GRS / trophy | 静态模式下「缓存」= 数据快照 + 输入指纹短路。`--skip-if-unchanged` 实测 **53× 加速**；网络层另加 ETag（304 不重下） |
 | 无重试/退避 | C++ 之外几乎所有项目都缺 | `kit/net.py`：指数退避 + 抖动，503/429 重试 3 次，404 立即失败 |
 | 无连接复用 | typing-svg / GRS 都没设超时 | `http.client` 长连接池（默认），有 httpx 时升级 HTTP/2 |
-| 无参数/结构校验 | typing-svg 有 query 清洗，其他基本没有 | `kit/schema.py`：accounts/works/stats/writing 四类声明式 schema，821 条离线断言 |
+| 无参数/结构校验 | typing-svg 有 query 清洗，其他基本没有 | `kit/schema.py`：accounts/works/stats/writing 四类声明式 schema，并由 `verify.py` 执行离线断言 |
 | 无插件扩展点 | metrics 有，其余没有 | `kit/plugins.py` 注册表，加卡片零改 build |
 | 错误不可诊断 | GRS 打日志，trophy 抛 HTML | `SchemaError` 带字段路径；`HttpError` 带 status/url/body 片段 |
 | 字体/宽度靠猜 | shields 用 anafanafo 预计算字宽 | 已有 `text_w()` 估算（CJK 1.0em / 拉丁 0.6em），与 shields 同思路但不引依赖 |
-| 无 golden 回归 | GRS 用 Jest 快照 | `tests/` 28 个用例 + `verify.py` 821 断言 + `--skip-if-unchanged` 幂等 |
+| 无 golden 回归 | GRS 用 Jest 快照 | `tests/` 覆盖生成与基础设施行为；`verify.py` 覆盖生成树、资产引用、账号隔离和幂等性 |
 | 产物体积未优化 | snk 有 benchmark job | `kit/pngopt.py` 无损重压缩（-7%），`scripts/bench.py` 记录各资产体积 |
 
 **仍然不如它们的地方（诚实记录）**：
@@ -125,8 +125,8 @@ metadata.yml + 代码生成的复杂度）。
 | 单账号生成 | 0.044s | 0.019s | -57% |
 | 增量构建（输入未变） | 全量重写 | 0.0008s 短路 | **53×** |
 | hero.png | 997 KB | 922–926 KB | -7% |
-| 单元测试 | 0 | 28 | — |
-| 离线断言 | 0 | 821 | — |
+| 单元测试 | — | `tests/` 持续回归 | — |
+| 离线断言 | — | `verify.py` 按当前账号/资产规模计数 | — |
 
 提速来源，按贡献排序：
 
@@ -148,12 +148,12 @@ metadata.yml + 代码生成的复杂度）。
                                                                     ↓
                                        kit.build（插件渲染）──► assets/ + README
                                                                     ↓
-                                        verify.py（821 断言）──► CI 门禁
+                                        verify.py（生成树与资产门禁）──► CI 门禁
 ```
 
 - **抓取失败**：保留旧值（`refresh_*` 内部 try/except），统计不会掉零。
 - **数据非法**：`schema.py` 在写盘前拦截，`SchemaError` 列出全部问题路径。
-- **渲染失败**：插件层先生成 `card failed:` 占位 SVG，保证单卡失败不拖垮整批构建；
+- **渲染失败**：插件层先生成 `card failed:` 占位 SVG，保留单卡诊断上下文；
   `verify.py` 随后把任何错误卡视为硬失败，阻止错误产物出库。
 - **构建无变化**：`--skip-if-unchanged` 只读输入指纹，不重写文件，保持 mtime 稳定。
 

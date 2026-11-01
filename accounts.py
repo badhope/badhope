@@ -746,9 +746,9 @@ ACCOUNTS = {
             "ja": "抽象的なアイデアを、動くインターフェースに落とし込む開発者。",
         },
         "about": {
-            "md": "My GitHub home — tools, indexes and small software experiments, all in the open. I like offline-first, single-file things that just run; the craft is in the details.",
-            "zh-CN": "这是我在 GitHub 的主页：工具、索引与小型软件实验都公开在这里。偏爱离线优先、单文件、拿起来就能跑的小东西 —— 精巧之处藏在细节里。",
-            "ja": "GitHub の拠点 — ツール・索引・小さなソフトウェア実験を公開しています。オフライン優先・シングルファイルな道具が好きです。",
+            "md": "My GitHub home for open tools, indexes, and small software experiments. Current work spans profile tooling, AI agents, and data-driven utilities.",
+            "zh-CN": "这里是我的 GitHub 主页，公开工具、索引与小型软件实验；当前重点是主页工具、AI Agent 和数据驱动的实用工具。",
+            "ja": "公開ツール・索引・小規模なソフトウェア実験の GitHub 拠点です。現在はプロフィールツール、AI エージェント、データ駆動のユーティリティに取り組んでいます。",
         },
         "now": {
             "md": [
@@ -793,8 +793,8 @@ ACCOUNTS = {
             "ja": "オフラインでも動くソフトウェアを。",
         },
         "about": {
-            "md": "GitCode is the domestic mirror and mobile-tool workspace: offline Python IDEs, a learning terminal, and a Cangjie hardware-robot framework.",
-            "zh-CN": "GitCode 是国内镜像与移动工具工作区：这里维护离线 Python IDE、学习终端，以及仓颉硬件机器人框架。",
+            "md": "GitCode hosts the domestic mirror and mobile-tool workspace: offline Python IDEs, a learning terminal, and a Cangjie hardware-robot framework.",
+            "zh-CN": "GitCode 是国内镜像与移动工具工作区，维护离线 Python IDE、学习终端和仓颉硬件机器人框架。",
             "ja": "GitCode は国内向けミラー兼モバイル開発拠点です。オフライン Python IDE、学習ターミナル、Cangjie 製ハードウェアロボット基盤を公開しています。",
         },
         "now": {
@@ -839,9 +839,9 @@ ACCOUNTS = {
             "ja": "作品のもうひとつの置き場。",
         },
         "about": {
-            "md": "Gitee is the lightweight mirror for selected works, with a small space for WeChat mini-program experiments.",
-            "zh-CN": "Gitee 是精选作品的轻量镜像，也用于存放微信小程序方向的小型实验。",
-            "ja": "Gitee は選択した作品の軽量ミラーで、WeChat ミニアプリの小規模な実験にも使っています。",
+            "md": "Gitee is a lightweight mirror for selected projects and small WeChat mini-program experiments.",
+            "zh-CN": "Gitee 是精选项目的轻量镜像，也存放微信小程序方向的小型实验。",
+            "ja": "Gitee は選択したプロジェクトの軽量ミラーで、WeChat ミニアプリの小規模な実験にも使っています。",
         },
         "now": {
             "md": [

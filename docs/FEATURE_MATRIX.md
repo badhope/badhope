@@ -12,7 +12,7 @@
 | **Rank / 成就** | | | | |
 | CDF 百分位 Rank 环 | GRS | `src/calculateRank.js` | 🔄 | `kit/rank.py:calculate_rank()`；当前快照将 commits/prs/issues/reviews 置零，属于无 GraphQL 明细的降级口径 |
 | Rank 环进度弧 | GRS | `src/cards/stats.js` | 🔄 | `rank.py` 输出 level/percentile，环画在 stats 卡 |
-| 阈值奖杯（SSS→C） | trophy | `src/trophy_list.ts` | ✅ | `kit/rank.py:TROPHY_TABLE` |
+| 阈值奖杯（SSS→C） | trophy | `src/trophy_list.ts` | 🔄 | `kit/rank.py:TROPHY_TABLE` 仅覆盖 stars / merged / repos 三项，非完整 trophy 集合 |
 | 下一档进度条 | trophy | `src/icons.ts:getNextRankBar` | ✅ | `kit/achievements.py:_panel` 80px bar |
 | 成就系统（C/B/A/S） | metrics | `plugins/achievements/list/users.mjs` | 🔄 | `kit/rank.py:ACHIEVEMENT_TABLE`；仅实现本地快照可推导子集，token 明细项未启用 |
 | 秘密成就 ($) | metrics | 同上 `secrets: yes` | ❌ | 依赖 Puppeteer 抓 github.com 页面 |
@@ -30,7 +30,7 @@
 | 关注者头像墙 | metrics | `plugins/people/index.mjs` | ❌ | 需要头像 URL（GraphQL） |
 | 项目看板 | metrics | `plugins/projects/index.mjs` | ❌ | 需要项目 GraphQL API |
 | 徽章行（自渲染） | shields | `badge-maker/lib/badge-renderers.js` | ✅ | `kit/badge.py`：flat + flat-square，textLength 技巧；README 按实际 `badges-{lang}.svg` 产物引用 |
-| 错误徽章语义 | shields | `core/base-service/errors.js` | ✅ | 卡片失败降级为占位卡（`plugins.py:_error_svg`） |
+| 错误徽章语义 | shields | `core/base-service/errors.js` | 🔄 | 插件失败渲染 `card failed:` 占位 SVG；`verify.py` 将错误卡判为发布失败，未实现 Shields 的错误徽章语义 |
 | **工程能力** | | | | |
 | 逐卡开关/显示 | GRS | `?hide= / show=` | ✅ | `ACCOUNTS[key]["cards"]` dict |
 | 自定义标题 | GRS | `?custom_title=` | ❌ | 当前仅支持逐卡开关与主题覆盖；没有通用 `<name>_title` 渲染逻辑，避免把未实现能力写成已实现 |
@@ -50,9 +50,9 @@
 | 模板系统 | metrics | `source/templates/*` | ❌ | 单模板（星夜极光）；多模板需要 EJS 等价物 |
 | ETag 条件请求 | GRS | `cache.js` + HTTP headers | ✅ | `kit/net.py`（304/ETag/Last-Modified 条件缓存；无本地 TTL） |
 | 重试 + token 池 | GRS | `src/common/retryer.js` | 🔄 | `net.py` 指数退避；token 池因单 token 无多池需求 |
-| 速率限制处理 | shields | `config/default.yml` | ✅ | `net.py` 按主机最小间隔 |
+| 速率限制处理 | shields | `config/default.yml` | ✅ | `net.py` 按主机最小间隔执行基础限流 |
 | 预设组合 | metrics | `presets.mjs` | ❌ | 单用户场景暂不需要 |
-| Actions 自动提交 | metrics/GRS | `action/*.mjs` | ✅ | GitHub `refresh.yml` 日更/周卡自动提交并镜像到 GitCode/Gitee；GitCode `.gitcode/workflows/verify.yml` 负责验证门禁（本仓库只保留验证 workflow） |
+| Actions 自动提交 | metrics/GRS | `action/*.mjs` | ✅ | GitHub `.github/workflows/refresh.yml` 定义日更/周卡提交并镜像到 GitCode/Gitee；GitCode `.gitcode/workflows/verify.yml` 负责验证门禁；运行结果需以平台 Actions 记录确认 |
 
 ## 未移植项的原因说明
 

@@ -11,8 +11,8 @@
 # 触发：push 到 main 后自动跑；也可 workflow_dispatch 手动同步。
 #
 # 前置 Secret：
-#   GITCODE_TOKEN   GitCode 令牌（Basic 鉴权，写入用 oauth2:TOKEN@）
-#   GITEE_TOKEN     Gitee 令牌
+#   GITCODE_TOKEN   GitCode 令牌（通过 GIT_ASKPASS 传入，不写入 URL）
+#   GITEE_TOKEN     Gitee 令牌（通过 GIT_ASKPASS 传入，不写入 URL）
 # ============================================================================
 
 name: Mirror to GitCode & Gitee
@@ -33,16 +33,27 @@ jobs:
     # 这里不要再覆盖 —— 旧版曾因两处清单漂移（缺 kit/、带整个 assets/）
     # 造成镜像端 ImportError 与跨账号资产污染（回灌事故的直接根因）。
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Mirror shared layer to GitCode
         env:
           TOKEN: ${{ secrets.GITCODE_TOKEN }}
-        run: bash scripts/mirror-shared.sh gitcode
+        run: |
+          if [ -z "${TOKEN:-}" ]; then
+            echo "未配置 GITCODE_TOKEN，跳过 GitCode 镜像"
+            exit 0
+          fi
+          bash scripts/mirror-shared.sh gitcode
 
       - name: Mirror shared layer to Gitee
         env:
           TOKEN: ${{ secrets.GITEE_TOKEN }}
-        run: bash scripts/mirror-shared.sh gitee
+        run: |
+          if [ -z "${TOKEN:-}" ]; then
+            echo "未配置 GITEE_TOKEN，跳过 Gitee 镜像"
+            exit 0
+          fi
+          bash scripts/mirror-shared.sh gitee

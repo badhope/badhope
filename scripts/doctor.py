@@ -5,7 +5,7 @@
     python scripts/doctor.py
 
 检查项：
-- Python 版本、可选依赖是否可用（可用=走增强路径，不可用=降级但功能不减）
+- Python 版本、可选依赖是否可用（可用=走增强路径，不可用=使用内置降级路径，能力可能受限）
 - accounts.py / data/*.json 的 schema 校验
 - 产物是否与数据一致（输入指纹 vs manifest）
 - 仓库关键文件是否齐全
@@ -16,6 +16,7 @@
 
 import importlib.util
 import json
+import os
 import pathlib
 import platform
 import sys
@@ -35,7 +36,7 @@ OK, WARN, FAIL = "OK", "WARN", "FAIL"
 
 def _check(results, level, name, detail=""):
     results.append((level, name, detail))
-    icon = {OK: "✓", WARN: "!", FAIL: "×"}[level]
+    icon = {OK: "+", WARN: "!", FAIL: "x"}[level]
     print("  [%s] %-34s %s" % (icon, name, detail))
 
 
@@ -49,7 +50,7 @@ def check_runtime(results):
         present = importlib.util.find_spec(mod) is not None
         _check(results, OK if present else WARN,
                "optional: %s" % mod,
-               "已安装 → %s" % purpose if present else "未安装 → 内置降级路径（功能不减）")
+               "已安装 → %s" % purpose if present else "未安装 → 使用内置降级路径（能力可能受限）")
 
 
 def check_data(results):
@@ -88,15 +89,15 @@ def check_files(results):
 def check_online(results):
     from kit.net import HttpClient, HttpError
     probes = [
-        ("GitHub API", "https://api.github.com/users/badhope"),
-        ("Gitee API", "https://gitee.com/api/v5/users/badhope"),
-        ("GitCode API", "https://api.gitcode.com/api/v5/users/badhope?access_token=%s"
-         % __import__("os").environ.get("GITCODE_TOKEN", "")),
+        ("GitHub API", "https://api.github.com/users/badhope", {}),
+        ("Gitee API", "https://gitee.com/api/v5/users/badhope", {}),
+        ("GitCode API", "https://api.gitcode.com/api/v5/users/badhope",
+         {"Authorization": "Bearer " + token} if (token := os.environ.get("GITCODE_TOKEN", "")) else {}),
     ]
     with HttpClient(cache=False, timeout=10, max_retries=0) as client:
-        for name, url in probes:
+        for name, url, headers in probes:
             try:
-                client.get(url)
+                client.get(url, headers=headers)
                 _check(results, OK, name, "可达")
             except HttpError as err:
                 _check(results, WARN, name, "HTTP %s（限流或权限，不影响离线构建）" % err.status)

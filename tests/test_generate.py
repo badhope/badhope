@@ -195,6 +195,11 @@ class DiscoverTests(unittest.TestCase):
         repo = {"name": "badhope", "path": "badhope"}
         self.assertEqual(D._repo_ident(repo, "github"), "badhope")
 
+    def test_platform_filter_selects_only_target_accounts(self):
+        self.assertEqual(D.account_keys("github"), ["gh_x33834", "gh_morningstar", "gh_badhope"])
+        self.assertEqual(D.account_keys("gitcode"), ["gitcode_badhope"])
+        self.assertEqual(D.account_keys("gitee"), ["gitee_badhope"])
+
 
 class StatsTests(unittest.TestCase):
     def test_empty_stats_falls_back_to_placeholder(self):

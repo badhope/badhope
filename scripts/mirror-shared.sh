@@ -2,7 +2,7 @@
 # 把 github/badhope 的「共享层」同步到 GitCode 或 Gitee 的同名仓库。
 #
 # 共享层只包含**账号无关**的数据源、数据与脚本；README、profile.json 与
-# 各账号专属资产（hero / 技能卡 / 贡献图）不跨账号复制，而是在目标仓库里
+# 各账号专属资产（hero / PNG / 技能卡 / 贡献图）不跨账号复制，而是在目标仓库里
 # 按目标 profile.json 原地重建，避免 GitHub 账号的图跑到 GitCode 页面上。
 # 用法：bash mirror-shared.sh <gitcode|gitee>
 #   - 需要环境变量 TOKEN（对应平台令牌）
@@ -16,14 +16,19 @@ case "$PLATFORM" in
   *) echo "unknown platform: $PLATFORM" >&2; exit 2 ;;
 esac
 
-: "${TOKEN:?TOKEN 未设置 —— 跳过 $PLATFORM 镜像}"
-OWNER="${OWNER:-badhope}"
-REPO="${REPO:-badhope}"
+OWNER="badhope"
+REPO="badhope"
 SRC="${WORKSPACE:-$PWD}"
+if ! SRC="$(cd "$SRC" && pwd)"; then
+  echo "source workspace is not accessible" >&2
+  exit 2
+fi
+[ -f "$SRC/profile.json" ] || { echo "source profile.json missing" >&2; exit 2; }
+[ -x "$SRC/scripts/git-askpass.sh" ] || { echo "source askpass helper missing or not executable" >&2; exit 2; }
 
 # 账号无关的共享层（绝不含 assets/ 卡片、data/cards/、data/contrib/）
 # 清单只在这一处维护：mirror.yml / refresh.yml 不再覆盖，防止两处漂移回灌旧版。
-SHARED_PATHS="${SHARED_PATHS:-accounts.py kit data/stats.json data/works.json data/writing.json data/icons data/linguist_colors.json assets/png scripts tests docs Makefile requirements-optional.txt .gitignore}"
+SHARED_PATHS="accounts.py kit data/stats.json data/works.json data/writing.json data/icons data/linguist_colors.json scripts tests docs ARCHITECTURE.md Makefile requirements-optional.txt .gitattributes .gitignore"
 
 PYTHON_BIN="${PYTHON_BIN:-}"
 if [ -z "$PYTHON_BIN" ]; then
@@ -34,15 +39,20 @@ if [ -z "$PYTHON_BIN" ]; then
 fi
 
 work="$(mktemp -d)"
-trap 'rm -rf "$work"' EXIT
+cleanup() {
+  rm -rf "$work"
+  unset TOKEN GIT_ASKPASS GIT_TERMINAL_PROMPT
+}
+trap cleanup EXIT
 
-# token 只经环境变量传给 git，不写进 URL 之外的任何文件
-export GIT_ASKPASS=true
 # MIRROR_BASE 仅用于本地集成测试（file:// 裸仓库），生产留空即可
 if [ -n "${MIRROR_BASE:-}" ]; then
   remote="${MIRROR_BASE}/${REPO}.git"
 else
-  remote="https://oauth2:${TOKEN}@${HOST}/${OWNER}/${REPO}.git"
+  : "${TOKEN:?TOKEN 未设置 —— 跳过 $PLATFORM 镜像}"
+  export GIT_ASKPASS="${SRC}/scripts/git-askpass.sh"
+  export GIT_TERMINAL_PROMPT=0
+  remote="https://${GIT_MIRROR_USERNAME:-oauth2}@${HOST}/${OWNER}/${REPO}.git"
 fi
 git clone --quiet --depth 1 "$remote" "$work/target"
 target="$work/target"
@@ -68,8 +78,8 @@ for group in cards contrib; do
 done
 if [ -d "$target/assets" ]; then
   find "$target/assets" -mindepth 1 -maxdepth 1 ! -name 'png' -exec rm -rf {} +
-  # png 目录里只保留共享层带来的按账号子目录，根下 hero.png 由生成器重写
   if [ -d "$target/assets/png" ]; then
+    find "$target/assets/png" -mindepth 1 -maxdepth 1 -type d ! -name "$account" -exec rm -rf {} +
     find "$target/assets/png" -mindepth 1 -maxdepth 1 -type f -delete
   fi
 fi
