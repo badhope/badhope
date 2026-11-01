@@ -8,7 +8,7 @@
   <img src="./assets/typing-zh-CN.svg" alt="把抽象想法落地为可交互界面的全栈开发者。" width="600" />
 </p>
 
-<p align="center"><sub>先解决问题，再写代码。 — John Johnson</sub></p>
+<p align="center"><sub>慢即是稳，稳即是快。</sub></p>
 
 <table border="0">
 <tr>
@@ -41,12 +41,12 @@
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
+| [melee — 多个大模型同台竞技 —— 实时观战 + 双轨裁判 + 沙箱代码战场](https://github.com/badhope/melee) | 3 | 2026-11-01 |
+| [EQ-Worker — EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v…](https://github.com/badhope/EQ-Worker) | 0 | 2026-11-01 |
+| [quiz-chest — 题匣 QuizChest：本地优先的自有题库练习应用](https://github.com/badhope/quiz-chest) | 0 | 2026-11-01 |
+| [rules](https://github.com/badhope/rules) | 0 | 2026-11-01 |
+| [spark — 本地优先的 AI 编程代理 —— 审批门禁与提示注入防护](https://github.com/badhope/spark) | 21 | 2026-10-31 |
 | [rubbish — 学术期刊与预印本多租户平台 —— 投稿 / 评审 / 阅读](https://github.com/badhope/rubbish) | 4 | 2026-10-31 |
-| [aquapilot](https://github.com/badhope/aquapilot) | 0 | 2026-10-31 |
-| [shopcash — 单机门店收银与收款记账 —— 软件零资金介入，钱只进商家自己的商户号](https://github.com/badhope/shopcash) | 0 | 2026-10-31 |
-| [world-walker — AI 驱动的文字互动小说引擎](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
-| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
-| [sciflow — 本地优先的 AI 科研智能体工作台 —— 多 Agent 编排与记忆](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 

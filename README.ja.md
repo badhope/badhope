@@ -8,7 +8,7 @@
   <img src="./assets/typing-ja.svg" alt="抽象的なアイデアを、動くインターフェースに落とし込む開発者。" width="600" />
 </p>
 
-<p align="center"><sub>まず問題を解き、それからコードを書く。 — John Johnson</sub></p>
+<p align="center"><sub>ゆっくりは滑らか、滑らかは速い。</sub></p>
 
 <table border="0">
 <tr>
@@ -41,12 +41,12 @@
 
 | プロジェクト | スター | 更新日 |
 | --- | --- | --- |
+| [melee — LLM バトルアリーナ — リアルタイム観戦・二重審判・サンドボックス](https://github.com/badhope/melee) | 3 | 2026-11-01 |
+| [EQ-Worker](https://github.com/badhope/EQ-Worker) | 0 | 2026-11-01 |
+| [quiz-chest](https://github.com/badhope/quiz-chest) | 0 | 2026-11-01 |
+| [rules](https://github.com/badhope/rules) | 0 | 2026-11-01 |
+| [spark — ローカル優先の AI コーディングエージェント（承認ゲート付き）](https://github.com/badhope/spark) | 21 | 2026-10-31 |
 | [rubbish — 学術ジャーナル・プレプリントのマルチテナント基盤](https://github.com/badhope/rubbish) | 4 | 2026-10-31 |
-| [aquapilot](https://github.com/badhope/aquapilot) | 0 | 2026-10-31 |
-| [shopcash — 単店舗向けレジ・売上帳 — ソフトは資金に一切関与しません](https://github.com/badhope/shopcash) | 0 | 2026-10-31 |
-| [world-walker — AI 駆動のテキストインタラクティブ小説エンジン](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
-| [moneyhelper — 会話ファーストの個人金融エージェント — ローカル優先・LangGraph 編成](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
-| [sciflow — ローカル優先の AI 研究エージェント作業台 — マルチエージェント編成](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
 
 全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
 

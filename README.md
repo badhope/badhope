@@ -8,7 +8,7 @@
   <img src="./assets/typing-md.svg" alt="A full-stack developer turning abstract ideas into working interfaces." width="600" />
 </p>
 
-<p align="center"><sub>First, solve the problem. Then, write the code. — John Johnson</sub></p>
+<p align="center"><sub>Slow is smooth, and smooth is fast.</sub></p>
 
 <table border="0">
 <tr>
@@ -41,12 +41,12 @@ My GitHub home for open tools, indexes, and small software experiments. Current 
 
 | Project | Stars | Updated |
 | --- | --- | --- |
+| [melee — LLM battle arena — live spectating, dual-track judging, san…](https://github.com/badhope/melee) | 3 | 2026-11-01 |
+| [EQ-Worker](https://github.com/badhope/EQ-Worker) | 0 | 2026-11-01 |
+| [quiz-chest](https://github.com/badhope/quiz-chest) | 0 | 2026-11-01 |
+| [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-11-01 |
+| [spark — Local-first AI coding agent — approval gate, prompt-injecti…](https://github.com/badhope/spark) | 21 | 2026-10-31 |
 | [rubbish — Multi-tenant journal and preprint platform — submission /…](https://github.com/badhope/rubbish) | 4 | 2026-10-31 |
-| [aquapilot — AI-operated wastewater treatment plant simulator — topo…](https://github.com/badhope/aquapilot) | 0 | 2026-10-31 |
-| [shopcash — Offline shop checkout and ledger — the software never to…](https://github.com/badhope/shopcash) | 0 | 2026-10-31 |
-| [world-walker — AI-driven interactive text fiction engine](https://github.com/badhope/world-walker) | 18 | 2026-10-30 |
-| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 86 | 2026-10-29 |
-| [sciflow — Local-first AI research agent workbench — multi-agent pip…](https://github.com/badhope/sciflow) | 11 | 2026-10-29 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 
