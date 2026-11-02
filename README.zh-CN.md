@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
+| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 86 | 2026-11-02 |
 | [spark — 本地优先的 AI 编程代理 —— 审批门禁与提示注入防护](https://github.com/badhope/spark) | 21 | 2026-11-02 |
-| [no-money](https://github.com/badhope/no-money) | 0 | 2026-11-02 |
-| [shopcash — 单机门店收银与收款记账 —— 软件零资金介入，钱只进商家自己的商户号](https://github.com/badhope/shopcash) | 0 | 2026-11-02 |
-| [melee — 多个大模型同台竞技 —— 实时观战 + 双轨裁判 + 沙箱代码战场](https://github.com/badhope/melee) | 3 | 2026-11-01 |
-| [EQ-Worker — EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v…](https://github.com/badhope/EQ-Worker) | 0 | 2026-11-01 |
-| [quiz-chest — 题匣 QuizChest：本地优先的自有题库练习应用](https://github.com/badhope/quiz-chest) | 0 | 2026-11-01 |
+| [content-harbor](https://github.com/badhope/content-harbor) | 11 | 2026-11-02 |
+| [DU — 纯客户端中文术数工具箱 —— 49 件工具](https://github.com/badhope/DU) | 11 | 2026-11-02 |
+| [sciflow — 本地优先的 AI 科研智能体工作台 —— 多 Agent 编排与记忆](https://github.com/badhope/sciflow) | 11 | 2026-11-02 |
+| [aquapilot](https://github.com/badhope/aquapilot) | 0 | 2026-11-02 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 

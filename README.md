@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | Project | Stars | Updated |
 | --- | --- | --- |
+| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 86 | 2026-11-02 |
 | [spark — Local-first AI coding agent — approval gate, prompt-injecti…](https://github.com/badhope/spark) | 21 | 2026-11-02 |
-| [no-money — No Money — income, tax, social-insurance and labor-right…](https://github.com/badhope/no-money) | 0 | 2026-11-02 |
-| [shopcash — Offline shop checkout and ledger — the software never to…](https://github.com/badhope/shopcash) | 0 | 2026-11-02 |
-| [melee — LLM battle arena — live spectating, dual-track judging, san…](https://github.com/badhope/melee) | 3 | 2026-11-01 |
-| [EQ-Worker](https://github.com/badhope/EQ-Worker) | 0 | 2026-11-01 |
-| [quiz-chest](https://github.com/badhope/quiz-chest) | 0 | 2026-11-01 |
+| [content-harbor — Self-hosted AI publishing hub - write once, ship t…](https://github.com/badhope/content-harbor) | 11 | 2026-11-02 |
+| [DU — A client-side Chinese metaphysics toolkit — 49 tools](https://github.com/badhope/DU) | 11 | 2026-11-02 |
+| [sciflow — Local-first AI research agent workbench — multi-agent pip…](https://github.com/badhope/sciflow) | 11 | 2026-11-02 |
+| [aquapilot — Topology-driven wastewater simulation prototype with an…](https://github.com/badhope/aquapilot) | 0 | 2026-11-02 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 
