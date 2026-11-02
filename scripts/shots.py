@@ -121,8 +121,10 @@ def main(argv=None):
     keys = args.account or list(A.ACCOUNT_ORDER)
     failed = []
 
+    # 全站预览页把 5 个账号叠在一起，高度轻易超过 20000px；只在没有指定
+    # --account 时才截它，指定账号时改为截该账号的独立页面。
     preview = ROOT / "preview" / "index.html"
-    if preview.is_file():
+    if preview.is_file() and not args.account:
         ok, err = shoot(browser, preview.resolve().as_uri(), out_root / "preview.png",
                         args.width, args.height)
         print("%-18s %s" % ("preview", "ok" if ok else "FAIL"))
