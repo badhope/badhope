@@ -110,6 +110,11 @@ jobs:
           GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
         run: python3 scripts/discover_works.py --platform gitcode
 
+      - name: Refresh optional GitHub extra cards
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/refresh_extras.py --platform github
+
       - name: Regenerate README + assets (offline, deterministic)
         run: python3 scripts/generate.py --here
 

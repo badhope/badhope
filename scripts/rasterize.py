@@ -53,6 +53,21 @@ def find_browser():
     return None
 
 
+def discover_targets(key):
+    """Return account SVG cards that can be rasterized.
+
+    All card files in the source tree are account-rendered (the generator writes
+    one account at a time), so this enumerates top-level SVG assets. Callers that
+    need account isolation should rasterize from an isolated build directory.
+    """
+    if key not in A.ACCOUNTS:
+        return []
+    assets = ROOT / "assets"
+    if not assets.is_dir():
+        return []
+    return sorted(path for path in assets.glob("*.svg") if path.is_file())
+
+
 def rasterize(browser, svg_path, png_path):
     png_path.parent.mkdir(parents=True, exist_ok=True)
     cmd = [
@@ -74,8 +89,10 @@ def rasterize(browser, svg_path, png_path):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="rasterize hero SVG to PNG")
+    ap = argparse.ArgumentParser(description="rasterize profile SVGs to PNG")
     ap.add_argument("--account", help="only this account key")
+    ap.add_argument("--all-cards", action="store_true",
+                    help="rasterize every card SVG, not just hero")
     ap.add_argument("--check", action="store_true", help="only check browser availability")
     args = ap.parse_args(argv)
 
@@ -92,14 +109,28 @@ def main(argv=None):
         if key not in A.ACCOUNTS:
             print("unknown account: %s" % key, file=sys.stderr)
             return 2
-        svg = hero_svg(A.ACCOUNTS[key])
-        with tempfile.TemporaryDirectory() as tmp:
-            svg_path = pathlib.Path(tmp) / "hero.svg"
-            svg_path.write_text(svg, encoding="utf-8", newline="\n")
-            dst = ROOT / "assets" / "png" / key / "hero.png"
+        if args.all_cards:
+            sources = discover_targets(key)
+        else:
+            sources = []
+        if not sources:
+            svg = hero_svg(A.ACCOUNTS[key])
+            with tempfile.TemporaryDirectory() as tmp:
+                svg_path = pathlib.Path(tmp) / "hero.svg"
+                svg_path.write_text(svg, encoding="utf-8", newline="\n")
+                dst = ROOT / "assets" / "png" / key / "hero.png"
+                rasterize(browser, svg_path, dst)
+                old, new = optimize_file(dst)
+            print("rasterized %s -> %s (%d -> %d bytes)" % (key, dst.relative_to(ROOT), old, new))
+            continue
+        for svg_path in sources:
+            if not svg_path.is_file():
+                continue
+            dst = ROOT / "assets" / "png" / key / (svg_path.stem + ".png")
             rasterize(browser, svg_path, dst)
             old, new = optimize_file(dst)
-        print("rasterized %s -> %s (%d -> %d bytes)" % (key, dst.relative_to(ROOT), old, new))
+            print("rasterized %s -> %s (%d -> %d bytes)"
+                  % (key, dst.relative_to(ROOT), old, new))
     return 0
 
 

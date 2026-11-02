@@ -12,8 +12,9 @@ from .rank import derive_profile
 from .textutil import esc
 from .achievements import achievements_svg as _achievements_svg
 from .badge import make_badge
-from .data import _snake_available
+from .data import _snake_available, load_extras
 from .emoji import parse_emojis
+from .extras import gist_svg, habits_svg, isocalendar_svg, people_svg, projects_svg
 from .plugins import card
 from .snake import generate as snake_generate
 from .typing import typing_svg
@@ -48,12 +49,20 @@ def _skills(acct, key, lang, ctx):
 
 @card("works", "works-{lang}.svg", priority=50)
 def _works(acct, key, lang, ctx):
-    return cards.works_svg(acct, key, lang, theme=ctx["theme"])
+    return cards.works_svg(acct, key, lang, theme=ctx["theme"],
+                           title=_card_title(acct, "works", lang))
 
 
 @card("activity", "activity-{lang}.svg", priority=60)
 def _activity(acct, key, lang, ctx):
     return cards.activity_svg(acct, key, lang, ctx["stats"], theme=ctx["theme"])
+
+
+def _card_title(acct, name, lang):
+    titles = acct.get("card_titles") or {}
+    translations = titles.get(name) if isinstance(titles, dict) else None
+    title = translations.get(lang) if isinstance(translations, dict) else None
+    return title if isinstance(title, str) and title.strip() else None
 
 
 @card("langs", "langs-{lang}.svg", priority=70,
@@ -62,14 +71,17 @@ def _activity(acct, key, lang, ctx):
 def _langs(acct, key, lang, ctx):
     layout = (acct.get("cards") or {}).get("langs_layout", "bar")
     return cards.langs_svg(key, lang, ctx.get("discovered"), theme=ctx["theme"],
-                           layout=layout if layout in ("bar", "donut", "compact", "pie") else "bar")
+                           layout=layout if layout in ("bar", "donut", "compact", "pie") else "bar",
+                           title=_card_title(acct, "langs", lang))
 
 
 @card("achievements", "achievements-{lang}.svg", priority=80, slug=True,
       when=lambda acct, ctx: bool(ctx["stats"].get("accounts", {}).get(ctx["key"])))
 def _achievements(acct, key, lang, ctx):
     return _achievements_svg(acct, key, ctx["stats"], lang,
-                             discovered=ctx.get("discovered"), theme=ctx["theme"])
+                             discovered=ctx.get("discovered"), theme=ctx["theme"],
+                             extras=load_extras(key, ctx.get("base")),
+                             title=_card_title(acct, "achievements", lang))
 
 
 @card("typing", "typing-{lang}.svg", priority=90)
@@ -130,4 +142,35 @@ def _snake(acct, key, lang, ctx):
       when=lambda acct, ctx: bool(acct.get("wakatime")))
 def _wakatime(acct, key, lang, ctx):
     stats = _wakatime_fetch()
-    return _wakatime_svg((stats or {}).get("data") and stats, lang=lang, theme=ctx["theme"])
+    return _wakatime_svg((stats or {}).get("data") and stats, lang=lang, theme=ctx["theme"],
+                         title=_card_title(acct, "wakatime", lang))
+
+
+@card("gists", "gists-{lang}.svg", priority=105,
+      when=lambda acct, ctx: bool(load_extras(ctx["key"], ctx.get("base")).get("gists")))
+def _gists(acct, key, lang, ctx):
+    return gist_svg(load_extras(key, ctx.get("base")).get("gists"), lang)
+
+
+@card("isocalendar", "isocalendar-{lang}.svg", priority=106,
+      when=lambda acct, ctx: bool(load_extras(ctx["key"], ctx.get("base")).get("contribution_days")))
+def _isocalendar(acct, key, lang, ctx):
+    return isocalendar_svg(load_extras(key, ctx.get("base")).get("contribution_days"), lang)
+
+
+@card("habits", "habits-{lang}.svg", priority=107,
+      when=lambda acct, ctx: bool(load_extras(ctx["key"], ctx.get("base")).get("habits")))
+def _habits(acct, key, lang, ctx):
+    return habits_svg(load_extras(key, ctx.get("base")).get("habits"), lang)
+
+
+@card("people", "people-{lang}.svg", priority=108,
+      when=lambda acct, ctx: bool(load_extras(ctx["key"], ctx.get("base")).get("people")))
+def _people(acct, key, lang, ctx):
+    return people_svg(load_extras(key, ctx.get("base")).get("people"), lang)
+
+
+@card("projects", "projects-{lang}.svg", priority=109,
+      when=lambda acct, ctx: bool(load_extras(ctx["key"], ctx.get("base")).get("projects")))
+def _projects(acct, key, lang, ctx):
+    return projects_svg(load_extras(key, ctx.get("base")).get("projects"), lang)

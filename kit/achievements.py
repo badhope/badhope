@@ -84,8 +84,9 @@ def _panel(item, x, y, theme):
     )
 
 
-def achievements_svg(acct, key, stats, lang, discovered=None, theme=None, years=None):
-    """成就面板网格：trophy 阈值表 + metrics 成就，数据不足时返回 None。"""
+def achievements_svg(acct, key, stats, lang, discovered=None, theme=None, years=None, extras=None,
+                     title=None):
+    """成就面板网格：trophy 阈值表 + metrics 成就 + 可选秘密成就，数据不足时返回 None。"""
     t = theme or A.THEME
     # stats 是整个 stats.json；成就只看本账号的 block
     block = ((discovered or {}).get("accounts") or {}).get(key) or {}
@@ -98,6 +99,15 @@ def achievements_svg(acct, key, stats, lang, discovered=None, theme=None, years=
     covered = {item["field"] for item in ach_items}
     trophy_items = [x for x in trophies(stats) if x["field"] not in covered]
     items = ach_items + trophy_items
+    for item in (extras or {}).get("secrets") or []:
+        if isinstance(item, dict) and item.get("name") and item.get("rank"):
+            items.append({
+                "name": str(item["name"]),
+                "field": "secret:%s" % item["name"],
+                "value": item.get("value", 1),
+                "rank": str(item["rank"]),
+                "progress": float(item.get("progress", 1)),
+            })
     if not items:
         return None
     cols = min(COLS, len(items))
@@ -126,5 +136,6 @@ def achievements_svg(acct, key, stats, lang, discovered=None, theme=None, years=
 </svg>
 """.format(
         w=width, h=height, defs_block=defs_block, bg_attr=bg_attr, parts="\n".join(parts),
-        alt=esc(labels["achievements"] if "achievements" in labels else "Achievements"),
+        alt=esc(title if isinstance(title, str) and title.strip() else
+                (labels["achievements"] if "achievements" in labels else "Achievements")),
     )

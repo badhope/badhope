@@ -76,6 +76,20 @@
 
 </details>
 
+## 活跃度
+
+<p align="center">
+  <img src="./assets/isocalendar-zh-CN.svg" alt="Isocalendar" width="100%" />
+</p>
+
+<p align="center">
+  <img src="./assets/people-zh-CN.svg" alt="People" width="100%" />
+</p>
+
+<p align="center">
+  <img src="./assets/projects-zh-CN.svg" alt="Projects" width="100%" />
+</p>
+
 ## 置顶作品
 
 <p align="center">

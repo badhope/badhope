@@ -6,28 +6,64 @@
       "repos": 27,
       "stars": 5,
       "followers": 3,
-      "merged": 1
+      "merged": 1,
+      "commits": 240,
+      "prs": 19,
+      "issues": 23,
+      "reviews": 0,
+      "contributions_window": {
+        "from": "2025-11-01T16:00:00Z",
+        "to": "2026-11-02T15:59:59Z"
+      },
+      "gists": 0,
+      "organizations": 0,
+      "starred": 2,
+      "following": 27
     },
     "gh_morningstar": {
       "repos": 33,
       "stars": 4,
       "followers": 18,
-      "merged": 16
+      "merged": 16,
+      "commits": 1931,
+      "prs": 64,
+      "issues": 9,
+      "reviews": 2,
+      "contributions_window": {
+        "from": "2025-11-01T16:00:00Z",
+        "to": "2026-11-02T15:59:59Z"
+      },
+      "gists": 0,
+      "organizations": 0,
+      "starred": 73,
+      "following": 27
     },
     "gh_badhope": {
       "repos": 29,
       "stars": 241,
       "followers": 20,
-      "merged": 25
+      "merged": 27,
+      "commits": 2188,
+      "prs": 287,
+      "issues": 15,
+      "reviews": 5,
+      "contributions_window": {
+        "from": "2025-11-01T16:00:00Z",
+        "to": "2026-11-02T15:59:59Z"
+      },
+      "gists": 0,
+      "organizations": 0,
+      "starred": 184,
+      "following": 31
     },
     "gitcode_badhope": {
-      "repos": 28,
+      "repos": 26,
       "stars": 12,
       "followers": 0,
       "merged": null
     },
     "gitee_badhope": {
-      "repos": 24,
+      "repos": 23,
       "stars": 3,
       "followers": 0,
       "merged": null

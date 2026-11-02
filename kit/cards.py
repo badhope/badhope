@@ -133,7 +133,7 @@ def skills_svg(acct, lang, theme=None):
         alt=esc(labels["skills"] + " · " + ", ".join(n for n, _ in entries)),
     )
 
-def works_svg(acct, key, lang, theme=None):
+def works_svg(acct, key, lang, theme=None, title=None):
     """作品面板：每件作品一张卡片（图标瓷片 + 名称 + 说明 + 标签胶囊），网格排布。"""
     t = theme or A.THEME
     labels = A.LABELS[lang]
@@ -154,7 +154,7 @@ def works_svg(acct, key, lang, theme=None):
     width = pad_x * 2 + cell_w * cols
     height = pad_top + cell_h * rows + 26
     parts = []
-    for i, (title, desc, tags, body) in enumerate(items):
+    for i, (work_title, desc, tags, body) in enumerate(items):
         cx = pad_x + (i % cols) * cell_w
         cy = pad_top + (i // cols) * cell_h
         desc_short = clip_w(desc, 356, 12.5)
@@ -187,7 +187,7 @@ def works_svg(acct, key, lang, theme=None):
             '</g>'
             % (cx, cy, inner_w, cell_h - 16, t["panel2"], t["gold"],
                cell_h - 16, t["bg0"], t["gold"],
-               body, A.SERIF, t["ink"], esc(title), A.SANS, t["muted"], desc_short,
+               body, A.SERIF, t["ink"], esc(work_title), A.SANS, t["muted"], desc_short,
                "\n".join(chips))
         )
     return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{alt}">
@@ -210,7 +210,8 @@ def works_svg(acct, key, lang, theme=None):
         indigo=t["indigo"], teal=t["teal"],
         serif=A.SERIF, sans=A.SANS,
         parts="\n".join(parts),
-        alt=esc(labels["works"] + " · " + ", ".join(x[0] for x in items)),
+        alt=esc((title if isinstance(title, str) and title.strip() else labels["works"])
+                + " · " + ", ".join(x[0] for x in items)),
     )
 
 def activity_svg(acct, key, lang, stats, theme=None):
@@ -582,7 +583,7 @@ def _legend_items(top, total, t, start_y, col_gap=232, row_gap=30, start_x=26):
     return items
 
 
-def langs_svg(key, lang, discovered, theme=None, layout="bar"):
+def langs_svg(key, lang, discovered, theme=None, layout="bar", title=None):
     """语言构成卡：由 works.json 聚合，支持 bar / donut / compact / pie 四布局。
 
     layout:
@@ -691,7 +692,7 @@ def langs_svg(key, lang, discovered, theme=None, layout="bar"):
         panel_def=panel_def, panel_fill=panel_fill,
         gold=t["gold"], ink=t["ink"], faint=t["faint"],
         serif=A.SERIF, mono=A.MONO, rx=width - 26,
-        title=esc(labels["langs"]), total=total,
+        title=esc(title if isinstance(title, str) and title.strip() else labels["langs"]), total=total,
         body=body, legend=legend_svg,
         alt=esc(labels["langs"] + " · " + ", ".join("%s %d" % kv for kv in top)),
     )

@@ -35,6 +35,22 @@ python scripts/bench.py
 python -m kit all --out dist          # 新的包级 CLI
 ```
 
+## README 区块标题
+
+账号配置可使用 `section_titles` 按内部语言键覆盖 README 标题，例如：
+
+```python
+"section_titles": {"skills": {"md": "Tools", "zh-CN": "常用工具", "ja": "ツール"}}
+```
+
+未配置的语言使用默认标题；支持 `about`、`now`、`skills`、`works`、`numbers`、`achievements`、`contrib`、`pinned`、`writing` 和 `elsewhere`。
+
+SVG 卡片内部标题使用独立的 `card_titles`，目前仅语言卡生效：
+
+```python
+"card_titles": {"langs": {"md": "Stack", "zh-CN": "技术栈", "ja": "技術スタック"}}
+```
+
 ## 可选依赖
 
 核心只需要 Python 3.10+。装了以下任一依赖会自动启用增强路径，没装自动降级：

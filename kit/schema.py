@@ -57,6 +57,14 @@ STATS_BLOCK_SCHEMA = {
     "stars": {"type": int, "optional": True},
     "followers": {"type": int, "optional": True},
     "merged": {"type": int, "optional": True},
+    "commits": {"type": int, "optional": True},
+    "prs": {"type": int, "optional": True},
+    "issues": {"type": int, "optional": True},
+    "reviews": {"type": int, "optional": True},
+    "gists": {"type": int, "optional": True},
+    "organizations": {"type": int, "optional": True},
+    "starred": {"type": int, "optional": True},
+    "following": {"type": int, "optional": True},
 }
 
 WRITING_ITEM_SCHEMA = {

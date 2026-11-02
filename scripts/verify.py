@@ -10,6 +10,7 @@
 """
 
 import argparse
+import json
 import pathlib
 import re
 import sys
@@ -136,6 +137,39 @@ def check_plugins(c):
                 "插件 %s 是多语言但文件名缺 {lang}" % spec["name"])
 
 
+def check_extras_data(c):
+    """扩展卡片快照的最小结构校验：只允许真实字段，且不得含敏感信息。"""
+    path = ROOT / "data" / "extras.json"
+    if not path.is_file():
+        return
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as err:
+        c.check(False, "extras.json 无法解析：%s" % err)
+        return
+    c.check(isinstance(data, dict), "extras.json 顶层必须是对象")
+    accounts = data.get("accounts")
+    c.check(isinstance(accounts, dict), "extras.json.accounts 必须是对象")
+    if not isinstance(accounts, dict):
+        return
+    for key, block in accounts.items():
+        c.check(key in A.ACCOUNTS, "extras.json 含未知账号 %s" % key)
+        c.check(isinstance(block, dict), "extras.json.%s 必须是对象" % key)
+        if not isinstance(block, dict):
+            continue
+        for name in ("gists", "people", "projects", "contribution_days"):
+            value = block.get(name)
+            if value is not None:
+                c.check(isinstance(value, list), "extras.json.%s.%s 必须是数组" % (key, name))
+        habits = block.get("habits")
+        if habits is not None:
+            c.check(isinstance(habits, dict), "extras.json.%s.habits 必须是对象" % key)
+            for section in ("languages", "editors"):
+                if section in habits:
+                    c.check(isinstance(habits[section], list),
+                            "extras.json.%s.habits.%s 必须是数组" % (key, section))
+
+
 def check_works_data(c):
     data = G.load_works()
     for key in A.ACCOUNT_ORDER:
@@ -200,6 +234,7 @@ def main(argv=None):
         c.check(True, "")
     check_catalog(c)
     check_works_data(c)
+    check_extras_data(c)
     check_plugins(c)
     with tempfile.TemporaryDirectory() as tmp:
         tmp_root = pathlib.Path(tmp)

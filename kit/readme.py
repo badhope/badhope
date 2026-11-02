@@ -69,9 +69,28 @@ def render_contrib(acct, key, lang):
 def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=True,
                   assets_dir=None):
     labels = A.LABELS[lang]
+    titles = acct.get("section_titles") or {}
+    if not isinstance(titles, dict):
+        titles = {}
+
+    def heading(section):
+        translations = titles.get(section)
+        title = translations.get(lang) if isinstance(translations, dict) else None
+        if isinstance(title, str) and title.strip():
+            return esc(" ".join(title.split()))
+        return esc(labels[section]) if section == "contrib" else labels[section]
+
     tagline = acct["tagline"][lang]
     lines = []
-    lines.append("[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)")
+    locales = acct.get("locales")
+    if isinstance(locales, dict) and locales:
+        navigation = " | ".join(
+            "[%s](%s)" % (esc(str(label)), esc(A.README_NAME.get(code, "README.%s.md" % code)))
+            for code, label in locales.items() if str(label).strip()
+        )
+        lines.append(navigation or "[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)")
+    else:
+        lines.append("[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)")
     lines.append("")
     lines.append('<p align="center">')
     # hero 用 <picture> 提供 PNG 兜底：GitHub camo / GitCode raw 对 SVG 的支持不稳定，
@@ -110,14 +129,14 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     lines.append("<tr>")
     lines.append('<td valign="top" width="58%">')
     lines.append("")
-    lines.append("### %s" % labels["about"])
+    lines.append("### %s" % heading("about"))
     lines.append("")
     lines.append(acct["about"][lang])
     lines.append("")
     lines.append("</td>")
     lines.append('<td valign="top" width="42%">')
     lines.append("")
-    lines.append("### %s" % labels["now"])
+    lines.append("### %s" % heading("now"))
     lines.append("")
     for item in acct["now"][lang]:
         lines.append("- %s" % item)
@@ -128,7 +147,7 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     lines.append("")
 
     # ---- 技能矩阵（图标网格，本地资产） ----
-    lines.append("## %s" % labels["skills"])
+    lines.append("## %s" % heading("skills"))
     lines.append("")
     lines.append('<p align="center">')
     lines.append('  <img src="./assets/skills-%s.svg" alt="%s" width="100%%" />' % (lang, esc(labels["skills"])))
@@ -136,7 +155,7 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     lines.append("")
 
     # ---- 作品卡片网格 ----
-    lines.append("## %s" % labels["works"])
+    lines.append("## %s" % heading("works"))
     lines.append("")
     # 作品清单来自 data/works.json（每次刷新从平台 API 重新发现，按更新时间倒序）。
     # 不再用写死的 SVG 卡片：图片是死的，项目会过期。
@@ -170,7 +189,7 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     lines.append("")
 
     # ---- 数据面板：徽章 + stats/langs 并排 + activity ----
-    lines.append("## %s" % labels["numbers"])
+    lines.append("## %s" % heading("numbers"))
     lines.append("")
     # 卡片产物引用一律看本次输出的 assets 目录：snake（GitHub 专属）与 badges
     # （GitCode/Gitee 专属）是按账号生成的，全局 ROOT/assets 里可能躺着别的
@@ -232,7 +251,7 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     ach_path = assets_root / ("achievements-%s.svg" % A.CARD_LOCALE[lang])
     has_impact = snake_path.is_file() or ach_path.is_file()
     if has_impact:
-        lines.append("## %s" % labels["achievements"])
+        lines.append("## %s" % heading("achievements"))
         lines.append("")
         if snake_path.is_file():
             lines.append('<p align="center">')
@@ -247,17 +266,33 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
             lines.append("")
         # 开源足迹折叠为脚注
         lines.append('<details>')
-        lines.append('<summary>%s</summary>' % esc(labels["contrib"]))
+        lines.append('<summary>%s</summary>' % heading("contrib"))
         lines.append("")
         lines.append(render_contrib(acct, key, lang))
         lines.append("")
         lines.append('</details>')
         lines.append("")
     if not has_impact:
-        lines.append("## %s" % labels["contrib"])
+        lines.append("## %s" % heading("contrib"))
         lines.append("")
         lines.append(render_contrib(acct, key, lang))
         lines.append("")
+
+    # ---- 扩展卡片（仅当本次输出真的产出了对应 SVG 才引用） ----
+    extras = []
+    for name, alt in (("gists", "Gists"), ("isocalendar", "Isocalendar"),
+                      ("habits", "Habits"), ("people", "People"), ("projects", "Projects")):
+        if (assets_root / ("%s-%s.svg" % (name, lang))).is_file():
+            extras.append((name, alt))
+    if extras:
+        lines.append("## %s" % heading("activity"))
+        lines.append("")
+        for name, alt in extras:
+            lines.append('<p align="center">')
+            lines.append('  <img src="./assets/%s-%s.svg" alt="%s" width="100%%" />'
+                         % (name, lang, esc(alt)))
+            lines.append("</p>")
+            lines.append("")
 
     # ---- 置顶作品（官方 pin 卡；仅有种子时出现） ----
     pin_rows = []
@@ -266,7 +301,7 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
         if cand.is_file():
             pin_rows.append(cand.name)
     if pin_rows:
-        lines.append("## %s" % labels["pinned"])
+        lines.append("## %s" % heading("pinned"))
         lines.append("")
         lines.append('<p align="center">')
         for name in pin_rows:
@@ -275,7 +310,7 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
         lines.append("")
 
     # ---- 写作（日期 | 文章 两列表） ----
-    lines.append("## %s" % labels["writing"])
+    lines.append("## %s" % heading("writing"))
     lines.append("")
     writing_items = load_writing_items()
     if writing_items:
@@ -296,7 +331,7 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     lines.append("")
 
     # ---- 在别处（宽表格，窄屏可横向滑动） ----
-    lines.append("## %s" % labels["elsewhere"])
+    lines.append("## %s" % heading("elsewhere"))
     lines.append("")
     lines.append("> %s" % labels["mirror_note"])
     lines.append("")
@@ -316,4 +351,7 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     lines.append("")
     lines.append('<p align="center"><sub>© %s</sub></p>' % acct["handle"])
     lines.append("")
-    return "\n".join(lines)
+    from .templates import apply as _apply_template
+    headings = {name: heading(name) for name in
+                ("skills", "works", "numbers", "achievements", "pinned", "writing", "elsewhere")}
+    return "\n".join(_apply_template(lines, acct, headings))

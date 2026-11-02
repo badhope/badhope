@@ -11,12 +11,9 @@
    的成就阈值表**（`source/plugins/achievements/list/users.mjs`）：
    每一项统计一个 SSS→C 的阈值表，算出当前档位和到下一档的进度。
 
-本项目数据源是 `data/stats.json`（repos/stars/followers/merged）+ 
-`data/works.json`（语言数、仓库年龄），没有 commits/issues/reviews 的 GraphQL
-明细，因此：
-- Rank 环用 repos/stars/followers/merged 四项（merged 用 merged 权重替代 reviews）；
-- 成就表只用能从现有数据推导的字段（Developer/Influencer/Maintainer/Polyglot/
-  Member/Contributor），其余标记 needs-token（fetcher 侧支持后再开）。
+Rank 使用快照中提供的 commits、prs、issues、reviews、stars、followers。
+当前刷新流程尚未采集前四项；缺失值按零计算，结果不代表完整的 GitHub 排名。
+成就表仅覆盖已有快照可推导的子集。
 """
 
 import math
@@ -88,6 +85,10 @@ ACHIEVEMENT_TABLE = (
     ("Maintainer", "stars", (1, 1000, 5000, 10000), "stars"),
     ("Polyglot", "languages", (1, 4, 8, 16), "languages"),
     ("Member", "years", (1, 3, 5, 10), "duration"),
+    ("Gister", "gists", (1, 5, 20, 50), "gists"),
+    ("Organizer", "organizations", (1, 2, 5, 10), "organizations"),
+    ("Curator", "starred", (1, 25, 100, 500), "starred"),
+    ("Follower", "following", (1, 10, 50, 200), "following"),
 )
 
 #: metrics 的 rank 配色（primary/secondary）
@@ -186,14 +187,7 @@ def derive_profile(stats_block, repos=None):
         if seen:
             languages = len(seen)
     block = stats_block or {}
-    rank = calculate_rank({
-        "stars": block.get("stars") or 0,
-        "followers": block.get("followers") or 0,
-        "repos": block.get("repos") or 0,
-        "languages": languages or 0,
-        # commits/prs/issues/reviews 无数据源，按 0 计（显式声明而非误用）
-        "commits": 0, "prs": 0, "issues": 0, "reviews": 0,
-    })
+    rank = calculate_rank({name: block.get(name) for name, _, _, _ in _WEIGHTS})
     return {"languages": languages, "rank": rank}
 
 

@@ -25,6 +25,7 @@ import os
 import pathlib
 import sys
 import urllib.error
+import urllib.request
 import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -134,6 +135,45 @@ def gh_headers(handle):
     return {"Authorization": "Bearer " + token} if token else {}
 
 
+def github_graphql(handle, token):
+    query = """query($login: String!) {
+      user(login: $login) {
+        contributionsCollection {
+          totalCommitContributions
+          totalPullRequestContributions
+          totalIssueContributions
+          totalPullRequestReviewContributions
+          startedAt
+          endedAt
+        }
+      }
+    }"""
+    payload = json.dumps({"query": query, "variables": {"login": handle}}).encode("utf-8")
+    request = urllib.request.Request(
+        "https://api.github.com/graphql", data=payload,
+        headers={"Authorization": "Bearer " + token, "Content-Type": "application/json",
+                 "Accept": "application/json", "User-Agent": UA}, method="POST")
+    with urllib.request.urlopen(request, timeout=30) as response:
+        return json.load(response)
+
+
+def refresh_github_contributions(handle, block, token):
+    payload = github_graphql(handle, token)
+    if not isinstance(payload, dict) or payload.get("errors"):
+        raise ValueError("GitHub contribution query failed")
+    user = (payload.get("data") or {}).get("user") or {}
+    collection = user.get("contributionsCollection") or {}
+    names = {"commits": "totalCommitContributions", "prs": "totalPullRequestContributions",
+             "issues": "totalIssueContributions", "reviews": "totalPullRequestReviewContributions"}
+    values = {key: collection.get(field) for key, field in names.items()}
+    if any(not isinstance(value, int) or isinstance(value, bool) or value < 0
+           for value in values.values()):
+        raise ValueError("GitHub contribution response is incomplete")
+    block.update(values)
+    if collection.get("startedAt") and collection.get("endedAt"):
+        block["contributions_window"] = {"from": collection["startedAt"], "to": collection["endedAt"]}
+
+
 def refresh_github(handle, block):
     try:
         user = http_json("https://api.github.com/users/%s" % handle, gh_headers(handle))
@@ -178,6 +218,37 @@ def refresh_github(handle, block):
         print("github %s: upstream merged PRs=%s" % (handle, block.get("merged")))
     except NETWORK_ERRORS as err:
         warn("github search %s unavailable (%s); keeping old merged count" % (handle, err))
+    for field, path, key in (
+        ("gists", "/users/%s/gists?per_page=1", "total_count"),
+        ("organizations", "/users/%s/orgs?per_page=100", None),
+        ("starred", "/users/%s/starred?per_page=1", "total_count"),
+        ("following", "/users/%s/following?per_page=1", "total_count"),
+    ):
+        try:
+            headers = gh_headers(handle)
+            if key:
+                request = urllib.request.Request(
+                    "https://api.github.com" + (path % handle),
+                    headers={**headers, "Accept": "application/vnd.github+json",
+                             "User-Agent": UA})
+                with urllib.request.urlopen(request, timeout=30) as response:
+                    if field == "gists":
+                        block[field] = len(json.load(response))
+                    else:
+                        link = response.headers.get("Link") or ""
+                        block[field] = int(link.rsplit("page=", 1)[1].split(">", 1)[0]) if "page=" in link else 0
+            else:
+                items = http_json("https://api.github.com" + (path % handle), headers)
+                block[field] = len(items) if isinstance(items, list) else block.get(field)
+            print("github %s: %s=%s" % (handle, field, block.get(field)))
+        except NETWORK_ERRORS as err:
+            warn("github %s %s unavailable (%s); keeping old value" % (handle, field, type(err).__name__))
+    token = resolve_token("github", handle, generic_env=("GITHUB_TOKEN", "GH_TOKEN"))
+    if token:
+        try:
+            refresh_github_contributions(handle, block, token)
+        except NETWORK_ERRORS as err:
+            warn("github contributions %s unavailable (%s); keeping old counts" % (handle, type(err).__name__))
 
 
 def refresh_gitee(owner, block):

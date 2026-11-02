@@ -13,7 +13,9 @@ from .data import load_stats
 from .paths import ROOT
 
 PACK_EXTRAS = ("scripts/generate.py", "scripts/refresh.py", "scripts/refresh_sections.py",
+                "scripts/refresh_extras.py",
                 "accounts.py", "data/stats.json", "data/writing.json", "data/works.json",
+                "data/extras.json",
                 "scripts/discover_works.py")
 
 PACK_GITIGNORE = ".gitignore"

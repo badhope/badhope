@@ -65,6 +65,35 @@ class WorkUrlTests(unittest.TestCase):
 
 
 class ReadmeCopyTests(unittest.TestCase):
+    def test_custom_section_title_is_localized_and_escaped(self):
+        from kit.readme import render_readme
+        acct = dict(A.ACCOUNTS["gitcode_badhope"])
+        acct["section_titles"] = {"skills": {"zh-CN": "技能 <script> & 工具"}}
+        text = render_readme(acct, "gitcode_badhope", "zh-CN",
+                             {"as_of": "", "accounts": {}}, discovered={"accounts": {}})
+        self.assertIn("## 技能 &lt;script&gt; &amp; 工具", text)
+        self.assertNotIn("<script>", text)
+        english = render_readme(acct, "gitcode_badhope", "md",
+                                {"as_of": "", "accounts": {}}, discovered={"accounts": {}})
+        self.assertIn("## Toolbox", english)
+
+    def test_custom_title_collapses_newlines(self):
+        from kit.readme import render_readme
+        acct = dict(A.ACCOUNTS["gitcode_badhope"])
+        acct["section_titles"] = {"works": {"md": "Projects\n## injected"}}
+        text = render_readme(acct, "gitcode_badhope", "md",
+                             {"as_of": "", "accounts": {}}, discovered={"accounts": {}})
+        self.assertIn("## Projects ## injected", text)
+        self.assertNotIn("\n## injected", text)
+
+    def test_invalid_title_configuration_uses_defaults(self):
+        from kit.readme import render_readme
+        acct = dict(A.ACCOUNTS["gitcode_badhope"])
+        acct["section_titles"] = "invalid"
+        text = render_readme(acct, "gitcode_badhope", "md",
+                             {"as_of": "", "accounts": {}}, discovered={"accounts": {}})
+        self.assertIn("## Toolbox", text)
+
     def test_japanese_quote_is_localized(self):
         quote = A.QUOTES[0]
         self.assertIn("ja", quote)

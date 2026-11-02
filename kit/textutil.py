@@ -31,18 +31,21 @@ def fmt_num(v):
 
 @functools.lru_cache(maxsize=512)
 def _char_w(char):
-    return 1.0 if ord(char) > 0x2E80 else 0.6
+    from .fontmetrics import char_width
+    precise = char_width(char)
+    return precise if precise is not None else (1.0 if ord(char) > 0x2E80 else 0.6)
 
 
 def text_w(text, size):
-    """估算文本宽度：拉丁/符号按 0.6em，CJK 按 1.0em（等宽标签用）。"""
+    """Measure text width: Verdana table when available, CJK 1em, else 0.6em."""
     return sum(_char_w(ch) for ch in text) * size
 
+
 def clip_w(text, max_w, size):
-    """按估算像素宽度裁剪文本（CJK 1.0em / 拉丁 0.6em），超出以 … 结尾。"""
+    """按估算像素宽度裁剪文本（Verdana 表 / CJK 1em / 拉丁 0.6em），超出以 … 结尾。"""
     out, used = [], 0.0
     for ch in text:
-        cw = size if ord(ch) > 0x2E80 else size * 0.6
+        cw = _char_w(ch) * size
         if used + cw > max_w:
             return "".join(out).rstrip() + "…"
         out.append(ch)

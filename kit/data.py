@@ -48,6 +48,22 @@ def cards_dir_for(key, base):
             return local
     return ROOT / "data" / "cards" / key
 
+def load_extras(key, base=None):
+    """读取可选扩展卡片快照 data/extras.json 中某账号的块；缺失时返回空 dict。
+
+    永不联网；数据由 scripts/refresh_extras.py 在凭据可用时刷新。
+    """
+    roots = [ROOT] if base is None else [pathlib.Path(base), ROOT]
+    for root in roots:
+        try:
+            data = json.loads((root / "data" / "extras.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        block = (data.get("accounts") or {}).get(key)
+        if isinstance(block, dict):
+            return block
+    return {}
+
 def load_writing_items():
     """读取 data/writing.json（refresh.py 维护）。缺失/损坏时返回空列表。"""
     try:

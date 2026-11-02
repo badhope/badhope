@@ -28,7 +28,7 @@ fi
 
 # 账号无关的共享层（绝不含 assets/ 卡片、data/cards/、data/contrib/）
 # 清单只在这一处维护：mirror.yml / refresh.yml 不再覆盖，防止两处漂移回灌旧版。
-SHARED_PATHS="accounts.py kit data/stats.json data/works.json data/writing.json data/icons data/linguist_colors.json scripts tests docs ARCHITECTURE.md Makefile requirements-optional.txt .gitattributes .gitignore"
+SHARED_PATHS="accounts.py kit data/stats.json data/works.json data/writing.json data/extras.json data/icons data/linguist_colors.json scripts tests docs ARCHITECTURE.md Makefile requirements-optional.txt .gitattributes .gitignore"
 
 PYTHON_BIN="${PYTHON_BIN:-}"
 if [ -z "$PYTHON_BIN" ]; then

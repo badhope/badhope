@@ -51,7 +51,7 @@ def fetch_stats(api_key=None, api_domain=None, timeout=30):
         return None
 
 
-def wakatime_svg(stats, lang="md", theme=None, layout="normal", langs_count=5, width=495):
+def wakatime_svg(stats, lang="md", theme=None, layout="normal", langs_count=5, width=495, title=None):
     """渲染 WakaTime 卡。stats 为 API 的 data 节点。"""
     from .textutil import esc, text_w
     t = theme or {}
@@ -73,7 +73,7 @@ def wakatime_svg(stats, lang="md", theme=None, layout="normal", langs_count=5, w
     bar_x, bar_w_max = 130, width - 275
     height = 45 + (len(languages) + 1) * row_h
     label = "%s · %s" % (
-        esc("WakaTime"),
+        esc(title if isinstance(title, str) and title.strip() else "WakaTime"),
         esc(RANGE_LABELS.get(lang, RANGE_LABELS["md"]).get(
             data.get("range") or SUPPORTED_RANGES[0], "")),
     )
