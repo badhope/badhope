@@ -46,6 +46,55 @@ def _stat_key(path):
     return (path, st.st_mtime_ns, st.st_size)
 
 
+_HEX_RE = re.compile(r"#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b")
+# 深色背景上的可读下限：相对亮度低于此值就把颜色提亮。
+_LUMA_FLOOR = 0.42
+
+
+def _luma(hex_color):
+    """感知亮度（ITU-R BT.601 加权，0–1）。"""
+    h = hex_color.lstrip("#")
+    if len(h) == 3:
+        h = "".join(ch * 2 for ch in h)
+    try:
+        r, g, b = (int(h[i:i + 2], 16) / 255.0 for i in (0, 2, 4))
+    except (ValueError, IndexError):
+        return None
+    return 0.299 * r + 0.587 * g + 0.114 * b
+
+
+def _lighten(hex_color, target=_LUMA_FLOOR):
+    """把颜色朝白色混合到目标亮度，保留色相。已是亮色则原样返回。"""
+    luma = _luma(hex_color)
+    if luma is None or luma >= target:
+        return hex_color
+    h = hex_color.lstrip("#")
+    if len(h) == 3:
+        h = "".join(ch * 2 for ch in h)
+    r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+    # 解 luma' = luma + (1-luma)*t 中的混合比例 t
+    t = (target - luma) / max(1e-6, 1.0 - luma)
+    r, g, b = (round(c + (255 - c) * t) for c in (r, g, b))
+    return "#%02X%02X%02X" % (r, g, b)
+
+
+def brighten_for_dark(body, target=_LUMA_FLOOR):
+    """把图标内部过暗的填充色提亮，保证深色背景上的可辨识度。
+
+    只处理 `fill="#rrggbb"` / `stroke="#rrggbb"`，不动 none / url(#…) /
+    具名颜色；同一颜色重复出现时结果一致，因此仍满足字节级可复现。
+    """
+    cache = {}
+
+    def repl(match):
+        prefix, color = match.group(1), match.group(2)
+        if color not in cache:
+            cache[color] = _lighten("#" + color, target).lstrip("#")
+        return '%s="#%s"' % (prefix, cache[color])
+
+    return re.sub(r'\b(fill|stroke)="#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})"', repl, body)
+
+
 def icon_exists(name, prefix=None):
     """图标是否存在。prefix 指定时只查该来源（si / dev）。"""
     if prefix is None:
@@ -84,6 +133,13 @@ def icon_svg_body(name, size, color=None):
         return None
     viewbox, body, has_xlink = parsed
     ns = ' xmlns:xlink="http://www.w3.org/1999/xlink"' if has_xlink else ""
-    style = ' fill="%s"' % color if color else ""
+    if color:
+        # 单色图标：外层 fill 由调用方指定，内部硬编码的深色需清掉否则不生效
+        style = ' fill="%s"' % color
+        body = re.sub(r'\bfill="#[0-9a-fA-F]{3,6}"', '', body)
+    else:
+        # 彩色图标：保留原配色，但把深到看不见的颜色提亮
+        style = ""
+        body = brighten_for_dark(body)
     return ('<svg x="0" y="0" width="%s" height="%s" viewBox="%s"%s%s>%s</svg>'
             % (size, size, viewbox, ns, style, body))
