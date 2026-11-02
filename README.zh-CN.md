@@ -86,10 +86,6 @@
   <img src="./assets/people-zh-CN.svg" alt="People" width="100%" />
 </p>
 
-<p align="center">
-  <img src="./assets/projects-zh-CN.svg" alt="Projects" width="100%" />
-</p>
-
 ## 置顶作品
 
 <p align="center">

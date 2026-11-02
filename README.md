@@ -90,10 +90,6 @@ Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details 
   <img src="./assets/people-md.svg" alt="People" width="100%" />
 </p>
 
-<p align="center">
-  <img src="./assets/projects-md.svg" alt="Projects" width="100%" />
-</p>
-
 ## Pinned work
 
 <p align="center">

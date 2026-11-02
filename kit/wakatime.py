@@ -7,8 +7,10 @@ github-readme-stats 的 wakatime 卡（src/cards/wakatime.js）移植：
 - 布局复用 langs 卡的进度条风格：label | bar | value
 """
 
+import base64
 import json
 import os
+import urllib.parse
 
 import accounts as A
 
@@ -38,15 +40,16 @@ def fetch_stats(api_key=None, api_domain=None, timeout=30):
     if not key:
         return None
     domain = api_domain or _api_domain()
-    if domain.startswith("http://") or domain.startswith("https://"):
-        base = domain
-    else:
-        base = "https://%s" % domain
+    base = domain if "://" in domain else "https://%s" % domain
+    parts = urllib.parse.urlsplit(base)
+    if parts.scheme != "https" or not parts.hostname or parts.username or parts.password or parts.query or parts.fragment:
+        return None
     url = "%s/api/v1/users/current/stats/%s?is_including_today=true" % (
-        base, SUPPORTED_RANGES[0])
+        base.rstrip("/"), SUPPORTED_RANGES[0])
+    encoded = base64.b64encode(key.encode("utf-8")).decode("ascii")
     try:
         return default_client().get_json(
-            url, headers={"Authorization": "Basic " + key}, timeout=timeout)
+            url, headers={"Authorization": "Basic " + encoded}, timeout=timeout, cache=False)
     except (HttpError, OSError, ValueError):
         return None
 

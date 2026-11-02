@@ -41,6 +41,15 @@ class TemplateTests(unittest.TestCase):
         self.assertNotIn("## Numbers", text)
         self.assertIn("## Elsewhere", text)
 
+    def test_unrecognized_sections_keep_content_together(self):
+        from kit.templates import apply
+        lines = ["intro", "## Work", "work body", "## Extra", "extra body",
+                 "## Skills", "skills body", "footer"]
+        result = apply(lines, {"template": "compact"}, {"works": "Work", "skills": "Skills"})
+        self.assertIn("## Extra", result)
+        self.assertEqual(result[result.index("## Extra") + 1], "extra body")
+        self.assertEqual(result.count("extra body"), 1)
+
     def test_classic_template_keeps_render_unchanged(self):
         from kit.readme import render_readme
         base = dict(A.ACCOUNTS["gitcode_badhope"])

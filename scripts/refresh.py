@@ -25,6 +25,7 @@ import os
 import pathlib
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -174,6 +175,22 @@ def refresh_github_contributions(handle, block, token):
         block["contributions_window"] = {"from": collection["startedAt"], "to": collection["endedAt"]}
 
 
+def github_page_count(items, link):
+    if not isinstance(items, list):
+        raise ValueError("unexpected paginated response")
+    for entry in (link or "").split(","):
+        if 'rel="last"' not in entry:
+            continue
+        url = entry.split(";", 1)[0].strip().strip("<>")
+        values = urllib.parse.parse_qs(urllib.parse.urlsplit(url).query).get("page", [])
+        if len(values) != 1 or not values[0].isdigit():
+            raise ValueError("invalid last page")
+        return int(values[0])
+    if 'rel="next"' in (link or ""):
+        raise ValueError("missing last page")
+    return len(items)
+
+
 def refresh_github(handle, block):
     try:
         user = http_json("https://api.github.com/users/%s" % handle, gh_headers(handle))
@@ -232,11 +249,8 @@ def refresh_github(handle, block):
                     headers={**headers, "Accept": "application/vnd.github+json",
                              "User-Agent": UA})
                 with urllib.request.urlopen(request, timeout=30) as response:
-                    if field == "gists":
-                        block[field] = len(json.load(response))
-                    else:
-                        link = response.headers.get("Link") or ""
-                        block[field] = int(link.rsplit("page=", 1)[1].split(">", 1)[0]) if "page=" in link else 0
+                    items = json.load(response)
+                    block[field] = github_page_count(items, response.headers.get("Link") or "")
             else:
                 items = http_json("https://api.github.com" + (path % handle), headers)
                 block[field] = len(items) if isinstance(items, list) else block.get(field)

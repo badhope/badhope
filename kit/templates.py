@@ -55,35 +55,23 @@ def apply(lines, acct, headings):
     if spec["name"] == "classic":
         return lines
     prefixes = {"## %s" % text: section for section, text in headings.items()}
-    blocks = {}
-    order = []
-    current = None
+    head, blocks, current = [], [], None
     for line in lines:
-        section = prefixes.get(line)
-        if section:
-            current = section
-            if section in spec["hide"]:
-                continue
-            blocks[section] = [line]
-            order.append(section)
-        elif current is not None and line.startswith("## "):
-            current = None
-            blocks.setdefault("_tail", []).append(line)
-        elif current is not None:
-            if current not in spec["hide"]:
-                blocks[current].append(line)
+        if line.startswith("## "):
+            current = [prefixes.get(line), [line]]
+            blocks.append(current)
+        elif current is None:
+            head.append(line)
         else:
-            blocks.setdefault("_head", []).append(line)
-    if not order:
+            current[1].append(line)
+    if not blocks:
         return lines
-    tail = blocks.get("_tail", [])
-    head = blocks.get("_head", [])
     result = list(head)
+    ordered = []
     for section in spec["order"]:
-        if section in blocks:
-            result.extend(blocks[section])
-    for section in order:
-        if section not in spec["order"]:
-            result.extend(blocks[section])
-    result.extend(tail)
+        ordered.extend(block for block in blocks if block[0] == section)
+    ordered.extend(block for block in blocks if block[0] not in spec["order"])
+    for section, content in ordered:
+        if section not in spec["hide"]:
+            result.extend(content)
     return result

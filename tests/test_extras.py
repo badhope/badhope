@@ -1,4 +1,5 @@
 import unittest
+import xml.etree.ElementTree as ET
 
 from kit.extras import (
     gist_svg,
@@ -42,6 +43,11 @@ class ExtraCardTests(unittest.TestCase):
     def test_projects_card_renders_project(self):
         svg = projects_svg(SAMPLE["projects"], "md")
         self.assertIn("Demo project", svg)
+
+    def test_untrusted_card_text_remains_valid_xml(self):
+        svg = gist_svg([{"name": "<script>&", "description": "a & b < c"}], "md")
+        ET.fromstring(svg)
+        self.assertNotIn("<script>", svg)
 
     def test_empty_data_returns_none(self):
         for fn, key in ((gist_svg, "gists"), (isocalendar_svg, "contribution_days"),

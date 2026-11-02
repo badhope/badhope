@@ -4,9 +4,9 @@
 
 数据源全部是公开 GitHub API（部分需要 token 提额或读取私有可见数据）：
 - Gists: GET /users/{handle}/gists
-- 贡献日历: GET /users/{handle}/events（近 90 天公开事件）
+- 贡献日历: GitHub GraphQL contributionCalendar（默认近一年）
 - 关注者: GET /users/{handle}/followers
-- 项目: GET /users/{handle}/repos?type=owner（取 description 与 url）
+- 项目: GitHub GraphQL projectsV2（只展示公开项目）
 - 编码习惯: 由贡献日历中按语言归类的事件推导；只有 API 返回 language 时才写入。
 
 失败策略：每个 section 单独 fail-soft；失败时保留旧值，不把空数组当成功。
@@ -70,60 +70,105 @@ def fetch_people(handle):
             for item in items if item.get("login")]
 
 
+def _extra_graphql(handle, query, cursor=None):
+    token = R.resolve_token("github", handle, generic_env=("GITHUB_TOKEN", "GH_TOKEN"))
+    if not token:
+        raise ValueError("GitHub token required")
+    body = json.dumps({"query": query, "variables": {"login": handle, "cursor": cursor}}).encode("utf-8")
+    request = urllib.request.Request(
+        "https://api.github.com/graphql", data=body, method="POST",
+        headers={"Authorization": "Bearer " + token, "Content-Type": "application/json",
+                 "Accept": "application/json", "User-Agent": R.UA})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        return json.load(response)
+
+
+def _graphql_user(payload):
+    if not isinstance(payload, dict) or payload.get("errors"):
+        raise ValueError("GitHub GraphQL request failed")
+    user = (payload.get("data") or {}).get("user")
+    if not isinstance(user, dict):
+        raise ValueError("GitHub user unavailable")
+    return user
+
+
 def fetch_projects(handle):
-    items = _get("/users/%s/repos?type=owner&sort=updated&per_page=100" % handle, handle, None)
-    if not isinstance(items, list):
-        raise ValueError("unexpected repos payload")
-    return [{"name": item.get("name"), "description": (item.get("description") or "").strip(),
-             "url": item.get("html_url") or ""}
-            for item in items if item.get("name") and not item.get("fork")]
+    query = """query($login: String!, $cursor: String) {
+      user(login: $login) {
+        projectsV2(first: 100, after: $cursor) {
+          nodes { title url shortDescription public }
+          pageInfo { hasNextPage endCursor }
+        }
+      }
+    }"""
+    result, cursor, seen = [], None, set()
+    while True:
+        user = _graphql_user(_extra_graphql(handle, query, cursor))
+        connection = user.get("projectsV2") or {}
+        nodes, page = connection.get("nodes"), connection.get("pageInfo")
+        if not isinstance(nodes, list) or not isinstance(page, dict) or not isinstance(page.get("hasNextPage"), bool):
+            raise ValueError("incomplete project response")
+        for node in nodes:
+            if isinstance(node, dict) and node.get("title") and node.get("url") and node.get("public") is True:
+                result.append({"name": node["title"], "description": node.get("shortDescription") or "",
+                               "url": node["url"]})
+        if not page.get("hasNextPage"):
+            return result
+        cursor = page.get("endCursor")
+        if not cursor or cursor in seen:
+            raise ValueError("invalid project cursor")
+        seen.add(cursor)
 
 
 def fetch_calendar(handle):
-    events = _get("/users/%s/events?per_page=100" % handle, handle, None)
-    if not isinstance(events, list):
-        raise ValueError("unexpected events payload")
-    counts = {}
-    for event in events:
-        created = str(event.get("created_at") or "")[:10]
-        if created:
-            counts[created] = counts.get(created, 0) + 1
-    return [{"date": date, "count": count} for date, count in sorted(counts.items())]
+    query = """query($login: String!) {
+      user(login: $login) {
+        contributionsCollection {
+          contributionCalendar { weeks { contributionDays { date contributionCount } } }
+        }
+      }
+    }"""
+    user = _graphql_user(_extra_graphql(handle, query))
+    collection = user.get("contributionsCollection") or {}
+    weeks = (collection.get("contributionCalendar") or {}).get("weeks")
+    if not isinstance(weeks, list):
+        raise ValueError("incomplete calendar response")
+    result = []
+    for week in weeks:
+        for day in week.get("contributionDays") or []:
+            count = day.get("contributionCount")
+            if not day.get("date") or not isinstance(count, int) or isinstance(count, bool) or count < 0:
+                raise ValueError("invalid calendar day")
+            result.append({"date": day["date"], "count": count})
+    return result
 
 
 def fetch_habits(handle):
-    """公开 events 不含语言或编辑器信息时返回空字典；绝不按猜测填充。"""
-    events = _get("/users/%s/events?per_page=100" % handle, handle, None)
-    if not isinstance(events, list):
-        raise ValueError("unexpected events payload")
-    languages = {}
-    for event in events:
-        payload = event.get("payload") or {}
-        language = payload.get("language")
-        if language:
-            languages[language] = languages.get(language, 0) + 1
-    if not languages:
-        return {}
-    return {"languages": [{"name": k, "minutes": v} for k, v in
-                          sorted(languages.items(), key=lambda kv: -kv[1])[:6]]}
+    raise ValueError("GitHub events do not provide coding duration")
 
 
 def _has_gpg(handle, token):
     request = urllib.request.Request(
         "https://github.com/%s.gpg" % handle,
-        headers={"User-Agent": R.UA, "Authorization": "Bearer " + token} if token else {"User-Agent": R.UA})
+        headers={"User-Agent": R.UA})
     with urllib.request.urlopen(request, timeout=30) as response:
         body = response.read().decode("utf-8", "replace")
-    return "This user hasn't uploaded any GPG keys" not in body
+    if "This user hasn't uploaded any GPG keys" in body:
+        return False
+    if "-----BEGIN PGP PUBLIC KEY BLOCK-----" in body:
+        return True
+    raise ValueError("unrecognized GPG response")
 
 
 def _has_starred_topics(handle, token):
     request = urllib.request.Request(
         "https://github.com/stars/%s/topics" % handle,
-        headers={"User-Agent": R.UA, "Authorization": "Bearer " + token} if token else {"User-Agent": R.UA})
+        headers={"User-Agent": R.UA})
     with urllib.request.urlopen(request, timeout=30) as response:
         body = response.read().decode("utf-8", "replace")
-    return "doesn’t have any starred topics yet" not in body
+    if "doesn’t have any starred topics yet" in body or "doesn't have any starred topics yet" in body:
+        return False
+    raise ValueError("starred topics page cannot be verified reliably")
 
 
 def fetch_secrets(handle):
@@ -133,14 +178,20 @@ def fetch_secrets(handle):
     """
     token = R.resolve_token("github", handle, generic_env=("GITHUB_TOKEN", "GH_TOKEN"))
     items = []
-    try:
-        if _has_gpg(handle, token):
-            items.append({"name": "Verified", "value": 1, "rank": "$", "progress": 1})
-        if _has_starred_topics(handle, token):
-            items.append({"name": "Explorer", "value": 1, "rank": "$", "progress": 1})
-    except (OSError, ValueError, R.HttpError):
-        return []
+    if _has_gpg(handle, token):
+        items.append({"name": "Verified", "value": 1, "rank": "$", "progress": 1})
+    if _has_starred_topics(handle, token):
+        items.append({"name": "Explorer", "value": 1, "rank": "$", "progress": 1})
     return items
+
+
+def fetch_wakatime(handle):
+    """采集 WakaTime 统计并写入快照；未配置 API key 时抛错由上层保留旧值。"""
+    from kit.wakatime import fetch_stats
+    stats = fetch_stats()
+    if not isinstance(stats, dict) or not stats.get("data"):
+        raise ValueError("wakatime unavailable")
+    return stats
 
 
 def main(argv=None):
@@ -158,7 +209,8 @@ def main(argv=None):
         old = json.loads(json.dumps(block))
         for name, fetcher in (("gists", fetch_gists), ("people", fetch_people),
                               ("projects", fetch_projects), ("contribution_days", fetch_calendar),
-                              ("habits", fetch_habits), ("secrets", fetch_secrets)):
+                              ("habits", fetch_habits), ("secrets", fetch_secrets),
+                              ("wakatime", fetch_wakatime)):
             try:
                 block[name] = fetcher(handle)
             except R.NETWORK_ERRORS as err:

@@ -175,11 +175,12 @@ class HttpClient:
                     body, resp_headers = self._request_httpx(url, headers)
                 else:
                     body, resp_headers = self._request_httpclient(url, headers)
-                self._cache_store(url, {
-                    "etag": resp_headers.get("etag"),
-                    "last_modified": resp_headers.get("last-modified"),
-                    "body": body.decode("utf-8", "replace"),
-                })
+                if use_cache:
+                    self._cache_store(url, {
+                        "etag": resp_headers.get("etag"),
+                        "last_modified": resp_headers.get("last-modified"),
+                        "body": body.decode("utf-8", "replace"),
+                    })
                 return body, resp_headers
             except HttpError as err:
                 if err.status == 304 and cached:

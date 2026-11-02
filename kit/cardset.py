@@ -16,9 +16,9 @@ from .data import _snake_available, load_extras
 from .emoji import parse_emojis
 from .extras import gist_svg, habits_svg, isocalendar_svg, people_svg, projects_svg
 from .plugins import card
-from .snake import generate as snake_generate
+from .snake import cells_from_days as snake_cells_from_days, render_from_cells as snake_render
 from .typing import typing_svg
-from .wakatime import fetch_stats as _wakatime_fetch, wakatime_svg as _wakatime_svg
+from .wakatime import wakatime_svg as _wakatime_svg
 
 
 @card("hero", "hero.svg", per_lang=False, priority=10)
@@ -127,22 +127,27 @@ def _stat_badges(acct, key, lang, ctx):
 
 @card("snake", "snake-{lang}.svg", priority=85,
       when=lambda acct, ctx: acct.get("platform") == "github"
-      and (acct.get("snake") is not False))
+      and (acct.get("snake") is not False)
+      and bool(load_extras(ctx["key"], ctx.get("base")).get("contribution_days")))
 def _snake(acct, key, lang, ctx):
-    """贡献蛇动画（Platane/snk 移植，tokenless HTML 抓取）。"""
-    try:
-        svg, _grid = snake_generate(acct["handle"], palette=acct.get("snake_palette", "aurora"),
-                                    theme=ctx["theme"])
-        return svg
-    except (OSError, ValueError):
-        return None
+    """贡献蛇动画（Platane/snk 移植）：只读构建期快照，渲染期永不联网。
+
+    快照缺失即整卡不渲染，README 自动降级——保证同一输入产出同一字节。
+    """
+    days = load_extras(key, ctx.get("base")).get("contribution_days")
+    svg, _grid = snake_render(snake_cells_from_days(days),
+                              palette=acct.get("snake_palette", "aurora"),
+                              theme=ctx["theme"])
+    return svg
 
 
 @card("wakatime", "wakatime-{lang}.svg", priority=100,
-      when=lambda acct, ctx: bool(acct.get("wakatime")))
+      when=lambda acct, ctx: bool(load_extras(ctx["key"], ctx.get("base")).get("wakatime")))
 def _wakatime(acct, key, lang, ctx):
-    stats = _wakatime_fetch()
-    return _wakatime_svg((stats or {}).get("data") and stats, lang=lang, theme=ctx["theme"],
+    """WakaTime 卡：只读构建期快照（`data/extras.json` → wakatime），渲染期不联网。"""
+    stats = load_extras(key, ctx.get("base")).get("wakatime")
+    return _wakatime_svg(stats.get("data") and stats if isinstance(stats, dict) else None,
+                         lang=lang, theme=ctx["theme"],
                          title=_card_title(acct, "wakatime", lang))
 
 

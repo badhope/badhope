@@ -18,6 +18,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -53,23 +54,31 @@ def find_browser():
     return None
 
 
-def discover_targets(key):
-    """Return account SVG cards that can be rasterized.
-
-    All card files in the source tree are account-rendered (the generator writes
-    one account at a time), so this enumerates top-level SVG assets. Callers that
-    need account isolation should rasterize from an isolated build directory.
-    """
+def discover_targets(key, build_root=None):
     if key not in A.ACCOUNTS:
         return []
-    assets = ROOT / "assets"
+    assets = pathlib.Path(build_root or ROOT) / "assets"
     if not assets.is_dir():
         return []
-    return sorted(path for path in assets.glob("*.svg") if path.is_file())
+    return sorted(path for path in assets.rglob("*.svg") if path.is_file())
+
+
+def svg_dimensions(svg_path):
+    root = ET.parse(svg_path).getroot()
+    viewbox = root.get("viewBox", "").replace(",", " ").split()
+    if len(viewbox) == 4:
+        width, height = float(viewbox[2]), float(viewbox[3])
+    else:
+        width = float(root.get("width", "0").removesuffix("px"))
+        height = float(root.get("height", "0").removesuffix("px"))
+    if width <= 0 or height <= 0 or width > 8192 or height > 8192:
+        raise ValueError("invalid SVG dimensions")
+    return round(width), round(height)
 
 
 def rasterize(browser, svg_path, png_path):
     png_path.parent.mkdir(parents=True, exist_ok=True)
+    width, height = svg_dimensions(svg_path)
     cmd = [
         browser,
         "--headless=new",
@@ -78,7 +87,7 @@ def rasterize(browser, svg_path, png_path):
         "--no-first-run",
         "--disable-extensions",
         "--force-device-scale-factor=%d" % SCALE,
-        "--window-size=%d,%d" % (VIEW_W, VIEW_H),
+        "--window-size=%d,%d" % (width, height),
         "--screenshot=%s" % png_path,
         svg_path.resolve().as_uri(),
     ]
@@ -110,7 +119,20 @@ def main(argv=None):
             print("unknown account: %s" % key, file=sys.stderr)
             return 2
         if args.all_cards:
-            sources = discover_targets(key)
+            with tempfile.TemporaryDirectory() as tmp:
+                from kit.build import write_account_files
+                from kit.data import load_stats
+                build_root = pathlib.Path(tmp)
+                write_account_files(A.ACCOUNTS[key], key, build_root,
+                                    load_stats(ROOT / "data" / "stats.json"))
+                for svg_path in discover_targets(key, build_root):
+                    relative = svg_path.relative_to(build_root / "assets")
+                    dst = ROOT / "assets" / "png" / key / relative.with_suffix(".png")
+                    rasterize(browser, svg_path, dst)
+                    old, new = optimize_file(dst)
+                    print("rasterized %s -> %s (%d -> %d bytes)"
+                          % (key, dst.relative_to(ROOT), old, new))
+            continue
         else:
             sources = []
         if not sources:

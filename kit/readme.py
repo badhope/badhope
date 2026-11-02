@@ -85,8 +85,9 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     locales = acct.get("locales")
     if isinstance(locales, dict) and locales:
         navigation = " | ".join(
-            "[%s](%s)" % (esc(str(label)), esc(A.README_NAME.get(code, "README.%s.md" % code)))
-            for code, label in locales.items() if str(label).strip()
+            "[%s](%s)" % (esc(str(label)), esc(A.README_NAME[code]))
+            for code, label in locales.items()
+            if code in A.LANGS and code in A.README_NAME and str(label).strip()
         )
         lines.append(navigation or "[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)")
     else:

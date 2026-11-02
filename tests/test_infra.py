@@ -103,6 +103,11 @@ class NetTests(unittest.TestCase):
         self.assertEqual(_Handler.hits, 2)          # 第二次仍发请求（条件请求）
         self.assertEqual(c.stats["cache_hits"], 1)  # 但命中 304，不重新下载
 
+    def test_per_request_cache_false_does_not_write_response(self):
+        with self.client() as c:
+            self.assertEqual(c.get_json(self.base + "/private", cache=False), {"ok": True})
+        self.assertEqual(list(pathlib.Path(self.tmp.name).iterdir()), [])
+
     def test_retry_on_503(self):
         _Handler.fail_first = 2
         with self.client(max_retries=3) as c:

@@ -90,10 +90,6 @@
   <img src="./assets/people-ja.svg" alt="People" width="100%" />
 </p>
 
-<p align="center">
-  <img src="./assets/projects-ja.svg" alt="Projects" width="100%" />
-</p>
-
 ## ピン留め作品
 
 <p align="center">

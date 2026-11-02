@@ -27,6 +27,19 @@ class RankInputTests(unittest.TestCase):
         data["accounts"][accounts.ACCOUNT_ORDER[0]]["commits"] = "unknown"
         self.assertTrue(any("commits" in item for item in validate_stats(data)))
 
+    def test_extended_profile_fields_reject_non_numeric_values(self):
+        import accounts
+        from kit.schema import validate_stats
+        data = {"as_of": "2026-01-01", "accounts": {key: {} for key in accounts.ACCOUNT_ORDER}}
+        data["accounts"][accounts.ACCOUNT_ORDER[0]]["gists"] = "many"
+        self.assertTrue(any("gists" in item for item in validate_stats(data)))
+
+    def test_paginated_count_handles_empty_single_and_multiple_pages(self):
+        self.assertEqual(refresh.github_page_count([], ""), 0)
+        self.assertEqual(refresh.github_page_count([{}], ""), 1)
+        link = '<https://api.github.com/users/a/starred?per_page=1&page=7>; rel="last"'
+        self.assertEqual(refresh.github_page_count([{}], link), 7)
+
     def test_github_contributions_are_mapped_and_errors_preserve_snapshot(self):
         payload = {"data": {"user": {"contributionsCollection": {
             "totalCommitContributions": 12, "totalPullRequestContributions": 3,

@@ -546,16 +546,51 @@ def cells_to_grid(cells):
     return grid
 
 
-def generate(handle, palette="github-dark", step_duration_ms=100, theme=None):
-    """完整管线：抓取 → 求解 → SVG。返回 (svg, grid) 或 (None, None)。"""
-    cells = fetch_contribution_cells(handle)
-    grid = cells_to_grid(cells)
+def cells_from_days(days):
+    """把 `data/extras.json` 的 contribution_days 转成贡献格。
+
+    构建期只读快照，因此渲染完全离线、字节级可复现。
+    等级按 count 分桶（0 / 1-2 / 3-5 / 6-9 / 10+），与 GitHub 的四级色阶语义一致。
+    """
+    import datetime
+    dated = []
+    for day in days or []:
+        if not isinstance(day, dict):
+            continue
+        try:
+            dated.append((datetime.date.fromisoformat(str(day["date"])), int(day.get("count") or 0)))
+        except (KeyError, TypeError, ValueError):
+            continue
+    if not dated:
+        return []
+    dated.sort()
+    origin = dated[0][0]
+    cells = []
+    for date, count in dated:
+        level = 0 if count <= 0 else 1 if count <= 2 else 2 if count <= 5 else 3 if count <= 9 else 4
+        cells.append({"x": (date - origin).days // 7,
+                      "y": 0 if date.weekday() == 6 else date.weekday() + 1,
+                      "level": level})
+    return cells
+
+
+def render_from_cells(cells, palette="github-dark", step_duration_ms=100, theme=None):
+    """纯函数管线：贡献格 → 求解 → SVG。不联网，输出仅取决于入参。"""
+    grid = cells_to_grid(cells or [])
+    if grid.width <= 0 or grid.height <= 0:
+        return None, None
     snake0 = create_snake_from_cells([(0, -1)] * 4)
     chain = get_best_route(grid, snake0)
     chain.extend(get_path_to_pose(chain[0], snake0, grid))
     svg = render_snake_svg(grid, chain, palette=palette, step_duration_ms=step_duration_ms,
                            theme=theme)
     return svg, grid
+
+
+def generate(handle, palette="github-dark", step_duration_ms=100, theme=None):
+    """抓取 → 求解 → SVG。仅供刷新脚本离线采集用；构建期走 render_from_cells。"""
+    return render_from_cells(fetch_contribution_cells(handle), palette=palette,
+                             step_duration_ms=step_duration_ms, theme=theme)
 
 
 # --------------------------------------------------------------------------
