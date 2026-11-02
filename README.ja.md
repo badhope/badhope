@@ -41,12 +41,12 @@
 
 | プロジェクト | スター | 更新日 |
 | --- | --- | --- |
+| [spark — ローカル優先の AI コーディングエージェント（承認ゲート付き）](https://github.com/badhope/spark) | 21 | 2026-11-02 |
+| [no-money](https://github.com/badhope/no-money) | 0 | 2026-11-02 |
+| [shopcash — 単店舗向けレジ・売上帳 — ソフトは資金に一切関与しません](https://github.com/badhope/shopcash) | 0 | 2026-11-02 |
 | [melee — LLM バトルアリーナ — リアルタイム観戦・二重審判・サンドボックス](https://github.com/badhope/melee) | 3 | 2026-11-01 |
 | [EQ-Worker](https://github.com/badhope/EQ-Worker) | 0 | 2026-11-01 |
 | [quiz-chest](https://github.com/badhope/quiz-chest) | 0 | 2026-11-01 |
-| [rules](https://github.com/badhope/rules) | 0 | 2026-11-01 |
-| [spark — ローカル優先の AI コーディングエージェント（承認ゲート付き）](https://github.com/badhope/spark) | 21 | 2026-10-31 |
-| [rubbish — 学術ジャーナル・プレプリントのマルチテナント基盤](https://github.com/badhope/rubbish) | 4 | 2026-10-31 |
 
 全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
 

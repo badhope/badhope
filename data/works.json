@@ -1,11 +1,38 @@
 {
-  "as_of": "2026-11-01",
+  "as_of": "2026-11-02",
   "source": "scripts/discover_works.py",
   "accounts": {
     "gh_x33834": {
       "platform": "github",
       "handle": "X33834",
       "repos": [
+        {
+          "name": "no-money",
+          "title": "no-money",
+          "url": "https://github.com/X33834/no-money",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "No Money — income, tax, social-insurance and labor-rights calculator for China gig workers. Offline-first, no telemetry, per-field provenance.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "shopcash",
+          "title": "shopcash",
+          "url": "https://github.com/X33834/shopcash",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
+          "language": "JavaScript"
+        },
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://github.com/X33834/spark",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "Spark — local-first AI coding agent (Ember)",
+          "language": "Python"
+        },
         {
           "name": "DU",
           "title": "DU",
@@ -77,15 +104,6 @@
           "updated": "2026-10-31",
           "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)",
           "language": "TypeScript"
-        },
-        {
-          "name": "spark",
-          "title": "spark",
-          "url": "https://github.com/X33834/spark",
-          "stars": 0,
-          "updated": "2026-10-31",
-          "desc": "Spark — local-first AI coding agent (Ember)",
-          "language": "Python"
         },
         {
           "name": "digilegacy",
@@ -196,15 +214,6 @@
           "language": "Kotlin"
         },
         {
-          "name": "shopcash",
-          "title": "shopcash",
-          "url": "https://github.com/X33834/shopcash",
-          "stars": 0,
-          "updated": "2026-10-18",
-          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
-          "language": "JavaScript"
-        },
-        {
           "name": "content-harbor",
           "title": "content-harbor",
           "url": "https://github.com/X33834/content-harbor",
@@ -246,6 +255,42 @@
       "platform": "github",
       "handle": "Morningstar202604",
       "repos": [
+        {
+          "name": "no-money",
+          "title": "no-money",
+          "url": "https://github.com/Morningstar202604/no-money",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "No Money — income, tax, social-insurance and labor-rights calculator for China gig workers. Offline-first, no telemetry, per-field provenance.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "sciflow",
+          "title": "sciflow",
+          "url": "https://github.com/Morningstar202604/sciflow",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)",
+          "language": "TypeScript"
+        },
+        {
+          "name": "shopcash",
+          "title": "shopcash",
+          "url": "https://github.com/Morningstar202604/shopcash",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
+          "language": "JavaScript"
+        },
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://github.com/Morningstar202604/spark",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent",
+          "language": "Python"
+        },
         {
           "name": "EQ-Worker",
           "title": "EQ-Worker",
@@ -308,24 +353,6 @@
           "updated": "2026-10-31",
           "desc": "Topology-driven wastewater simulation prototype with an AI operator, ASM1 + Takacs water train, auditable guardrails, experimental calibration/EKF, and standalone ASM2d/ADM1 models. Not a design-grade or field-control system.",
           "language": "TypeScript"
-        },
-        {
-          "name": "sciflow",
-          "title": "sciflow",
-          "url": "https://github.com/Morningstar202604/sciflow",
-          "stars": 0,
-          "updated": "2026-10-31",
-          "desc": "SciFlow - fully automated AI research assistant: local-first workbench (LangGraph pipeline / Agentic RAG / 8 citation styles / Electron desktop)",
-          "language": "TypeScript"
-        },
-        {
-          "name": "spark",
-          "title": "spark",
-          "url": "https://github.com/Morningstar202604/spark",
-          "stars": 0,
-          "updated": "2026-10-31",
-          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent",
-          "language": "Python"
         },
         {
           "name": "digilegacy",
@@ -461,15 +488,6 @@
           "updated": "2026-10-17",
           "desc": "LingSuan Pro — income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3. 灵算 Pro 灵活就业者收入精算。",
           "language": "TypeScript"
-        },
-        {
-          "name": "shopcash",
-          "title": "shopcash",
-          "url": "https://github.com/Morningstar202604/shopcash",
-          "stars": 0,
-          "updated": "2026-10-17",
-          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
-          "language": "JavaScript"
         }
       ]
     },
@@ -477,6 +495,33 @@
       "platform": "github",
       "handle": "badhope",
       "repos": [
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://github.com/badhope/spark",
+          "stars": 21,
+          "updated": "2026-11-02",
+          "desc": "Spark — local-first coding agent (Python + React), self-hosted, MCP-native, with tool sandbox, repo-map context and OTel observability. 本地自托管的 AI 编程智能体。",
+          "language": "Python"
+        },
+        {
+          "name": "no-money",
+          "title": "no-money",
+          "url": "https://github.com/badhope/no-money",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "No Money — income, tax, social-insurance and labor-rights calculator for China gig workers. Offline-first, no telemetry, per-field provenance.",
+          "language": "TypeScript"
+        },
+        {
+          "name": "shopcash",
+          "title": "shopcash",
+          "url": "https://github.com/badhope/shopcash",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
+          "language": "JavaScript"
+        },
         {
           "name": "melee",
           "title": "melee",
@@ -514,15 +559,6 @@
           "language": "Python"
         },
         {
-          "name": "spark",
-          "title": "spark",
-          "url": "https://github.com/badhope/spark",
-          "stars": 21,
-          "updated": "2026-10-31",
-          "desc": "Spark — local-first coding agent (Python + React), self-hosted, MCP-native, with tool sandbox, repo-map context and OTel observability. 本地自托管的 AI 编程智能体。",
-          "language": "Python"
-        },
-        {
           "name": "rubbish",
           "title": "rubbish",
           "url": "https://github.com/badhope/rubbish",
@@ -539,15 +575,6 @@
           "updated": "2026-10-31",
           "desc": "Topology-driven wastewater simulation prototype with an AI operator, ASM1 + Takacs water train, auditable guardrails, experimental calibration/EKF, and standalone ASM2d/ADM1 models. Not a design-grade or field-control system.",
           "language": "TypeScript"
-        },
-        {
-          "name": "shopcash",
-          "title": "shopcash",
-          "url": "https://github.com/badhope/shopcash",
-          "stars": 0,
-          "updated": "2026-10-31",
-          "desc": "店收宝 ShopCash — 单机门店收银与收款记账软件（钱只进商家自己的微信/支付宝商户号，软件零资金介入）",
-          "language": "JavaScript"
         },
         {
           "name": "world-walker",
@@ -925,15 +952,6 @@
           "language": "Markdown"
         },
         {
-          "name": "bot4cj",
-          "title": "bot4cj",
-          "url": "https://gitcode.com/qingss0/bot4cj",
-          "stars": 11,
-          "updated": "2026-10-07",
-          "desc": "基于仓颉的硬件机器人控制框架",
-          "language": "Lua"
-        },
-        {
           "name": "campushub",
           "title": "campushub",
           "url": "https://gitcode.com/badhope/campushub",
@@ -950,15 +968,6 @@
           "updated": "2026-09-28",
           "desc": "CodePocket — an offline-first Python IDE for Android. Native CPython 3.13 bundled in the APK; install, open, code. No downloads, no network, no ads. Apache-2.0.",
           "language": "Kotlin"
-        },
-        {
-          "name": "ctype4cj",
-          "title": "ctype4cj",
-          "url": "https://gitcode.com/qingss0/ctype4cj",
-          "stars": 0,
-          "updated": "2026-06-01",
-          "desc": "用于仓颉语言的ARM64架构C语言变量类型抽象层",
-          "language": "Cangjie"
         }
       ]
     },
@@ -966,6 +975,42 @@
       "platform": "gitee",
       "handle": "badhope",
       "repos": [
+        {
+          "name": "spark",
+          "title": "spark",
+          "url": "https://gitee.com/badhope/spark",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent",
+          "language": ""
+        },
+        {
+          "name": "sciflow",
+          "title": "sciflow",
+          "url": "https://gitee.com/badhope/sciflow",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "SciFlow - 本地优先的全自动 AI 科研助手：LangGraph 编排流水线 / Agentic RAG / 8 种引用样式 / Electron 桌面端",
+          "language": ""
+        },
+        {
+          "name": "world-walker",
+          "title": "world-walker",
+          "url": "https://gitee.com/badhope/world-walker",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "万界·行者 World Walker —— AI 驱动的文字互动游戏引擎：世界观无关规则内核（85+ 学术模型）+ MCP 服务器 + 酒馆生态兼容（角色卡/世界书）+ 实况面板",
+          "language": ""
+        },
+        {
+          "name": "aquapilot",
+          "title": "aquapilot",
+          "url": "https://gitee.com/badhope/aquapilot",
+          "stars": 0,
+          "updated": "2026-11-02",
+          "desc": "拓扑驱动的污水处理仿真原型与 AI 值守员：ASM1 + Takacs 运行水线、可审计护栏、实验性校准/EKF，以及独立 ASM2d/ADM1 模型。不是设计级或现场控制系统。",
+          "language": ""
+        },
         {
           "name": "rubbish",
           "title": "rubbish",
@@ -1000,33 +1045,6 @@
           "stars": 0,
           "updated": "2026-11-01",
           "desc": "EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v3.0.0",
-          "language": ""
-        },
-        {
-          "name": "sciflow",
-          "title": "sciflow",
-          "url": "https://gitee.com/badhope/sciflow",
-          "stars": 0,
-          "updated": "2026-11-01",
-          "desc": "SciFlow - 本地优先的全自动 AI 科研助手：LangGraph 编排流水线 / Agentic RAG / 8 种引用样式 / Electron 桌面端",
-          "language": ""
-        },
-        {
-          "name": "aquapilot",
-          "title": "aquapilot",
-          "url": "https://gitee.com/badhope/aquapilot",
-          "stars": 0,
-          "updated": "2026-11-01",
-          "desc": "拓扑驱动的污水处理仿真原型与 AI 值守员：ASM1 + Takacs 运行水线、可审计护栏、实验性校准/EKF，以及独立 ASM2d/ADM1 模型。不是设计级或现场控制系统。",
-          "language": ""
-        },
-        {
-          "name": "spark",
-          "title": "spark",
-          "url": "https://gitee.com/badhope/spark",
-          "stars": 0,
-          "updated": "2026-11-01",
-          "desc": "Spark v0.9.6 — self-hosted AI coding agent harness: cockpit (approval/checkpoint/memory) + LangGraph + litellm + MCP, PyPI: spark-agent",
           "language": ""
         },
         {
@@ -1093,15 +1111,6 @@
           "language": ""
         },
         {
-          "name": "world-walker",
-          "title": "world-walker",
-          "url": "https://gitee.com/badhope/world-walker",
-          "stars": 0,
-          "updated": "2026-10-24",
-          "desc": "万界·行者 World Walker —— AI 驱动的文字互动游戏引擎：世界观无关规则内核（85+ 学术模型）+ MCP 服务器 + 酒馆生态兼容（角色卡/世界书）+ 实况面板",
-          "language": ""
-        },
-        {
           "name": "creator-studio",
           "title": "creator-studio",
           "url": "https://gitee.com/badhope/creator-studio",
@@ -1154,24 +1163,6 @@
           "updated": "2026-10-18",
           "desc": "CodePocket — 离线优先的安卓 Python IDE（内置 CPython 3.13）",
           "language": ""
-        },
-        {
-          "name": "MyFlowers",
-          "title": "我的小花",
-          "url": "https://gitee.com/qingsong-gap/MyFlowers",
-          "stars": 0,
-          "updated": "2026-09-19",
-          "desc": "",
-          "language": "C"
-        },
-        {
-          "name": "cybersecurity-agent",
-          "title": "网安智能体",
-          "url": "https://gitee.com/qingsong-gap/cybersecurity-agent",
-          "stars": 1,
-          "updated": "2026-08-23",
-          "desc": "",
-          "language": "Python"
         }
       ]
     }

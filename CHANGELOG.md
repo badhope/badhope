@@ -1,7 +1,52 @@
 # Changelog
 
-本文件记录主页面 kit 的可观察变更。格式参考 Keep a Changelog，
-版本号遵循语义化版本（kit 版本见 `accounts.py` 的 `KIT_VERSION`）。
+本文件记录 profile-kit 的可观察变更。格式遵循
+[Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
+版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
+
+版本号的**唯一真源**是 `kit/version.py` 的 `VERSION`；
+`kit/__init__.py`、`accounts.py`、打包产物的 `profile.json` 都从它派生。
+发版前跑 `python scripts/release.py --check` 校验本节与版本号一致。
+
+## [Unreleased]
+
+## [3.0.0] - 2026-11-02
+
+以「渲染期完全离线」为分界的主版本。产物从此只取决于仓库内容，
+同一提交在任何机器、任何时间重建都得到逐字节相同的输出。
+
+### Changed（破坏性）
+
+- **渲染期彻底离线**。`snake` 与 `wakatime` 卡片此前在渲染时实时联网抓取，
+  导致同一输入两次构建产出不同字节，违背「产物是构建物」的定位。
+  现改为只读 `data/extras.json` 构建期快照；快照缺失即整卡不渲染，
+  README 自动降级，不再产生 `card failed:` 占位。
+- **版本号单一真源**。新增 `kit/version.py`；`accounts.py` 的 `KIT_VERSION`
+  与 `kit.__version__` 均从它导入，不再各自硬编码。
+- 模板预设 `compact` / `minimal` / `portfolio` 的区块编排改为先收集再重排，
+  未知区块的内容与其标题保持相邻，不会在重排中散落或重复。
+
+### Added
+
+- `kit/extras.py`：Gist、等距日历、编码习惯、关注者、项目五类可选卡片。
+  全部读快照，无数据时不生成空卡。
+- `kit/templates.py`：四套 README 区块编排预设（classic / compact / minimal / portfolio），
+  按账号配置 `template` 字段选择，未知值回退 `classic`。
+- `kit/fontmetrics.py`：Verdana 11px 字宽查表 + CJK 回退，替代固定 0.6em 估算。
+- `scripts/refresh_extras.py`：GraphQL 采集贡献日历（366 天）与公开项目，
+  逐 section fail-soft，失败保留旧值；凭据缺失时跳过而非报错。
+- `scripts/release.py`：发版前校验版本号、CHANGELOG 条目与 git 工作树状态。
+- 扩展卡片支持按账号覆盖标题（`card_titles`）与 README 区块标题（`section_titles`）。
+- `tests/test_snake_offline.py`：断言渲染不触网、结果确定、快照缺失时卡片不启用。
+- 新增 10 个测试文件覆盖扩展卡、模板、字宽、Rank 输入、栅格化目标、秘密成就等。
+
+### Fixed
+
+- `kit/net.py`：`cache=False` 的请求不再写入条件请求缓存，避免私有响应落盘。
+- `kit/wakatime.py`：自定义域名强制校验 scheme/hostname，拒绝带凭据或查询串的 URL。
+- `scripts/rasterize.py`：`discover_targets` 支持指定构建根目录，跨账号栅格化不再串号。
+- `scripts/refresh_extras.py`：GPG 与 starred-topics 探测改为三态判断，
+  无法确认时抛错保留旧值，不再把「页面没匹配到」当成「确实没有」。
 
 ## [2.0.0] - 2026-10-29
 
@@ -29,9 +74,8 @@
 - **原子写入**：所有产物经临时文件 + `os.replace`，中断不再留下半截 SVG。
 - **`scripts/bench.py`**：可重复的性能基准（串行/并行/增量/资产体积）。
 - **`ARCHITECTURE.md`**：分层说明、数据流、与 6 个同类项目的差距矩阵，
-  以及「本项目不是什么」的排除式定位（明确不把 local-first / 高性能 / 模块化这类
-  无差异标签当卖点）。
-- **`tests/test_infra.py`**：HTTP 重试/ETag、增量指纹、PNG 优化、插件注册表，共 8 个用例。
+  以及「本项目不是什么」的排除式定位。
+- **`tests/test_infra.py`**：HTTP 重试/ETag、增量指纹、PNG 优化、插件注册表。
 - **`requirements-optional.txt`**：可选加速依赖清单。
 
 ### Changed
@@ -49,57 +93,6 @@
 | 单账号生成 | 0.044s | 0.020s |
 | 增量构建（输入未变） | 全量重写 | 0.0007s（55×） |
 | hero.png | 997 KB | 922–926 KB |
-| 单元测试 | 20 | 28 |
-| 离线断言 | 793 | 821 |
-
-## [Unreleased]
-
-### Fixed
-
-- **镜像账号资产串号**：GitCode / Gitee 页面曾直接沿用 GitHub 账号的
-  `assets/hero.svg`、`assets/png/hero.png`、`assets/skills-*.svg`、官方卡片与
-  贡献图，导致 `gitcode.com/badhope` 首页写着 `github.com/badhope`、技能栈也
-  是另一个账号的。现在生成器按 `profile.json` 的账号重建全部资产，镜像脚本
-  只同步账号无关的共享层，并清理目标仓库里其他账号的卡片/贡献图种子。
-- **死链清零**：`accounts.py` 的 78 个仓库链接中有 14 个 404（`lingxi`、
-  `awesome-ai-devkit`、`lens`、`KeBaiPay`、`p2wlan`、`novel-engine`、
-  `API-Market`、`ExamPrediction` 等），已按三平台 API 实查结果重写作品目录；
-  重命名过的仓库（`xiaoman`→`moneyhelper`、`mashang-python`→`mashang`、
-  `scholarhub`→`rubbish`、`content-harbor`→`harbour`、`GlobalEcom-AI`→`Flow`）
-  全部换到真实地址。
-- **统计口径**：README 的 `alt` 文本沿用旧快照（26 repos / 11 stars），与
-  `stats.json` 和统计卡不一致；现在由同一次渲染统一生成，并刷新到实查值。
-- `refresh_sections.py` 删除 `return True` 之后的死代码 `return False`。
-- `discover_works.py` 只比较仓库名，star/描述/更新时间变化不落盘；改为整块比对。
-- `render_cards.mjs` 用全局计数判断账号失败，前一个账号成功会掩盖后一个账号
-  全失败；改为按账号计数。凭据解析不再借用其他账号的 token。
-- `mirror-shared.sh` 在目标仓库内按 `profile.json` 重建 README 与资产，
-  不再把源仓库的 `assets/`、`data/cards/`、`data/contrib/` 整体覆盖过去。
-- `generate.py --pack` 在缺少 `workflows/`、`package.json`、`tests/` 的检出里
-  直接 `FileNotFoundError`；改为逐项检查并告警跳过。
-- `generate.py --preview` 依赖不存在的 `brand.py` / `preview.py`；补内置降级
-  模板，任意 checkout 都能出预览；`--out` 的 dist 位置改为与 preview 同级。
-- README 引用的贡献图在缺少种子时会产生裂图；改为仅在种子存在时渲染该段。
-- 生成器原引用“当前月份”选格言，导致每月 1 号无数据变化也产生 diff；改用
-  `stats.json` 的月份，保证同一输入字节级可复现。
-
-### Added
-
-- `scripts/verify.py`：离线自检（目录完整性、资产引用、账号串号、幂等、数据一致性），
-  可选 `--online` 校验全部仓库链接。
-- `scripts/rasterize.py`：用本机 Chromium 系浏览器把 hero SVG 栅格化为
-  2x PNG，零额外依赖；浏览器缺失时优雅退出。
-- `tests/test_generate.py`：20 个 stdlib unittest 用例。
-- `Makefile`：`verify / test / gen / preview / pack / links / clean`。
-- `.gitcode/workflows/verify.yml`：GitCode Actions 上的测试 + 离线自检 +
-  “生成物可复现”门禁。
-- `DEVELOPMENT.md`、`LICENSE`、`CHANGELOG.md`。
-
-### Changed
-
-- `generate.py` 新增 `--assets-only`（配合 `--here` 只重建资产、保留 README），
-  供镜像作业使用。
-- “精选作品”表格限制为最近 6 个仓库，避免 18 行表格淹没页面。
 
 ## [1.0.0]
 

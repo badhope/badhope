@@ -47,6 +47,21 @@ def _repo_ident(repo, platform):
     return (repo.get("path") or repo.get("name") or "").strip()
 
 
+def _repo_owner(repo, platform):
+    """取仓库归属账号。GitCode 用 namespace.path，Gitee 用 namespace.path，
+    GitHub 用 owner.login。用于过滤「不是我自己的仓库」。"""
+    namespace = repo.get("namespace")
+    if isinstance(namespace, dict) and namespace.get("path"):
+        return str(namespace["path"]).strip()
+    owner = repo.get("owner")
+    if isinstance(owner, dict) and owner.get("login"):
+        return str(owner["login"]).strip()
+    for field in ("owner_name", "namespace_name", "user_name"):
+        if isinstance(repo.get(field), str) and repo[field].strip():
+            return repo[field].strip()
+    return ""
+
+
 def _norm(repo, platform):
     """把三平台不同的字段归一成统一结构。
 
@@ -138,6 +153,7 @@ def fetch_repos(platform, handle):
         return None
 
     out = []
+    skipped_foreign = []
     for r in repos:
         if r.get("fork"):
             continue
@@ -147,7 +163,17 @@ def fetch_repos(platform, handle):
         # 排除本人主页仓库（与 handle 同名，如 X33834/X33834）
         if ident.lower() == (handle or "").lower():
             continue
+        # 归属校验：GitCode 的用户仓库接口会连带返回别人 namespace 下的仓库
+        # （实测 /users/badhope/repos 混入了 qingss0 的项目）。不校验归属会把
+        # 别人的仓库当成自己的作品展示，属于数据准确性问题，必须过滤。
+        owner = _repo_owner(r, platform)
+        if owner and handle and owner.lower() != handle.lower():
+            skipped_foreign.append("%s/%s" % (owner, ident))
+            continue
         out.append(_norm(r, platform))
+    if skipped_foreign:
+        print("  works %-16s skipped %d repo(s) not owned by %s: %s"
+              % (handle, len(skipped_foreign), handle, ", ".join(skipped_foreign[:5])))
     # 按更新时间倒序 —— 最近有动静的排前面
     out.sort(key=lambda x: (x["updated"] or "", x["stars"]), reverse=True)
     return out

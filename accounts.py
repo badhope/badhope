@@ -8,7 +8,7 @@
 已合并/在评 PR 清单见 CONTRIB_* 注释）。改文案只改本文件。
 """
 
-KIT_VERSION = "2.0.0"
+from kit.version import VERSION as KIT_VERSION  # 单一版本源，见 kit/version.py
 
 SERIF = "Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif"
 SANS = "Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif"
@@ -400,11 +400,13 @@ WORKS = {
         },
     },
     "bot4cj": {
+        # 该项目归属 qingss0，不属于本账号，只在「Now」里提及生态参与，
+        # 不作为自有作品展示（原 links 指向 qingss0，会被误认为本人项目）。
         "title": "bot4cj",
         "desc": {
-            "md": "Hardware robot control framework in the Cangjie language",
-            "zh-CN": "基于仓颉语言的硬件机器人控制框架",
-            "ja": "Cangjie 言語によるハードウェアロボット制御フレームワーク",
+            "md": "Hardware robot control framework in the Cangjie language (upstream by qingss0)",
+            "zh-CN": "基于仓颉语言的硬件机器人控制框架（上游作者 qingss0）",
+            "ja": "Cangjie 言語によるハードウェアロボット制御フレームワーク（上流作者 qingss0）",
         },
         "tags": {"md": "Hardware · Robotics", "zh-CN": "硬件 · 机器人", "ja": "ハードウェア · ロボット"},
         "links": {
@@ -800,24 +802,24 @@ ACCOUNTS = {
         "now": {
             "md": [
                 "Polishing the CodePocket offline IDE",
-                "Demonstrating the bot4cj hardware-robot framework in Cangjie",
+                "Contributing patches to the bot4cj Cangjie hardware framework",
                 "Keeping the tool catalog and build notes current",
             ],
             "zh-CN": [
                 "打磨 CodePocket 离线 IDE",
-                "演示仓颉语言 bot4cj 硬件机器人框架",
+                "给仓颉硬件框架 bot4cj 提交补丁",
                 "持续更新工具目录与构建记录",
             ],
             "ja": [
                 "CodePocket オフライン IDE を改良",
-                "Cangjie 製ハードウェアロボット基盤 bot4cj を検証",
+                "Cangjie 製ハードウェア基盤 bot4cj へパッチを送付",
                 "ツールカタログとビルド記録を更新",
             ],
         },
         "skills": ["python", "dart", "kotlin", "java", "flutter", "wechat", "linux", "git", "markdown"],
         "works": [
             "zhike", "moneyhelper", "workbench",
-            "spark", "sciflow", "rubbish", "bot4cj",
+            "spark", "sciflow", "rubbish", "CodePocket",
         ],
         "contrib": "shared",
     },

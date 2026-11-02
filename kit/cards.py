@@ -77,16 +77,20 @@ def skills_svg(acct, lang, theme=None):
 
     W, H = 1200, 206
     r = rng(acct, "skills-marquee-v2")
-    sizes = (20, 24, 30, 36, 42, 50, 60)
+    sizes = (28, 32, 38, 44, 50, 58, 66)
     baseline = 122
+    # 让图标铺满一屏：按期望值估算自然总宽，不足画布时等比放大间距。
+    # 这里用算术期望而不是再抽一次随机数，避免预计算消耗 RNG 影响实际布局。
+    expected = 84.0 + len(entries) * (sum(sizes) / float(len(sizes)) + 54)
+    scale = max(1.0, W / max(1.0, expected - 84.0))
     items = []
     x = 84.0
     for name, mono in entries:
         size = r.choice(sizes)
-        dy = r.uniform(-14, 14)          # 上下轻微浮动
-        gap = r.uniform(38, 70)
+        dy = r.uniform(-12, 12)          # 上下轻微浮动
+        gap = r.uniform(38, 70) * scale
         items.append((name, mono, round(x, 1), round(baseline - size + dy, 1),
-                      size, round(r.uniform(0.60, 1.0), 2), round(r.uniform(-5, 5), 1)))
+                      size, round(r.uniform(0.78, 1.0), 2), round(r.uniform(-5, 5), 1)))
         x += size + gap
     strip = int(x) + 80
 
@@ -426,12 +430,12 @@ def _rank_icon(mode, level, percentile, t):
                 '-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>'
                 % t["ink"])
     if mode == "percentile":
-        return ('<text x="-5" y="-12" text-anchor="middle" font-family="%s" '
+        return ('<text x="0" y="-12" text-anchor="middle" font-family="%s" '
                 'font-size="11" fill="%s">Top</text>'
-                '<text x="-5" y="12" text-anchor="middle" font-family="%s" '
+                '<text x="0" y="12" text-anchor="middle" font-family="%s" '
                 'font-size="13" fill="%s">%.1f%%</text>'
                 % (A.SANS, t["gold_bright"], A.MONO, t["ink"], percentile))
-    return ('<text x="-5" y="3" text-anchor="middle" font-family="%s" '
+    return ('<text x="0" y="3" text-anchor="middle" font-family="%s" '
             'font-size="24" font-weight="bold" fill="%s">%s</text>'
             % (A.SANS, t["ink"], esc(level)))
 
@@ -486,16 +490,19 @@ def stats_svg(acct, key, stats, lang, theme=None, rank=None, rank_icon="default"
         circumference = math.pi * (radius * 2)
         dash_offset = circumference * (1 - progress / 100.0)
         ring_color = t["teal"]
+        # 环心 (935,95)、r=40、描边 6：右缘 935+40+3=978 < 1000，上缘 95-43=52 > 0。
+        # 早期版本在 translate 里再叠 cx=-10/cy=8，环心实际落到 (925,103)，
+        # 右缘压到 968 且与数字列基线错位——这里直接用绝对圆心。
         rank_svg = (
-            '<g transform="translate(%d,%d)">'
-            '<circle class="rank-rim" cx="-10" cy="8" r="40" fill="none" '
+            '<g transform="translate(935,95)">'
+            '<circle class="rank-rim" cx="0" cy="0" r="40" fill="none" '
             'stroke="%s" stroke-width="6" opacity="0.2"/>'
-            '<circle class="rank-ring" cx="-10" cy="8" r="40" fill="none" '
+            '<circle class="rank-ring" cx="0" cy="0" r="40" fill="none" '
             'stroke="%s" stroke-width="6" stroke-linecap="round" opacity="0.8" '
             'stroke-dasharray="%.1f" stroke-dashoffset="%.1f" '
-            'transform="rotate(-90 -10 8)"/>'
+            'transform="rotate(-90 0 0)"/>'
             '<g class="rank-text">%s</g></g>'
-            % (935, 95, ring_color, ring_color, circumference, dash_offset,
+            % (ring_color, ring_color, circumference, dash_offset,
                _rank_icon(rank_icon, rank.get("level"), percentile, t))
         )
     # 面板填充：theme_custom 的 bg1 支持渐变（"angle,c1,c2,..."），否则双色 panel→bg1

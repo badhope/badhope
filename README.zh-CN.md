@@ -41,12 +41,12 @@
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
+| [spark — 本地优先的 AI 编程代理 —— 审批门禁与提示注入防护](https://github.com/badhope/spark) | 21 | 2026-11-02 |
+| [no-money](https://github.com/badhope/no-money) | 0 | 2026-11-02 |
+| [shopcash — 单机门店收银与收款记账 —— 软件零资金介入，钱只进商家自己的商户号](https://github.com/badhope/shopcash) | 0 | 2026-11-02 |
 | [melee — 多个大模型同台竞技 —— 实时观战 + 双轨裁判 + 沙箱代码战场](https://github.com/badhope/melee) | 3 | 2026-11-01 |
 | [EQ-Worker — EQ-Worker 人情世故助手：今日行动、人情账本、随礼参谋、话术参谋、关系体检。本地优先，数据不出本机。v…](https://github.com/badhope/EQ-Worker) | 0 | 2026-11-01 |
 | [quiz-chest — 题匣 QuizChest：本地优先的自有题库练习应用](https://github.com/badhope/quiz-chest) | 0 | 2026-11-01 |
-| [rules](https://github.com/badhope/rules) | 0 | 2026-11-01 |
-| [spark — 本地优先的 AI 编程代理 —— 审批门禁与提示注入防护](https://github.com/badhope/spark) | 21 | 2026-10-31 |
-| [rubbish — 学术期刊与预印本多租户平台 —— 投稿 / 评审 / 阅读](https://github.com/badhope/rubbish) | 4 | 2026-10-31 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 

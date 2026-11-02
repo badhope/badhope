@@ -1,0 +1,57 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  repository: read
+
+concurrency:
+  max: 1
+  exceed-action: QUEUE
+
+jobs:
+  verify:
+    name: offline checks
+    runs-on: [ubuntu-latest, x64, small]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Show python
+        run: python3 --version
+      - name: Doctor
+        run: python3 scripts/doctor.py
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Offline verification
+        run: python3 scripts/verify.py
+      - name: Release metadata
+        run: python3 scripts/release.py --check
+      - name: Benchmark (informational)
+        run: python3 scripts/bench.py --rounds 2
+      - name: Generated tree must be reproducible
+        run: |
+          python3 scripts/generate.py --here
+          if ! git diff --quiet; then
+            echo "::error::生成物与提交内容不一致，请本地执行 make gen 后提交"
+            git diff --stat
+            exit 1
+          fi
+
+  links:
+    name: repository links
+    runs-on: [ubuntu-latest, x64, small]
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Show python
+        run: python3 --version
+      - name: Check every repository link
+        run: python3 scripts/verify.py --online

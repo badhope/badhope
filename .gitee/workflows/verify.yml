@@ -1,0 +1,35 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: offline checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Show python
+        run: python3 --version
+      - name: Doctor
+        run: python3 scripts/doctor.py
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Offline verification
+        run: python3 scripts/verify.py
+      - name: Release metadata
+        run: python3 scripts/release.py --check
+      - name: Generated tree must be reproducible
+        run: |
+          python3 scripts/generate.py --here
+          if ! git diff --quiet; then
+            echo "generated files differ from committed content; run 'make gen' locally"
+            git diff --stat
+            exit 1
+          fi

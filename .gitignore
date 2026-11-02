@@ -21,3 +21,6 @@ Thumbs.db
 .venv/
 .baseline/
 .build-manifest.json
+
+# 本地提交信息暂存（不该进版本库）
+.commit-msg.txt

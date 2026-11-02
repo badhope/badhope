@@ -41,12 +41,12 @@ My GitHub home for open tools, indexes, and small software experiments. Current 
 
 | Project | Stars | Updated |
 | --- | --- | --- |
+| [spark — Local-first AI coding agent — approval gate, prompt-injecti…](https://github.com/badhope/spark) | 21 | 2026-11-02 |
+| [no-money — No Money — income, tax, social-insurance and labor-right…](https://github.com/badhope/no-money) | 0 | 2026-11-02 |
+| [shopcash — Offline shop checkout and ledger — the software never to…](https://github.com/badhope/shopcash) | 0 | 2026-11-02 |
 | [melee — LLM battle arena — live spectating, dual-track judging, san…](https://github.com/badhope/melee) | 3 | 2026-11-01 |
 | [EQ-Worker](https://github.com/badhope/EQ-Worker) | 0 | 2026-11-01 |
 | [quiz-chest](https://github.com/badhope/quiz-chest) | 0 | 2026-11-01 |
-| [rules — Portable AI working contract: rules, 71 skills, 220 subagen…](https://github.com/badhope/rules) | 0 | 2026-11-01 |
-| [spark — Local-first AI coding agent — approval gate, prompt-injecti…](https://github.com/badhope/spark) | 21 | 2026-10-31 |
-| [rubbish — Multi-tenant journal and preprint platform — submission /…](https://github.com/badhope/rubbish) | 4 | 2026-10-31 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 

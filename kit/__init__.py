@@ -7,7 +7,7 @@
 
 import importlib
 
-__version__ = "2.0.0"
+from .version import VERSION as __version__  # 单一版本源，见 kit/version.py
 
 _EXPORTS = {
     "esc": ("textutil", "esc"),

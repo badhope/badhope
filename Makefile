@@ -2,7 +2,7 @@
 PYTHON ?= python
 NODE ?= node
 
-.PHONY: help doctor verify test gen gen-if-changed preview pack links bench clean
+.PHONY: help doctor verify test gen gen-if-changed preview pack links bench release clean
 
 help:
 	@echo "make doctor    环境与数据体检（可选依赖 / schema / 构建状态 / 文件）"
@@ -13,6 +13,7 @@ help:
 	@echo "make pack      打出可部署仓库树（ACCOUNT=gitcode_badhope）"
 	@echo "make bench     性能基准（生成/增量/资产体积）"
 	@echo "make links     在线校验 accounts.py 中的链接"
+	@echo "make release   校验版本号与 CHANGELOG 一致（发版门禁）"
 	@echo "make clean     清理 dist/ preview/ __pycache__"
 
 doctor:
@@ -42,6 +43,9 @@ links:
 
 bench:
 	$(PYTHON) scripts/bench.py
+
+release:
+	$(PYTHON) scripts/release.py --check
 
 clean:
 	rm -rf dist preview pack .tmp .cache .build-manifest.json
