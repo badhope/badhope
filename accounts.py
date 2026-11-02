@@ -161,6 +161,18 @@ LABELS = {
         "pinned": "Pinned work",
         "achievements": "Achievements",
         "also_on": "Also on",
+        "build": "Build",
+        "build_lede": ("Profile asset compiler: writes README files and SVG cards "
+                       "from one Python data source, then mirrors them to GitCode and Gitee."),
+        "build_run": "Run it",
+        "build_guarantee": "Guarantee",
+        "build_guarantees": [
+            "Rendering never touches the network — same commit, same bytes",
+            "One command rebuilds every asset: <code>make gen</code>",
+            "Offline gate fails the build on a stale or foreign asset: <code>make verify</code>",
+            "Single version source in <code>kit/version.py</code>, checked by <code>make release</code>",
+        ],
+        "build_files": "Layout",
     },
     "zh-CN": {
         "about": "关于",
@@ -198,6 +210,17 @@ LABELS = {
         "pinned": "置顶作品",
         "achievements": "成就",
         "also_on": "同步发布",
+        "build": "构建",
+        "build_lede": "主页资产编译器：用一份 Python 数据源生成 README 与 SVG 卡片，再镜像到 GitCode 与 Gitee。",
+        "build_run": "运行方式",
+        "build_guarantee": "保证",
+        "build_guarantees": [
+            "渲染期不联网 —— 同一提交，同一字节",
+            "一条命令重建全部资产：<code>make gen</code>",
+            "离线门禁拦截过期或串号资产：<code>make verify</code>",
+            "版本号单一真源在 <code>kit/version.py</code>，由 <code>make release</code> 校验",
+        ],
+        "build_files": "目录结构",
     },
     "ja": {
         "about": "について",
@@ -235,6 +258,17 @@ LABELS = {
         "pinned": "ピン留め作品",
         "achievements": "実績",
         "also_on": "同時掲載",
+        "build": "ビルド",
+        "build_lede": "プロフィール資産コンパイラ：単一の Python データ源から README と SVG カードを生成し、GitCode と Gitee へミラーします。",
+        "build_run": "実行方法",
+        "build_guarantee": "保証",
+        "build_guarantees": [
+            "レンダリング時にネットワークへ接続しない — 同一コミット、同一バイト",
+            "1 コマンドで全資産を再生成：<code>make gen</code>",
+            "オフラインゲートが古い資産や他アカウントの混入を遮断：<code>make verify</code>",
+            "バージョンの単一情報源は <code>kit/version.py</code>、<code>make release</code> で検証",
+        ],
+        "build_files": "構成",
     },
 }
 
@@ -736,6 +770,13 @@ ACCOUNTS = {
         "home_display": "github.com/badhope",
         "repo_path": "badhope/badhope",
         "deploy_state": "exists",
+        "build_files": [
+            ("accounts.py", "single data source: accounts, copy, works catalogue"),
+            ("kit/", "renderer package: textutil -> icons -> cards -> readme -> build"),
+            ("data/*.json", "committed snapshots: stats, works, writing, extras"),
+            ("scripts/", "refresh (only network component), verify, generate, release"),
+            ("tests/", "stdlib unittest suite covering render, schema and gates"),
+        ],
         "deploy_protected": True,
         "role": {
             "md": "Profile · full-stack toolshop",
@@ -784,6 +825,13 @@ ACCOUNTS = {
         "home_display": "gitcode.com/badhope",
         "repo_path": "badhope/badhope",
         "deploy_state": "exists",
+        "build_files": [
+            ("accounts.py", "single data source: accounts, copy, works catalogue"),
+            ("kit/", "renderer package: textutil -> icons -> cards -> readme -> build"),
+            ("data/*.json", "committed snapshots: stats, works, writing, extras"),
+            ("scripts/", "refresh (only network component), verify, generate, release"),
+            ("tests/", "stdlib unittest suite covering render, schema and gates"),
+        ],
         "role": {
             "md": "Mobile dev · offline tools",
             "zh-CN": "移动端开发 · 离线工具",
@@ -829,7 +877,14 @@ ACCOUNTS = {
         "home": "https://gitee.com/badhope",
         "home_display": "gitee.com/badhope",
         "repo_path": "badhope/badhope",
-        "deploy_state": "token-expired",
+        "deploy_state": "exists",
+        "build_files": [
+            ("accounts.py", "single data source: accounts, copy, works catalogue"),
+            ("kit/", "renderer package: textutil -> icons -> cards -> readme -> build"),
+            ("data/*.json", "committed snapshots: stats, works, writing, extras"),
+            ("scripts/", "refresh (only network component), verify, generate, release"),
+            ("tests/", "stdlib unittest suite covering render, schema and gates"),
+        ],
         "role": {
             "md": "Mirror · mini-programs",
             "zh-CN": "作品镜像 · 小程序",

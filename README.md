@@ -31,6 +31,35 @@ My GitHub home for open tools, indexes, and small software experiments. Current 
 </tr>
 </table>
 
+## Build
+
+Profile asset compiler: writes README files and SVG cards from one Python data source, then mirrors them to GitCode and Gitee.
+
+**Run it**
+
+```bash
+make gen       # rebuild README + every SVG from accounts.py
+make verify    # offline gate: schema, asset refs, account isolation, idempotency
+make release   # version / CHANGELOG / profile.json consistency
+```
+
+**Guarantee**
+
+- Rendering never touches the network — same commit, same bytes
+- One command rebuilds every asset: <code>make gen</code>
+- Offline gate fails the build on a stale or foreign asset: <code>make verify</code>
+- Single version source in <code>kit/version.py</code>, checked by <code>make release</code>
+
+**Layout**
+
+| Path | Purpose |
+|---|---|
+| `accounts.py` | single data source: accounts, copy, works catalogue |
+| `kit/` | renderer package: textutil -> icons -> cards -> readme -> build |
+| `data/*.json` | committed snapshots: stats, works, writing, extras |
+| `scripts/` | refresh (only network component), verify, generate, release |
+| `tests/` | stdlib unittest suite covering render, schema and gates |
+
 ## Toolbox
 
 <p align="center">

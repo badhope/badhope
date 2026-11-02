@@ -5,7 +5,7 @@
 """
 
 DEFAULT_ORDER = (
-    "about", "skills", "works", "numbers", "achievements",
+    "about", "build", "skills", "works", "numbers", "achievements",
     "pinned", "writing", "elsewhere",
 )
 
@@ -16,18 +16,18 @@ TEMPLATES = {
     },
     "compact": {
         "order": (
-            "about", "works", "skills", "numbers", "writing",
+            "about", "build", "works", "skills", "numbers", "writing",
             "achievements", "pinned", "elsewhere",
         ),
         "hide": (),
     },
     "minimal": {
-        "order": ("about", "works", "writing", "elsewhere"),
+        "order": ("about", "build", "works", "writing", "elsewhere"),
         "hide": ("skills", "numbers", "achievements", "pinned"),
     },
     "portfolio": {
         "order": (
-            "about", "works", "pinned", "skills", "writing",
+            "about", "build", "works", "pinned", "skills", "writing",
             "achievements", "numbers", "elsewhere",
         ),
         "hide": (),

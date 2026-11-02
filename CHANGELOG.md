@@ -47,6 +47,25 @@
 - `scripts/rasterize.py`：`discover_targets` 支持指定构建根目录，跨账号栅格化不再串号。
 - `scripts/refresh_extras.py`：GPG 与 starred-topics 探测改为三态判断，
   无法确认时抛错保留旧值，不再把「页面没匹配到」当成「确实没有」。
+- **预览页注入风险**：内置 Markdown 解析器此前把原生 HTML 块原样透传，
+  `<script>` 与 `onerror` 都能执行；同时表格单元格里的 `<img>` 被整行转义，
+  平台图标显示成字面量。改为行内标签白名单 + 属性白名单（含伪协议过滤），
+  图标正常渲染、脚本与事件属性一律转义。
+- **stats 卡 Rank 环越界**：环心在 `translate(935,95)` 里又叠了 `cx=-10/cy=8`，
+  实际圆心落到 (925,103)，右缘压到 968 并超出可视区。改为绝对圆心，
+  右缘 978 < 1000、上缘 52 > 0。
+- **skills 跑马灯排版空洞**：9 个图标只铺到 718px（画布 1200px），
+  右侧大片空白且最小不透明度 0.60 让图标难以辨认。改为按期望宽度等比放大
+  间距、字号提升到 28–66px、不透明度下限 0.78。
+- **深色图标不可辨识**：devicon 自带配色里 `#35495e`（Vue）与 `#090`
+  在星夜底色上亮度仅 0.27/0.35。新增感知亮度检测，低于 0.42 朝白色混合
+  提亮并保留色相；单色图标分支同时清掉内部硬编码 fill。
+- **作品归属错误**：GitCode 的 `/users/<handle>/repos` 会连带返回别人
+  namespace 下的仓库，实测混入 `qingss0/bot4cj`、`qingss0/ctype4cj`，
+  Gitee 侧混入 `qingsong-gap/MyFlowers`、`qingsong-gap/cybersecurity-agent`，
+  这些曾被当作本人作品展示。`discover_works` 增加归属校验并在输出中列出。
+- `profile.json` 的 `kit_version` 硬编码 2.0.0，与 `kit/version.py` 不一致；
+  现由 `release.py --check` 一并校验。
 
 ## [2.0.0] - 2026-10-29
 

@@ -8,7 +8,7 @@ class TemplateTests(unittest.TestCase):
     def test_default_template_preserves_original_section_order(self):
         acct = dict(A.ACCOUNTS["gitcode_badhope"])
         self.assertEqual(section_order(acct), [
-            "about", "skills", "works", "numbers", "achievements",
+            "about", "build", "skills", "works", "numbers", "achievements",
             "pinned", "writing", "elsewhere",
         ])
 

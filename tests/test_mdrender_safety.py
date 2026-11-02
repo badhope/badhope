@@ -34,5 +34,28 @@ class InlineHtmlTests(unittest.TestCase):
         self.assertIn("&lt;iframe", html)
 
 
+class FencedCodeTests(unittest.TestCase):
+    def test_fenced_block_renders_as_pre_code(self):
+        html, _engine = render("text\n\n```bash\nmake gen\n```\n\nafter")
+        self.assertIn("<pre><code>", html)
+        self.assertIn("make gen", html)
+        self.assertNotIn("```", html)
+
+    def test_code_content_is_escaped(self):
+        html, _engine = render("```html\n<script>alert(1)</script>\n```")
+        self.assertIn("&lt;script&gt;", html)
+        self.assertNotIn("<script>", html)
+
+    def test_unclosed_fence_still_renders(self):
+        html, _engine = render("```bash\nmake gen")
+        self.assertIn("<pre><code>", html)
+        self.assertIn("make gen", html)
+
+    def test_markup_inside_fence_is_not_parsed(self):
+        html, _engine = render("```\n| a | b |\n|---|---|\n```")
+        self.assertNotIn("<table>", html)
+        self.assertIn("| a | b |", html)
+
+
 if __name__ == "__main__":
     unittest.main()

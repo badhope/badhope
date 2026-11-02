@@ -103,6 +103,8 @@ def _block_html(line):
 
 def _fallback_render(md):
     out, in_ul, in_table = [], False, False
+    in_fence = False
+    fence_lines = []
 
     def is_sep_row(line):
         return bool(_SEP_ROW_RE.fullmatch(line)) and "-" in line
@@ -110,6 +112,23 @@ def _fallback_render(md):
     for raw in md.split("\n"):
         line = raw.rstrip()
         stripped = line.strip()
+        # 围栏代码块：内容原样保留（只做 HTML 转义），不参与其它块级解析
+        if stripped.startswith("```"):
+            if in_fence:
+                out.append("<pre><code>%s</code></pre>" % html.escape("\n".join(fence_lines), quote=False))
+                fence_lines, in_fence = [], False
+            else:
+                if in_ul:
+                    out.append("</ul>")
+                    in_ul = False
+                if in_table:
+                    out.append("</table></div>")
+                    in_table = False
+                in_fence = True
+            continue
+        if in_fence:
+            fence_lines.append(line)
+            continue
         if in_ul and not stripped.startswith("- "):
             out.append("</ul>")
             in_ul = False
@@ -150,6 +169,8 @@ def _fallback_render(md):
             out.append("")
         else:
             out.append("<p>%s</p>" % _line_html(line))
+    if in_fence:  # 未闭合的围栏：按普通代码块收尾，避免内容整段丢失
+        out.append("<pre><code>%s</code></pre>" % html.escape("\n".join(fence_lines), quote=False))
     if in_ul:
         out.append("</ul>")
     if in_table:

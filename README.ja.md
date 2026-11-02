@@ -31,6 +31,35 @@
 </tr>
 </table>
 
+## ビルド
+
+プロフィール資産コンパイラ：単一の Python データ源から README と SVG カードを生成し、GitCode と Gitee へミラーします。
+
+**実行方法**
+
+```bash
+make gen       # rebuild README + every SVG from accounts.py
+make verify    # offline gate: schema, asset refs, account isolation, idempotency
+make release   # version / CHANGELOG / profile.json consistency
+```
+
+**保証**
+
+- レンダリング時にネットワークへ接続しない — 同一コミット、同一バイト
+- 1 コマンドで全資産を再生成：<code>make gen</code>
+- オフラインゲートが古い資産や他アカウントの混入を遮断：<code>make verify</code>
+- バージョンの単一情報源は <code>kit/version.py</code>、<code>make release</code> で検証
+
+**構成**
+
+| Path | Purpose |
+|---|---|
+| `accounts.py` | single data source: accounts, copy, works catalogue |
+| `kit/` | renderer package: textutil -> icons -> cards -> readme -> build |
+| `data/*.json` | committed snapshots: stats, works, writing, extras |
+| `scripts/` | refresh (only network component), verify, generate, release |
+| `tests/` | stdlib unittest suite covering render, schema and gates |
+
 ## 道具箱
 
 <p align="center">

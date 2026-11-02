@@ -31,6 +31,35 @@
 </tr>
 </table>
 
+## 构建
+
+主页资产编译器：用一份 Python 数据源生成 README 与 SVG 卡片，再镜像到 GitCode 与 Gitee。
+
+**运行方式**
+
+```bash
+make gen       # rebuild README + every SVG from accounts.py
+make verify    # offline gate: schema, asset refs, account isolation, idempotency
+make release   # version / CHANGELOG / profile.json consistency
+```
+
+**保证**
+
+- 渲染期不联网 —— 同一提交，同一字节
+- 一条命令重建全部资产：<code>make gen</code>
+- 离线门禁拦截过期或串号资产：<code>make verify</code>
+- 版本号单一真源在 <code>kit/version.py</code>，由 <code>make release</code> 校验
+
+**目录结构**
+
+| Path | Purpose |
+|---|---|
+| `accounts.py` | single data source: accounts, copy, works catalogue |
+| `kit/` | renderer package: textutil -> icons -> cards -> readme -> build |
+| `data/*.json` | committed snapshots: stats, works, writing, extras |
+| `scripts/` | refresh (only network component), verify, generate, release |
+| `tests/` | stdlib unittest suite covering render, schema and gates |
+
 ## 工具箱
 
 <p align="center">

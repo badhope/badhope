@@ -147,6 +147,34 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     lines.append("</table>")
     lines.append("")
 
+    # ---- 构建说明（这个仓库本身是生成器，不只是简历页） ----
+    # 只在账号配置了 build_files 时输出，镜像账号可各自决定是否展示。
+    if acct.get("build_files"):
+        lines.append("## %s" % heading("build"))
+        lines.append("")
+        lines.append(labels["build_lede"])
+        lines.append("")
+        lines.append("**%s**" % labels["build_run"])
+        lines.append("")
+        lines.append("```bash")
+        lines.append("make gen       # rebuild README + every SVG from accounts.py")
+        lines.append("make verify    # offline gate: schema, asset refs, account isolation, idempotency")
+        lines.append("make release   # version / CHANGELOG / profile.json consistency")
+        lines.append("```")
+        lines.append("")
+        lines.append("**%s**" % labels["build_guarantee"])
+        lines.append("")
+        for item in labels["build_guarantees"]:
+            lines.append("- %s" % item)
+        lines.append("")
+        lines.append("**%s**" % labels["build_files"])
+        lines.append("")
+        lines.append("| Path | Purpose |")
+        lines.append("|---|---|")
+        for row in acct["build_files"]:
+            lines.append("| `%s` | %s |" % (row[0], row[1]))
+        lines.append("")
+
     # ---- 技能矩阵（图标网格，本地资产） ----
     lines.append("## %s" % heading("skills"))
     lines.append("")
@@ -354,5 +382,5 @@ def render_readme(acct, key, lang, stats, base=None, discovered=None, hero_png=T
     lines.append("")
     from .templates import apply as _apply_template
     headings = {name: heading(name) for name in
-                ("skills", "works", "numbers", "achievements", "pinned", "writing", "elsewhere")}
+                ("build", "skills", "works", "numbers", "achievements", "pinned", "writing", "elsewhere")}
     return "\n".join(_apply_template(lines, acct, headings))
