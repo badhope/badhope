@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | Project | Stars | Updated |
 | --- | --- | --- |
-| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 86 | 2026-11-02 |
-| [spark — Local-first AI coding agent — approval gate, prompt-injecti…](https://github.com/badhope/spark) | 21 | 2026-11-02 |
-| [content-harbor — Self-hosted AI publishing hub - write once, ship t…](https://github.com/badhope/content-harbor) | 11 | 2026-11-02 |
-| [DU — A client-side Chinese metaphysics toolkit — 49 tools](https://github.com/badhope/DU) | 11 | 2026-11-02 |
-| [sciflow — Local-first AI research agent workbench — multi-agent pip…](https://github.com/badhope/sciflow) | 11 | 2026-11-02 |
-| [aquapilot — Topology-driven wastewater simulation prototype with an…](https://github.com/badhope/aquapilot) | 0 | 2026-11-02 |
+| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 87 | 2026-11-03 |
+| [workbench — A local-first desktop workbench (Tauri 2 + React 19) wi…](https://github.com/badhope/workbench) | 48 | 2026-11-03 |
+| [spark — Local-first AI coding agent — approval gate, prompt-injecti…](https://github.com/badhope/spark) | 21 | 2026-11-03 |
+| [world-walker — AI-driven interactive text fiction engine](https://github.com/badhope/world-walker) | 18 | 2026-11-03 |
+| [DU — A client-side Chinese metaphysics toolkit — 49 tools](https://github.com/badhope/DU) | 11 | 2026-11-03 |
+| [harbor — Self-hosted AI publishing hub - write once, ship to 15 pla…](https://github.com/badhope/harbor) | 11 | 2026-11-03 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 

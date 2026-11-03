@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | プロジェクト | スター | 更新日 |
 | --- | --- | --- |
-| [moneyhelper — 会話ファーストの個人金融エージェント — ローカル優先・LangGraph 編成](https://github.com/badhope/moneyhelper) | 86 | 2026-11-02 |
-| [spark — ローカル優先の AI コーディングエージェント（承認ゲート付き）](https://github.com/badhope/spark) | 21 | 2026-11-02 |
-| [content-harbor](https://github.com/badhope/content-harbor) | 11 | 2026-11-02 |
-| [DU — クライアントサイド中国術数ツールキット — 49 ツール](https://github.com/badhope/DU) | 11 | 2026-11-02 |
-| [sciflow — ローカル優先の AI 研究エージェント作業台 — マルチエージェント編成](https://github.com/badhope/sciflow) | 11 | 2026-11-02 |
-| [aquapilot](https://github.com/badhope/aquapilot) | 0 | 2026-11-02 |
+| [moneyhelper — 会話ファーストの個人金融エージェント — ローカル優先・LangGraph 編成](https://github.com/badhope/moneyhelper) | 87 | 2026-11-03 |
+| [workbench — ローカル優先のデスクトップワークベンチ（Tauri 2 + React 19）](https://github.com/badhope/workbench) | 48 | 2026-11-03 |
+| [spark — ローカル優先の AI コーディングエージェント（承認ゲート付き）](https://github.com/badhope/spark) | 21 | 2026-11-03 |
+| [world-walker — AI 駆動のテキストインタラクティブ小説エンジン](https://github.com/badhope/world-walker) | 18 | 2026-11-03 |
+| [DU — クライアントサイド中国術数ツールキット — 49 ツール](https://github.com/badhope/DU) | 11 | 2026-11-03 |
+| [harbor](https://github.com/badhope/harbor) | 11 | 2026-11-03 |
 
 全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
 

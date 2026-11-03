@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
-| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 86 | 2026-11-02 |
-| [spark — 本地优先的 AI 编程代理 —— 审批门禁与提示注入防护](https://github.com/badhope/spark) | 21 | 2026-11-02 |
-| [content-harbor](https://github.com/badhope/content-harbor) | 11 | 2026-11-02 |
-| [DU — 纯客户端中文术数工具箱 —— 49 件工具](https://github.com/badhope/DU) | 11 | 2026-11-02 |
-| [sciflow — 本地优先的 AI 科研智能体工作台 —— 多 Agent 编排与记忆](https://github.com/badhope/sciflow) | 11 | 2026-11-02 |
-| [aquapilot](https://github.com/badhope/aquapilot) | 0 | 2026-11-02 |
+| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 87 | 2026-11-03 |
+| [workbench — 本地优先的桌面工作台（Tauri 2 + React 19）](https://github.com/badhope/workbench) | 48 | 2026-11-03 |
+| [spark — 本地优先的 AI 编程代理 —— 审批门禁与提示注入防护](https://github.com/badhope/spark) | 21 | 2026-11-03 |
+| [world-walker — AI 驱动的文字互动小说引擎](https://github.com/badhope/world-walker) | 18 | 2026-11-03 |
+| [DU — 纯客户端中文术数工具箱 —— 49 件工具](https://github.com/badhope/DU) | 11 | 2026-11-03 |
+| [harbor](https://github.com/badhope/harbor) | 11 | 2026-11-03 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 

@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-02",
+  "as_of": "2026-11-03",
   "source": "scripts/refresh_sections.py",
   "accounts": {
     "gh_x33834": {
@@ -7,13 +7,13 @@
       "stars": 5,
       "followers": 2,
       "merged": 1,
-      "commits": 242,
+      "commits": 265,
       "prs": 19,
       "issues": 23,
       "reviews": 0,
       "contributions_window": {
         "from": "2025-11-02T00:00:00Z",
-        "to": "2026-11-02T23:59:59Z"
+        "to": "2026-11-03T23:59:59Z"
       },
       "gists": 0,
       "organizations": 0,
@@ -25,13 +25,13 @@
       "stars": 4,
       "followers": 18,
       "merged": 16,
-      "commits": 1933,
+      "commits": 1956,
       "prs": 64,
       "issues": 9,
       "reviews": 2,
       "contributions_window": {
         "from": "2025-11-02T00:00:00Z",
-        "to": "2026-11-02T23:59:59Z"
+        "to": "2026-11-03T23:59:59Z"
       },
       "gists": 0,
       "organizations": 0,
@@ -40,16 +40,16 @@
     },
     "gh_badhope": {
       "repos": 30,
-      "stars": 241,
+      "stars": 242,
       "followers": 20,
       "merged": 25,
-      "commits": 2205,
-      "prs": 274,
+      "commits": 2248,
+      "prs": 281,
       "issues": 14,
       "reviews": 5,
       "contributions_window": {
         "from": "2025-11-02T00:00:00Z",
-        "to": "2026-11-02T23:59:59Z"
+        "to": "2026-11-03T23:59:59Z"
       },
       "gists": 0,
       "organizations": 0,
