@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | Project | Stars | Updated |
 | --- | --- | --- |
-| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 87 | 2026-11-03 |
-| [workbench — A local-first desktop workbench (Tauri 2 + React 19) wi…](https://github.com/badhope/workbench) | 48 | 2026-11-03 |
-| [spark — Local-first AI coding agent — approval gate, prompt-injecti…](https://github.com/badhope/spark) | 21 | 2026-11-03 |
-| [world-walker — AI-driven interactive text fiction engine](https://github.com/badhope/world-walker) | 18 | 2026-11-03 |
-| [DU — A client-side Chinese metaphysics toolkit — 49 tools](https://github.com/badhope/DU) | 11 | 2026-11-03 |
-| [harbor — Self-hosted AI publishing hub - write once, ship to 15 pla…](https://github.com/badhope/harbor) | 11 | 2026-11-03 |
+| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 92 | 2026-11-04 |
+| [workbench — A local-first desktop workbench (Tauri 2 + React 19) wi…](https://github.com/badhope/workbench) | 49 | 2026-11-04 |
+| [spark — Local-first AI coding agent — approval gate, prompt-injecti…](https://github.com/badhope/spark) | 21 | 2026-11-04 |
+| [world-walker — AI-driven interactive text fiction engine](https://github.com/badhope/world-walker) | 18 | 2026-11-04 |
+| [sciflow — Local-first AI research agent workbench — multi-agent pip…](https://github.com/badhope/sciflow) | 12 | 2026-11-04 |
+| [DU — A client-side Chinese metaphysics toolkit — 49 tools](https://github.com/badhope/DU) | 11 | 2026-11-04 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 
@@ -131,11 +131,11 @@ Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details 
 
 | Date | Article |
 |---|---|
+| 2026-11-04 | [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167) |
 | 2026-10-18 | [Gemini 4 Argon Opens to Everyone: Can Google's Half-Year Flagship Deliver?](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
 | 2026-10-16 | [A Year of MCP in Production: Six Engineering Truths Nobody Told Me](https://zhuanlan.zhihu.com/p/2094232145015453253) |
 | 2026-10-16 | [Local-First AI: Why I Put AI Back on My Own Computer](https://zhuanlan.zhihu.com/p/2094233605513991576) |
 | 2026-10-16 | [Five Gates Before Shipping an AI Agent: Notes from a Real Project](https://zhuanlan.zhihu.com/p/2094218858789856836) |
-| 2026-09-27 | [Cross-Platform Playwright Delivery: Eight Pitfalls and Compliance Gates](https://blog.csdn.net/weixin_56622231/article/details/166698802) |
 
 <sub>Also on <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a> · <img src="./assets/icons/si-zhihu.svg" width="15" alt="Zhihu" /> <a href="https://www.zhihu.com/people/e7c851hd">Zhihu</a></sub>
 

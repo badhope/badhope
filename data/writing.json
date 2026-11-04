@@ -1,7 +1,12 @@
 {
-  "fetched": "2026-10-20",
+  "fetched": "2026-11-04",
   "source": "CSDN RSS + curated",
   "items": [
+    {
+      "title": "把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑",
+      "url": "https://blog.csdn.net/weixin_56622231/article/details/170051167",
+      "date": "2026-11-04"
+    },
     {
       "title": "Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？",
       "url": "https://blog.csdn.net/weixin_56622231/article/details/168251657",

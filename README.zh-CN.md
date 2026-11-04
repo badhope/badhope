@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
-| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 87 | 2026-11-03 |
-| [workbench — 本地优先的桌面工作台（Tauri 2 + React 19）](https://github.com/badhope/workbench) | 48 | 2026-11-03 |
-| [spark — 本地优先的 AI 编程代理 —— 审批门禁与提示注入防护](https://github.com/badhope/spark) | 21 | 2026-11-03 |
-| [world-walker — AI 驱动的文字互动小说引擎](https://github.com/badhope/world-walker) | 18 | 2026-11-03 |
-| [DU — 纯客户端中文术数工具箱 —— 49 件工具](https://github.com/badhope/DU) | 11 | 2026-11-03 |
-| [harbor](https://github.com/badhope/harbor) | 11 | 2026-11-03 |
+| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 92 | 2026-11-04 |
+| [workbench — 本地优先的桌面工作台（Tauri 2 + React 19）](https://github.com/badhope/workbench) | 49 | 2026-11-04 |
+| [spark — 本地优先的 AI 编程代理 —— 审批门禁与提示注入防护](https://github.com/badhope/spark) | 21 | 2026-11-04 |
+| [world-walker — AI 驱动的文字互动小说引擎](https://github.com/badhope/world-walker) | 18 | 2026-11-04 |
+| [sciflow — 本地优先的 AI 科研智能体工作台 —— 多 Agent 编排与记忆](https://github.com/badhope/sciflow) | 12 | 2026-11-04 |
+| [DU — 纯客户端中文术数工具箱 —— 49 件工具](https://github.com/badhope/DU) | 11 | 2026-11-04 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 
@@ -127,11 +127,11 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | 日期 | 文章 |
 |---|---|
+| 2026-11-04 | [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167) |
 | 2026-10-18 | [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
 | 2026-10-16 | [MCP 落地一年，我总结了 6 个没人告诉你的工程真相](https://zhuanlan.zhihu.com/p/2094232145015453253) |
 | 2026-10-16 | [本地优先 AI：当所有人都在上云，我为什么把 AI 装回自己电脑](https://zhuanlan.zhihu.com/p/2094233605513991576) |
 | 2026-10-16 | [AI Agent 上线前必须过的 5 道关：一个真实项目的工程手记](https://zhuanlan.zhihu.com/p/2094218858789856836) |
-| 2026-09-27 | [Playwright 多平台分发：8 个踩坑与合规门禁](https://blog.csdn.net/weixin_56622231/article/details/166698802) |
 
 <sub>同步发布 <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a> · <img src="./assets/icons/si-zhihu.svg" width="15" alt="Zhihu" /> <a href="https://www.zhihu.com/people/e7c851hd">Zhihu</a></sub>
 

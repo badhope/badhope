@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | プロジェクト | スター | 更新日 |
 | --- | --- | --- |
-| [moneyhelper — 会話ファーストの個人金融エージェント — ローカル優先・LangGraph 編成](https://github.com/badhope/moneyhelper) | 87 | 2026-11-03 |
-| [workbench — ローカル優先のデスクトップワークベンチ（Tauri 2 + React 19）](https://github.com/badhope/workbench) | 48 | 2026-11-03 |
-| [spark — ローカル優先の AI コーディングエージェント（承認ゲート付き）](https://github.com/badhope/spark) | 21 | 2026-11-03 |
-| [world-walker — AI 駆動のテキストインタラクティブ小説エンジン](https://github.com/badhope/world-walker) | 18 | 2026-11-03 |
-| [DU — クライアントサイド中国術数ツールキット — 49 ツール](https://github.com/badhope/DU) | 11 | 2026-11-03 |
-| [harbor](https://github.com/badhope/harbor) | 11 | 2026-11-03 |
+| [moneyhelper — 会話ファーストの個人金融エージェント — ローカル優先・LangGraph 編成](https://github.com/badhope/moneyhelper) | 92 | 2026-11-04 |
+| [workbench — ローカル優先のデスクトップワークベンチ（Tauri 2 + React 19）](https://github.com/badhope/workbench) | 49 | 2026-11-04 |
+| [spark — ローカル優先の AI コーディングエージェント（承認ゲート付き）](https://github.com/badhope/spark) | 21 | 2026-11-04 |
+| [world-walker — AI 駆動のテキストインタラクティブ小説エンジン](https://github.com/badhope/world-walker) | 18 | 2026-11-04 |
+| [sciflow — ローカル優先の AI 研究エージェント作業台 — マルチエージェント編成](https://github.com/badhope/sciflow) | 12 | 2026-11-04 |
+| [DU — クライアントサイド中国術数ツールキット — 49 ツール](https://github.com/badhope/DU) | 11 | 2026-11-04 |
 
 全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
 
@@ -131,11 +131,11 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | 日付 | 記事 |
 |---|---|
+| 2026-11-04 | [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167) |
 | 2026-10-18 | [Gemini 4 Argon が全面公開：半年ぶりの Google フラッグシップは期待に応えるか？](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
 | 2026-10-16 | [MCP 実装1年で分かった、誰も教えてくれなかった6つの現実](https://zhuanlan.zhihu.com/p/2094232145015453253) |
 | 2026-10-16 | [ローカルファースト AI：なぜ AI を自分の PC に戻したのか](https://zhuanlan.zhihu.com/p/2094233605513991576) |
 | 2026-10-16 | [AI Agent を公開する前に越える5つの関門：実案件の記録](https://zhuanlan.zhihu.com/p/2094218858789856836) |
-| 2026-09-27 | [Playwright のマルチプラットフォーム配布：8つの落とし穴とコンプライアンスゲート](https://blog.csdn.net/weixin_56622231/article/details/166698802) |
 
 <sub>同時掲載 <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a> · <img src="./assets/icons/si-zhihu.svg" width="15" alt="Zhihu" /> <a href="https://www.zhihu.com/people/e7c851hd">Zhihu</a></sub>
 
