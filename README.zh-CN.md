@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | 项目 | 星标 | 最近更新 |
 | --- | --- | --- |
-| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 92 | 2026-11-04 |
+| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 92 | 2026-11-05 |
+| [world-walker — AI 驱动的文字互动小说引擎](https://github.com/badhope/world-walker) | 18 | 2026-11-05 |
+| [mashang — 赛博朋克风离线 Python 学习终端 —— 30 讲闯关 · assert 判题](https://github.com/badhope/mashang) | 9 | 2026-11-05 |
+| [Flow — AI 原生跨境出货台 —— 买家商城 + 卖家工作台 + 5 个 AI Agent](https://github.com/badhope/Flow) | 0 | 2026-11-05 |
+| [no-money](https://github.com/badhope/no-money) | 0 | 2026-11-05 |
 | [workbench — 本地优先的桌面工作台（Tauri 2 + React 19）](https://github.com/badhope/workbench) | 49 | 2026-11-04 |
-| [spark — 本地优先的 AI 编程代理 —— 审批门禁与提示注入防护](https://github.com/badhope/spark) | 21 | 2026-11-04 |
-| [world-walker — AI 驱动的文字互动小说引擎](https://github.com/badhope/world-walker) | 18 | 2026-11-04 |
-| [sciflow — 本地优先的 AI 科研智能体工作台 —— 多 Agent 编排与记忆](https://github.com/badhope/sciflow) | 12 | 2026-11-04 |
-| [DU — 纯客户端中文术数工具箱 —— 49 件工具](https://github.com/badhope/DU) | 11 | 2026-11-04 |
 
 全部公开仓库： [github.com/badhope](https://github.com/badhope)
 

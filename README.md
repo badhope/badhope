@@ -70,12 +70,12 @@ make release   # version / CHANGELOG / profile.json consistency
 
 | Project | Stars | Updated |
 | --- | --- | --- |
-| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 92 | 2026-11-04 |
+| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 92 | 2026-11-05 |
+| [world-walker — AI-driven interactive text fiction engine](https://github.com/badhope/world-walker) | 18 | 2026-11-05 |
+| [mashang — Cyberpunk offline Python learning terminal — 30 quests, a…](https://github.com/badhope/mashang) | 9 | 2026-11-05 |
+| [Flow — AI-native cross-border commerce platform — storefront, selle…](https://github.com/badhope/Flow) | 0 | 2026-11-05 |
+| [no-money — Income, tax, social-insurance and labor-rights calculato…](https://github.com/badhope/no-money) | 0 | 2026-11-05 |
 | [workbench — A local-first desktop workbench (Tauri 2 + React 19) wi…](https://github.com/badhope/workbench) | 49 | 2026-11-04 |
-| [spark — Local-first AI coding agent — approval gate, prompt-injecti…](https://github.com/badhope/spark) | 21 | 2026-11-04 |
-| [world-walker — AI-driven interactive text fiction engine](https://github.com/badhope/world-walker) | 18 | 2026-11-04 |
-| [sciflow — Local-first AI research agent workbench — multi-agent pip…](https://github.com/badhope/sciflow) | 12 | 2026-11-04 |
-| [DU — A client-side Chinese metaphysics toolkit — 49 tools](https://github.com/badhope/DU) | 11 | 2026-11-04 |
 
 All public repositories: [github.com/badhope](https://github.com/badhope)
 
