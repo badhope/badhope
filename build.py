@@ -107,6 +107,80 @@ COPY = {
         },
         "more_intro": {"zh-CN": "架子上还有"},
     },
+    "gh_morningstar": {
+        "platform": "github",
+        "handle": "Morningstar202604",
+        "home_display": "github.com/Morningstar202604",
+        "role": {
+            "en": "Long-horizon projects · open source contributor",
+            "zh-CN": "长线项目 · 开源贡献者",
+            "ja": "長期プロジェクト · OSSコントリビュータ",
+        },
+        "tagline": {
+            "en": "Slow, compounding work: a few projects carried for years, and upstream fixes that stick.",
+            "zh-CN": "做能复利的长线事：几个养了很多年的项目，和一批留在上游的修复。",
+            "ja": "ゆっくり複利で積み上げる。何年も育てるプロジェクトと、上流に残る修正。",
+        },
+        "now": {
+            "en": [
+                "Carrying **moneyhelper** and **spark** over the long haul",
+                "Upstream record: ohmyzsh · icalendar · claude-tool-agent · NUR · tldr",
+                "Writing engineering notes on agents and local-first AI",
+            ],
+            "zh-CN": [
+                "长线养护 **moneyhelper** 与 **spark**",
+                "上游记录：ohmyzsh · icalendar · claude-tool-agent · NUR · tldr",
+                "写工程手记：Agent 与本地优先 AI",
+            ],
+            "ja": [
+                "**moneyhelper** と **spark** を長期で育てる",
+                "上流実績：ohmyzsh · icalendar · claude-tool-agent · NUR · tldr",
+                "エージェントとローカルファースト AI の工程記録を執筆",
+            ],
+        },
+        "more_intro": {
+            "en": "More on the shelf",
+            "zh-CN": "架子上还有",
+            "ja": "その他の作品",
+        },
+    },
+    "gh_x33834": {
+        "platform": "github",
+        "handle": "X33834",
+        "home_display": "github.com/X33834",
+        "role": {
+            "en": "Upstream fixes · small sharp tools",
+            "zh-CN": "上游修复 · 小而锋利的工具",
+            "ja": "アップストリーム修正 · 小さな道具",
+        },
+        "tagline": {
+            "en": "I find bugs in other people's software and send the fix upstream. Small tools between the big ones.",
+            "zh-CN": "在别人的软件里找 bug，把修复送回上游。大工具之间放几件小工具。",
+            "ja": "他人のソフトウェアのバグを見つけ、修正を上流へ。大きな道具の間に小さな道具を。",
+        },
+        "now": {
+            "en": [
+                "Merged in **apache/airflow**; betterleaks and lefthook fixes under review",
+                "Maintaining **world-walker** and offline mobile tools",
+                "Reading codebases for a living and for fun",
+            ],
+            "zh-CN": [
+                "已合入 **apache/airflow**；betterleaks 与 lefthook 的修复在审",
+                "维护 **world-walker** 与离线移动工具",
+                "以读代码为业，也以此为乐",
+            ],
+            "ja": [
+                "**apache/airflow** はマージ済み。betterleaks と lefthook はレビュー中",
+                "**world-walker** とオフライン mobile ツールを維持",
+                "コードを読むのが仕事であり趣味",
+            ],
+        },
+        "more_intro": {
+            "en": "More on the shelf",
+            "zh-CN": "架子上还有",
+            "ja": "その他の作品",
+        },
+    },
 }
 
 # Featured works. `url` is per platform; mirrors reuse the repo name.
@@ -215,12 +289,38 @@ WORKS = {
             "gitee": "https://gitee.com/badhope/shopcash",
         },
     },
+    "sciflow": {
+        "stack": {"en": "Python · research workbench", "zh-CN": "Python · 科研工作台", "ja": "Python · 研究ワークベンチ"},
+        "line": {
+            "en": "From a topic to a submittable manuscript: literature triage, experiment log, structured drafting.",
+            "zh-CN": "从一个题目到一份可投稿的稿件：文献分诊、实验记录、结构化写作。",
+            "ja": "テーマから投稿可能な原稿まで。文献整理、実験記録、構造化執筆。",
+        },
+    },
+    "harbor": {
+        "stack": {"en": "Publishing hub · 15 platforms", "zh-CN": "发布枢纽 · 15 个平台", "ja": "配信ハブ · 15 プラットフォーム"},
+        "line": {
+            "en": "Write once, ship to 15 platforms: self-hosted publishing hub with per-channel formatting.",
+            "zh-CN": "写一次，发 15 处：自托管的发布枢纽，按渠道各自排版。",
+            "ja": "一度書いて 15 箇所へ。チャネル別に整形するセルフホスト配信ハブ。",
+        },
+    },
+    "CodePocket": {
+        "stack": {"en": "Android · offline Python IDE", "zh-CN": "Android · 离线 Python IDE", "ja": "Android · オフライン Python IDE"},
+        "line": {
+            "en": "An offline-first Python IDE for Android: native CPython 3.13 in your pocket, no cloud.",
+            "zh-CN": "离线优先的安卓 Python IDE：兜里装着原生 CPython 3.13，不靠云。",
+            "ja": "オフラインファーストの Android 用 Python IDE。ネイティブ CPython 3.13 をポケットに。",
+        },
+    },
 }
 
 FEATURED = {
     "gh_badhope": ["moneyhelper", "workbench", "spark", "world-walker"],
     "gitcode_badhope": ["mashang", "pocketmind", "quiz-chest", "workbench"],
     "gitee_badhope": ["shopcash", "quiz-chest", "mashang", "moneyhelper"],
+    "gh_morningstar": ["moneyhelper", "spark", "workbench", "sciflow"],
+    "gh_x33834": ["world-walker", "harbor", "CodePocket", "mashang"],
 }
 
 MORE = {
@@ -246,6 +346,19 @@ MORE = {
         ("spark", "—", "https://gitee.com/badhope/spark"),
         ("world-walker", "—", "https://gitee.com/badhope/world-walker"),
     ],
+    "gh_morningstar": [
+        ("sciflow", "—", "https://github.com/Morningstar202604/sciflow"),
+        ("world-walker", "—", "https://github.com/Morningstar202604/world-walker"),
+        ("digilegacy", "—", "https://github.com/Morningstar202604/digilegacy"),
+        ("harbor", "—", "https://github.com/Morningstar202604/harbor"),
+        ("creator-studio", "—", "https://github.com/Morningstar202604/creator-studio"),
+    ],
+    "gh_x33834": [
+        ("harbor", "2★", "https://github.com/X33834/harbor"),
+        ("CodePocket", "2★", "https://github.com/X33834/CodePocket"),
+        ("moneyhelper", "—", "https://github.com/X33834/moneyhelper"),
+        ("digilegacy", "—", "https://github.com/X33834/digilegacy"),
+    ],
 }
 
 # Upstream open-source record (verified 2026-11-07).
@@ -258,9 +371,21 @@ UPSTREAM = [
 ]
 
 UPSTREAM_NOTE = {
-    "en": "Tracked across this account and [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604).",
-    "zh-CN": "记录横跨本账号与 [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604)。",
-    "ja": "このアカウントと [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604) にまたがる記録。",
+    "gh_badhope": {
+        "en": "Tracked across this account and [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604).",
+        "zh-CN": "记录横跨本账号与 [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604)。",
+        "ja": "このアカウントと [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604) にまたがる記録。",
+    },
+    "gh_morningstar": {
+        "en": "Tracked across this account and [badhope](https://github.com/badhope) / [X33834](https://github.com/X33834).",
+        "zh-CN": "记录横跨本账号与 [badhope](https://github.com/badhope) / [X33834](https://github.com/X33834)。",
+        "ja": "このアカウントと [badhope](https://github.com/badhope) / [X33834](https://github.com/X33834) にまたがる記録。",
+    },
+    "gh_x33834": {
+        "en": "Tracked across this account and [badhope](https://github.com/badhope) / [Morningstar202604](https://github.com/Morningstar202604).",
+        "zh-CN": "记录横跨本账号与 [badhope](https://github.com/badhope) / [Morningstar202604](https://github.com/Morningstar202604)。",
+        "ja": "このアカウントと [badhope](https://github.com/badhope) / [Morningstar202604](https://github.com/Morningstar202604) にまたがる記録。",
+    },
 }
 
 WRITING = [
@@ -478,6 +603,17 @@ def svg_work(account, lang, slug, index, stats):
 # README rendering
 # ---------------------------------------------------------------------------
 
+def work_url(account, slug):
+    """Per-account repo URL: explicit map first, otherwise handle-derived."""
+    entry = WORKS[slug]
+    platform = COPY[account]["platform"]
+    urls = entry.get("urls")
+    if urls and platform in urls:
+        return urls[platform]
+    base = {"github": "https://github.com", "gitcode": "https://gitcode.com", "gitee": "https://gitee.com"}[platform]
+    return "%s/%s/%s" % (base, COPY[account]["handle"], slug)
+
+
 def heroRef(lang):
     tag = {"en": "en", "zh-CN": "zh-CN", "ja": "ja"}[lang]
     return "assets/hero-%s.svg" % tag
@@ -536,9 +672,8 @@ def render_readme(account, lang):
         pair = featured[row:row + 2]
         imgs = []
         for offset, slug in enumerate(pair):
-            url = WORKS[slug]["urls"].get(platform, WORKS[slug]["urls"]["github"])
             imgs.append('<a href="%s"><img src="%s" alt="%s" width="49.2%%" /></a>' % (
-                url, workRef(lang, row + offset + 1), esc(slug)))
+                work_url(account, slug), workRef(lang, row + offset + 1), esc(slug)))
         out.append('<p align="center">%s</p>' % " ".join(imgs))
         out.append("")
     moreTitle = copy["more_intro"][lang]
@@ -567,7 +702,7 @@ def render_readme(account, lang):
         for name, record, url in UPSTREAM:
             out.append("| [%s](%s) | %s |" % (name, url, record))
         out.append("")
-        out.append("<sub>%s</sub>" % UPSTREAM_NOTE[lang])
+        out.append("<sub>%s</sub>" % UPSTREAM_NOTE[account][lang])
         out.append("")
 
         # Numbers — stats cards, themed light/dark via picture pairs

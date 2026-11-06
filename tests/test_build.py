@@ -42,6 +42,8 @@ class AssetRefsTest(unittest.TestCase):
 class IsolationTest(unittest.TestCase):
     MARKS = {
         "gh_badhope": ("gitcode.com/badhope", "gitee.com/badhope"),
+        "gh_morningstar": ("gitcode.com/badhope", "gitee.com/badhope"),
+        "gh_x33834": ("gitcode.com/badhope", "gitee.com/badhope"),
         "gitcode_badhope": ("gitee.com/badhope",),
         "gitee_badhope": ("gitcode.com/badhope",),
     }
@@ -67,11 +69,12 @@ class DataTest(unittest.TestCase):
         self.assertIn(build.current_account(), build.COPY)
 
     def test_stats_snapshot_valid(self):
+        account = build.current_account()
         stats = json.loads((ROOT / "data" / "stats.json").read_text(encoding="utf-8"))
         self.assertIn("accounts", stats)
-        self.assertIn("gh_badhope", stats["accounts"])
-        works = stats["accounts"]["gh_badhope"].get("works", {})
-        for slug in build.FEATURED["gh_badhope"]:
+        self.assertIn(account, stats["accounts"])
+        works = stats["accounts"][account].get("works", {})
+        for slug in build.FEATURED[account]:
             self.assertIn(slug, works)
 
 

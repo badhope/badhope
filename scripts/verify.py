@@ -22,6 +22,8 @@ from scripts.generate import build_out  # noqa: E402
 
 PLATFORM_MARKS = {
     "gh_badhope": ("gitcode.com/badhope", "gitee.com/badhope"),
+    "gh_morningstar": ("gitcode.com/badhope", "gitee.com/badhope"),
+    "gh_x33834": ("gitcode.com/badhope", "gitee.com/badhope"),
     "gitcode_badhope": ("gitee.com/badhope",),
     "gitee_badhope": ("gitcode.com/badhope",),
 }
