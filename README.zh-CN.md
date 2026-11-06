@@ -1,4 +1,10 @@
+<p align="right"><sub>[English](README.md) · <b>中文</b> · [日本語](README.ja.md)</sub></p>
+
+<p align="center"><img src="assets/taiji.svg" alt="taiji" width="220" /></p>
+
 <p align="center"><img src="assets/hero-zh-CN.svg" alt="badhope · github.com/badhope" width="100%" /></p>
+
+<p align="center"><img src="assets/typing-zh-CN.svg" alt="typing" width="100%" /></p>
 
 ## 最近在做
 
@@ -14,6 +20,13 @@
 
 > 架子上还有：[DU](https://github.com/badhope/DU) · [mashang](https://github.com/badhope/mashang) · [digilegacy](https://github.com/badhope/digilegacy) · [harbor](https://github.com/badhope/harbor) · [sciflow](https://github.com/badhope/sciflow) · [pocketmind](https://github.com/badhope/pocketmind) · [aquapilot](https://github.com/badhope/aquapilot) · [melee](https://github.com/badhope/melee)
 
+## 活跃轨迹
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/badhope/badhope/output/github-contribution-grid-snake-dark.svg" />
+  <img src="https://raw.githubusercontent.com/badhope/badhope/output/github-contribution-grid-snake.svg" width="100%" alt="contribution snake" />
+</picture>
+
 ## 开源贡献
 
 | Upstream | Record |
@@ -25,6 +38,14 @@
 | [betterleaks · lefthook · scrapy](https://github.com/betterleaks/betterleaks) | under review |
 
 <sub>记录横跨本账号与 [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604)。</sub>
+
+## 数据
+
+<p align="center">
+  <a href="https://github.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=badhope&amp;show_icons=true&amp;hide_border=true&amp;include_all_commits=true&amp;theme=github_dark" /><img height="165" src="https://github-readme-stats.vercel.app/api?username=badhope&amp;show_icons=true&amp;hide_border=true&amp;include_all_commits=true" alt="GitHub stats" /></picture></a>
+  <a href="https://github.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=badhope&amp;hide_border=true&amp;border_radius=0&amp;background=0D1117&amp;border=30363D&amp;stroke=4F46E5&amp;ring=A5B4FC&amp;fire=D9B876&amp;currStreakNum=E6EDF3&amp;sideNums=E6EDF3&amp;currStreakLabel=8B949E&amp;sideLabels=8B949E&amp;dates=8B949E" /><img height="165" src="https://streak-stats.demolab.com?user=badhope&amp;hide_border=true&amp;border_radius=0" alt="GitHub streak" /></picture></a>
+  <a href="https://github.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=badhope&amp;layout=compact&amp;hide_border=true&amp;langs_count=8&amp;theme=github_dark" /><img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=badhope&amp;layout=compact&amp;hide_border=true&amp;langs_count=8" alt="Top languages" /></picture></a>
+</p>
 
 ## 写作
 

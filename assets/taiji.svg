@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-label="Taiji — slowly rotating yin-yang">
+<style>
+  text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .fg { fill: #1F2328; } .muted { fill: #59636E; } .accent { fill: #4F46E5; }
+  .line { stroke: #D1D9E0; stroke-width: 1; }
+  .chip { fill: rgba(79,70,229,0.08); }
+  @media (prefers-color-scheme: dark) {
+    .fg { fill: #E6EDF3; } .muted { fill: #8B949E; } .accent { fill: #A5B4FC; }
+    .line { stroke: #30363D; } .chip { fill: rgba(165,180,252,0.14); }
+  }
+</style>
+
+  .paper { fill: #FFFFFF; }
+  .ink { fill: #1F2328; }
+  .ring { fill: none; stroke: #D1D9E0; }
+  @media (prefers-color-scheme: dark) {
+    .paper { fill: #0D1117; } .ink { fill: #E6EDF3; } .ring { stroke: #30363D; }
+  }
+
+</style>
+<g>
+  <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 160 160" to="360 160 160" dur="36s" repeatCount="indefinite"/>
+  <circle cx="160" cy="160" r="147" class="paper"/>
+  <path d="M160 12 A148 148 0 0 1 160 308 A74 74 0 0 1 160 160 A74 74 0 0 1 160 12 Z" class="ink"/>
+  <circle cx="160" cy="86" r="20" class="accent"/>
+  <circle cx="160" cy="234" r="20" class="accent"/>
+  <circle cx="160" cy="160" r="148" class="ring"/>
+</g>
+</svg>

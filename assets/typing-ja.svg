@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="56" viewBox="0 0 1240 56" role="img" aria-label="rotating phrases">
+<style>
+  text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .fg { fill: #1F2328; } .muted { fill: #59636E; } .accent { fill: #4F46E5; }
+  .line { stroke: #D1D9E0; stroke-width: 1; }
+  .chip { fill: rgba(79,70,229,0.08); }
+  @media (prefers-color-scheme: dark) {
+    .fg { fill: #E6EDF3; } .muted { fill: #8B949E; } .accent { fill: #A5B4FC; }
+    .line { stroke: #30363D; } .chip { fill: rgba(165,180,252,0.14); }
+  }
+</style>
+
+<text x="620" y="36" text-anchor="middle" class="mono muted" font-size="16" opacity="0">ローカルファースト、数値は検証可能<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.02;0.08;0.85;0.93;1" dur="9.0s" begin="0.0s" repeatCount="indefinite"/></text>
+<text x="620" y="36" text-anchor="middle" class="mono muted" font-size="16" opacity="0">アップストリーム修正中：ohmyzsh · lefthook · scrapy<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.02;0.08;0.85;0.93;1" dur="9.0s" begin="3.0s" repeatCount="indefinite"/></text>
+<text x="620" y="36" text-anchor="middle" class="mono muted" font-size="16" opacity="0">急がば回れ<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.02;0.08;0.85;0.93;1" dur="9.0s" begin="6.0s" repeatCount="indefinite"/></text>
+</svg>

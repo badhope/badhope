@@ -4,6 +4,15 @@ All notable changes to the profile page generator. The format follows
 [Keep a Changelog](https://keepachangelog.com/) and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [4.1.0] — 2026-11-07
+
+### Added
+- Rotating taiji centerpiece (SMIL, self-drawn, adaptive light/dark)
+- Animated typing strip — rotating phrases, self-hosted, no external service
+- Contribution snake via Platane/snk (light + dark variants, published to the `output` branch)
+- Stats trio: github-readme-stats, streak-stats, top-langs with picture-pair theming
+- Language switcher (English / 中文 / 日本語) at the top of every GitHub README
+
 ## [4.0.0] — 2026-11-07
 
 Complete redesign — the old dark-gradient card wall (typing banner, snake,

@@ -278,10 +278,31 @@ TOOLBOX = {
 }
 
 SECTION_HEADINGS = {
-    "en": {"now": "Now", "work": "Featured work", "oss": "Open source", "writing": "Writing", "toolbox": "Toolbox", "about": "About this page"},
-    "zh-CN": {"now": "最近在做", "work": "代表作品", "oss": "开源贡献", "writing": "写作", "toolbox": "工具箱", "about": "关于本页"},
-    "ja": {"now": "いま", "work": "代表作", "oss": "オープンソース", "writing": "書きもの", "toolbox": "道具箱", "about": "このページについて"},
+    "en": {"now": "Now", "work": "Featured work", "oss": "Open source", "writing": "Writing", "toolbox": "Toolbox", "about": "About this page", "activity": "Activity", "numbers": "Numbers"},
+    "zh-CN": {"now": "最近在做", "work": "代表作品", "oss": "开源贡献", "writing": "写作", "toolbox": "工具箱", "about": "关于本页", "activity": "活跃轨迹", "numbers": "数据"},
+    "ja": {"now": "いま", "work": "代表作", "oss": "オープンソース", "writing": "書きもの", "toolbox": "道具箱", "about": "このページについて", "activity": "アクティビティ", "numbers": "データ"},
 }
+
+# Animated typing strip — phrases rotate via SMIL.
+TYPING = {
+    "en": [
+        "local-first, numbers you can audit",
+        "upstream fixes: ohmyzsh · lefthook · scrapy",
+        "slow is smooth, and smooth is fast",
+    ],
+    "zh-CN": [
+        "本地优先，数字可复核",
+        "上游修复中：ohmyzsh · lefthook · scrapy",
+        "慢即是稳，稳即是快",
+    ],
+    "ja": [
+        "ローカルファースト、数値は検証可能",
+        "アップストリーム修正中：ohmyzsh · lefthook · scrapy",
+        "急がば回れ",
+    ],
+}
+
+LANG_NAMES = {"en": "English", "zh-CN": "中文", "ja": "日本語"}
 
 MORE_LINK = {
     "github": "All public repositories: [github.com/badhope](https://github.com/badhope)",
@@ -357,6 +378,47 @@ def clip(text, limit):
     return text[: limit - 1].rstrip() + "…"
 
 
+def svg_taiji():
+    """Large yin-yang, slowly rotating via SMIL. Accent dots stay visible on
+    either half and in either color scheme."""
+    w = h = 320
+    out = [svgHead(w, h, "Taiji — slowly rotating yin-yang")]
+    out.append('  .paper { fill: #FFFFFF; }\n'
+               '  .ink { fill: #1F2328; }\n'
+               '  .ring { fill: none; stroke: #D1D9E0; }\n'
+               '  @media (prefers-color-scheme: dark) {\n'
+               '    .paper { fill: #0D1117; } .ink { fill: #E6EDF3; } .ring { stroke: #30363D; }\n'
+               '  }\n')
+    out.append("</style>")
+    out.append('<g>')
+    out.append('  <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 160 160" to="360 160 160" dur="36s" repeatCount="indefinite"/>')
+    out.append('  <circle cx="160" cy="160" r="147" class="paper"/>')
+    out.append('  <path d="M160 12 A148 148 0 0 1 160 308 A74 74 0 0 1 160 160 A74 74 0 0 1 160 12 Z" class="ink"/>')
+    out.append('  <circle cx="160" cy="86" r="20" class="accent"/>')
+    out.append('  <circle cx="160" cy="234" r="20" class="accent"/>')
+    out.append('  <circle cx="160" cy="160" r="148" class="ring"/>')
+    out.append("</g>")
+    out.append("</svg>")
+    return "\n".join(out)
+
+
+def svg_typing(lang):
+    """Rotating phrases via SMIL opacity — no external service needed."""
+    phrases = TYPING[lang]
+    w, h = 1240, 56
+    cycle = 9.0
+    out = [svgHead(w, h, "rotating phrases")]
+    for i, phrase in enumerate(phrases):
+        begin = i * (cycle / len(phrases))
+        out.append(
+            '<text x="620" y="36" text-anchor="middle" class="mono muted" font-size="16" opacity="0">%s'
+            '<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.02;0.08;0.85;0.93;1" dur="%.1fs" begin="%.1fs" repeatCount="indefinite"/>'
+            "</text>" % (esc(phrase), cycle, begin)
+        )
+    out.append("</svg>")
+    return "\n".join(out)
+
+
 def svg_hero(account, lang, stats):
     copy = COPY[account]
     role = copy["role"][lang]
@@ -426,6 +488,11 @@ def workRef(lang, index):
     return "assets/work-%d-%s.svg" % (index, tag)
 
 
+def typingRef(lang):
+    tag = {"en": "en", "zh-CN": "zh-CN", "ja": "ja"}[lang]
+    return "assets/typing-%s.svg" % tag
+
+
 def render_readme(account, lang):
     copy = COPY[account]
     stats = load_stats()
@@ -435,7 +502,24 @@ def render_readme(account, lang):
     more = MORE[account]
 
     out = []
+    # language switcher (github keeps one README per language)
+    if platform == "github":
+        parts = []
+        for other in ("en", "zh-CN", "ja"):
+            if other == lang:
+                parts.append("<b>%s</b>" % LANG_NAMES[other])
+            else:
+                target = {"en": "README.md", "zh-CN": "README.zh-CN.md", "ja": "README.ja.md"}[other]
+                parts.append("[%s](%s)" % (LANG_NAMES[other], target))
+        out.append('<p align="right"><sub>%s</sub></p>' % " · ".join(parts))
+        out.append("")
+    # rotating taiji — the centerpiece
+    out.append('<p align="center"><img src="assets/taiji.svg" alt="taiji" width="220" /></p>')
+    out.append("")
     out.append('<p align="center"><img src="%s" alt="%s · %s" width="100%%" /></p>' % (heroRef(lang), copy["handle"], esc(copy["home_display"])))
+    out.append("")
+    # animated rotating phrases
+    out.append('<p align="center"><img src="%s" alt="typing" width="100%%" /></p>' % typingRef(lang))
     out.append("")
 
     # Now
@@ -462,6 +546,18 @@ def render_readme(account, lang):
     out.append("> %s：%s" % (moreTitle, moreLine) if lang != "en" else "> %s: %s" % (moreTitle, moreLine))
     out.append("")
 
+    # Activity — animated contribution snake (external action artifact,
+    # GitHub README only; mirrors keep locally-hosted assets)
+    if platform == "github":
+        out.append("## %s" % head["activity"])
+        out.append("")
+        snake_repo = "%s/%s" % (copy["handle"], copy["handle"])
+        out.append('<picture>')
+        out.append('  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/%s/output/github-contribution-grid-snake-dark.svg" />' % snake_repo)
+        out.append('  <img src="https://raw.githubusercontent.com/%s/output/github-contribution-grid-snake.svg" width="100%%" alt="contribution snake" />' % snake_repo)
+        out.append('</picture>')
+        out.append("")
+
     # Open source (github only — mirror audiences care about the works)
     if platform == "github":
         out.append("## %s" % head["oss"])
@@ -472,6 +568,16 @@ def render_readme(account, lang):
             out.append("| [%s](%s) | %s |" % (name, url, record))
         out.append("")
         out.append("<sub>%s</sub>" % UPSTREAM_NOTE[lang])
+        out.append("")
+
+        # Numbers — stats cards, themed light/dark via picture pairs
+        out.append("## %s" % head["numbers"])
+        out.append("")
+        out.append('<p align="center">')
+        out.append('  <a href="https://github.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=badhope&amp;show_icons=true&amp;hide_border=true&amp;include_all_commits=true&amp;theme=github_dark" /><img height="165" src="https://github-readme-stats.vercel.app/api?username=badhope&amp;show_icons=true&amp;hide_border=true&amp;include_all_commits=true" alt="GitHub stats" /></picture></a>')
+        out.append('  <a href="https://github.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=badhope&amp;hide_border=true&amp;border_radius=0&amp;background=0D1117&amp;border=30363D&amp;stroke=4F46E5&amp;ring=A5B4FC&amp;fire=D9B876&amp;currStreakNum=E6EDF3&amp;sideNums=E6EDF3&amp;currStreakLabel=8B949E&amp;sideLabels=8B949E&amp;dates=8B949E" /><img height="165" src="https://streak-stats.demolab.com?user=badhope&amp;hide_border=true&amp;border_radius=0" alt="GitHub streak" /></picture></a>')
+        out.append('  <a href="https://github.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=badhope&amp;layout=compact&amp;hide_border=true&amp;langs_count=8&amp;theme=github_dark" /><img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=badhope&amp;layout=compact&amp;hide_border=true&amp;langs_count=8" alt="Top languages" /></picture></a>')
+        out.append('</p>')
         out.append("")
 
     # Writing (github only)
@@ -512,12 +618,19 @@ def render_assets(account):
     stats = load_stats()
     langs = ("en", "zh-CN", "ja") if COPY[account]["platform"] == "github" else ("zh-CN",)
     written = []
+    taiji = ASSETS / "taiji.svg"
+    taiji.write_text(svg_taiji(), encoding="utf-8")
+    written.append(taiji)
     for lang in langs:
-        hero = ASSETS / ("hero-%s.svg" % {"en": "en", "zh-CN": "zh-CN", "ja": "ja"}[lang])
+        tag = {"en": "en", "zh-CN": "zh-CN", "ja": "ja"}[lang]
+        hero = ASSETS / ("hero-%s.svg" % tag)
         hero.write_text(svg_hero(account, lang, stats), encoding="utf-8")
         written.append(hero)
+        typing = ASSETS / ("typing-%s.svg" % tag)
+        typing.write_text(svg_typing(lang), encoding="utf-8")
+        written.append(typing)
         for i, slug in enumerate(FEATURED[account], 1):
-            path = ASSETS / ("work-%d-%s.svg" % (i, {"en": "en", "zh-CN": "zh-CN", "ja": "ja"}[lang]))
+            path = ASSETS / ("work-%d-%s.svg" % (i, tag))
             path.write_text(svg_work(account, lang, slug, i, stats), encoding="utf-8")
             written.append(path)
     return written

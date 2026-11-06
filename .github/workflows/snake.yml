@@ -1,0 +1,37 @@
+name: snake
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 */12 * * *" # every 12 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: snake-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    name: animate the contribution snake
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Generate snake SVGs (light + dark)
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: badhope
+          outputs: |
+            dist/github-contribution-grid-snake.svg?palette=github-light
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      - name: Publish to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
