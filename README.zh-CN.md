@@ -1,154 +1,48 @@
-[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)
+<p align="center"><img src="assets/hero-zh-CN.svg" alt="badhope · github.com/badhope" width="100%" /></p>
 
-<p align="center">
-  <img src="./assets/hero.svg" alt="badhope · github.com/badhope" width="100%" />
-</p>
+## 最近在做
 
-<p align="center">
-  <img src="./assets/typing-zh-CN.svg" alt="把抽象想法落地为可交互界面的全栈开发者。" width="600" />
-</p>
+- **moneyhelper** —— 对话优先的个人理财智能体，本地优先、数字可复核
+- **workbench** —— 日常驾驶舱级桌面工作台（Tauri 2 + React）
+- 上游修复进行中：ohmyzsh、lefthook、betterleaks、scrapy
 
-<p align="center"><sub>慢即是稳，稳即是快。</sub></p>
+## 代表作品
 
-<table border="0">
-<tr>
-<td valign="top" width="58%">
+<p align="center"><a href="https://github.com/badhope/moneyhelper"><img src="assets/work-1-zh-CN.svg" alt="moneyhelper" width="49.2%" /></a> <a href="https://github.com/badhope/workbench"><img src="assets/work-2-zh-CN.svg" alt="workbench" width="49.2%" /></a></p>
 
-### 关于
+<p align="center"><a href="https://github.com/badhope/spark"><img src="assets/work-3-zh-CN.svg" alt="spark" width="49.2%" /></a> <a href="https://github.com/badhope/world-walker"><img src="assets/work-4-zh-CN.svg" alt="world-walker" width="49.2%" /></a></p>
 
-这里是我的 GitHub 主页，公开工具、索引与小型软件实验；当前重点是主页工具、AI Agent 和数据驱动的实用工具。
+> 架子上还有：[DU](https://github.com/badhope/DU) · [mashang](https://github.com/badhope/mashang) · [digilegacy](https://github.com/badhope/digilegacy) · [harbor](https://github.com/badhope/harbor) · [sciflow](https://github.com/badhope/sciflow) · [pocketmind](https://github.com/badhope/pocketmind) · [aquapilot](https://github.com/badhope/aquapilot) · [melee](https://github.com/badhope/melee)
 
-</td>
-<td valign="top" width="42%">
+## 开源贡献
 
-### 近期
+| Upstream | Record |
+| --- | --- |
+| [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) | 3 merged · 3 under review |
+| [renovate-operator](https://github.com/mogenius/renovate-operator) | 1 merged · 1 under review |
+| [icalendar](https://github.com/python-icalendar/icalendar) | 3 merged |
+| [apache/airflow](https://github.com/apache/airflow) | 1 merged |
+| [betterleaks · lefthook · scrapy](https://github.com/betterleaks/betterleaks) | under review |
 
-- 维护 API-Market / MCP-HUB 两个索引的数据
-- digilegacy 与 spark 持续迭代
-- 整理 49 件术数工具集（DU）的文档
-
-</td>
-</tr>
-</table>
-
-## 构建
-
-主页资产编译器：用一份 Python 数据源生成 README 与 SVG 卡片，再镜像到 GitCode 与 Gitee。
-
-**运行方式**
-
-```bash
-make gen       # rebuild README + every SVG from accounts.py
-make verify    # offline gate: schema, asset refs, account isolation, idempotency
-make release   # version / CHANGELOG / profile.json consistency
-```
-
-**保证**
-
-- 渲染期不联网 —— 同一提交，同一字节
-- 一条命令重建全部资产：<code>make gen</code>
-- 离线门禁拦截过期或串号资产：<code>make verify</code>
-- 版本号单一真源在 <code>kit/version.py</code>，由 <code>make release</code> 校验
-
-**目录结构**
-
-| Path | Purpose |
-|---|---|
-| `accounts.py` | single data source: accounts, copy, works catalogue |
-| `kit/` | renderer package: textutil -> icons -> cards -> readme -> build |
-| `data/*.json` | committed snapshots: stats, works, writing, extras |
-| `scripts/` | refresh (only network component), verify, generate, release |
-| `tests/` | stdlib unittest suite covering render, schema and gates |
-
-## 工具箱
-
-<p align="center">
-  <img src="./assets/skills-zh-CN.svg" alt="工具箱" width="100%" />
-</p>
-
-## 精选作品
-
-| 项目 | 星标 | 最近更新 |
-| --- | --- | --- |
-| [moneyhelper — 对话优先的个人理财 Agent —— 本地优先，LangGraph 编排](https://github.com/badhope/moneyhelper) | 92 | 2026-11-05 |
-| [world-walker — AI 驱动的文字互动小说引擎](https://github.com/badhope/world-walker) | 18 | 2026-11-05 |
-| [mashang — 赛博朋克风离线 Python 学习终端 —— 30 讲闯关 · assert 判题](https://github.com/badhope/mashang) | 9 | 2026-11-05 |
-| [Flow — AI 原生跨境出货台 —— 买家商城 + 卖家工作台 + 5 个 AI Agent](https://github.com/badhope/Flow) | 0 | 2026-11-05 |
-| [no-money](https://github.com/badhope/no-money) | 0 | 2026-11-05 |
-| [workbench — 本地优先的桌面工作台（Tauri 2 + React 19）](https://github.com/badhope/workbench) | 49 | 2026-11-04 |
-
-全部公开仓库： [github.com/badhope](https://github.com/badhope)
-
-## 数据
-
-<p align="center">
-  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=public_repos&style=flat&label=%E4%BB%93%E5%BA%93&labelColor=0E1630&color=D9B876" alt="仓库: badhope" />
-  <img src="https://img.shields.io/github/stars/badhope?style=flat&labelColor=0E1630&color=D9B876" alt="累计 Star: badhope" />
-  <img src="https://img.shields.io/github/followers/badhope?style=flat&labelColor=0E1630&color=D9B876" alt="关注者: badhope" />
-</p>
-
-<p align="center">
-  <img src="./assets/cards/stats-cn.svg" alt="GitHub stats" width="49%" />
-  <img src="./assets/cards/langs-cn.svg" alt="Top languages" width="49%" />
-</p>
-
-## 成就
-
-<p align="center">
-  <img src="./assets/snake-zh-CN.svg" alt="contribution snake" width="100%" />
-</p>
-
-<details>
-<summary>开源足迹</summary>
-
-补丁已合入 ohmyzsh · tldr · icalendar · NUR 等上游项目，明细见两个 GitHub 账号: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
-
-</details>
-
-## 活跃度
-
-<p align="center">
-  <img src="./assets/isocalendar-zh-CN.svg" alt="Isocalendar" width="100%" />
-</p>
-
-<p align="center">
-  <img src="./assets/people-zh-CN.svg" alt="People" width="100%" />
-</p>
-
-## 置顶作品
-
-<p align="center">
-  <img src="./assets/cards/pin-1-cn.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-2-cn.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-3-cn.svg" alt="pinned work" width="32%" />
-</p>
+<sub>记录横跨本账号与 [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604)。</sub>
 
 ## 写作
 
-| 日期 | 文章 |
-|---|---|
-| 2026-11-04 | [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167) |
-| 2026-10-18 | [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
-| 2026-10-16 | [MCP 落地一年，我总结了 6 个没人告诉你的工程真相](https://zhuanlan.zhihu.com/p/2094232145015453253) |
-| 2026-10-16 | [本地优先 AI：当所有人都在上云，我为什么把 AI 装回自己电脑](https://zhuanlan.zhihu.com/p/2094233605513991576) |
-| 2026-10-16 | [AI Agent 上线前必须过的 5 道关：一个真实项目的工程手记](https://zhuanlan.zhihu.com/p/2094218858789856836) |
+- 2026-11-04 — [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167)
+- 2026-10-18 — [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657)
+- 2026-10-16 — [MCP 落地一年，我总结了 6 个没人告诉你的工程真相](https://zhuanlan.zhihu.com/p/2094232145015453253)
 
-<sub>同步发布 <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a> · <img src="./assets/icons/si-zhihu.svg" width="15" alt="Zhihu" /> <a href="https://www.zhihu.com/people/e7c851hd">Zhihu</a></sub>
+<sub>CSDN · Juejin · Zhihu — <a href="https://blog.csdn.net/weixin_56622231">blog</a> · <a href="https://juejin.cn/user/2350111542479753">juejin</a> · <a href="https://www.zhihu.com/people/e7c851hd">zhihu</a></sub>
 
-## 在别处
+**工具箱** — Python · TypeScript / React · Kotlin · Tauri · FastAPI · Docker · SQLite
 
-> 同一身份，五处安放 —— 这五个账号同属一人，互为镜像。
+---
 
-| | 平台 | 账号 | 定位 |
-|---|---|---|---|
-| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[X33834](https://github.com/X33834)** | 上游开源 · 工具与作品 |
-| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[Morningstar202604](https://github.com/Morningstar202604)** | 作品集 · 长期项目 |
-| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[badhope](https://github.com/badhope)** | 个人主页 · 全栈工具馆 ◆ *你在这里* |
-| <img src="./assets/icons/si-gitcode.svg" width="18" alt="GitCode" /> | GitCode | **[badhope](https://gitcode.com/badhope)** | 移动端开发 · 离线工具 |
-| <img src="./assets/icons/si-gitee.svg" width="18" alt="Gitee" /> | Gitee | **[badhope](https://gitee.com/badhope)** | 作品镜像 · 小程序 |
+<details>
+<summary>关于本页</summary>
 
-<p align="center">
-  <img src="./assets/footer.svg" alt="" width="100%" />
-</p>
+This page is generated by `build.py` from one data source — `make gen` rebuilds every byte, `make verify` proves it offline.
 
-<p align="center"><sub>© badhope</sub></p>
+</details>
+
+All public repositories: [github.com/badhope](https://github.com/badhope)

@@ -1,158 +1,48 @@
-[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)
+<p align="center"><img src="assets/hero-ja.svg" alt="badhope · github.com/badhope" width="100%" /></p>
 
-<p align="center">
-  <img src="./assets/hero.svg" alt="badhope · github.com/badhope" width="100%" />
-</p>
+## いま
 
-<p align="center">
-  <img src="./assets/typing-ja.svg" alt="抽象的なアイデアを、動くインターフェースに落とし込む開発者。" width="600" />
-</p>
+- **moneyhelper** —— 対話型の家計エージェント。ローカル完結、数値は検証可能
+- **workbench** —— デスクトップ作業台（Tauri 2 + React）
+- アップストリーム修正：ohmyzsh、lefthook、betterleaks、scrapy
 
-<p align="center"><sub>ゆっくりは滑らか、滑らかは速い。</sub></p>
+## 代表作
 
-<table border="0">
-<tr>
-<td valign="top" width="58%">
+<p align="center"><a href="https://github.com/badhope/moneyhelper"><img src="assets/work-1-ja.svg" alt="moneyhelper" width="49.2%" /></a> <a href="https://github.com/badhope/workbench"><img src="assets/work-2-ja.svg" alt="workbench" width="49.2%" /></a></p>
 
-### について
+<p align="center"><a href="https://github.com/badhope/spark"><img src="assets/work-3-ja.svg" alt="spark" width="49.2%" /></a> <a href="https://github.com/badhope/world-walker"><img src="assets/work-4-ja.svg" alt="world-walker" width="49.2%" /></a></p>
 
-公開ツール・索引・小規模なソフトウェア実験の GitHub 拠点です。現在はプロフィールツール、AI エージェント、データ駆動のユーティリティに取り組んでいます。
+> その他の作品：[DU](https://github.com/badhope/DU) · [mashang](https://github.com/badhope/mashang) · [digilegacy](https://github.com/badhope/digilegacy) · [harbor](https://github.com/badhope/harbor) · [sciflow](https://github.com/badhope/sciflow) · [pocketmind](https://github.com/badhope/pocketmind) · [aquapilot](https://github.com/badhope/aquapilot) · [melee](https://github.com/badhope/melee)
 
-</td>
-<td valign="top" width="42%">
+## オープンソース
 
-### 近況
+| Upstream | Record |
+| --- | --- |
+| [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) | 3 merged · 3 under review |
+| [renovate-operator](https://github.com/mogenius/renovate-operator) | 1 merged · 1 under review |
+| [icalendar](https://github.com/python-icalendar/icalendar) | 3 merged |
+| [apache/airflow](https://github.com/apache/airflow) | 1 merged |
+| [betterleaks · lefthook · scrapy](https://github.com/betterleaks/betterleaks) | under review |
 
-- API-Market / MCP-HUB 索引のデータ整備
-- digilegacy と spark の継続開発
-- 49 種のツール集（DU）のドキュメント整備
+<sub>このアカウントと [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604) にまたがる記録。</sub>
 
-</td>
-</tr>
-</table>
+## 書きもの
 
-## ビルド
+- 2026-11-04 — [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167)
+- 2026-10-18 — [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657)
+- 2026-10-16 — [MCP 落地一年，我总结了 6 个没人告诉你的工程真相](https://zhuanlan.zhihu.com/p/2094232145015453253)
 
-プロフィール資産コンパイラ：単一の Python データ源から README と SVG カードを生成し、GitCode と Gitee へミラーします。
+<sub>CSDN · Juejin · Zhihu — <a href="https://blog.csdn.net/weixin_56622231">blog</a> · <a href="https://juejin.cn/user/2350111542479753">juejin</a> · <a href="https://www.zhihu.com/people/e7c851hd">zhihu</a></sub>
 
-**実行方法**
+**道具箱** — Python · TypeScript / React · Kotlin · Tauri · FastAPI · Docker · SQLite
 
-```bash
-make gen       # rebuild README + every SVG from accounts.py
-make verify    # offline gate: schema, asset refs, account isolation, idempotency
-make release   # version / CHANGELOG / profile.json consistency
-```
-
-**保証**
-
-- レンダリング時にネットワークへ接続しない — 同一コミット、同一バイト
-- 1 コマンドで全資産を再生成：<code>make gen</code>
-- オフラインゲートが古い資産や他アカウントの混入を遮断：<code>make verify</code>
-- バージョンの単一情報源は <code>kit/version.py</code>、<code>make release</code> で検証
-
-**構成**
-
-| Path | Purpose |
-|---|---|
-| `accounts.py` | single data source: accounts, copy, works catalogue |
-| `kit/` | renderer package: textutil -> icons -> cards -> readme -> build |
-| `data/*.json` | committed snapshots: stats, works, writing, extras |
-| `scripts/` | refresh (only network component), verify, generate, release |
-| `tests/` | stdlib unittest suite covering render, schema and gates |
-
-## 道具箱
-
-<p align="center">
-  <img src="./assets/skills-ja.svg" alt="道具箱" width="100%" />
-</p>
-
-## 主な作品
-
-| プロジェクト | スター | 更新日 |
-| --- | --- | --- |
-| [moneyhelper — 会話ファーストの個人金融エージェント — ローカル優先・LangGraph 編成](https://github.com/badhope/moneyhelper) | 92 | 2026-11-05 |
-| [world-walker — AI 駆動のテキストインタラクティブ小説エンジン](https://github.com/badhope/world-walker) | 18 | 2026-11-05 |
-| [mashang — サイバーパンク風オフライン Python 学習ターミナル](https://github.com/badhope/mashang) | 9 | 2026-11-05 |
-| [Flow — AI ネイティブ越境EC基盤 — ストアフロント・セラー台・5 エージェント](https://github.com/badhope/Flow) | 0 | 2026-11-05 |
-| [no-money](https://github.com/badhope/no-money) | 0 | 2026-11-05 |
-| [workbench — ローカル優先のデスクトップワークベンチ（Tauri 2 + React 19）](https://github.com/badhope/workbench) | 49 | 2026-11-04 |
-
-全公開リポジトリ： [github.com/badhope](https://github.com/badhope)
-
-## 数字で見る
-
-<p align="center">
-  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=public_repos&style=flat&label=%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA&labelColor=0E1630&color=D9B876" alt="リポジトリ: badhope" />
-  <img src="https://img.shields.io/github/stars/badhope?style=flat&labelColor=0E1630&color=D9B876" alt="累計スター: badhope" />
-  <img src="https://img.shields.io/github/followers/badhope?style=flat&labelColor=0E1630&color=D9B876" alt="フォロワー: badhope" />
-</p>
-
-<p align="center">
-  <img src="./assets/cards/stats-ja.svg" alt="GitHub stats" width="49%" />
-  <img src="./assets/cards/langs-ja.svg" alt="Top languages" width="49%" />
-</p>
-
-## 実績
-
-<p align="center">
-  <img src="./assets/snake-ja.svg" alt="contribution snake" width="100%" />
-</p>
-
-<p align="center">
-  <img src="./assets/achievements-ja.svg" alt="実績" width="90%" />
-</p>
+---
 
 <details>
-<summary>オープンソース</summary>
+<summary>このページについて</summary>
 
-パッチは ohmyzsh・tldr・icalendar・NUR などにマージ済み — 詳細は GitHub の2アカウントへ: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
+This page is generated by `build.py` from one data source — `make gen` rebuilds every byte, `make verify` proves it offline.
 
 </details>
 
-## アクティビティ
-
-<p align="center">
-  <img src="./assets/isocalendar-ja.svg" alt="Isocalendar" width="100%" />
-</p>
-
-<p align="center">
-  <img src="./assets/people-ja.svg" alt="People" width="100%" />
-</p>
-
-## ピン留め作品
-
-<p align="center">
-  <img src="./assets/cards/pin-1-ja.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-2-ja.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-3-ja.svg" alt="pinned work" width="32%" />
-</p>
-
-## 執筆
-
-| 日付 | 記事 |
-|---|---|
-| 2026-11-04 | [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167) |
-| 2026-10-18 | [Gemini 4 Argon が全面公開：半年ぶりの Google フラッグシップは期待に応えるか？](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
-| 2026-10-16 | [MCP 実装1年で分かった、誰も教えてくれなかった6つの現実](https://zhuanlan.zhihu.com/p/2094232145015453253) |
-| 2026-10-16 | [ローカルファースト AI：なぜ AI を自分の PC に戻したのか](https://zhuanlan.zhihu.com/p/2094233605513991576) |
-| 2026-10-16 | [AI Agent を公開する前に越える5つの関門：実案件の記録](https://zhuanlan.zhihu.com/p/2094218858789856836) |
-
-<sub>同時掲載 <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a> · <img src="./assets/icons/si-zhihu.svg" width="15" alt="Zhihu" /> <a href="https://www.zhihu.com/people/e7c851hd">Zhihu</a></sub>
-
-## ほかの場所
-
-> 同一人物の5つの拠点 — これらのアカウントは同じ人のミラーです。
-
-| | プラットフォーム | アカウント | 役割 |
-|---|---|---|---|
-| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[X33834](https://github.com/X33834)** | 上流 OSS · ツールと作品 |
-| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[Morningstar202604](https://github.com/Morningstar202604)** | ポートフォリオ · 長期プロジェクト |
-| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[badhope](https://github.com/badhope)** | プロフィール · ツール小屋 ◆ *現在地* |
-| <img src="./assets/icons/si-gitcode.svg" width="18" alt="GitCode" /> | GitCode | **[badhope](https://gitcode.com/badhope)** | モバイル開発 · オフラインツール |
-| <img src="./assets/icons/si-gitee.svg" width="18" alt="Gitee" /> | Gitee | **[badhope](https://gitee.com/badhope)** | ミラー · ミニアプリ |
-
-<p align="center">
-  <img src="./assets/footer.svg" alt="" width="100%" />
-</p>
-
-<p align="center"><sub>© badhope</sub></p>
+All public repositories: [github.com/badhope](https://github.com/badhope)

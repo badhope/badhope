@@ -1,160 +1,125 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""分区刷新编排器 —— profile-kit 的网络组件之一（与 refresh.py 互补）。
+"""Refresh the committed stats snapshot (the only network component).
 
-设计目标（对应"每个部分动态变化、按内容刷新、不要太频繁、不超余额"）：
-  - 每个 section 独立刷新、独立容错：某一块失败不影响其他块，
-    旧值保留（fail-soft），绝不整体崩溃、绝不清空已有数据。
-  - 变更才写盘：**只看数据本身**，不看时间戳。刷新后与磁盘旧值逐字段比对，
-    没变化就跳过写文件；配合 CI 的 `git diff` 可做到"无变化不提交"。
-  - 可被 CI 按需调用：
-        python scripts/refresh_sections.py --section stats
-        python scripts/refresh_sections.py --section writing
-        python scripts/refresh_sections.py            # 全部
-    （语言卡 / 贡献图由 workflow 里的 render_cards.mjs / snk 步骤负责。）
+    python3 scripts/refresh_sections.py --section stats --platform github
+    python3 scripts/refresh_sections.py --section stats --platform gitee
+    python3 scripts/refresh_sections.py --section stats --platform gitcode
 
-复用 refresh.py 的抓取函数（唯一权威数据源），不在本文件重复实现网络逻辑。
+Updates data/stats.json: account totals plus per-work stars for the featured
+works of each github account. Tokens are read from the environment when
+present (GITHUB_TOKEN, GITEE_TOKEN); everything degrades gracefully offline.
 """
 
 import argparse
 import datetime
 import json
+import os
 import pathlib
 import sys
+import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT))
 
-import accounts as A  # noqa: E402
-import refresh as R   # noqa: E402
+import build  # noqa: E402
 
 STATS_PATH = ROOT / "data" / "stats.json"
-WRITING_PATH = ROOT / "data" / "writing.json"
+
+GH_ACCOUNTS = {
+    "gh_badhope": "badhope",
+    "gh_morningstar": "Morningstar202604",
+    "gh_x33834": "X33834",
+}
 
 
-def account_keys(platform=None):
-    return [key for key in A.ACCOUNT_ORDER
-            if platform is None or A.ACCOUNTS[key]["platform"] == platform]
+def fetch_json(url, token=None):
+    req = urllib.request.Request(url, headers={"Accept": "application/json"})
+    if token:
+        req.add_header("Authorization", "token %s" % token)
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return json.loads(resp.read().decode("utf-8"))
 
 
-def _load_json(path, default):
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return default
+def gh_user(login, token):
+    return fetch_json("https://api.github.com/users/%s" % login, token)
 
 
-def _strip_meta(obj, keys=("as_of", "source", "fetched")):
-    """去掉时间戳类字段，只保留可比较的业务数据。"""
-    return {k: v for k, v in obj.items() if k not in keys}
+def gh_repo(owner, name, token):
+    return fetch_json("https://api.github.com/repos/%s/%s" % (owner, name), token)
 
 
-def _same_data(old, new):
-    """业务数据是否一致（忽略 as_of / source / fetched）。"""
-    return _strip_meta(old) == _strip_meta(new)
-
-
-def refresh_stats(platform=None):
-    """刷新全部账号的统计数字（repos/stars/followers/merged），逐账号容错。
-
-    返回 True 表示**数据**有变化并已写盘；只有时间戳变化时返回 False 且不落盘。
-    """
-    cur = _load_json(STATS_PATH, {"accounts": {}})
-    # 深拷贝一份原始数据用于比对；不能直接引用 accounts 内部对象
-    old_snapshot = json.loads(json.dumps(cur))
-    accounts = cur.setdefault("accounts", {})
-    failures, ok_count = [], 0
-    for key in account_keys(platform):
-        block = accounts.setdefault(key, {})
-        before = dict(block)
-        acct = A.ACCOUNTS[key]
-        plat, handle = acct["platform"], acct["handle"]
+def refresh_github(stats, token):
+    as_of = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+    accounts = stats.setdefault("accounts", {})
+    for key, login in GH_ACCOUNTS.items():
         try:
-            if plat == "github":
-                R.refresh_github(handle, block)
-            elif plat == "gitee":
-                R.refresh_gitee(handle, block)
-            elif plat == "gitcode":
-                R.refresh_gitcode(handle, block)
-            else:
-                print("  stats %-16s SKIP unknown platform" % key)
-                continue
-        except Exception as err:  # 单账号失败保留旧值
-            block.clear()
-            block.update(before)
-            failures.append(key)
-            print("  stats %-16s FAIL %s (kept old)" % (key, err))
+            user = gh_user(login, token)
+        except OSError as exc:
+            print("skip %s (%s): %s" % (key, login, exc))
             continue
-        if block == before:
-            # 数值没动，但也不能断言"抓取成功"——refresh_* 内部失败时会保留旧值。
-            print("  stats %-16s unchanged (or source unavailable)" % key)
-        else:
-            ok_count += 1
-            print("  stats %-16s UPDATED" % key)
-
-    # 只有业务数据变了才更新 as_of 并落盘（忽略时间戳字段本身）
-    if _same_data(old_snapshot, cur):
-        print("stats: no data change — skip write (as_of kept at %s)" % cur.get("as_of"))
-        return False
-
-    new = {
-        "as_of": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
-        "source": "scripts/refresh_sections.py",
-        "accounts": accounts,
-    }
-    STATS_PATH.parent.mkdir(parents=True, exist_ok=True)
-    STATS_PATH.write_text(
-        json.dumps(new, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8", newline="\n",
-    )
-    print("stats: written (updated %d accounts, %d failed)" % (ok_count, len(failures)))
-    return True
+        acc = accounts.setdefault(key, {})
+        acc.update({
+            "repos": user.get("public_repos"),
+            "stars": user.get("stars") if "stars" in user else None,
+            "followers": user.get("followers"),
+        })
+        # per-work stars for the featured works
+        works = acc.setdefault("works", {})
+        for slug in build.FEATURED.get(key, []):
+            try:
+                repo = gh_repo(login, slug, token)
+                works[slug] = {"stars": repo.get("stargazers_count"), "updated": (repo.get("pushed_at") or "")[:10]}
+            except OSError as exc:
+                print("skip work %s/%s: %s" % (login, slug, exc))
+    stats["as_of"] = as_of
+    stats["source"] = "scripts/refresh_sections.py"
 
 
-def refresh_writing():
-    """刷新文章列表（CSDN RSS + 人工维护），失败保留旧内容。
-
-    真正"无变化不写盘"：先取数（build_writing，不落盘），
-    与磁盘旧值比对后**仅在有内容变化时**才写文件。
-    """
-    before_obj = _load_json(WRITING_PATH, {"items": []})
+def refresh_gitee(stats):
+    accounts = stats.setdefault("accounts", {})
     try:
-        new_obj = R.build_writing()
-    except Exception as err:
-        print("writing: FAIL %s (kept old)" % err)
-        return False
-    if _same_data(before_obj, new_obj):
-        print("writing: no data change — skip write (fetched kept at %s)"
-              % before_obj.get("fetched"))
-        return False
-    WRITING_PATH.parent.mkdir(parents=True, exist_ok=True)
-    WRITING_PATH.write_text(
-        json.dumps(new_obj, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8", newline="\n",
-    )
-    print("writing: written")
-    return True
+        repos = fetch_json("https://gitee.com/api/v5/users/badhope/repos?per_page=100")
+        accounts["gitee_badhope"] = {
+            "repos": len(repos),
+            "stars": sum(r.get("stargazers_count") or 0 for r in repos),
+            "followers": None,
+        }
+        stats["as_of"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+    except OSError as exc:
+        print("skip gitee: %s" % exc)
+
+
+def refresh_gitcode(stats):
+    accounts = stats.setdefault("accounts", {})
+    try:
+        repos = fetch_json("https://gitcode.com/api/v5/users/badhope/repos?per_page=100")
+        accounts["gitcode_badhope"] = {
+            "repos": len(repos),
+            "stars": sum(r.get("stargazers_count") or 0 for r in repos),
+            "followers": None,
+        }
+        stats["as_of"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+    except OSError as exc:
+        print("skip gitcode: %s" % exc)
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="sectioned profile refresh (fail-soft, change-aware)")
-    ap.add_argument("--section", choices=["stats", "writing", "all"], default="all",
-                    help="which section to refresh (default: all)")
-    ap.add_argument("--platform", choices=["github", "gitee", "gitcode"],
-                    help="refresh only accounts on one platform")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--section", choices=["stats"], required=True)
+    ap.add_argument("--platform", choices=["github", "gitee", "gitcode"], required=True)
     args = ap.parse_args(argv)
 
-    results = []
-    if args.section in ("stats", "all"):
-        results.append(("stats", refresh_stats(args.platform)))
-    if args.section in ("writing", "all"):
-        results.append(("writing", refresh_writing()))
+    stats = json.loads(STATS_PATH.read_text(encoding="utf-8")) if STATS_PATH.exists() else {}
+    if args.platform == "github":
+        refresh_github(stats, os.environ.get("GITHUB_TOKEN"))
+    elif args.platform == "gitee":
+        refresh_gitee(stats)
+    else:
+        refresh_gitcode(stats)
 
-    print("\nrefresh summary:")
-    for name, changed in results:
-        print("  %-8s %s" % (name, "CHANGED" if changed else "no change"))
-    print("(langs cards / contribution graph are refreshed by render_cards.mjs / snk in CI)")
+    STATS_PATH.write_text(json.dumps(stats, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    print("stats refreshed (%s): as_of=%s" % (args.platform, stats.get("as_of")))
     return 0
 
 

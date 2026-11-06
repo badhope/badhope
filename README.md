@@ -1,158 +1,48 @@
-[English](README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md)
+<p align="center"><img src="assets/hero-en.svg" alt="badhope · github.com/badhope" width="100%" /></p>
 
-<p align="center">
-  <img src="./assets/hero.svg" alt="badhope · github.com/badhope" width="100%" />
-</p>
+## Now
 
-<p align="center">
-  <img src="./assets/typing-md.svg" alt="A full-stack developer turning abstract ideas into working interfaces." width="600" />
-</p>
+- **moneyhelper** — chat-first personal finance agent, local-first, numbers you can audit
+- **workbench** — a desktop workbench (Tauri 2 + React) for daily driver tasks
+- Upstream fixes: ohmyzsh, lefthook, betterleaks, scrapy
 
-<p align="center"><sub>Slow is smooth, and smooth is fast.</sub></p>
+## Featured work
 
-<table border="0">
-<tr>
-<td valign="top" width="58%">
+<p align="center"><a href="https://github.com/badhope/moneyhelper"><img src="assets/work-1-en.svg" alt="moneyhelper" width="49.2%" /></a> <a href="https://github.com/badhope/workbench"><img src="assets/work-2-en.svg" alt="workbench" width="49.2%" /></a></p>
 
-### About
+<p align="center"><a href="https://github.com/badhope/spark"><img src="assets/work-3-en.svg" alt="spark" width="49.2%" /></a> <a href="https://github.com/badhope/world-walker"><img src="assets/work-4-en.svg" alt="world-walker" width="49.2%" /></a></p>
 
-My GitHub home for open tools, indexes, and small software experiments. Current work spans profile tooling, AI agents, and data-driven utilities.
+> More on the shelf: [DU](https://github.com/badhope/DU) · [mashang](https://github.com/badhope/mashang) · [digilegacy](https://github.com/badhope/digilegacy) · [harbor](https://github.com/badhope/harbor) · [sciflow](https://github.com/badhope/sciflow) · [pocketmind](https://github.com/badhope/pocketmind) · [aquapilot](https://github.com/badhope/aquapilot) · [melee](https://github.com/badhope/melee)
 
-</td>
-<td valign="top" width="42%">
+## Open source
 
-### Now
+| Upstream | Record |
+| --- | --- |
+| [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) | 3 merged · 3 under review |
+| [renovate-operator](https://github.com/mogenius/renovate-operator) | 1 merged · 1 under review |
+| [icalendar](https://github.com/python-icalendar/icalendar) | 3 merged |
+| [apache/airflow](https://github.com/apache/airflow) | 1 merged |
+| [betterleaks · lefthook · scrapy](https://github.com/betterleaks/betterleaks) | under review |
 
-- Maintaining the API-Market and MCP-HUB indexes
-- Advancing digilegacy and spark
-- Documenting the 49-tool DU collection
-
-</td>
-</tr>
-</table>
-
-## Build
-
-Profile asset compiler: writes README files and SVG cards from one Python data source, then mirrors them to GitCode and Gitee.
-
-**Run it**
-
-```bash
-make gen       # rebuild README + every SVG from accounts.py
-make verify    # offline gate: schema, asset refs, account isolation, idempotency
-make release   # version / CHANGELOG / profile.json consistency
-```
-
-**Guarantee**
-
-- Rendering never touches the network — same commit, same bytes
-- One command rebuilds every asset: <code>make gen</code>
-- Offline gate fails the build on a stale or foreign asset: <code>make verify</code>
-- Single version source in <code>kit/version.py</code>, checked by <code>make release</code>
-
-**Layout**
-
-| Path | Purpose |
-|---|---|
-| `accounts.py` | single data source: accounts, copy, works catalogue |
-| `kit/` | renderer package: textutil -> icons -> cards -> readme -> build |
-| `data/*.json` | committed snapshots: stats, works, writing, extras |
-| `scripts/` | refresh (only network component), verify, generate, release |
-| `tests/` | stdlib unittest suite covering render, schema and gates |
-
-## Toolbox
-
-<p align="center">
-  <img src="./assets/skills-md.svg" alt="Toolbox" width="100%" />
-</p>
-
-## Selected work
-
-| Project | Stars | Updated |
-| --- | --- | --- |
-| [moneyhelper — Chat-first personal finance agent — local-first, Lang…](https://github.com/badhope/moneyhelper) | 92 | 2026-11-05 |
-| [world-walker — AI-driven interactive text fiction engine](https://github.com/badhope/world-walker) | 18 | 2026-11-05 |
-| [mashang — Cyberpunk offline Python learning terminal — 30 quests, a…](https://github.com/badhope/mashang) | 9 | 2026-11-05 |
-| [Flow — AI-native cross-border commerce platform — storefront, selle…](https://github.com/badhope/Flow) | 0 | 2026-11-05 |
-| [no-money — Income, tax, social-insurance and labor-rights calculato…](https://github.com/badhope/no-money) | 0 | 2026-11-05 |
-| [workbench — A local-first desktop workbench (Tauri 2 + React 19) wi…](https://github.com/badhope/workbench) | 49 | 2026-11-04 |
-
-All public repositories: [github.com/badhope](https://github.com/badhope)
-
-## Numbers
-
-<p align="center">
-  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fbadhope&query=public_repos&style=flat&label=repos&labelColor=0E1630&color=D9B876" alt="repos: badhope" />
-  <img src="https://img.shields.io/github/stars/badhope?style=flat&labelColor=0E1630&color=D9B876" alt="stars: badhope" />
-  <img src="https://img.shields.io/github/followers/badhope?style=flat&labelColor=0E1630&color=D9B876" alt="followers: badhope" />
-</p>
-
-<p align="center">
-  <img src="./assets/cards/stats-en.svg" alt="GitHub stats" width="49%" />
-  <img src="./assets/cards/langs-en.svg" alt="Top languages" width="49%" />
-</p>
-
-## Achievements
-
-<p align="center">
-  <img src="./assets/snake-md.svg" alt="contribution snake" width="100%" />
-</p>
-
-<p align="center">
-  <img src="./assets/achievements-en.svg" alt="Achievements" width="90%" />
-</p>
-
-<details>
-<summary>Open source</summary>
-
-Patches merged upstream into ohmyzsh, tldr, icalendar, NUR and more — details on the two GitHub accounts: [X33834](https://github.com/X33834) · [Morningstar202604](https://github.com/Morningstar202604)
-
-</details>
-
-## Activity
-
-<p align="center">
-  <img src="./assets/isocalendar-md.svg" alt="Isocalendar" width="100%" />
-</p>
-
-<p align="center">
-  <img src="./assets/people-md.svg" alt="People" width="100%" />
-</p>
-
-## Pinned work
-
-<p align="center">
-  <img src="./assets/cards/pin-1-en.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-2-en.svg" alt="pinned work" width="32%" />
-  <img src="./assets/cards/pin-3-en.svg" alt="pinned work" width="32%" />
-</p>
+<sub>Tracked across this account and [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604).</sub>
 
 ## Writing
 
-| Date | Article |
-|---|---|
-| 2026-11-04 | [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167) |
-| 2026-10-18 | [Gemini 4 Argon Opens to Everyone: Can Google's Half-Year Flagship Deliver?](https://blog.csdn.net/weixin_56622231/article/details/168251657) |
-| 2026-10-16 | [A Year of MCP in Production: Six Engineering Truths Nobody Told Me](https://zhuanlan.zhihu.com/p/2094232145015453253) |
-| 2026-10-16 | [Local-First AI: Why I Put AI Back on My Own Computer](https://zhuanlan.zhihu.com/p/2094233605513991576) |
-| 2026-10-16 | [Five Gates Before Shipping an AI Agent: Notes from a Real Project](https://zhuanlan.zhihu.com/p/2094218858789856836) |
+- 2026-11-04 — [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167)
+- 2026-10-18 — [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657)
+- 2026-10-16 — [MCP 落地一年，我总结了 6 个没人告诉你的工程真相](https://zhuanlan.zhihu.com/p/2094232145015453253)
 
-<sub>Also on <img src="./assets/icons/si-csdn.svg" width="15" alt="CSDN" /> <a href="https://blog.csdn.net/weixin_56622231">CSDN</a> · <img src="./assets/icons/si-juejin.svg" width="15" alt="Juejin" /> <a href="https://juejin.cn/user/2350111542479753">Juejin</a> · <img src="./assets/icons/si-zhihu.svg" width="15" alt="Zhihu" /> <a href="https://www.zhihu.com/people/e7c851hd">Zhihu</a></sub>
+<sub>CSDN · Juejin · Zhihu — <a href="https://blog.csdn.net/weixin_56622231">blog</a> · <a href="https://juejin.cn/user/2350111542479753">juejin</a> · <a href="https://www.zhihu.com/people/e7c851hd">zhihu</a></sub>
 
-## Elsewhere
+**Toolbox** — Python · TypeScript / React · Kotlin · Tauri · FastAPI · Docker · SQLite
 
-> One identity, five homes — these five accounts mirror the same person.
+---
 
-| | Platform | Account | Role |
-|---|---|---|---|
-| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[X33834](https://github.com/X33834)** | Upstream OSS · tools and works |
-| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[Morningstar202604](https://github.com/Morningstar202604)** | Portfolio · long-horizon works |
-| <img src="./assets/icons/si-github.svg" width="18" alt="GitHub" /> | GitHub | **[badhope](https://github.com/badhope)** | Profile · full-stack toolshop ◆ *you are here* |
-| <img src="./assets/icons/si-gitcode.svg" width="18" alt="GitCode" /> | GitCode | **[badhope](https://gitcode.com/badhope)** | Mobile dev · offline tools |
-| <img src="./assets/icons/si-gitee.svg" width="18" alt="Gitee" /> | Gitee | **[badhope](https://gitee.com/badhope)** | Mirror · mini-programs |
+<details>
+<summary>About this page</summary>
 
-<p align="center">
-  <img src="./assets/footer.svg" alt="" width="100%" />
-</p>
+This page is generated by `build.py` from one data source — `make gen` rebuilds every byte, `make verify` proves it offline.
 
-<p align="center"><sub>© badhope</sub></p>
+</details>
+
+All public repositories: [github.com/badhope](https://github.com/badhope)

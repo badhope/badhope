@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="608" height="152" viewBox="0 0 608 152" role="img" aria-label="spark — Python · React · self-hosted">
+<style>
+  text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .fg { fill: #1F2328; } .muted { fill: #59636E; } .accent { fill: #4F46E5; }
+  .line { stroke: #D1D9E0; stroke-width: 1; }
+  .chip { fill: rgba(79,70,229,0.08); }
+  @media (prefers-color-scheme: dark) {
+    .fg { fill: #E6EDF3; } .muted { fill: #8B949E; } .accent { fill: #A5B4FC; }
+    .line { stroke: #30363D; } .chip { fill: rgba(165,180,252,0.14); }
+  }
+</style>
+
+<g transform="translate(0,6)">
+  <line x1="2" y1="10" x2="606" y2="10" class="line"/>
+  <text x="2" y="42" class="mono fg" font-size="21" font-weight="600">spark</text>
+  <text x="606" y="42" text-anchor="end" class="mono muted" font-size="14">★ 21</text>
+  <text x="2" y="72" class="muted" font-size="13.5">A self-hosted coding agent harness: cockpit UI, sandboxed runs, MCP tools —…</text>
+  <text x="2" y="102" class="muted" font-size="12" opacity="0.85">Python · React · self-hosted</text>
+  <a href="https://github.com/badhope/spark"><rect x="0" y="0" width="608" height="152" fill="transparent"><title>https://github.com/badhope/spark</title></rect></a>
+  <text x="2" y="132" class="accent mono" font-size="12">github.com/badhope/spark</text>
+</g>
+</svg>

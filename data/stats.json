@@ -1,72 +1,90 @@
 {
-  "as_of": "2026-11-05",
-  "source": "scripts/refresh_sections.py",
-  "accounts": {
-    "gh_x33834": {
-      "repos": 28,
-      "stars": 5,
-      "followers": 2,
-      "merged": 1,
-      "commits": 320,
-      "prs": 19,
-      "issues": 23,
-      "reviews": 0,
-      "contributions_window": {
-        "from": "2025-11-02T00:00:00Z",
-        "to": "2026-11-05T23:59:59Z"
-      },
-      "gists": 0,
-      "organizations": 0,
-      "starred": 2,
-      "following": 27
+ "accounts": {
+  "gh_badhope": {
+   "commits": 2324,
+   "contributions_window": {
+    "from": "2025-11-02T00:00:00Z",
+    "to": "2026-11-05T23:59:59Z"
+   },
+   "followers": 22,
+   "following": 31,
+   "gists": 0,
+   "issues": 14,
+   "merged": 31,
+   "organizations": 0,
+   "prs": 303,
+   "repos": 34,
+   "reviews": 5,
+   "starred": 184,
+   "stars": 252,
+   "works": {
+    "moneyhelper": {
+     "stars": 92,
+     "updated": "2026-11-06"
     },
-    "gh_morningstar": {
-      "repos": 34,
-      "stars": 4,
-      "followers": 18,
-      "merged": 16,
-      "commits": 2012,
-      "prs": 64,
-      "issues": 9,
-      "reviews": 2,
-      "contributions_window": {
-        "from": "2025-11-02T00:00:00Z",
-        "to": "2026-11-05T23:59:59Z"
-      },
-      "gists": 0,
-      "organizations": 0,
-      "starred": 73,
-      "following": 27
+    "spark": {
+     "stars": 21,
+     "updated": "2026-11-06"
     },
-    "gh_badhope": {
-      "repos": 34,
-      "stars": 252,
-      "followers": 22,
-      "merged": 31,
-      "commits": 2324,
-      "prs": 303,
-      "issues": 14,
-      "reviews": 5,
-      "contributions_window": {
-        "from": "2025-11-02T00:00:00Z",
-        "to": "2026-11-05T23:59:59Z"
-      },
-      "gists": 0,
-      "organizations": 0,
-      "starred": 184,
-      "following": 31
+    "workbench": {
+     "stars": 49,
+     "updated": "2026-11-04"
     },
-    "gitcode_badhope": {
-      "repos": 28,
-      "stars": 12,
-      "followers": 0,
-      "merged": null
-    },
-    "gitee_badhope": {
-      "repos": 25,
-      "stars": 3,
-      "followers": 0,
-      "merged": null
+    "world-walker": {
+     "stars": 18,
+     "updated": "2026-11-05"
     }
+   }
+  },
+  "gh_morningstar": {
+   "commits": 2012,
+   "contributions_window": {
+    "from": "2025-11-02T00:00:00Z",
+    "to": "2026-11-05T23:59:59Z"
+   },
+   "followers": 18,
+   "following": 27,
+   "gists": 0,
+   "issues": 9,
+   "merged": 16,
+   "organizations": 0,
+   "prs": 64,
+   "repos": 34,
+   "reviews": 2,
+   "starred": 73,
+   "stars": 4
+  },
+  "gh_x33834": {
+   "commits": 320,
+   "contributions_window": {
+    "from": "2025-11-02T00:00:00Z",
+    "to": "2026-11-05T23:59:59Z"
+   },
+   "followers": 2,
+   "following": 27,
+   "gists": 0,
+   "issues": 23,
+   "merged": 1,
+   "organizations": 0,
+   "prs": 19,
+   "repos": 28,
+   "reviews": 0,
+   "starred": 2,
+   "stars": 5
+  },
+  "gitcode_badhope": {
+   "followers": 0,
+   "merged": null,
+   "repos": 28,
+   "stars": 12
+  },
+  "gitee_badhope": {
+   "followers": 0,
+   "merged": null,
+   "repos": 25,
+   "stars": 3
   }
+ },
+ "as_of": "2026-11-05",
+ "source": "scripts/refresh_sections.py"
 }
