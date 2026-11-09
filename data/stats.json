@@ -6,25 +6,25 @@
     "from": "2025-11-02T00:00:00Z",
     "to": "2026-11-05T23:59:59Z"
    },
-   "followers": 22,
+   "followers": 27,
    "following": 31,
    "gists": 0,
    "issues": 14,
    "merged": 31,
    "organizations": 0,
    "prs": 303,
-   "repos": 34,
+   "repos": 52,
    "reviews": 5,
    "starred": 184,
-   "stars": 252,
+   "stars": null,
    "works": {
     "moneyhelper": {
-     "stars": 92,
+     "stars": 101,
      "updated": "2026-11-06"
     },
     "spark": {
-     "stars": 21,
-     "updated": "2026-11-06"
+     "stars": 28,
+     "updated": "2026-11-07"
     },
     "workbench": {
      "stars": 49,
@@ -32,7 +32,7 @@
     },
     "world-walker": {
      "stars": 18,
-     "updated": "2026-11-05"
+     "updated": "2026-11-08"
     }
    }
   },
@@ -49,10 +49,28 @@
    "merged": 16,
    "organizations": 0,
    "prs": 64,
-   "repos": 34,
+   "repos": 35,
    "reviews": 2,
    "starred": 73,
-   "stars": 4
+   "stars": null,
+   "works": {
+    "moneyhelper": {
+     "stars": 0,
+     "updated": "2026-11-06"
+    },
+    "sciflow": {
+     "stars": 0,
+     "updated": "2026-11-06"
+    },
+    "spark": {
+     "stars": 0,
+     "updated": "2026-11-07"
+    },
+    "workbench": {
+     "stars": 1,
+     "updated": "2026-11-09"
+    }
+   }
   },
   "gh_x33834": {
    "commits": 320,
@@ -67,10 +85,28 @@
    "merged": 1,
    "organizations": 0,
    "prs": 19,
-   "repos": 28,
+   "repos": 29,
    "reviews": 0,
    "starred": 2,
-   "stars": 5
+   "stars": null,
+   "works": {
+    "CodePocket": {
+     "stars": 2,
+     "updated": "2026-10-17"
+    },
+    "harbor": {
+     "stars": 2,
+     "updated": "2026-11-07"
+    },
+    "mashang": {
+     "stars": 0,
+     "updated": "2026-11-06"
+    },
+    "world-walker": {
+     "stars": 1,
+     "updated": "2026-11-08"
+    }
+   }
   },
   "gitcode_badhope": {
    "followers": 0,
@@ -79,12 +115,11 @@
    "stars": 12
   },
   "gitee_badhope": {
-   "followers": 0,
-   "merged": null,
+   "followers": null,
    "repos": 25,
    "stars": 3
   }
  },
- "as_of": "2026-11-05",
+ "as_of": "2026-11-09",
  "source": "scripts/refresh_sections.py"
 }
