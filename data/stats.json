@@ -19,19 +19,19 @@
    "stars": null,
    "works": {
     "moneyhelper": {
-     "stars": 101,
-     "updated": "2026-11-06"
+     "stars": 103,
+     "updated": "2026-11-15"
     },
     "spark": {
-     "stars": 28,
-     "updated": "2026-11-07"
+     "stars": 31,
+     "updated": "2026-11-16"
     },
     "workbench": {
      "stars": 49,
-     "updated": "2026-11-04"
+     "updated": "2026-11-16"
     },
     "world-walker": {
-     "stars": 18,
+     "stars": 20,
      "updated": "2026-11-08"
     }
    }
@@ -56,19 +56,19 @@
    "works": {
     "moneyhelper": {
      "stars": 0,
-     "updated": "2026-11-06"
+     "updated": "2026-11-15"
     },
     "sciflow": {
      "stars": 0,
-     "updated": "2026-11-06"
+     "updated": "2026-11-15"
     },
     "spark": {
      "stars": 0,
-     "updated": "2026-11-07"
+     "updated": "2026-11-16"
     },
     "workbench": {
      "stars": 1,
-     "updated": "2026-11-09"
+     "updated": "2026-11-16"
     }
    }
   },
@@ -120,6 +120,6 @@
    "stars": 3
   }
  },
- "as_of": "2026-11-09",
+ "as_of": "2026-11-16",
  "source": "scripts/refresh_sections.py"
 }
