@@ -17,6 +17,7 @@ import json
 import os
 import pathlib
 import sys
+import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -33,7 +34,10 @@ GH_ACCOUNTS = {
 }
 
 
-def fetch_json(url, token=None):
+def fetch_json(url, token=None, token_param=None):
+    if token_param:
+        sep = "&" if "?" in url else "?"
+        url = "%s%saccess_token=%s" % (url, sep, urllib.parse.quote(token_param, safe=""))
     req = urllib.request.Request(url, headers={"Accept": "application/json"})
     if token:
         req.add_header("Authorization", "token %s" % token)
@@ -49,19 +53,40 @@ def gh_repo(owner, name, token):
     return fetch_json("https://api.github.com/repos/%s/%s" % (owner, name), token)
 
 
+def gh_owned_repos(login, token):
+    """Every personal, non-fork repo owned by the account."""
+    repos = []
+    page = 1
+    while True:
+        url = "https://api.github.com/users/%s/repos?type=owner&per_page=100&page=%d" % (login, page)
+        batch = fetch_json(url, token)
+        if not batch:
+            break
+        repos.extend(batch)
+        if len(batch) < 100:
+            break
+        page += 1
+    return [
+        repo for repo in repos
+        if repo.get("owner", {}).get("login", "").lower() == login.lower()
+        and not repo.get("fork")
+    ]
+
+
 def refresh_github(stats, token):
     as_of = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     accounts = stats.setdefault("accounts", {})
     for key, login in GH_ACCOUNTS.items():
         try:
             user = gh_user(login, token)
+            owned = gh_owned_repos(login, token)
         except OSError as exc:
             print("skip %s (%s): %s" % (key, login, exc))
             continue
         acc = accounts.setdefault(key, {})
         acc.update({
-            "repos": user.get("public_repos"),
-            "stars": user.get("stars") if "stars" in user else None,
+            "repos": len(owned),
+            "stars": None,
             "followers": user.get("followers"),
         })
         # per-work stars for the featured works
@@ -76,32 +101,55 @@ def refresh_github(stats, token):
     stats["source"] = "scripts/refresh_sections.py"
 
 
-def refresh_gitee(stats):
+def platform_repos(url, token, namespace_type):
+    """Paginate a Gitee/GitCode user repo endpoint and keep personal non-forks."""
+    repos = []
+    page = 1
+    while True:
+        batch = fetch_json("%s?type=owner&per_page=100&page=%d" % (url, page), token_param=token)
+        if not batch:
+            break
+        repos.extend(batch)
+        if len(batch) < 100:
+            break
+        page += 1
+    return [
+        repo for repo in repos
+        if (repo.get("namespace") or {}).get("type") == namespace_type
+        and not repo.get("fork")
+    ]
+
+
+def refresh_gitee(stats, token):
     accounts = stats.setdefault("accounts", {})
     try:
-        repos = fetch_json("https://gitee.com/api/v5/users/badhope/repos?per_page=100")
+        repos = platform_repos("https://gitee.com/api/v5/users/badhope/repos", token, "personal")
+        user = fetch_json("https://gitee.com/api/v5/users/badhope", token_param=token)
         accounts["gitee_badhope"] = {
             "repos": len(repos),
             "stars": sum(r.get("stargazers_count") or 0 for r in repos),
-            "followers": None,
+            "followers": user.get("followers"),
         }
         stats["as_of"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     except OSError as exc:
         print("skip gitee: %s" % exc)
+        raise
 
 
-def refresh_gitcode(stats):
+def refresh_gitcode(stats, token):
     accounts = stats.setdefault("accounts", {})
     try:
-        repos = fetch_json("https://gitcode.com/api/v5/users/badhope/repos?per_page=100")
+        repos = platform_repos("https://api.gitcode.com/api/v5/users/badhope/repos", token, "user")
+        user = fetch_json("https://api.gitcode.com/api/v5/users/badhope", token_param=token)
         accounts["gitcode_badhope"] = {
             "repos": len(repos),
             "stars": sum(r.get("stargazers_count") or 0 for r in repos),
-            "followers": None,
+            "followers": user.get("followers"),
         }
         stats["as_of"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     except OSError as exc:
         print("skip gitcode: %s" % exc)
+        raise
 
 
 def main(argv=None):
@@ -114,9 +162,9 @@ def main(argv=None):
     if args.platform == "github":
         refresh_github(stats, os.environ.get("GITHUB_TOKEN"))
     elif args.platform == "gitee":
-        refresh_gitee(stats)
+        refresh_gitee(stats, os.environ.get("GITEE_TOKEN"))
     else:
-        refresh_gitcode(stats)
+        refresh_gitcode(stats, os.environ.get("GITCODE_TOKEN"))
 
     STATS_PATH.write_text(json.dumps(stats, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     print("stats refreshed (%s): as_of=%s" % (args.platform, stats.get("as_of")))

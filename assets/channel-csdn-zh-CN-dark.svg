@@ -31,8 +31,8 @@
 <text x="54" y="64" text-anchor="middle" font-size="24" font-weight="750" fill="#FF7455">C</text>
 <text x="98" y="50" class="ink" font-size="23" font-weight="700">CSDN</text>
 <rect x="452" y="24" width="108" height="22" rx="11" fill="#FF7455" opacity="0.12"/>
-<text x="506" y="39" text-anchor="middle" class="mono" font-size="9.2" letter-spacing="1" fill="#FF7455">自动发布 · 长文</text>
-<text x="98" y="78" class="muted" font-size="13.5" opacity="0.92">工程手记与踩坑复盘，按计划自动发布。</text>
+<text x="506" y="39" text-anchor="middle" class="mono" font-size="9.2" letter-spacing="1" fill="#FF7455">长文归档</text>
+<text x="98" y="78" class="muted" font-size="13.5" opacity="0.92">工程手记与踩坑复盘，整理后归档发布。</text>
 <text x="98" y="110" class="mono faint" font-size="10.5">badhope.blog.csdn.net</text>
 <text x="556" y="110" text-anchor="end" class="mono" font-size="12" fill="#FF7455">↗</text>
 </svg>

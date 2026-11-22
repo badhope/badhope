@@ -28,7 +28,10 @@ fi
 
 # 账号无关的共享层（绝不含 assets/ 卡片、data/cards/、data/contrib/）
 # 清单只在这一处维护：mirror.yml / refresh.yml 不再覆盖，防止两处漂移回灌旧版。
-SHARED_PATHS="build.py data/stats.json scripts tests Makefile .gitattributes .gitignore"
+SHARED_PATHS="build.py data/stats.json scripts tests Makefile .gitattributes .gitignore CHANGELOG.md LICENSE"
+
+# 旧设计留在镜像里的文件；每次同步顺手清掉，避免旧数据/旧 CI 继续存在。
+LEGACY_PATHS=".github/workflows/snake.yml .github/workflows/refresh.yml .gitee .gitcode .github/ISSUE_TEMPLATE .github/PULL_REQUEST_TEMPLATE.md CODE_OF_CONDUCT.md CONTRIBUTING.md SECURITY.md data/cards data/contrib data/extras.json data/icons data/linguist_colors.json data/works.json data/writing.json assets/png"
 
 PYTHON_BIN="${PYTHON_BIN:-}"
 if [ -z "$PYTHON_BIN" ]; then
@@ -71,22 +74,16 @@ for p in $SHARED_PATHS; do
   fi
 done
 
-# 目标仓库里可能残留别的账号的卡片/贡献图种子（历史同步遗留），一并清掉
-for group in cards contrib; do
-  if [ -d "$target/data/$group" ]; then
-    find "$target/data/$group" -mindepth 1 -maxdepth 1 -type d ! -name "$account" -exec rm -rf {} +
-  fi
+# 清掉旧设计留下的数据、图标、平台 CI 与旧工作流
+for p in $LEGACY_PATHS; do
+  rm -rf "${target:?}/$p"
 done
-if [ -d "$target/assets" ]; then
-  find "$target/assets" -mindepth 1 -maxdepth 1 ! -name 'png' -exec rm -rf {} +
-  if [ -d "$target/assets/png" ]; then
-    find "$target/assets/png" -mindepth 1 -maxdepth 1 -type d ! -name "$account" -exec rm -rf {} +
-    find "$target/assets/png" -mindepth 1 -maxdepth 1 -type f -delete
-  fi
-fi
 
 # 按目标账号原地重建 README 与全部 SVG（README 用目标仓库自己的 profile 与文案）
 ( cd "$target" && "$PYTHON_BIN" scripts/generate.py --here )
+
+# 镜像端也要过一遍离线门禁，坏页面不允许推上去
+( cd "$target" && "$PYTHON_BIN" scripts/doctor.py && "$PYTHON_BIN" -m unittest discover -s tests -q && "$PYTHON_BIN" scripts/verify.py )
 
 cd "$target"
 git add -A

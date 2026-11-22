@@ -42,7 +42,7 @@
 </g>
 <text x="28" y="38" class="mono faint" font-size="10.5" letter-spacing="1.5">FEATURED / 01</text>
 <rect x="486" y="20" width="76" height="24" rx="12" fill="#171F30" stroke="#303A50"/>
-<text x="524" y="36" text-anchor="middle" class="mono muted" font-size="11">★ 103</text>
+<text x="524" y="36" text-anchor="middle" class="mono muted" font-size="11">★ 105</text>
 <text x="28" y="82" class="ink" font-size="29" font-weight="720" letter-spacing="-0.6">moneyhelper</text>
 <text x="28" y="110" class="muted" font-size="14.2" opacity="0.92">A chat-first finance agent that keeps the books on</text>
 <text x="28" y="131" class="muted" font-size="14.2" opacity="0.92">your machine. Sentence-level bookkeeping, portfolio</text>

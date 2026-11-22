@@ -99,17 +99,17 @@ COPY = {
             "en": [
                 "**moneyhelper** — a chat-first personal finance agent; local-first, every number auditable",
                 "**workbench** — a Tauri 2 + React desktop workbench that keeps the daily grind in one window",
-                "**Publishing line** — CSDN long-form and Juejin notes, automated; these two channels only",
+                "**Publishing line** — CSDN long-form and Juejin notes; these two channels only",
             ],
             "zh-CN": [
                 "**moneyhelper** —— 对话优先的个人理财 Agent，本地优先，每个数字都能复核",
                 "**workbench** —— Tauri 2 + React 的桌面工作台，把日常琐事收进一个窗口",
-                "**发布管线** —— CSDN 长文与掘金沸点自动发布，只保留这两条通道",
+                "**发布管线** —— CSDN 长文与掘金沸点，只保留这两条通道",
             ],
             "ja": [
                 "**moneyhelper** —— 対話型の家計エージェント。ローカル完結、数値は検証可能",
                 "**workbench** —— Tauri 2 + React のデスクトップ作業台",
-                "**配信ライン** —— CSDN 長文と Juejin の短文を自動投稿。この二経路だけ",
+                "**配信ライン** —— CSDN 長文と Juejin の短文。この二経路だけ",
             ],
         },
         "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
@@ -201,7 +201,7 @@ COPY = {
             "zh-CN": [
                 "**mashang** —— 赛博朋克风离线编程终端，内置 CPython 3.13",
                 "**pocketmind** —— 住进 Android 的常驻 Agent，一个 APK 独立运行",
-                "**发布管线** —— CSDN 长文与掘金沸点自动发布",
+                "**发布管线** —— CSDN 长文与掘金沸点",
             ]
         },
         "more_intro": {"zh-CN": "架子上还有"},
@@ -217,7 +217,7 @@ COPY = {
             "zh-CN": [
                 "**shopcash** —— 单机门店收银与记账，资金零介入",
                 "**quiz-chest** —— 本地优先的自有题库练习",
-                "**发布管线** —— CSDN 长文与掘金沸点自动发布",
+                "**发布管线** —— CSDN 长文与掘金沸点",
             ]
         },
         "more_intro": {"zh-CN": "架子上还有"},
@@ -391,11 +391,11 @@ CHANNELS = [
         "initial": "C",
         "url": "https://blog.csdn.net/weixin_56622231",
         "display": "badhope.blog.csdn.net",
-        "tag": {"en": "AUTO · LONG FORM", "zh-CN": "自动发布 · 长文", "ja": "自動公開 · 長文"},
+        "tag": {"en": "ARCHIVE · LONG FORM", "zh-CN": "长文归档", "ja": "アーカイブ · 長文"},
         "note": {
-            "en": "Engineering notes and post-mortems, published on a schedule.",
-            "zh-CN": "工程手记与踩坑复盘，按计划自动发布。",
-            "ja": "工程メモと失敗談を定期公開。",
+            "en": "Engineering notes and post-mortems, archived and published by hand.",
+            "zh-CN": "工程手记与踩坑复盘，整理后归档发布。",
+            "ja": "工程メモと失敗談を整理して公開。",
         },
     },
     {

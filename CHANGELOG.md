@@ -6,7 +6,15 @@ All notable changes to the profile page generator. The format follows
 
 ## [Unreleased]
 
+### Removed
+- Obsolete contribution-snake workflow and its `output` branch payload; the
+  page has not used it since the celestial rebuild.
+- Legacy GitCode/Gitee CI copies that referenced deleted scripts, plus old
+  card/icon data left in the mirrors.
+
 ### Changed
+- Stats refresh now counts personal, non-fork repositories on GitHub, Gitee
+  and GitCode; the weekly job is no longer allowed to fail silently.
 - Rebuilt the shared profile template around a celestial theme: star fields,
   constellation lines, a gold-rimmed rotating starchart (SMIL, 180s), and
   light/dark palettes that read as a day-sky atlas rather than a plain white

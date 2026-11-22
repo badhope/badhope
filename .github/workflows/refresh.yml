@@ -35,13 +35,13 @@ jobs:
         run: python3 scripts/refresh_sections.py --section stats --platform github
 
       - name: Refresh stats (gitee)
-        continue-on-error: true
         env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
         run: python3 scripts/refresh_sections.py --section stats --platform gitee
 
       - name: Refresh stats (gitcode)
-        continue-on-error: true
+        env:
+          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
         run: python3 scripts/refresh_sections.py --section stats --platform gitcode
 
       - name: Rebuild page with fresh numbers

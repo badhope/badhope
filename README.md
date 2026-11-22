@@ -13,7 +13,7 @@
 
 - **moneyhelper** — a chat-first personal finance agent; local-first, every number auditable
 - **workbench** — a Tauri 2 + React desktop workbench that keeps the daily grind in one window
-- **Publishing line** — CSDN long-form and Juejin notes, automated; these two channels only
+- **Publishing line** — CSDN long-form and Juejin notes; these two channels only
 
 ## 02 · Selected work
 
