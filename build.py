@@ -676,8 +676,9 @@ def svg_work(account, lang, slug, index, theme):
         out.append(f'<text x="28" y="{110 + i * 21}" class="muted" font-size="14.2" opacity="0.92">{esc(part)}</text>')
     for item in chip_row(28, 170, [s.strip() for s in stack.split("·")][:3], theme, lang):
         out.append(item)
-    out.append(f'<text x="28" y="214" class="mono" font-size="10.5" fill="{accent}">{esc(url.replace("https://", ""))}</text>')
-    out.append(f'<text x="556" y="214" text-anchor="end" class="mono" font-size="12" fill="{accent}">↗</text>')
+    out.append(f'<line x1="28" y1="201" x2="556" y2="201" stroke="{t["line"]}" opacity="0.7"/>')
+    out.append(f'<text x="28" y="217" class="mono faint" font-size="9.5" letter-spacing="1.4">OPEN</text>')
+    out.append(f'<text x="556" y="217" text-anchor="end" class="mono" font-size="14" fill="{accent}">↗</text>')
     out.append("</svg>")
     return "\n".join(out)
 
