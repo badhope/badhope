@@ -11,22 +11,22 @@
 
 ## 01 · 现在
 
-- **当前仓库** —— moneyhelper、spark、workbench、world-walker
-- **外部 PR** —— 6 条：3 已合并，3 开放中
-- **发布** —— CSDN 长文与掘金沸点，两条通道
+- **个人仓库** — 27 个 · 个人命名空间，不含 fork
+- **外部 PR** — 6 条：已合并 3，开放中 3，已关闭 0
+- **发布** — CSDN 长文与掘金沸点；只保留两条通道
 
 ## 02 · 外部 PR
 
 <sub>6 条 · 已合并 3 · 开放中 3 · 已关闭 0 · +757/−67 · 39 个文件 · 8 条评论</sub>
 
-- [mogenius/renovate-operator#796](https://github.com/mogenius/renovate-operator/pull/796) — feat(webhook): rotate the webhook auth token via an annotation · **开放中** · 提交于 2026-11-05 · +417/−23 · 14 files · 2 comments
-- [ncepu-iDealStudio/Fast-Https#9](https://github.com/ncepu-iDealStudio/Fast-Https/pull/9) — fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试 · **已合并** · 合并于 2026-11-07 · +162/−36 · 11 files · 1 comment
-- [evilmartians/lefthook#1629](https://github.com/evilmartians/lefthook/pull/1629) — fix: apply the staged-files fallback to pre-merge-commit · **开放中** · 提交于 2026-11-05 · +63/−2 · 5 files · 1 comment
-- [sqlfluff/sqlfluff#9009](https://github.com/sqlfluff/sqlfluff/pull/9009) — Snowflake: parse an empty PACKAGES list · **已合并** · 合并于 2026-11-05 · +56/−2 · 3 files · 1 comment
-- [mogenius/renovate-operator#772](https://github.com/mogenius/renovate-operator/pull/772) — feat(ui): add a check-all toggle to the log level filter · **已合并** · 合并于 2026-10-31 · +44/−0 · 3 files · 0 comments
-- [betterleaks/betterleaks#456](https://github.com/betterleaks/betterleaks/pull/456) — fix(generic-api-key): detect base64 secrets that start with + or / · **开放中** · 提交于 2026-11-05 · +15/−4 · 3 files · 3 comments
+- [mogenius/renovate-operator#796](https://github.com/mogenius/renovate-operator/pull/796) — feat(webhook): rotate the webhook auth token via an annotation · **开放中** · 开启于 2026-11-05 · +417/−23 · 14 个文件 · 2 条评论
+- [ncepu-iDealStudio/Fast-Https#9](https://github.com/ncepu-iDealStudio/Fast-Https/pull/9) — fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试 · **已合并** · 合并于 2026-11-07 · +162/−36 · 11 个文件 · 1 条评论
+- [evilmartians/lefthook#1629](https://github.com/evilmartians/lefthook/pull/1629) — fix: apply the staged-files fallback to pre-merge-commit · **开放中** · 开启于 2026-11-05 · +63/−2 · 5 个文件 · 1 条评论
+- [sqlfluff/sqlfluff#9009](https://github.com/sqlfluff/sqlfluff/pull/9009) — Snowflake: parse an empty PACKAGES list · **已合并** · 合并于 2026-11-05 · +56/−2 · 3 个文件 · 1 条评论
+- [mogenius/renovate-operator#772](https://github.com/mogenius/renovate-operator/pull/772) — feat(ui): add a check-all toggle to the log level filter · **已合并** · 合并于 2026-10-31 · +44/−0 · 3 个文件 · 0 条评论
+- [betterleaks/betterleaks#456](https://github.com/betterleaks/betterleaks/pull/456) — fix(generic-api-key): detect base64 secrets that start with + or / · **开放中** · 开启于 2026-11-05 · +15/−4 · 3 个文件 · 3 条评论
 
-<sub>PR snapshot 2026-11-22 · GitHub Search / pulls API</sub>
+<sub>PR 快照 2026-11-22 · GitHub Search / pulls API</sub>
 
 ## 03 · 参与项目
 

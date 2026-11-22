@@ -1,413 +1,415 @@
 {
- "as_of": "2026-11-22",
- "source": "GitHub Search API / pulls API snapshot",
- "projects": {
-  "harbor": {
-   "name": "harbor",
-   "stack": "Python",
-   "note": "self-hosted publishing hub; one draft, 15 channels",
-   "note_zh": "自托管发布枢纽；一份草稿分发 15 个渠道"
+  "as_of": "2026-11-22",
+  "source": "GitHub Search API / pulls API snapshot",
+  "projects": {
+    "harbor": {
+      "name": "harbor",
+      "stack": "Python",
+      "note": "self-hosted publishing hub; one draft, 15 channels",
+      "note_zh": "自托管发布枢纽；一份草稿分发 15 个渠道",
+      "note_ja": "自ホスト配信ハブ；1 つの草稿を 15 チャネルへ"
+    },
+    "spark": {
+      "name": "spark",
+      "stack": "Python · React",
+      "note": "self-hosted coding-agent harness; sandboxed runs, MCP tools",
+      "note_zh": "自托管编码智能体底座；沙箱执行、MCP 工具",
+      "note_ja": "自ホスト型コーディングエージェント基盤；サンドボックス実行、MCP ツール"
+    },
+    "moneyhelper": {
+      "name": "moneyhelper",
+      "stack": "FastAPI · LangGraph · React",
+      "note": "chat-first finance agent; bookkeeping, portfolio risk, filings",
+      "note_zh": "对话式理财 Agent；记账、持仓风控、财报",
+      "note_ja": "対話型家計エージェント；記帳、ポートフォリオ・リスク、決算"
+    },
+    "workbench": {
+      "name": "workbench",
+      "stack": "Tauri 2 · React 19 · TypeScript",
+      "note": "desktop workbench; clipboard, snippets, windows, quick launch",
+      "note_zh": "桌面工作台；剪贴板、片段、窗口、快速启动",
+      "note_ja": "デスクトップ作業台；クリップボード、スニペット、ウィンドウ、クイック起動"
+    },
+    "world-walker": {
+      "name": "world-walker",
+      "stack": "Python stdlib · MCP",
+      "note": "deterministic rules layer for AI interactive fiction",
+      "note_zh": "AI 互动小说的确定性规则层",
+      "note_ja": "AI インタラクティブ小説の決定論的ルール層"
+    },
+    "digilegacy": {
+      "name": "digilegacy",
+      "stack": "Rust",
+      "note": "self-hosted digital legacy planning; assets, heirs, release rules",
+      "note_zh": "自托管数字遗产规划；资产、继承人、释放规则",
+      "note_ja": "自ホスト型デジタル遺産計画；資産、相続人、解放ルール"
+    },
+    "sciflow": {
+      "name": "sciflow",
+      "stack": "Python · TypeScript",
+      "note": "research workbench; literature, experiment log, drafting",
+      "note_zh": "科研工作台；文献、实验记录、结构化写作",
+      "note_ja": "研究ワークベンチ；文献、実験記録、構造化執筆"
+    },
+    "aquapilot": {
+      "name": "aquapilot",
+      "stack": "TypeScript",
+      "note": "wastewater process simulation; editable flowsheet, ASM1",
+      "note_zh": "废水工艺模拟；可编辑流程、ASM1",
+      "note_ja": "排水処理プロセスのシミュレーション；編集可能なフロー、ASM1"
+    },
+    "CodePocket": {
+      "name": "CodePocket",
+      "stack": "Kotlin · CPython 3.13",
+      "note": "offline-first Android Python IDE; native CPython",
+      "note_zh": "离线优先的 Android Python IDE；原生 CPython",
+      "note_ja": "オフライン優先の Android Python IDE；ネイティブ CPython"
+    },
+    "quiz-chest": {
+      "name": "quiz-chest",
+      "stack": "TypeScript",
+      "note": "local-first question bank; import, tag, drill",
+      "note_zh": "本地优先题库；导入、打标、刷题",
+      "note_ja": "ローカル優先の問題バンク；取り込み、タグ付け、反復"
+    },
+    "mashang": {
+      "name": "mashang",
+      "stack": "Kotlin · CPython 3.13",
+      "note": "offline programming terminal; quests, assert grading",
+      "note_zh": "离线编程终端；关卡、assert 判题",
+      "note_ja": "オフライン・プログラミング端末；ステージ、assert 採点"
+    },
+    "pocketmind": {
+      "name": "pocketmind",
+      "stack": "Android · on-device",
+      "note": "resident Android agent; one APK, on-device tools",
+      "note_zh": "Android 常驻 Agent；单 APK、端侧工具",
+      "note_ja": "Android 常駐エージェント；単一 APK、端末内ツール"
+    },
+    "bigrobot": {
+      "name": "bigrobot",
+      "stack": "Python",
+      "note": "self-hosted AI workspace for owned accounts; groups, files, tools",
+      "note_zh": "自托管 AI 工作区；分组、文件、工具",
+      "note_ja": "自ホスト型 AI ワークスペース；グループ、ファイル、ツール"
+    },
+    "creator-studio": {
+      "name": "creator-studio",
+      "stack": "TypeScript",
+      "note": "local-first production desk for solo creators; six pipelines",
+      "note_zh": "面向个人创作者的本地产线；六条流水线",
+      "note_ja": "個人クリエイター向けローカル制作台；6 本のパイプライン"
+    }
   },
-  "spark": {
-   "name": "spark",
-   "stack": "Python · React",
-   "note": "self-hosted coding-agent harness; sandboxed runs, MCP tools",
-   "note_zh": "自托管编码智能体底座；沙箱执行、MCP 工具"
-  },
-  "moneyhelper": {
-   "name": "moneyhelper",
-   "stack": "FastAPI · LangGraph · React",
-   "note": "chat-first finance agent; bookkeeping, portfolio risk, filings",
-   "note_zh": "对话式理财 Agent；记账、持仓风控、财报"
-  },
-  "workbench": {
-   "name": "workbench",
-   "stack": "Tauri 2 · React 19 · TypeScript",
-   "note": "desktop workbench; clipboard, snippets, windows, quick launch",
-   "note_zh": "桌面工作台；剪贴板、片段、窗口、快速启动"
-  },
-  "world-walker": {
-   "name": "world-walker",
-   "stack": "Python stdlib · MCP",
-   "note": "deterministic rules layer for AI interactive fiction",
-   "note_zh": "AI 互动小说的确定性规则层"
-  },
-  "digilegacy": {
-   "name": "digilegacy",
-   "stack": "Rust",
-   "note": "self-hosted digital legacy planning; assets, heirs, release rules",
-   "note_zh": "自托管数字遗产规划；资产、继承人、释放规则"
-  },
-  "sciflow": {
-   "name": "sciflow",
-   "stack": "Python · TypeScript",
-   "note": "research workbench; literature, experiment log, drafting",
-   "note_zh": "科研工作台；文献、实验记录、结构化写作"
-  },
-  "aquapilot": {
-   "name": "aquapilot",
-   "stack": "TypeScript",
-   "note": "wastewater process simulation; editable flowsheet, ASM1",
-   "note_zh": "废水工艺模拟；可编辑流程、ASM1"
-  },
-  "CodePocket": {
-   "name": "CodePocket",
-   "stack": "Kotlin · CPython 3.13",
-   "note": "offline-first Android Python IDE; native CPython",
-   "note_zh": "离线优先的 Android Python IDE；原生 CPython"
-  },
-  "quiz-chest": {
-   "name": "quiz-chest",
-   "stack": "TypeScript",
-   "note": "local-first question bank; import, tag, drill",
-   "note_zh": "本地优先题库；导入、打标、刷题"
-  },
-  "mashang": {
-   "name": "mashang",
-   "stack": "Kotlin · CPython 3.13",
-   "note": "offline programming terminal; quests, assert grading",
-   "note_zh": "离线编程终端；关卡、assert 判题"
-  },
-  "pocketmind": {
-   "name": "pocketmind",
-   "stack": "Android · on-device",
-   "note": "resident Android agent; one APK, on-device tools",
-   "note_zh": "Android 常驻 Agent；单 APK、端侧工具"
-  },
-  "bigrobot": {
-   "name": "bigrobot",
-   "stack": "Python",
-   "note": "self-hosted AI workspace for owned accounts; groups, files, tools",
-   "note_zh": "自托管 AI 工作区；分组、文件、工具"
-  },
-  "creator-studio": {
-   "name": "creator-studio",
-   "stack": "TypeScript",
-   "note": "local-first production desk for solo creators; six pipelines",
-   "note_zh": "面向个人创作者的本地产线；六条流水线"
+  "accounts": {
+    "gh_badhope": {
+      "projects": [
+        "harbor",
+        "spark",
+        "moneyhelper",
+        "workbench",
+        "world-walker",
+        "digilegacy",
+        "sciflow",
+        "aquapilot"
+      ],
+      "pull_requests": [
+        {
+          "repo": "mogenius/renovate-operator",
+          "number": 796,
+          "title": "feat(webhook): rotate the webhook auth token via an annotation",
+          "status": "open",
+          "opened": "2026-11-05",
+          "merged_at": "",
+          "additions": 417,
+          "deletions": 23,
+          "files": 14,
+          "comments": 2
+        },
+        {
+          "repo": "ncepu-iDealStudio/Fast-Https",
+          "number": 9,
+          "title": "fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试",
+          "status": "merged",
+          "opened": "2026-11-06",
+          "merged_at": "2026-11-07",
+          "additions": 162,
+          "deletions": 36,
+          "files": 11,
+          "comments": 1
+        },
+        {
+          "repo": "evilmartians/lefthook",
+          "number": 1629,
+          "title": "fix: apply the staged-files fallback to pre-merge-commit",
+          "status": "open",
+          "opened": "2026-11-05",
+          "merged_at": "",
+          "additions": 63,
+          "deletions": 2,
+          "files": 5,
+          "comments": 1
+        },
+        {
+          "repo": "sqlfluff/sqlfluff",
+          "number": 9009,
+          "title": "Snowflake: parse an empty PACKAGES list",
+          "status": "merged",
+          "opened": "2026-11-05",
+          "merged_at": "2026-11-05",
+          "additions": 56,
+          "deletions": 2,
+          "files": 3,
+          "comments": 1
+        },
+        {
+          "repo": "mogenius/renovate-operator",
+          "number": 772,
+          "title": "feat(ui): add a check-all toggle to the log level filter",
+          "status": "merged",
+          "opened": "2026-10-30",
+          "merged_at": "2026-10-31",
+          "additions": 44,
+          "deletions": 0,
+          "files": 3,
+          "comments": 0
+        },
+        {
+          "repo": "betterleaks/betterleaks",
+          "number": 456,
+          "title": "fix(generic-api-key): detect base64 secrets that start with + or /",
+          "status": "open",
+          "opened": "2026-11-05",
+          "merged_at": "",
+          "additions": 15,
+          "deletions": 4,
+          "files": 3,
+          "comments": 3
+        }
+      ]
+    },
+    "gh_x33834": {
+      "projects": [
+        "world-walker",
+        "harbor",
+        "CodePocket",
+        "mashang",
+        "workbench",
+        "digilegacy",
+        "moneyhelper",
+        "bigrobot"
+      ],
+      "pull_requests": [
+        {
+          "repo": "apache/airflow",
+          "number": 73099,
+          "title": "Support Table objects in BigQueryHook.create_table table_resource",
+          "status": "merged",
+          "opened": "2026-09-24",
+          "merged_at": "2026-10-05",
+          "additions": 82,
+          "deletions": 4,
+          "files": 3,
+          "comments": 11
+        },
+        {
+          "repo": "y1s11564/simona-desktop-app",
+          "number": 1,
+          "title": "移动端适配：安卓原生壳 UI 美化 + Web UI 布局修复",
+          "status": "closed",
+          "opened": "2026-09-13",
+          "merged_at": null,
+          "additions": 325,
+          "deletions": 80,
+          "files": 14,
+          "comments": 0
+        }
+      ]
+    },
+    "gh_morningstar": {
+      "projects": [
+        "sciflow",
+        "world-walker",
+        "digilegacy",
+        "harbor",
+        "creator-studio",
+        "moneyhelper",
+        "spark",
+        "workbench"
+      ],
+      "pull_requests": [
+        {
+          "repo": "ohmyzsh/ohmyzsh",
+          "number": 14140,
+          "title": "feat(core): add `omz diagnose` locale check",
+          "status": "open",
+          "opened": "2026-09-29",
+          "merged_at": null,
+          "additions": 39,
+          "deletions": 0,
+          "files": 2,
+          "comments": 2
+        },
+        {
+          "repo": "PyCalendar/icalendar",
+          "number": 1731,
+          "title": "docs: stop composing single_utc_property docstrings from the property name",
+          "status": "merged",
+          "opened": "2026-09-02",
+          "merged_at": "2026-09-08",
+          "additions": 129,
+          "deletions": 16,
+          "files": 4,
+          "comments": 22
+        },
+        {
+          "repo": "PyCalendar/icalendar",
+          "number": 1751,
+          "title": "Refactor TYPE_CHECKING imports to use public exports from icalendar.cal",
+          "status": "merged",
+          "opened": "2026-09-02",
+          "merged_at": "2026-09-03",
+          "additions": 4,
+          "deletions": 4,
+          "files": 4,
+          "comments": 8
+        },
+        {
+          "repo": "ohmyzsh/ohmyzsh",
+          "number": 14021,
+          "title": "fix(pipenv): keep activation and the project directory in sync",
+          "status": "merged",
+          "opened": "2026-08-25",
+          "merged_at": "2026-09-05",
+          "additions": 12,
+          "deletions": 5,
+          "files": 1,
+          "comments": 1
+        },
+        {
+          "repo": "jaychouchannel/claude-tool-agent",
+          "number": 34,
+          "title": "fix(frontend): 星号强调仅限单行配对，* 列表与行内代码不再被误吞",
+          "status": "merged",
+          "opened": "2026-09-28",
+          "merged_at": "2026-10-11",
+          "additions": 13,
+          "deletions": 8,
+          "files": 1,
+          "comments": 1
+        },
+        {
+          "repo": "jaychouchannel/claude-tool-agent",
+          "number": 33,
+          "title": "fix(orchestrator): 修复回复开头 @ 导致的链式发言断链",
+          "status": "merged",
+          "opened": "2026-08-28",
+          "merged_at": "2026-08-29",
+          "additions": 85,
+          "deletions": 5,
+          "files": 3,
+          "comments": 0
+        }
+      ]
+    },
+    "gitee_badhope": {
+      "projects": [
+        "CodePocket",
+        "quiz-chest",
+        "mashang",
+        "moneyhelper",
+        "spark",
+        "world-walker",
+        "harbor"
+      ],
+      "pull_requests": [
+        {
+          "repo": "mogenius/renovate-operator",
+          "number": 796,
+          "title": "feat(webhook): rotate the webhook auth token via an annotation",
+          "status": "open",
+          "opened": "2026-11-05",
+          "merged_at": "",
+          "additions": 417,
+          "deletions": 23,
+          "files": 14,
+          "comments": 2
+        },
+        {
+          "repo": "ncepu-iDealStudio/Fast-Https",
+          "number": 9,
+          "title": "fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试",
+          "status": "merged",
+          "opened": "2026-11-06",
+          "merged_at": "2026-11-07",
+          "additions": 162,
+          "deletions": 36,
+          "files": 11,
+          "comments": 1
+        },
+        {
+          "repo": "sqlfluff/sqlfluff",
+          "number": 9009,
+          "title": "Snowflake: parse an empty PACKAGES list",
+          "status": "merged",
+          "opened": "2026-11-05",
+          "merged_at": "2026-11-05",
+          "additions": 56,
+          "deletions": 2,
+          "files": 3,
+          "comments": 1
+        }
+      ]
+    },
+    "gitcode_badhope": {
+      "projects": [
+        "mashang",
+        "pocketmind",
+        "CodePocket",
+        "workbench",
+        "moneyhelper",
+        "spark",
+        "world-walker",
+        "harbor"
+      ],
+      "pull_requests": [
+        {
+          "repo": "mogenius/renovate-operator",
+          "number": 796,
+          "title": "feat(webhook): rotate the webhook auth token via an annotation",
+          "status": "open",
+          "opened": "2026-11-05",
+          "merged_at": "",
+          "additions": 417,
+          "deletions": 23,
+          "files": 14,
+          "comments": 2
+        },
+        {
+          "repo": "ncepu-iDealStudio/Fast-Https",
+          "number": 9,
+          "title": "fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试",
+          "status": "merged",
+          "opened": "2026-11-06",
+          "merged_at": "2026-11-07",
+          "additions": 162,
+          "deletions": 36,
+          "files": 11,
+          "comments": 1
+        },
+        {
+          "repo": "sqlfluff/sqlfluff",
+          "number": 9009,
+          "title": "Snowflake: parse an empty PACKAGES list",
+          "status": "merged",
+          "opened": "2026-11-05",
+          "merged_at": "2026-11-05",
+          "additions": 56,
+          "deletions": 2,
+          "files": 3,
+          "comments": 1
+        }
+      ]
+    }
   }
- },
- "accounts": {
-  "gh_badhope": {
-   "projects": [
-    "harbor",
-    "spark",
-    "moneyhelper",
-    "workbench",
-    "world-walker",
-    "digilegacy",
-    "sciflow",
-    "aquapilot"
-   ],
-   "pull_requests": [
-    {
-     "repo": "mogenius/renovate-operator",
-     "number": 796,
-     "title": "feat(webhook): rotate the webhook auth token via an annotation",
-     "status": "open",
-     "opened": "2026-11-05",
-     "merged_at": "",
-     "additions": 417,
-     "deletions": 23,
-     "files": 14,
-     "comments": 2
-    },
-    {
-     "repo": "ncepu-iDealStudio/Fast-Https",
-     "number": 9,
-     "title": "fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试",
-     "status": "merged",
-     "opened": "2026-11-06",
-     "merged_at": "2026-11-07",
-     "additions": 162,
-     "deletions": 36,
-     "files": 11,
-     "comments": 1
-    },
-    {
-     "repo": "evilmartians/lefthook",
-     "number": 1629,
-     "title": "fix: apply the staged-files fallback to pre-merge-commit",
-     "status": "open",
-     "opened": "2026-11-05",
-     "merged_at": "",
-     "additions": 63,
-     "deletions": 2,
-     "files": 5,
-     "comments": 1
-    },
-    {
-     "repo": "sqlfluff/sqlfluff",
-     "number": 9009,
-     "title": "Snowflake: parse an empty PACKAGES list",
-     "status": "merged",
-     "opened": "2026-11-05",
-     "merged_at": "2026-11-05",
-     "additions": 56,
-     "deletions": 2,
-     "files": 3,
-     "comments": 1
-    },
-    {
-     "repo": "mogenius/renovate-operator",
-     "number": 772,
-     "title": "feat(ui): add a check-all toggle to the log level filter",
-     "status": "merged",
-     "opened": "2026-10-30",
-     "merged_at": "2026-10-31",
-     "additions": 44,
-     "deletions": 0,
-     "files": 3,
-     "comments": 0
-    },
-    {
-     "repo": "betterleaks/betterleaks",
-     "number": 456,
-     "title": "fix(generic-api-key): detect base64 secrets that start with + or /",
-     "status": "open",
-     "opened": "2026-11-05",
-     "merged_at": "",
-     "additions": 15,
-     "deletions": 4,
-     "files": 3,
-     "comments": 3
-    }
-   ]
-  },
-  "gh_x33834": {
-   "projects": [
-    "world-walker",
-    "harbor",
-    "CodePocket",
-    "mashang",
-    "workbench",
-    "digilegacy",
-    "moneyhelper",
-    "bigrobot"
-   ],
-   "pull_requests": [
-    {
-     "repo": "apache/airflow",
-     "number": 73099,
-     "title": "Support Table objects in BigQueryHook.create_table table_resource",
-     "status": "merged",
-     "opened": "2026-09-13",
-     "merged_at": "2026-10-05",
-     "additions": 82,
-     "deletions": 4,
-     "files": 3,
-     "comments": 11
-    },
-    {
-     "repo": "y1s11564/simona-desktop-app",
-     "number": 1,
-     "title": "移动端适配：安卓原生壳 UI 美化 + Web UI 布局修复",
-     "status": "closed",
-     "opened": "2026-09-13",
-     "merged_at": "",
-     "additions": 325,
-     "deletions": 80,
-     "files": 14,
-     "comments": 0
-    },
-    {
-     "repo": "chaitin/MonkeyCode",
-     "number": 1298,
-     "title": "fix(frontend): replace field-sizing:content with JS auto-resize to fix CJK cursor offset",
-     "status": "closed",
-     "opened": "2026-09-17",
-     "merged_at": "",
-     "additions": 14,
-     "deletions": 1,
-     "files": 1,
-     "comments": 1
-    }
-   ]
-  },
-  "gh_morningstar": {
-   "projects": [
-    "sciflow",
-    "world-walker",
-    "digilegacy",
-    "harbor",
-    "creator-studio",
-    "moneyhelper",
-    "spark",
-    "workbench"
-   ],
-   "pull_requests": [
-    {
-     "repo": "PyCalendar/icalendar",
-     "number": 1731,
-     "title": "docs: stop composing single_utc_property docstrings from the property name",
-     "status": "merged",
-     "opened": "2026-08-27",
-     "merged_at": "2026-09-08",
-     "additions": 129,
-     "deletions": 16,
-     "files": 4,
-     "comments": 22
-    },
-    {
-     "repo": "tldr-pages/tldr",
-     "number": 23781,
-     "title": "conan-{build, create, install, profile, remote}: add page",
-     "status": "closed",
-     "opened": "2026-09-01",
-     "merged_at": "",
-     "additions": 120,
-     "deletions": 12,
-     "files": 6,
-     "comments": 15
-    },
-    {
-     "repo": "PyCalendar/icalendar",
-     "number": 1752,
-     "title": "Add lowercase accessors for Alarm.singletons properties",
-     "status": "closed",
-     "opened": "2026-09-02",
-     "merged_at": "",
-     "additions": 47,
-     "deletions": 3,
-     "files": 4,
-     "comments": 12
-    },
-    {
-     "repo": "ohmyzsh/ohmyzsh",
-     "number": 14020,
-     "title": "fix(vi-mode): don't let stale clipboard clobber put widgets",
-     "status": "closed",
-     "opened": "2026-08-25",
-     "merged_at": "",
-     "additions": 42,
-     "deletions": 4,
-     "files": 3,
-     "comments": 7
-    },
-    {
-     "repo": "deepset-ai/haystack",
-     "number": 13011,
-     "title": "docs: fix `_merge_super_component_pipelines` return description",
-     "status": "merged",
-     "opened": "2026-09-29",
-     "merged_at": "2026-10-02",
-     "additions": 1,
-     "deletions": 3,
-     "files": 1,
-     "comments": 5
-    },
-    {
-     "repo": "pydantic/pydantic",
-     "number": 13738,
-     "title": "validate inferred serializer attributes instead of trusting hasattr",
-     "status": "closed",
-     "opened": "2026-08-29",
-     "merged_at": "",
-     "additions": 25,
-     "deletions": 4,
-     "files": 2,
-     "comments": 2
-    }
-   ]
-  },
-  "gitee_badhope": {
-   "projects": [
-    "CodePocket",
-    "quiz-chest",
-    "mashang",
-    "moneyhelper",
-    "spark",
-    "world-walker",
-    "harbor"
-   ],
-   "pull_requests": [
-    {
-     "repo": "mogenius/renovate-operator",
-     "number": 796,
-     "title": "feat(webhook): rotate the webhook auth token via an annotation",
-     "status": "open",
-     "opened": "2026-11-05",
-     "merged_at": "",
-     "additions": 417,
-     "deletions": 23,
-     "files": 14,
-     "comments": 2
-    },
-    {
-     "repo": "ncepu-iDealStudio/Fast-Https",
-     "number": 9,
-     "title": "fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试",
-     "status": "merged",
-     "opened": "2026-11-06",
-     "merged_at": "2026-11-07",
-     "additions": 162,
-     "deletions": 36,
-     "files": 11,
-     "comments": 1
-    },
-    {
-     "repo": "sqlfluff/sqlfluff",
-     "number": 9009,
-     "title": "Snowflake: parse an empty PACKAGES list",
-     "status": "merged",
-     "opened": "2026-11-05",
-     "merged_at": "2026-11-05",
-     "additions": 56,
-     "deletions": 2,
-     "files": 3,
-     "comments": 1
-    }
-   ]
-  },
-  "gitcode_badhope": {
-   "projects": [
-    "mashang",
-    "pocketmind",
-    "CodePocket",
-    "workbench",
-    "moneyhelper",
-    "spark",
-    "world-walker",
-    "harbor"
-   ],
-   "pull_requests": [
-    {
-     "repo": "mogenius/renovate-operator",
-     "number": 796,
-     "title": "feat(webhook): rotate the webhook auth token via an annotation",
-     "status": "open",
-     "opened": "2026-11-05",
-     "merged_at": "",
-     "additions": 417,
-     "deletions": 23,
-     "files": 14,
-     "comments": 2
-    },
-    {
-     "repo": "ncepu-iDealStudio/Fast-Https",
-     "number": 9,
-     "title": "fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试",
-     "status": "merged",
-     "opened": "2026-11-06",
-     "merged_at": "2026-11-07",
-     "additions": 162,
-     "deletions": 36,
-     "files": 11,
-     "comments": 1
-    },
-    {
-     "repo": "sqlfluff/sqlfluff",
-     "number": 9009,
-     "title": "Snowflake: parse an empty PACKAGES list",
-     "status": "merged",
-     "opened": "2026-11-05",
-     "merged_at": "2026-11-05",
-     "additions": 56,
-     "deletions": 2,
-     "files": 3,
-     "comments": 1
-    }
-   ]
-  }
- }
 }

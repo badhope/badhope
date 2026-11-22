@@ -95,23 +95,6 @@ COPY = {
             "zh-CN": [("在做", "moneyhelper · workbench"), ("在写", "CSDN · 掘金"), ("在看", "Agent / 全栈机会"), ("时区", "UTC+8")],
             "ja": [("製作中", "moneyhelper · workbench"), ("執筆", "CSDN · Juejin"), ("募集中", "エージェント / フルスタック"), ("タイムゾーン", "UTC+8")],
         },
-        "now": {
-            "en": [
-                "**Current repositories** — moneyhelper, spark, workbench, world-walker",
-                "**Upstream PRs** — 6 selected: 3 merged, 3 open",
-                "**Publishing** — CSDN long-form and Juejin notes; two channels only",
-            ],
-            "zh-CN": [
-                "**当前仓库** —— moneyhelper、spark、workbench、world-walker",
-                "**外部 PR** —— 6 条：3 已合并，3 开放中",
-                "**发布** —— CSDN 长文与掘金沸点，两条通道",
-            ],
-            "ja": [
-                "**現在のリポジトリ** —— moneyhelper、spark、workbench、world-walker",
-                "**外部 PR** —— 6 件：マージ 3、オープン 3",
-                "**配信** —— CSDN 長文と Juejin 短文。二経路のみ",
-            ],
-        },
         "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
     },
     "gh_morningstar": {
@@ -132,23 +115,6 @@ COPY = {
             "en": [("BUILDING", "moneyhelper · sciflow"), ("PUBLISHING", "CSDN · Juejin"), ("OPEN TO", "Long-term collaboration"), ("TIMEZONE", "UTC+8")],
             "zh-CN": [("在做", "moneyhelper · sciflow"), ("在写", "CSDN · 掘金"), ("在看", "长期合作"), ("时区", "UTC+8")],
             "ja": [("製作中", "moneyhelper · sciflow"), ("執筆", "CSDN · Juejin"), ("募集中", "長期コラボ"), ("タイムゾーン", "UTC+8")],
-        },
-        "now": {
-            "en": [
-                "**Current repositories** — moneyhelper, spark, sciflow",
-                "**Upstream PRs** — 6 selected: 2 merged, 4 closed",
-                "**Publishing** — CSDN long-form and Juejin notes; two channels only",
-            ],
-            "zh-CN": [
-                "**当前仓库** —— moneyhelper、spark、sciflow",
-                "**外部 PR** —— 6 条：2 已合并，4 已关闭",
-                "**发布** —— CSDN 长文与掘金沸点，两条通道",
-            ],
-            "ja": [
-                "**現在のリポジトリ** —— moneyhelper、spark、sciflow",
-                "**外部 PR** —— 6 件：マージ 2、クローズ 4",
-                "**配信** —— CSDN 長文と Juejin 短文。二経路のみ",
-            ],
         },
         "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
     },
@@ -171,23 +137,6 @@ COPY = {
             "zh-CN": [("在做", "world-walker · harbor"), ("在写", "CSDN · 掘金"), ("在看", "上游 / 工具链"), ("时区", "UTC+8")],
             "ja": [("製作中", "world-walker · harbor"), ("執筆", "CSDN · Juejin"), ("募集中", "上流 / ツール"), ("タイムゾーン", "UTC+8")],
         },
-        "now": {
-            "en": [
-                "**Current repositories** — world-walker, harbor, CodePocket",
-                "**Upstream PRs** — 3 selected: 1 merged, 2 closed",
-                "**Publishing** — CSDN long-form and Juejin notes; two channels only",
-            ],
-            "zh-CN": [
-                "**当前仓库** —— world-walker、harbor、CodePocket",
-                "**外部 PR** —— 3 条：1 已合并，2 已关闭",
-                "**发布** —— CSDN 长文与掘金沸点，两条通道",
-            ],
-            "ja": [
-                "**現在のリポジトリ** —— world-walker、harbor、CodePocket",
-                "**外部 PR** —— 3 件：マージ 1、クローズ 2",
-                "**配信** —— CSDN 長文と Juejin 短文。二経路のみ",
-            ],
-        },
         "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
     },
     "gitcode_badhope": {
@@ -197,13 +146,6 @@ COPY = {
         "role": {"zh-CN": "移动端开发 · 离线工具"},
         "tagline": {"zh-CN": "移动端与离线工具；同一套生成器的 GitCode 镜像。"},
         "status": {"zh-CN": [("在做", "mashang · pocketmind"), ("在写", "CSDN · 掘金"), ("镜像", "GitHub → GitCode"), ("时区", "UTC+8")]},
-        "now": {
-            "zh-CN": [
-                "**当前仓库** —— mashang、pocketmind、CodePocket",
-                "**外部 PR** —— 3 条：2 已合并，1 开放中",
-                "**发布** —— CSDN 长文与掘金沸点，两条通道",
-            ]
-        },
         "more_intro": {"zh-CN": "架子上还有"},
     },
     "gitee_badhope": {
@@ -213,13 +155,6 @@ COPY = {
         "role": {"zh-CN": "作品镜像 · 小程序"},
         "tagline": {"zh-CN": "作品镜像；精选项目与小型实验共用同一套生成器。"},
         "status": {"zh-CN": [("在做", "CodePocket · quiz-chest"), ("在写", "CSDN · 掘金"), ("镜像", "GitHub → Gitee"), ("时区", "UTC+8")]},
-        "now": {
-            "zh-CN": [
-                "**当前仓库** —— CodePocket、quiz-chest、mashang",
-                "**外部 PR** —— 3 条：2 已合并，1 开放中",
-                "**发布** —— CSDN 长文与掘金沸点，两条通道",
-            ]
-        },
         "more_intro": {"zh-CN": "架子上还有"},
     },
 }
@@ -290,8 +225,41 @@ PR_SUMMARY = {
 
 PR_WHEN = {
     "merged": {"en": "merged", "zh-CN": "合并于", "ja": "マージ"},
-    "open": {"en": "opened", "zh-CN": "提交于", "ja": "提出"},
-    "closed": {"en": "opened", "zh-CN": "提交于", "ja": "提出"},
+    "open": {"en": "opened", "zh-CN": "开启于", "ja": "提出"},
+    "closed": {"en": "opened", "zh-CN": "开启于", "ja": "提出"},
+}
+
+PR_META = {
+    "en": {"file": "file", "files": "files", "comment": "comment", "comments": "comments", "snapshot": "PR snapshot"},
+    "zh-CN": {"file": "个文件", "files": "个文件", "comment": "条评论", "comments": "条评论", "snapshot": "PR 快照"},
+    "ja": {"file": "ファイル", "files": "ファイル", "comment": "コメント", "comments": "コメント", "snapshot": "PR スナップショット"},
+}
+
+NOW_COPY = {
+    "en": {
+        "repos": "Personal repositories",
+        "repo_note": "{n} · personal namespace, forks excluded",
+        "prs": "Upstream pull requests",
+        "pr_note": "{n} selected: {merged} merged, {open} open, {closed} closed",
+        "publish": "Publishing",
+        "publish_note": "CSDN long-form and Juejin notes; two channels only",
+    },
+    "zh-CN": {
+        "repos": "个人仓库",
+        "repo_note": "{n} 个 · 个人命名空间，不含 fork",
+        "prs": "外部 PR",
+        "pr_note": "{n} 条：已合并 {merged}，开放中 {open}，已关闭 {closed}",
+        "publish": "发布",
+        "publish_note": "CSDN 长文与掘金沸点；只保留两条通道",
+    },
+    "ja": {
+        "repos": "個人リポジトリ",
+        "repo_note": "{n} 件 · 個人名前空間、fork を除く",
+        "prs": "外部 PR",
+        "pr_note": "{n} 件：マージ {merged}、オープン {open}、クローズ {closed}",
+        "publish": "配信",
+        "publish_note": "CSDN 長文と Juejin 短文。二経路のみ",
+    },
 }
 
 METRIC_LABELS = {
@@ -823,14 +791,6 @@ def render_readme(account, lang):
     out.append(f'<p align="center"><sub>{STARCHART_NOTE[lang]}</sub></p>')
     out.append("")
 
-    out.append(f"## 01 · {head['now']}")
-    out.append("")
-    for item in copy["now"][lang]:
-        out.append(f"- {item}")
-    out.append("")
-
-    out.append(f"## 02 · {head['contrib']}")
-    out.append("")
     contrib = load_contributions()
     cacc = contribution_account(account)
     prs = cacc.get("pull_requests", [])
@@ -841,6 +801,21 @@ def render_readme(account, lang):
     dels = sum(pr.get("deletions", 0) for pr in prs)
     files = sum(pr.get("files", 0) for pr in prs)
     comments = sum(pr.get("comments", 0) for pr in prs)
+    repo_count = stats.get("accounts", {}).get(account, {}).get("repos", 0)
+    now = NOW_COPY[lang]
+
+    out.append(f"## 01 · {head['now']}")
+    out.append("")
+    out.append(f"- **{now['repos']}** — {now['repo_note'].format(n=repo_count)}")
+    out.append(
+        f"- **{now['prs']}** — "
+        + now["pr_note"].format(n=len(prs), merged=merged, open=opened, closed=closed)
+    )
+    out.append(f"- **{now['publish']}** — {now['publish_note']}")
+    out.append("")
+
+    out.append(f"## 02 · {head['contrib']}")
+    out.append("")
     out.append(
         "<sub>"
         + PR_SUMMARY[lang].format(
@@ -856,15 +831,18 @@ def render_readme(account, lang):
         when = f"{when_label} {pr['merged_at']}" if status == "merged" and pr.get("merged_at") else f"{when_label} {pr.get('opened', '')}"
         files = pr.get("files", 0)
         comments = pr.get("comments", 0)
+        meta = PR_META[lang]
+        file_unit = meta["file"] if files == 1 else meta["files"]
+        comment_unit = meta["comment"] if comments == 1 else meta["comments"]
         line = (
             f"- [{pr['repo']}#{pr['number']}](https://github.com/{pr['repo']}/pull/{pr['number']})"
             f" — {pr['title']} · **{PR_STATUS.get(status, PR_STATUS['closed'])[lang]}**"
             f" · {when} · +{pr.get('additions', 0)}/−{pr.get('deletions', 0)}"
-            f" · {files} file{'s' if files != 1 else ''} · {comments} comment{'s' if comments != 1 else ''}"
+            f" · {files} {file_unit} · {comments} {comment_unit}"
         )
         out.append(line)
     out.append("")
-    out.append(f"<sub>PR snapshot {contrib.get('as_of', '')} · GitHub Search / pulls API</sub>")
+    out.append(f"<sub>{PR_META[lang]['snapshot']} {contrib.get('as_of', '')} · GitHub Search / pulls API</sub>")
     out.append("")
 
     out.append(f"## 03 · {head['projects']}")
@@ -875,7 +853,12 @@ def render_readme(account, lang):
     for slug in cacc.get("projects", []):
         entry = contrib.get("projects", {}).get(slug, {})
         name = entry.get("name", slug)
-        note = entry.get("note_zh", entry.get("note", "")) if lang == "zh-CN" else entry.get("note", "")
+        if lang == "zh-CN":
+            note = entry.get("note_zh", entry.get("note", ""))
+        elif lang == "ja":
+            note = entry.get("note_ja", entry.get("note", ""))
+        else:
+            note = entry.get("note", "")
         out.append(f"| [{name}]({project_url(account, slug)}) | {entry.get('stack', '')} | {note} |")
     out.append("")
 

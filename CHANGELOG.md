@@ -18,8 +18,12 @@ All notable changes to the profile page generator. The format follows
 - Gitee project links now point at the existing `CodePocket` repo instead of a
   missing `shopcash` path; the CSDN channel says archive/manual rather than
   claiming a scheduler that is not installed.
+- PR file/comment units and snapshot labels now follow the page language;
+  Japanese project rows use Japanese notes instead of falling back to English.
 
 ### Changed
+- The `Now` strip is generated from `stats.json` and the selected PR snapshot;
+  repository and PR counts no longer live as hand-written, stale strings.
 - Added `data/contributions.json`: selected upstream PRs with status, date,
   diff size, file count and comments, plus per-account project lists.
 - Stats refresh now counts personal, non-fork repositories on GitHub, Gitee

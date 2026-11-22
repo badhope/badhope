@@ -11,8 +11,8 @@
 
 ## 01 · Now
 
-- **Current repositories** — moneyhelper, spark, workbench, world-walker
-- **Upstream PRs** — 6 selected: 3 merged, 3 open
+- **Personal repositories** — 27 · personal namespace, forks excluded
+- **Upstream pull requests** — 6 selected: 3 merged, 3 open, 0 closed
 - **Publishing** — CSDN long-form and Juejin notes; two channels only
 
 ## 02 · Upstream pull requests
