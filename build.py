@@ -38,11 +38,11 @@ THEMES = {
         "accent4": "#7A4FD6",
         "grid": "#141A2A",
         "shadow": "#141A2A",
-        "star": "#A97B2F",
-        "constellation": "#2E5BC7",
+        "star": "#8C5A10",
+        "constellation": "#214FC4",
         "nebulaA": "#F3B49B",
         "nebulaB": "#A9BFF2",
-        "gold": "#C08A2E",
+        "gold": "#B57712",
     },
     "dark": {
         "bg": "#05070E",
@@ -61,11 +61,11 @@ THEMES = {
         "accent4": "#B79BFF",
         "grid": "#F4F1E7",
         "shadow": "#000000",
-        "star": "#F5D48A",
-        "constellation": "#7FA5FF",
+        "star": "#FFE3A0",
+        "constellation": "#9DB8FF",
         "nebulaA": "#FF6B4D",
         "nebulaB": "#5D7CFF",
-        "gold": "#D8A94E",
+        "gold": "#EDBD62",
     },
 }
 
@@ -690,23 +690,23 @@ def svg_starchart(lang, theme):
     out = [svg_head(w, h, f"{title} — slow rotation", theme)]
     out.append("<defs>")
     out.append(
-        f'<radialGradient id="halo"><stop stop-color="{t["star"]}" stop-opacity="0.10"/>'
-        f'<stop offset="0.55" stop-color="{t["constellation"]}" stop-opacity="0.05"/>'
+        f'<radialGradient id="halo"><stop stop-color="{t["star"]}" stop-opacity="0.18"/>'
+        f'<stop offset="0.55" stop-color="{t["constellation"]}" stop-opacity="0.10"/>'
         f'<stop offset="1" stop-color="{t["constellation"]}" stop-opacity="0"/></radialGradient>'
     )
     out.append(
         f'<radialGradient id="disc" cx="42%" cy="36%" r="72%">'
-        f'<stop offset="0" stop-color="{t["panel"]}" stop-opacity="0.82"/>'
-        f'<stop offset="0.72" stop-color="{t["panel2"]}" stop-opacity="0.72"/>'
-        f'<stop offset="1" stop-color="{t["panel"]}" stop-opacity="0.55"/></radialGradient>'
+        f'<stop offset="0" stop-color="{t["panel"]}" stop-opacity="0.92"/>'
+        f'<stop offset="0.72" stop-color="{t["panel2"]}" stop-opacity="0.82"/>'
+        f'<stop offset="1" stop-color="{t["panel"]}" stop-opacity="0.64"/></radialGradient>'
     )
     out.append("</defs>")
     out.append(f'<circle cx="{c}" cy="{c}" r="310" fill="url(#halo)"/>')
-    out.extend(star_field(w, h, theme, count=64, seed=43, opacity=0.42))
+    out.extend(star_field(w, h, theme, count=72, seed=43, opacity=0.72))
 
     # outer rim and 72 ticks; every sixth tick is longer
-    out.append(f'<circle cx="{c}" cy="{c}" r="{outer}" fill="none" stroke="{t["gold"]}" stroke-width="1.7" opacity="0.80"/>')
-    out.append(f'<circle cx="{c}" cy="{c}" r="{outer - 6}" fill="none" stroke="{t["gold"]}" stroke-width="1.1" opacity="0.42"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{outer}" fill="none" stroke="{t["gold"]}" stroke-width="2.3" opacity="0.95"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{outer - 6}" fill="none" stroke="{t["gold"]}" stroke-width="1.4" opacity="0.68"/>')
     for i in range(72):
         a = 2 * math.pi * i / 72
         major = i % 6 == 0
@@ -718,7 +718,7 @@ def svg_starchart(lang, theme):
         y2 = round(c - r2 * math.cos(a), 2)
         out.append(
             f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{t["gold"]}" '
-            f'stroke-width="{1.6 if major else 1.0}" opacity="{0.78 if major else 0.34}"/>'
+            f'stroke-width="{2.0 if major else 1.15}" opacity="{0.92 if major else 0.55}"/>'
         )
 
     # cardinal letters, kept just outside the rim
@@ -731,11 +731,11 @@ def svg_starchart(lang, theme):
 
     out.append("<g>")
     out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="180s" repeatCount="indefinite"/>')
-    out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="{t["bg2"]}" opacity="0.50"/>')
-    out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="url(#disc)" stroke="{t["gold"]}" stroke-width="1.4" opacity="0.92"/>')
-    out.append(f'<circle cx="{c}" cy="{c}" r="{disc - 14}" fill="none" stroke="{t["constellation"]}" stroke-width="1.1" opacity="0.34"/>')
-    out.append(f'<circle cx="{c}" cy="{c}" r="150" fill="none" stroke="{t["constellation"]}" stroke-width="1.1" opacity="0.26"/>')
-    out.append(f'<ellipse cx="{c}" cy="{c}" rx="214" ry="118" fill="none" stroke="{t["constellation"]}" stroke-width="1.4" opacity="0.26" transform="rotate(-18 320 320)"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="{t["bg2"]}" opacity="0.62"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="url(#disc)" stroke="{t["gold"]}" stroke-width="1.8" opacity="0.96"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{disc - 14}" fill="none" stroke="{t["constellation"]}" stroke-width="1.5" opacity="0.58"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="150" fill="none" stroke="{t["constellation"]}" stroke-width="1.5" opacity="0.48"/>')
+    out.append(f'<ellipse cx="{c}" cy="{c}" rx="214" ry="118" fill="none" stroke="{t["constellation"]}" stroke-width="1.7" opacity="0.44" transform="rotate(-18 320 320)"/>')
 
     # twelve faint spokes, as on an armillary plate
     for i in range(12):
@@ -744,17 +744,37 @@ def svg_starchart(lang, theme):
         y1 = round(c - 64 * math.cos(a), 1)
         x2 = round(c + (disc - 4) * math.sin(a), 1)
         y2 = round(c - (disc - 4) * math.cos(a), 1)
-        out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{t["constellation"]}" stroke-width="1.0" opacity="0.16"/>')
+        out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{t["constellation"]}" stroke-width="1.2" opacity="0.30"/>')
 
-    out.extend(star_field_radius(c, c, 210, theme, count=42, seed=17, opacity=0.52))
-    out.extend(constellation([(416, 248), (452, 302), (432, 368), (368, 412), (298, 398)], theme, opacity=0.46))
-    out.extend(constellation([(222, 252), (196, 286), (214, 328), (250, 348)], theme, opacity=0.34))
-    out.append(f'<circle cx="412" cy="354" r="3" fill="{t["gold"]}" opacity="0.85"/>')
-    out.append(f'<circle cx="228" cy="290" r="2.4" fill="{t["constellation"]}" opacity="0.85"/>')
+    out.extend(star_field_radius(c, c, 210, theme, count=56, seed=17, opacity=0.80))
+    out.extend(constellation([(416, 248), (452, 302), (432, 368), (368, 412), (298, 398)], theme, opacity=0.72, stroke_width=1.4))
+    out.extend(constellation([(222, 252), (196, 286), (214, 328), (250, 348)], theme, opacity=0.56, stroke_width=1.3))
+    out.append(f'<circle cx="412" cy="354" r="4" fill="{t["star"]}" opacity="1"/>')
+    out.append(f'<circle cx="412" cy="354" r="10" fill="none" stroke="{t["gold"]}" stroke-width="1.4" opacity="0.50"/>')
+    out.append(f'<circle cx="228" cy="290" r="3.2" fill="{t["constellation"]}" opacity="1"/>')
+
+    # A bright comet sweeps faster than the plate; its asymmetry makes the
+    # rotation obvious even at a glance. The plate itself remains slow.
+    out.append('<g>')
+    out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="45s" repeatCount="indefinite"/>')
+    out.append(f'<line x1="320" y1="96" x2="320" y2="128" stroke="{t["gold"]}" stroke-width="2.4" opacity="0.90"/>')
+    out.append(f'<line x1="320" y1="112" x2="320" y2="146" stroke="{t["constellation"]}" stroke-width="1.4" opacity="0.42"/>')
+    out.append(f'<circle cx="320" cy="94" r="9" fill="{t["star"]}" opacity="0.16"/>')
+    out.append(f'<circle cx="320" cy="94" r="4.2" fill="{t["star"]}" opacity="0.99"/>')
+    out.append('</g>')
+
+    # A smaller blue moon counter-rotates at a different speed, so the chart
+    # never looks like one static dial with a single moving hand.
+    out.append('<g>')
+    out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 320 320" to="0 320 320" dur="90s" repeatCount="indefinite"/>')
+    out.append(f'<circle cx="320" cy="144" r="5" fill="{t["constellation"]}" opacity="0.98"/>')
+    out.append(f'<circle cx="320" cy="144" r="11" fill="none" stroke="{t["constellation"]}" stroke-width="1.2" opacity="0.38"/>')
+    out.append('</g>')
 
     # a long hour hand so the rotation is legible at a glance
-    out.append(f'<line x1="{c}" y1="{c}" x2="{c}" y2="98" stroke="{t["star"]}" stroke-width="1.4" opacity="0.34"/>')
-    out.append(f'<circle cx="{c}" cy="98" r="3.5" fill="{t["star"]}" opacity="0.75"/>')
+    out.append(f'<line x1="{c}" y1="{c}" x2="{c}" y2="96" stroke="{t["star"]}" stroke-width="2.4" opacity="0.86"/>')
+    out.append(f'<line x1="{c}" y1="{c}" x2="{c}" y2="376" stroke="{t["gold"]}" stroke-width="1.8" opacity="0.62"/>')
+    out.append(f'<circle cx="{c}" cy="96" r="5.5" fill="{t["star"]}" opacity="0.96"/>')
 
     # centre: a quiet gold star on a dark coin
     out.append(f'<circle cx="{c}" cy="{c}" r="64" fill="{t["panel"]}" stroke="{t["gold"]}" stroke-width="1.7" opacity="0.96"/>')

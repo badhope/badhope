@@ -35,6 +35,7 @@ class CelestialChartTest(unittest.TestCase):
                 self.assertEqual(svg, build.svg_starchart(lang, theme))
                 self.assertIn('<animateTransform', svg)
                 self.assertIn('dur="180s"', svg)
+                self.assertIn('dur="45s"', svg)
                 self.assertNotIn('src="http', svg)
                 self.assertNotIn('href="http', svg)
 
