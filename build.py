@@ -313,10 +313,14 @@ SIGNAL_TITLE = {
 }
 
 STARCHART_NOTE = {
-    "en": "A slow sky · one turn every three minutes",
-    "zh-CN": "缓慢旋转的星图 · 一圈三分钟",
-    "ja": "ゆっくり回る星図 · 一周三分",
+    "en": "A slow sky · one turn every minute",
+    "zh-CN": "缓慢旋转的星图 · 一圈一分钟",
+    "ja": "ゆっくり回る星図 · 一周一分",
 }
+
+STARCHART_PERIOD = 60
+COMET_PERIOD = 15
+MOON_PERIOD = 30
 
 LANG_NAMES = {"en": "English", "zh-CN": "中文", "ja": "日本語"}
 
@@ -731,7 +735,7 @@ def svg_starchart(lang, theme):
     out.append(f'<text x="616" y="28" text-anchor="end" class="mono faint" font-size="8.5" letter-spacing="1.8">EPOCH / 2026</text>')
 
     out.append("<g>")
-    out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="180s" repeatCount="indefinite"/>')
+    out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="{0}s" repeatCount="indefinite"/>'.format(STARCHART_PERIOD))
     out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="{t["bg2"]}" opacity="0.62"/>')
     out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="url(#disc)" stroke="{t["gold"]}" stroke-width="1.8" opacity="0.96"/>')
     out.append(f'<circle cx="{c}" cy="{c}" r="{disc - 14}" fill="none" stroke="{t["constellation"]}" stroke-width="1.6" opacity="0.66"/>')
@@ -757,7 +761,7 @@ def svg_starchart(lang, theme):
     # A bright comet sweeps faster than the plate; its asymmetry makes the
     # rotation obvious even at a glance. The plate itself remains slow.
     out.append('<g>')
-    out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="45s" repeatCount="indefinite"/>')
+    out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="{0}s" repeatCount="indefinite"/>'.format(COMET_PERIOD))
     out.append(f'<line x1="320" y1="96" x2="320" y2="132" stroke="{t["gold"]}" stroke-width="3.0" opacity="0.92"/>')
     out.append(f'<line x1="320" y1="112" x2="320" y2="150" stroke="{t["constellation"]}" stroke-width="1.7" opacity="0.48"/>')
     out.append(f'<circle cx="320" cy="94" r="15" fill="{t["star"]}" opacity="0.18"/>')
@@ -767,7 +771,7 @@ def svg_starchart(lang, theme):
     # A smaller blue moon counter-rotates at a different speed, so the chart
     # never looks like one static dial with a single moving hand.
     out.append('<g>')
-    out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 320 320" to="0 320 320" dur="90s" repeatCount="indefinite"/>')
+    out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 320 320" to="0 320 320" dur="{0}s" repeatCount="indefinite"/>'.format(MOON_PERIOD))
     out.append(f'<circle cx="320" cy="144" r="5.5" fill="{t["constellation"]}" opacity="0.99"/>')
     out.append(f'<circle cx="320" cy="144" r="13" fill="none" stroke="{t["constellation"]}" stroke-width="1.4" opacity="0.42"/>')
     out.append('</g>')

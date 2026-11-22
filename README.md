@@ -7,7 +7,7 @@
 <p align="center">
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/starchart-en-dark.svg" /><img src="assets/starchart-en-light.svg" alt="slow celestial chart" width="58%" /></picture>
 </p>
-<p align="center"><sub>A slow sky · one turn every three minutes</sub></p>
+<p align="center"><sub>A slow sky · one turn every minute</sub></p>
 
 ## 01 · Now
 

@@ -29,8 +29,9 @@ All notable changes to the profile page generator. The format follows
 
 ### Changed
 - The star chart palette is darker and more saturated; a gold comet now sweeps
-  once every 45 seconds, a blue moon counter-rotates every 90 seconds, and the
-  hour hand is brighter. The main plate still turns once every three minutes.
+  once every 15 seconds, a blue moon counter-rotates every 30 seconds, and the
+  hour hand is brighter. The main plate turns once every minute so the rotation
+  is visible without staring at it.
 - The `Now` strip is generated from `stats.json` and the selected PR snapshot;
   repository and PR counts no longer live as hand-written, stale strings.
 - Added `data/contributions.json`: selected upstream PRs with status, date,
