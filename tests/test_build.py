@@ -51,6 +51,15 @@ class AssetRefsTest(unittest.TestCase):
                     self.assertTrue((ROOT / token).exists(), token)
 
 
+class GitCodeImagesTest(unittest.TestCase):
+    def test_gitcode_uses_public_cdn_for_images(self):
+        with tempfile.TemporaryDirectory() as out:
+            build_out(out, "gitcode_badhope")
+            text = (pathlib.Path(out) / "README.md").read_text(encoding="utf-8")
+            self.assertIn("cdn.jsdelivr.net/gh/badhope/badhope@main/assets/", text)
+            self.assertNotIn("raw.gitcode.com", text)
+
+
 class IsolationTest(unittest.TestCase):
     MARKS = {
         "gh_badhope": ("gitcode.com/badhope", "gitee.com/badhope"),

@@ -15,6 +15,9 @@ All notable changes to the profile page generator. The format follows
   upstream PRs and a project table instead of promotional cards.
 
 ### Fixed
+- GitCode README images now use jsDelivr URLs instead of the repository-relative
+  paths that GitCode rewrites to `raw.gitcode.com`; that host returned HTTP 418
+  to anonymous visitors, so every SVG appeared broken even though it was public.
 - Gitee project links now point at the existing `CodePocket` repo instead of a
   missing `shopcash` path; the CSDN channel says archive/manual rather than
   claiming a scheduler that is not installed.

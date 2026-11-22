@@ -780,8 +780,18 @@ def picture(light, dark, alt, width="100%"):
     )
 
 
-def asset(name, lang, theme):
-    return f"assets/{name}-{lang}-{theme}.svg"
+REMOTE_ASSET_BASE = {
+    # GitCode rewrites relative README images to raw.gitcode.com, whose WAF
+    # returns 418 to anonymous readers. Serve the same committed SVG files
+    # through jsDelivr so the public GitCode page can actually render them.
+    "gitcode": "https://cdn.jsdelivr.net/gh/badhope/badhope@main/assets",
+}
+
+
+def asset(account, name, lang, theme):
+    filename = f"{name}-{lang}-{theme}.svg"
+    base = REMOTE_ASSET_BASE.get(COPY[account]["platform"])
+    return f"{base}/{filename}" if base else f"assets/{filename}"
 
 
 def image_tag(account, name, lang, alt, width="100%"):
@@ -789,10 +799,12 @@ def image_tag(account, name, lang, alt, width="100%"):
 
     Gitee / GitCode README renderers do not reliably keep <picture>/<source>,
     so the domestic mirrors use the light SVG directly. The layout is identical.
+    GitCode additionally needs an absolute CDN URL because its raw file host
+    rejects anonymous image requests.
     """
-    light = asset(name, lang, "light")
+    light = asset(account, name, lang, "light")
     if COPY[account]["platform"] == "github":
-        return picture(light, asset(name, lang, "dark"), alt, width)
+        return picture(light, asset(account, name, lang, "dark"), alt, width)
     return f'<img src="{light}" alt="{esc(alt)}" width="{width}" />'
 
 
