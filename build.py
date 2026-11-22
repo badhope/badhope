@@ -765,6 +765,18 @@ def asset(name, lang, theme):
     return f"assets/{name}-{lang}-{theme}.svg"
 
 
+def image_tag(account, name, lang, alt, width="100%"):
+    """GitHub gets theme-aware <picture>; mirrors get a plain <img>.
+
+    Gitee / GitCode README renderers do not reliably keep <picture>/<source>,
+    so the domestic mirrors use the light SVG directly. The layout is identical.
+    """
+    light = asset(name, lang, "light")
+    if COPY[account]["platform"] == "github":
+        return picture(light, asset(name, lang, "dark"), alt, width)
+    return f'<img src="{light}" alt="{esc(alt)}" width="{width}" />'
+
+
 def render_readme(account, lang):
     copy = COPY[account]
     stats = load_stats()
@@ -786,7 +798,7 @@ def render_readme(account, lang):
         out.append("")
 
     out.append('<p align="center">')
-    out.append(picture(asset("hero", lang, "light"), asset("hero", lang, "dark"), f"{copy['handle']} · {copy['home_display']}"))
+    out.append(image_tag(account, "hero", lang, f"{copy['handle']} · {copy['home_display']}"))
     out.append("</p>")
     out.append("")
 
@@ -804,12 +816,7 @@ def render_readme(account, lang):
             index = row + offset + 1
             cards.append(
                 f'<a href="{work_url(account, slug)}">'
-                + picture(
-                    asset(f"work-{index}", lang, "light"),
-                    asset(f"work-{index}", lang, "dark"),
-                    slug,
-                    "49.2%",
-                )
+                + image_tag(account, f"work-{index}", lang, slug, "49.2%")
                 + "</a>"
             )
         out.append(f'<p align="center">{" ".join(cards)}</p>')
@@ -818,7 +825,7 @@ def render_readme(account, lang):
     out.append(f"## 03 · {head['numbers']}")
     out.append("")
     out.append('<p align="center">')
-    out.append(picture(asset("numbers", lang, "light"), asset("numbers", lang, "dark"), "numbers", "100%"))
+    out.append(image_tag(account, "numbers", lang, "numbers"))
     out.append("</p>")
     out.append("")
 
@@ -828,12 +835,7 @@ def render_readme(account, lang):
     for channel in CHANNELS:
         cards.append(
             f'<a href="{channel["url"]}">'
-            + picture(
-                asset(f"channel-{channel['key']}", lang, "light"),
-                asset(f"channel-{channel['key']}", lang, "dark"),
-                channel["name"][lang],
-                "49.2%",
-            )
+            + image_tag(account, f"channel-{channel['key']}", lang, channel["name"][lang], "49.2%")
             + "</a>"
         )
     out.append(f'<p align="center">{" ".join(cards)}</p>')
@@ -872,7 +874,8 @@ THEME_NAMES = ("light", "dark")
 def render_assets(account):
     langs = LANGS if COPY[account]["platform"] == "github" else ("zh-CN",)
     written = []
-    for theme in THEME_NAMES:
+    themes = THEME_NAMES if COPY[account]["platform"] == "github" else ("light",)
+    for theme in themes:
         for lang in langs:
             hero = ASSETS / f"hero-{lang}-{theme}.svg"
             hero.write_text(svg_hero(account, lang, theme), encoding="utf-8")
