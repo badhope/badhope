@@ -11,23 +11,43 @@
 
 ## 01 · 现在
 
-- **moneyhelper** —— 对话优先的个人理财 Agent，本地优先，每个数字都能复核
-- **workbench** —— Tauri 2 + React 的桌面工作台，把日常琐事收进一个窗口
-- **发布管线** —— CSDN 长文与掘金沸点，只保留这两条通道
+- **当前仓库** —— moneyhelper、spark、workbench、world-walker
+- **外部 PR** —— 6 条：3 已合并，3 开放中
+- **发布** —— CSDN 长文与掘金沸点，两条通道
 
-## 02 · 代表作品
+## 02 · 外部 PR
 
-<p align="center"><a href="https://github.com/badhope/moneyhelper"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/work-1-zh-CN-dark.svg" /><img src="assets/work-1-zh-CN-light.svg" alt="moneyhelper" width="49.2%" /></picture></a> <a href="https://github.com/badhope/spark"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/work-2-zh-CN-dark.svg" /><img src="assets/work-2-zh-CN-light.svg" alt="spark" width="49.2%" /></picture></a></p>
+<sub>6 条 · 已合并 3 · 开放中 3 · 已关闭 0 · +757/−67 · 39 个文件 · 8 条评论</sub>
 
-<p align="center"><a href="https://github.com/badhope/workbench"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/work-3-zh-CN-dark.svg" /><img src="assets/work-3-zh-CN-light.svg" alt="workbench" width="49.2%" /></picture></a> <a href="https://github.com/badhope/world-walker"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/work-4-zh-CN-dark.svg" /><img src="assets/work-4-zh-CN-light.svg" alt="world-walker" width="49.2%" /></picture></a></p>
+- [mogenius/renovate-operator#796](https://github.com/mogenius/renovate-operator/pull/796) — feat(webhook): rotate the webhook auth token via an annotation · **开放中** · 提交于 2026-11-05 · +417/−23 · 14 files · 2 comments
+- [ncepu-iDealStudio/Fast-Https#9](https://github.com/ncepu-iDealStudio/Fast-Https/pull/9) — fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试 · **已合并** · 合并于 2026-11-07 · +162/−36 · 11 files · 1 comment
+- [evilmartians/lefthook#1629](https://github.com/evilmartians/lefthook/pull/1629) — fix: apply the staged-files fallback to pre-merge-commit · **开放中** · 提交于 2026-11-05 · +63/−2 · 5 files · 1 comment
+- [sqlfluff/sqlfluff#9009](https://github.com/sqlfluff/sqlfluff/pull/9009) — Snowflake: parse an empty PACKAGES list · **已合并** · 合并于 2026-11-05 · +56/−2 · 3 files · 1 comment
+- [mogenius/renovate-operator#772](https://github.com/mogenius/renovate-operator/pull/772) — feat(ui): add a check-all toggle to the log level filter · **已合并** · 合并于 2026-10-31 · +44/−0 · 3 files · 0 comments
+- [betterleaks/betterleaks#456](https://github.com/betterleaks/betterleaks/pull/456) — fix(generic-api-key): detect base64 secrets that start with + or / · **开放中** · 提交于 2026-11-05 · +15/−4 · 3 files · 3 comments
 
-## 03 · 数据
+<sub>PR snapshot 2026-11-22 · GitHub Search / pulls API</sub>
+
+## 03 · 参与项目
+
+| 项目 | 技术栈 | 方向 |
+|---|---|---|
+| [harbor](https://github.com/badhope/harbor) | Python | 自托管发布枢纽；一份草稿分发 15 个渠道 |
+| [spark](https://github.com/badhope/spark) | Python · React | 自托管编码智能体底座；沙箱执行、MCP 工具 |
+| [moneyhelper](https://github.com/badhope/moneyhelper) | FastAPI · LangGraph · React | 对话式理财 Agent；记账、持仓风控、财报 |
+| [workbench](https://github.com/badhope/workbench) | Tauri 2 · React 19 · TypeScript | 桌面工作台；剪贴板、片段、窗口、快速启动 |
+| [world-walker](https://github.com/badhope/world-walker) | Python stdlib · MCP | AI 互动小说的确定性规则层 |
+| [digilegacy](https://github.com/badhope/digilegacy) | Rust | 自托管数字遗产规划；资产、继承人、释放规则 |
+| [sciflow](https://github.com/badhope/sciflow) | Python · TypeScript | 科研工作台；文献、实验记录、结构化写作 |
+| [aquapilot](https://github.com/badhope/aquapilot) | TypeScript | 废水工艺模拟；可编辑流程、ASM1 |
+
+## 04 · 数据
 
 <p align="center">
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/numbers-zh-CN-dark.svg" /><img src="assets/numbers-zh-CN-light.svg" alt="numbers" width="100%" /></picture>
 </p>
 
-## 04 · 发布管线
+## 05 · 发布管线
 
 <p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-zh-CN-dark.svg" /><img src="assets/channel-csdn-zh-CN-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-zh-CN-dark.svg" /><img src="assets/channel-juejin-zh-CN-light.svg" alt="稀土掘金" width="49.2%" /></picture></a></p>
 
@@ -35,12 +55,6 @@
 - 2026-10-18 — [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657)
 
 <sub><a href="https://blog.csdn.net/weixin_56622231">CSDN 全部文章 →</a></sub>
-
-## 05 · 架子上还有
-
-> [DU](https://github.com/badhope/DU) · [mashang](https://github.com/badhope/mashang) · [digilegacy](https://github.com/badhope/digilegacy) · [harbor](https://github.com/badhope/harbor) · [sciflow](https://github.com/badhope/sciflow) · [pocketmind](https://github.com/badhope/pocketmind) · [aquapilot](https://github.com/badhope/aquapilot) · [melee](https://github.com/badhope/melee)
-
-<sub>Upstream: [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) · [icalendar](https://github.com/python-icalendar/icalendar) · [apache/airflow](https://github.com/apache/airflow) · [renovate-operator](https://github.com/mogenius/renovate-operator)</sub>
 
 <sub>One source, five profiles · numbers from a local snapshot</sub>
 

@@ -86,9 +86,9 @@ COPY = {
             "ja": "エージェント開発者 · ローカルファースト",
         },
         "tagline": {
-            "en": "I build agents that live on your own machine: small, auditable, and a little stubborn about the cloud.",
-            "zh-CN": "把 Agent 装进自己的电脑：小、可复核，对云保持一点固执。",
-            "ja": "自分のマシンに住むエージェントを作る。小さく、検証でき、クラウドに少し頑固に。",
+            "en": "Self-hosted agents, local-first tools, and upstream fixes.",
+            "zh-CN": "自托管 Agent、本地优先工具与上游修复。",
+            "ja": "セルフホストのエージェント、ローカルファーストの道具、上流の修正。",
         },
         "status": {
             "en": [("BUILDING", "moneyhelper · workbench"), ("PUBLISHING", "CSDN · Juejin"), ("OPEN TO", "Agent / full-stack roles"), ("TIMEZONE", "UTC+8")],
@@ -97,19 +97,19 @@ COPY = {
         },
         "now": {
             "en": [
-                "**moneyhelper** — a chat-first personal finance agent; local-first, every number auditable",
-                "**workbench** — a Tauri 2 + React desktop workbench that keeps the daily grind in one window",
-                "**Publishing line** — CSDN long-form and Juejin notes; these two channels only",
+                "**Current repositories** — moneyhelper, spark, workbench, world-walker",
+                "**Upstream PRs** — 6 selected: 3 merged, 3 open",
+                "**Publishing** — CSDN long-form and Juejin notes; two channels only",
             ],
             "zh-CN": [
-                "**moneyhelper** —— 对话优先的个人理财 Agent，本地优先，每个数字都能复核",
-                "**workbench** —— Tauri 2 + React 的桌面工作台，把日常琐事收进一个窗口",
-                "**发布管线** —— CSDN 长文与掘金沸点，只保留这两条通道",
+                "**当前仓库** —— moneyhelper、spark、workbench、world-walker",
+                "**外部 PR** —— 6 条：3 已合并，3 开放中",
+                "**发布** —— CSDN 长文与掘金沸点，两条通道",
             ],
             "ja": [
-                "**moneyhelper** —— 対話型の家計エージェント。ローカル完結、数値は検証可能",
-                "**workbench** —— Tauri 2 + React のデスクトップ作業台",
-                "**配信ライン** —— CSDN 長文と Juejin の短文。この二経路だけ",
+                "**現在のリポジトリ** —— moneyhelper、spark、workbench、world-walker",
+                "**外部 PR** —— 6 件：マージ 3、オープン 3",
+                "**配信** —— CSDN 長文と Juejin 短文。二経路のみ",
             ],
         },
         "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
@@ -124,9 +124,9 @@ COPY = {
             "ja": "長期プロジェクト · 上流コントリビュータ",
         },
         "tagline": {
-            "en": "Slow, compounding work: a few projects carried for years, and fixes that stay upstream.",
-            "zh-CN": "做能复利的长线事：几个养了多年的项目，和一批留在上游的修复。",
-            "ja": "ゆっくり複利で積み上げる。何年も育てるプロジェクトと、上流に残る修正。",
+            "en": "Long-horizon projects and upstream fixes; notes on CSDN and Juejin.",
+            "zh-CN": "长线项目与上游修复；工程手记写在 CSDN 与掘金。",
+            "ja": "長期プロジェクトと上流の修正。記録は CSDN と Juejin に。",
         },
         "status": {
             "en": [("BUILDING", "moneyhelper · sciflow"), ("PUBLISHING", "CSDN · Juejin"), ("OPEN TO", "Long-term collaboration"), ("TIMEZONE", "UTC+8")],
@@ -135,19 +135,19 @@ COPY = {
         },
         "now": {
             "en": [
-                "Carrying **moneyhelper**, **spark** and **sciflow** over the long haul",
-                "Keeping upstream fixes alive: ohmyzsh, icalendar, apache/airflow",
-                "Writing engineering notes on agents and local-first AI",
+                "**Current repositories** — moneyhelper, spark, sciflow",
+                "**Upstream PRs** — 6 selected: 2 merged, 4 closed",
+                "**Publishing** — CSDN long-form and Juejin notes; two channels only",
             ],
             "zh-CN": [
-                "长线养护 **moneyhelper**、**spark**、**sciflow**",
-                "把上游修复养住：ohmyzsh、icalendar、apache/airflow",
-                "写工程手记：Agent 与本地优先 AI",
+                "**当前仓库** —— moneyhelper、spark、sciflow",
+                "**外部 PR** —— 6 条：2 已合并，4 已关闭",
+                "**发布** —— CSDN 长文与掘金沸点，两条通道",
             ],
             "ja": [
-                "**moneyhelper**、**spark**、**sciflow** を長期で育てる",
-                "上流の修正を維持：ohmyzsh、icalendar、apache/airflow",
-                "エージェントとローカルファースト AI の工程記録を執筆",
+                "**現在のリポジトリ** —— moneyhelper、spark、sciflow",
+                "**外部 PR** —— 6 件：マージ 2、クローズ 4",
+                "**配信** —— CSDN 長文と Juejin 短文。二経路のみ",
             ],
         },
         "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
@@ -162,9 +162,9 @@ COPY = {
             "ja": "上流修正 · 小さな道具",
         },
         "tagline": {
-            "en": "I find bugs in other people's software and send the fix upstream. Small tools between the big ones.",
-            "zh-CN": "在别人的软件里找 bug，把修复送回上游。大工具之间，放几件小工具。",
-            "ja": "他人のソフトウェアのバグを見つけ、修正を上流へ。大きな道具の間に小さな道具を。",
+            "en": "Upstream fixes and small tools; read the code, send the fix back.",
+            "zh-CN": "上游修复与小工具；读代码，把修复送回上游。",
+            "ja": "上流の修正と小さな道具。コードを読み、修正を返す。",
         },
         "status": {
             "en": [("BUILDING", "world-walker · harbor"), ("PUBLISHING", "CSDN · Juejin"), ("OPEN TO", "Upstream / tooling"), ("TIMEZONE", "UTC+8")],
@@ -173,19 +173,19 @@ COPY = {
         },
         "now": {
             "en": [
-                "Merged in **apache/airflow**; betterleaks and lefthook fixes under review",
-                "Maintaining **world-walker**, **harbor** and offline mobile tools",
-                "Reading codebases for a living and for fun",
+                "**Current repositories** — world-walker, harbor, CodePocket",
+                "**Upstream PRs** — 3 selected: 1 merged, 2 closed",
+                "**Publishing** — CSDN long-form and Juejin notes; two channels only",
             ],
             "zh-CN": [
-                "已合入 **apache/airflow**；betterleaks 与 lefthook 的修复在审",
-                "维护 **world-walker**、**harbor** 与离线移动工具",
-                "以读代码为业，也以此为乐",
+                "**当前仓库** —— world-walker、harbor、CodePocket",
+                "**外部 PR** —— 3 条：1 已合并，2 已关闭",
+                "**发布** —— CSDN 长文与掘金沸点，两条通道",
             ],
             "ja": [
-                "**apache/airflow** はマージ済み。betterleaks と lefthook はレビュー中",
-                "**world-walker**、**harbor** とオフライン mobile ツールを維持",
-                "コードを読むのが仕事であり趣味",
+                "**現在のリポジトリ** —— world-walker、harbor、CodePocket",
+                "**外部 PR** —— 3 件：マージ 1、クローズ 2",
+                "**配信** —— CSDN 長文と Juejin 短文。二経路のみ",
             ],
         },
         "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
@@ -195,13 +195,13 @@ COPY = {
         "handle": "badhope",
         "home_display": "gitcode.com/badhope",
         "role": {"zh-CN": "移动端开发 · 离线工具"},
-        "tagline": {"zh-CN": "离线优先的移动端实验场：能装进口袋的软件，不绕云。"},
+        "tagline": {"zh-CN": "移动端与离线工具；同一套生成器的 GitCode 镜像。"},
         "status": {"zh-CN": [("在做", "mashang · pocketmind"), ("在写", "CSDN · 掘金"), ("镜像", "GitHub → GitCode"), ("时区", "UTC+8")]},
         "now": {
             "zh-CN": [
-                "**mashang** —— 赛博朋克风离线编程终端，内置 CPython 3.13",
-                "**pocketmind** —— 住进 Android 的常驻 Agent，一个 APK 独立运行",
-                "**发布管线** —— CSDN 长文与掘金沸点",
+                "**当前仓库** —— mashang、pocketmind、CodePocket",
+                "**外部 PR** —— 3 条：2 已合并，1 开放中",
+                "**发布** —— CSDN 长文与掘金沸点，两条通道",
             ]
         },
         "more_intro": {"zh-CN": "架子上还有"},
@@ -211,173 +211,18 @@ COPY = {
         "handle": "badhope",
         "home_display": "gitee.com/badhope",
         "role": {"zh-CN": "作品镜像 · 小程序"},
-        "tagline": {"zh-CN": "作品另一处安放：精选项目与小型实验，保持同一套骨架。"},
+        "tagline": {"zh-CN": "作品镜像；精选项目与小型实验共用同一套生成器。"},
         "status": {"zh-CN": [("在做", "CodePocket · quiz-chest"), ("在写", "CSDN · 掘金"), ("镜像", "GitHub → Gitee"), ("时区", "UTC+8")]},
         "now": {
             "zh-CN": [
-                "**CodePocket** —— 离线优先的安卓 Python IDE，原生 CPython 3.13",
-                "**quiz-chest** —— 本地优先的自有题库练习",
-                "**发布管线** —— CSDN 长文与掘金沸点",
+                "**当前仓库** —— CodePocket、quiz-chest、mashang",
+                "**外部 PR** —— 3 条：2 已合并，1 开放中",
+                "**发布** —— CSDN 长文与掘金沸点，两条通道",
             ]
         },
         "more_intro": {"zh-CN": "架子上还有"},
     },
 }
-
-WORKS = {
-    "moneyhelper": {
-        "title": {"en": "moneyhelper", "zh-CN": "moneyhelper", "ja": "moneyhelper"},
-        "stack": {"en": "FastAPI · LangGraph · React", "zh-CN": "FastAPI · LangGraph · React", "ja": "FastAPI · LangGraph · React"},
-        "line": {
-            "en": "A chat-first finance agent that keeps the books on your machine. Sentence-level bookkeeping, portfolio risk, earnings research.",
-            "zh-CN": "对话优先的个人理财 Agent：一句话记账、持仓风控、财报分析，账本留在自己机器上。",
-            "ja": "対話型の家計エージェント。一文で記帳、リスク管理、決算分析。家計簿は自分のマシンに。",
-        },
-    },
-    "workbench": {
-        "title": {"en": "workbench", "zh-CN": "workbench", "ja": "workbench"},
-        "stack": {"en": "Tauri 2 · React 19 · TypeScript", "zh-CN": "Tauri 2 · React 19 · TypeScript", "ja": "Tauri 2 · React 19 · TypeScript"},
-        "line": {
-            "en": "A quiet desktop workbench: clipboard, snippets, windows, quick launch — the daily grind in one app.",
-            "zh-CN": "安静的桌面工作台：剪贴板、片段、窗口、快速启动，把日常琐事收进一个应用。",
-            "ja": "静かなデスクトップ作業台。クリップボード、スニペット、起動をひとつに。",
-        },
-    },
-    "spark": {
-        "title": {"en": "spark", "zh-CN": "spark", "ja": "spark"},
-        "stack": {"en": "Python · React · self-hosted", "zh-CN": "Python · React · 自托管", "ja": "Python · React · セルフホスト"},
-        "line": {
-            "en": "A self-hosted coding-agent harness: cockpit UI, sandboxed runs, MCP tools. Your agent, your rules.",
-            "zh-CN": "自托管的编码智能体底座：驾驶舱界面、沙箱执行、MCP 工具，自己的 Agent 自己定规矩。",
-            "ja": "セルフホストのコーディングエージェント基盤。コックピット UI、サンドボックス実行、MCP ツール。",
-        },
-    },
-    "world-walker": {
-        "title": {"en": "world-walker", "zh-CN": "world-walker", "ja": "world-walker"},
-        "stack": {"en": "Python stdlib · MCP", "zh-CN": "Python 标准库 · MCP", "ja": "Python 標準ライブラリ · MCP"},
-        "line": {
-            "en": "A deterministic rules layer for AI interactive fiction: 64 MCP tools, a save library, no cloud.",
-            "zh-CN": "AI 互动小说的确定性规则层：64 个 MCP 工具、存档库，不依赖云。",
-            "ja": "AI 対話フィクションの決定論ルール層。64 の MCP ツール、セーブ管理。",
-        },
-    },
-    "mashang": {
-        "title": {"en": "mashang", "zh-CN": "mashang", "ja": "mashang"},
-        "stack": {"en": "Kotlin · CPython 3.13 · offline", "zh-CN": "Kotlin · CPython 3.13 · 离线", "ja": "Kotlin · CPython 3.13 · オフライン"},
-        "line": {
-            "en": "A cyberpunk offline programming terminal: built-in CPython and JS, quests, assert grading.",
-            "zh-CN": "赛博朋克风离线编程学习终端：内置 CPython 与 JS，关卡制、assert 判题。",
-            "ja": "サイバーパンクなオフライン学習ターミナル。CPython と JS を内蔵、クエスト制。",
-        },
-    },
-    "pocketmind": {
-        "title": {"en": "pocketmind", "zh-CN": "pocketmind", "ja": "pocketmind"},
-        "stack": {"en": "Android · on-device AI", "zh-CN": "Android · 端侧 AI", "ja": "Android · 端側 AI"},
-        "line": {
-            "en": "A resident agent inside an Android phone: one APK, on-device tools, no round trips.",
-            "zh-CN": "住进 Android 手机的常驻 Agent：一个 APK 独立运行，端侧工具，不绕云。",
-            "ja": "Android に住む常駐エージェント。APK ひとつ、端側で動く。",
-        },
-    },
-    "quiz-chest": {
-        "title": {"en": "quiz-chest", "zh-CN": "quiz-chest", "ja": "quiz-chest"},
-        "stack": {"en": "Local-first · question bank", "zh-CN": "本地优先 · 自有题库", "ja": "ローカルファースト · 問題バンク"},
-        "line": {
-            "en": "Your own question bank, offline: import, tag, drill — the data stays yours.",
-            "zh-CN": "练自己的题库：导入、打标、刷题，数据始终是自己的。",
-            "ja": "自分の問題バンクを練習。取り込み、タグ付け、ドリル。",
-        },
-    },
-    "shopcash": {
-        "title": {"en": "shopcash", "zh-CN": "shopcash", "ja": "shopcash"},
-        "stack": {"en": "Desktop · payments-free", "zh-CN": "桌面应用 · 无资金介入", "ja": "デスクトップ · 決済非介入"},
-        "line": {
-            "en": "Single-machine cashier and books for small shops; money never touches the software.",
-            "zh-CN": "单机门店收银与记账，钱只进商家自己的账户，软件零资金介入。",
-            "ja": "小規模店舗向けレジと記帳。売上は常に店舗自身の口座へ。",
-        },
-    },
-    "sciflow": {
-        "title": {"en": "sciflow", "zh-CN": "sciflow", "ja": "sciflow"},
-        "stack": {"en": "Python · research workbench", "zh-CN": "Python · 科研工作台", "ja": "Python · 研究ワークベンチ"},
-        "line": {
-            "en": "From a topic to a submittable manuscript: literature triage, experiment log, structured drafting.",
-            "zh-CN": "从一个题目到一份可投稿的稿件：文献分诊、实验记录、结构化写作。",
-            "ja": "テーマから投稿可能な原稿まで。文献整理、実験記録、構造化執筆。",
-        },
-    },
-    "harbor": {
-        "title": {"en": "harbor", "zh-CN": "harbor", "ja": "harbor"},
-        "stack": {"en": "Publishing hub · 15 platforms", "zh-CN": "发布枢纽 · 15 个平台", "ja": "配信ハブ · 15 プラットフォーム"},
-        "line": {
-            "en": "Write once, ship to fifteen platforms: a self-hosted publishing hub with per-channel typesetting.",
-            "zh-CN": "写一次，发十五处：自托管的发布枢纽，按渠道各自排版。",
-            "ja": "一度書いて 15 箇所へ。チャネル別に整形する配信ハブ。",
-        },
-    },
-    "CodePocket": {
-        "title": {"en": "CodePocket", "zh-CN": "CodePocket", "ja": "CodePocket"},
-        "stack": {"en": "Android · offline Python IDE", "zh-CN": "Android · 离线 Python IDE", "ja": "Android · オフライン Python IDE"},
-        "line": {
-            "en": "An offline-first Python IDE for Android: native CPython 3.13 in your pocket, no cloud.",
-            "zh-CN": "离线优先的安卓 Python IDE：兜里装着原生 CPython 3.13，不靠云。",
-            "ja": "オフラインファーストの Android 用 Python IDE。ネイティブ CPython 3.13 をポケットに。",
-        },
-    },
-}
-
-FEATURED = {
-    "gh_badhope": ["moneyhelper", "spark", "workbench", "world-walker"],
-    "gitcode_badhope": ["mashang", "pocketmind", "CodePocket", "workbench"],
-    "gitee_badhope": ["CodePocket", "quiz-chest", "mashang", "moneyhelper"],
-    "gh_morningstar": ["moneyhelper", "spark", "sciflow", "workbench"],
-    "gh_x33834": ["world-walker", "harbor", "CodePocket", "mashang"],
-}
-
-MORE = {
-    "gh_badhope": [
-        ("DU", "https://github.com/badhope/DU"),
-        ("mashang", "https://github.com/badhope/mashang"),
-        ("digilegacy", "https://github.com/badhope/digilegacy"),
-        ("harbor", "https://github.com/badhope/harbor"),
-        ("sciflow", "https://github.com/badhope/sciflow"),
-        ("pocketmind", "https://github.com/badhope/pocketmind"),
-        ("aquapilot", "https://github.com/badhope/aquapilot"),
-        ("melee", "https://github.com/badhope/melee"),
-    ],
-    "gitcode_badhope": [
-        ("CodePocket", "https://gitcode.com/badhope/CodePocket"),
-        ("moneyhelper", "https://gitcode.com/badhope/moneyhelper"),
-        ("spark", "https://gitcode.com/badhope/spark"),
-        ("workbench", "https://gitcode.com/badhope/workbench"),
-    ],
-    "gitee_badhope": [
-        ("mashang", "https://gitee.com/badhope/mashang"),
-        ("moneyhelper", "https://gitee.com/badhope/moneyhelper"),
-        ("spark", "https://gitee.com/badhope/spark"),
-        ("world-walker", "https://gitee.com/badhope/world-walker"),
-    ],
-    "gh_morningstar": [
-        ("sciflow", "https://github.com/Morningstar202604/sciflow"),
-        ("world-walker", "https://github.com/Morningstar202604/world-walker"),
-        ("digilegacy", "https://github.com/Morningstar202604/digilegacy"),
-        ("harbor", "https://github.com/Morningstar202604/harbor"),
-        ("creator-studio", "https://github.com/Morningstar202604/creator-studio"),
-    ],
-    "gh_x33834": [
-        ("harbor", "https://github.com/X33834/harbor"),
-        ("CodePocket", "https://github.com/X33834/CodePocket"),
-        ("moneyhelper", "https://github.com/X33834/moneyhelper"),
-        ("digilegacy", "https://github.com/X33834/digilegacy"),
-    ],
-}
-
-UPSTREAM = [
-    ("ohmyzsh", "https://github.com/ohmyzsh/ohmyzsh"),
-    ("icalendar", "https://github.com/python-icalendar/icalendar"),
-    ("apache/airflow", "https://github.com/apache/airflow"),
-    ("renovate-operator", "https://github.com/mogenius/renovate-operator"),
-]
 
 WRITING = [
     ("2026-11-04", "把 AI Agent 接进业务系统，我踩了 3 个挺蠢的坑", "https://blog.csdn.net/weixin_56622231/article/details/170051167"),
@@ -420,9 +265,33 @@ TOOLBOX = {
 }
 
 HEADINGS = {
-    "en": {"now": "Now", "work": "Selected work", "numbers": "Numbers", "publish": "Publishing line", "more": "Also on the shelf"},
-    "zh-CN": {"now": "现在", "work": "代表作品", "numbers": "数据", "publish": "发布管线", "more": "架子上还有"},
-    "ja": {"now": "いま", "work": "代表作", "numbers": "数字", "publish": "配信ライン", "more": "棚の続き"},
+    "en": {"now": "Now", "contrib": "Upstream pull requests", "projects": "Other projects", "numbers": "Numbers", "publish": "Publishing line"},
+    "zh-CN": {"now": "现在", "contrib": "外部 PR", "projects": "参与项目", "numbers": "数据", "publish": "发布管线"},
+    "ja": {"now": "いま", "contrib": "外部 PR", "projects": "参加プロジェクト", "numbers": "数字", "publish": "配信ライン"},
+}
+
+PR_STATUS = {
+    "merged": {"en": "merged", "zh-CN": "已合并", "ja": "マージ済み"},
+    "open": {"en": "open", "zh-CN": "开放中", "ja": "オープン"},
+    "closed": {"en": "closed", "zh-CN": "已关闭", "ja": "クローズ"},
+}
+
+PROJECT_TABLE = {
+    "en": ("Project", "Stack", "Scope"),
+    "zh-CN": ("项目", "技术栈", "方向"),
+    "ja": ("プロジェクト", "スタック", "方向"),
+}
+
+PR_SUMMARY = {
+    "en": "{n} selected · {merged} merged · {open} open · {closed} closed · +{adds}/−{dels} · {files} files · {comments} comments",
+    "zh-CN": "{n} 条 · 已合并 {merged} · 开放中 {open} · 已关闭 {closed} · +{adds}/−{dels} · {files} 个文件 · {comments} 条评论",
+    "ja": "{n} 件 · マージ済み {merged} · オープン {open} · クローズ {closed} · +{adds}/−{dels} · {files} ファイル · {comments} コメント",
+}
+
+PR_WHEN = {
+    "merged": {"en": "merged", "zh-CN": "合并于", "ja": "マージ"},
+    "open": {"en": "opened", "zh-CN": "提交于", "ja": "提出"},
+    "closed": {"en": "opened", "zh-CN": "提交于", "ja": "提出"},
 }
 
 METRIC_LABELS = {
@@ -432,13 +301,13 @@ METRIC_LABELS = {
     "followers": {"en": "FOLLOWERS", "zh-CN": "关注者", "ja": "フォロワー"},
     "repos": {"en": "REPOSITORIES", "zh-CN": "仓库", "ja": "リポジトリ"},
     "stars": {"en": "STARS", "zh-CN": "星标", "ja": "スター"},
-    "works": {"en": "FEATURED", "zh-CN": "精选作品", "ja": "代表作"},
+    "projects": {"en": "PROJECTS", "zh-CN": "项目", "ja": "プロジェクト"},
 }
 
 SIGNAL_TITLE = {
-    "en": "Signal · last 12 months",
-    "zh-CN": "信号 · 过去 12 个月",
-    "ja": "シグナル · 直近 12 か月",
+    "en": "Signal · current snapshot",
+    "zh-CN": "信号 · 当前快照",
+    "ja": "シグナル · 現在のスナップショット",
 }
 
 STARCHART_NOTE = {
@@ -470,27 +339,43 @@ def load_stats():
         return {"as_of": "", "accounts": {}}
 
 
+CONTRIB_PATH = ROOT / "data" / "contributions.json"
+
+
+def load_contributions():
+    try:
+        return json.loads(CONTRIB_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"as_of": "", "projects": {}, "accounts": {}}
+
+
+def contribution_account(account):
+    return load_contributions().get("accounts", {}).get(account, {})
+
+
+def project_url(account, slug):
+    catalog = load_contributions().get("projects", {}).get(slug, {})
+    platform = COPY[account]["platform"]
+    base = {"github": "https://github.com", "gitcode": "https://gitcode.com", "gitee": "https://gitee.com"}[platform]
+    repo = catalog.get("repo") or catalog.get("name") or slug
+    return f"{base}/{COPY[account]['handle']}/{repo}"
+
+
 def stat_metrics(account):
     stats = load_stats()
     acc = stats.get("accounts", {}).get(account, {})
     platform = COPY[account]["platform"]
     if platform == "github":
-        keys = ["commits", "prs", "merged", "followers"]
+        keys = ["repos", "prs", "merged", "followers"]
     else:
-        keys = ["repos", "stars", "followers", "works"]
+        keys = ["repos", "stars", "followers", "projects"]
     values = []
     for key in keys:
-        if key == "works":
-            values.append(len(FEATURED[account]))
+        if key == "projects":
+            values.append(len(contribution_account(account).get("projects", [])))
         else:
             values.append(acc.get(key))
     return keys, values, stats.get("as_of", "")
-
-
-def work_stars(account, slug):
-    stats = load_stats()
-    acc = stats.get("accounts", {}).get(account, {})
-    return acc.get("works", {}).get(slug, {}).get("stars")
 
 
 def fmt_num(value):
@@ -731,48 +616,6 @@ def svg_hero(account, lang, theme):
     return "\n".join(out)
 
 
-def svg_work(account, lang, slug, index, theme):
-    work = WORKS[slug]
-    t = THEMES[theme]
-    accent = t[ACCENTS[(index - 1) % 4]]
-    title = work["title"][lang]
-    line = work["line"][lang]
-    stack = work["stack"][lang]
-    url = work_url(account, slug)
-    stars = work_stars(account, slug)
-    w, h = 608, 246
-    out = [svg_head(w, h, f"{title} — {stack}", theme)]
-    out.append(
-        f'<filter id="soft" x="-20%" y="-20%" width="140%" height="140%">'
-        f'<feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="{t["shadow"]}" flood-opacity="0.14"/>'
-        f'</filter>'
-    )
-    out.append(f'<rect x="12" y="14" width="584" height="222" rx="20" fill="{accent}" opacity="0.11"/>')
-    out.append(
-        f'<rect x="4" y="4" width="584" height="222" rx="20" fill="{t["panel"]}" '
-        f'stroke="{t["line"]}" filter="url(#soft)"/>'
-    )
-    out.append(f'<rect x="4" y="4" width="584" height="6" rx="3" fill="{accent}"/>')
-    out.extend(star_field(w, h, theme, count=10, seed=index * 13, opacity=0.13))
-    out.extend(constellation([(472, 96), (512, 74), (548, 106), (574, 86)], theme, opacity=0.10))
-    out.append(f'<text x="28" y="38" class="mono faint" font-size="10.5" letter-spacing="1.5">FEATURED / {index:02d}</text>')
-    if stars:
-        out.append(
-            f'<rect x="486" y="20" width="76" height="24" rx="12" fill="{t["chip"]}" stroke="{t["chipLine"]}"/>'
-        )
-        out.append(f'<text x="524" y="36" text-anchor="middle" class="mono muted" font-size="11">★ {esc(fmt_num(stars))}</text>')
-    out.append(f'<text x="28" y="82" class="ink" font-size="29" font-weight="720" letter-spacing="-0.6">{esc(title)}</text>')
-    for i, part in enumerate(wrap_text(line, 52 if lang == "en" else 25 if lang == "zh-CN" else 31, lang)[:3]):
-        out.append(f'<text x="28" y="{110 + i * 21}" class="muted" font-size="14.2" opacity="0.92">{esc(part)}</text>')
-    for item in chip_row(28, 170, [s.strip() for s in stack.split("·")][:3], theme, lang):
-        out.append(item)
-    out.append(f'<line x1="28" y1="198" x2="556" y2="198" stroke="{t["line"]}" opacity="0.7"/>')
-    out.append(f'<text x="28" y="213" class="mono faint" font-size="9.5" letter-spacing="1.4">OPEN</text>')
-    out.append(f'<text x="556" y="213" text-anchor="end" class="mono" font-size="14" fill="{accent}">↗</text>')
-    out.append("</svg>")
-    return "\n".join(out)
-
-
 def svg_numbers(account, lang, theme):
     keys, values, as_of = stat_metrics(account)
     t = THEMES[theme]
@@ -929,17 +772,6 @@ def svg_starchart(lang, theme):
 # ---------------------------------------------------------------------------
 
 
-def work_url(account, slug):
-    entry = WORKS[slug]
-    platform = COPY[account]["platform"]
-    override = (entry.get("account_urls") or {}).get(account)
-    if override:
-        return override
-    base = {"github": "https://github.com", "gitcode": "https://gitcode.com", "gitee": "https://gitee.com"}[platform]
-    repo = entry.get("repo", slug)
-    return f"{base}/{COPY[account]['handle']}/{repo}"
-
-
 def picture(light, dark, alt, width="100%"):
     return (
         f'<picture><source media="(prefers-color-scheme: dark)" srcset="{dark}" />'
@@ -968,8 +800,6 @@ def render_readme(account, lang):
     stats = load_stats()
     platform = copy["platform"]
     head = HEADINGS[lang]
-    featured = FEATURED[account]
-    more = MORE[account]
     out = []
 
     if platform == "github":
@@ -999,28 +829,64 @@ def render_readme(account, lang):
         out.append(f"- {item}")
     out.append("")
 
-    out.append(f"## 02 · {head['work']}")
+    out.append(f"## 02 · {head['contrib']}")
     out.append("")
-    for row in range(0, len(featured), 2):
-        cards = []
-        for offset, slug in enumerate(featured[row:row + 2]):
-            index = row + offset + 1
-            cards.append(
-                f'<a href="{work_url(account, slug)}">'
-                + image_tag(account, f"work-{index}", lang, slug, "49.2%")
-                + "</a>"
-            )
-        out.append(f'<p align="center">{" ".join(cards)}</p>')
-        out.append("")
+    contrib = load_contributions()
+    cacc = contribution_account(account)
+    prs = cacc.get("pull_requests", [])
+    merged = sum(1 for pr in prs if pr.get("status") == "merged")
+    opened = sum(1 for pr in prs if pr.get("status") == "open")
+    closed = sum(1 for pr in prs if pr.get("status") == "closed")
+    adds = sum(pr.get("additions", 0) for pr in prs)
+    dels = sum(pr.get("deletions", 0) for pr in prs)
+    files = sum(pr.get("files", 0) for pr in prs)
+    comments = sum(pr.get("comments", 0) for pr in prs)
+    out.append(
+        "<sub>"
+        + PR_SUMMARY[lang].format(
+            n=len(prs), merged=merged, open=opened, closed=closed,
+            adds=adds, dels=dels, files=files, comments=comments,
+        )
+        + "</sub>"
+    )
+    out.append("")
+    for pr in prs:
+        status = pr.get("status", "closed")
+        when_label = PR_WHEN.get(status, PR_WHEN["closed"])[lang]
+        when = f"{when_label} {pr['merged_at']}" if status == "merged" and pr.get("merged_at") else f"{when_label} {pr.get('opened', '')}"
+        files = pr.get("files", 0)
+        comments = pr.get("comments", 0)
+        line = (
+            f"- [{pr['repo']}#{pr['number']}](https://github.com/{pr['repo']}/pull/{pr['number']})"
+            f" — {pr['title']} · **{PR_STATUS.get(status, PR_STATUS['closed'])[lang]}**"
+            f" · {when} · +{pr.get('additions', 0)}/−{pr.get('deletions', 0)}"
+            f" · {files} file{'s' if files != 1 else ''} · {comments} comment{'s' if comments != 1 else ''}"
+        )
+        out.append(line)
+    out.append("")
+    out.append(f"<sub>PR snapshot {contrib.get('as_of', '')} · GitHub Search / pulls API</sub>")
+    out.append("")
 
-    out.append(f"## 03 · {head['numbers']}")
+    out.append(f"## 03 · {head['projects']}")
+    out.append("")
+    heads = PROJECT_TABLE[lang]
+    out.append(f"| {heads[0]} | {heads[1]} | {heads[2]} |")
+    out.append("|---|---|---|")
+    for slug in cacc.get("projects", []):
+        entry = contrib.get("projects", {}).get(slug, {})
+        name = entry.get("name", slug)
+        note = entry.get("note_zh", entry.get("note", "")) if lang == "zh-CN" else entry.get("note", "")
+        out.append(f"| [{name}]({project_url(account, slug)}) | {entry.get('stack', '')} | {note} |")
+    out.append("")
+
+    out.append(f"## 04 · {head['numbers']}")
     out.append("")
     out.append('<p align="center">')
     out.append(image_tag(account, "numbers", lang, "numbers"))
     out.append("</p>")
     out.append("")
 
-    out.append(f"## 04 · {head['publish']}")
+    out.append(f"## 05 · {head['publish']}")
     out.append("")
     cards = []
     for channel in CHANNELS:
@@ -1037,16 +903,6 @@ def render_readme(account, lang):
     out.append(f'<sub><a href="{CHANNELS[0]["url"]}">{WRITING_MORE[lang]}</a></sub>')
     out.append("")
 
-    out.append(f"## 05 · {head['more']}")
-    out.append("")
-    more_line = " · ".join(f"[{name}]({url})" for name, url in more)
-    out.append(f"> {more_line}")
-    out.append("")
-
-    if platform == "github":
-        upstream = " · ".join(f"[{name}]({url})" for name, url in UPSTREAM)
-        out.append(f'<sub>Upstream: {upstream}</sub>')
-        out.append("")
     out.append('<sub>One source, five profiles · numbers from a local snapshot</sub>')
     out.append("")
     home = copy["home_display"]
@@ -1077,10 +933,6 @@ def render_assets(account):
             starchart = ASSETS / f"starchart-{lang}-{theme}.svg"
             starchart.write_text(svg_starchart(lang, theme), encoding="utf-8")
             written.append(starchart)
-            for i, slug in enumerate(FEATURED[account], 1):
-                path = ASSETS / f"work-{i}-{lang}-{theme}.svg"
-                path.write_text(svg_work(account, lang, slug, i, theme), encoding="utf-8")
-                written.append(path)
             for channel in CHANNELS:
                 path = ASSETS / f"channel-{channel['key']}-{lang}-{theme}.svg"
                 path.write_text(svg_channel(channel, lang, theme), encoding="utf-8")

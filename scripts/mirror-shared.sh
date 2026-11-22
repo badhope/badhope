@@ -28,7 +28,7 @@ fi
 
 # 账号无关的共享层（绝不含 assets/ 与账号专属 profile.json）
 # 清单只在这一处维护：mirror.yml / refresh.yml 不再覆盖，防止两处漂移回灌旧版。
-SHARED_PATHS="build.py data/stats.json scripts tests Makefile .gitattributes .gitignore CHANGELOG.md LICENSE"
+SHARED_PATHS="build.py data/stats.json data/contributions.json scripts tests Makefile .gitattributes .gitignore CHANGELOG.md LICENSE"
 
 # 旧设计留在镜像里的文件；每次同步顺手清掉，避免旧数据/旧 CI 继续存在。
 LEGACY_PATHS=".github/workflows/snake.yml .github/workflows/refresh.yml .gitee .gitcode .github/ISSUE_TEMPLATE .github/PULL_REQUEST_TEMPLATE.md CODE_OF_CONDUCT.md CONTRIBUTING.md SECURITY.md data/cards data/contrib data/extras.json data/icons data/linguist_colors.json data/works.json data/writing.json assets/png"
@@ -78,6 +78,7 @@ done
 for p in $LEGACY_PATHS; do
   rm -rf "${target:?}/$p"
 done
+rm -f "$target"/assets/work-*.svg
 
 # 按目标账号原地重建 README 与全部 SVG（README 用目标仓库自己的 profile 与文案）
 ( cd "$target" && "$PYTHON_BIN" scripts/generate.py --here )

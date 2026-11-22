@@ -11,15 +11,21 @@ All notable changes to the profile page generator. The format follows
   page has not used it since the celestial rebuild.
 - Legacy GitCode/Gitee CI copies that referenced deleted scripts, plus old
   card/icon data left in the mirrors.
+- The featured-work card grid and all `assets/work-*.svg`; the page now shows
+  upstream PRs and a project table instead of promotional cards.
 
 ### Fixed
-- Gitee featured grid now points at the existing `CodePocket` repo instead of a
+- Gitee project links now point at the existing `CodePocket` repo instead of a
   missing `shopcash` path; the CSDN channel says archive/manual rather than
   claiming a scheduler that is not installed.
 
 ### Changed
+- Added `data/contributions.json`: selected upstream PRs with status, date,
+  diff size, file count and comments, plus per-account project lists.
 - Stats refresh now counts personal, non-fork repositories on GitHub, Gitee
   and GitCode; the weekly job is no longer allowed to fail silently.
+- GitHub numbers now report repository count; Gitee/GitCode report project
+  count instead of the old featured-work metric.
 - Rebuilt the shared profile template around a celestial theme: star fields,
   constellation lines, a gold-rimmed rotating starchart (SMIL, 180s), and
   light/dark palettes that read as a day-sky atlas rather than a plain white

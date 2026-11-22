@@ -6,8 +6,7 @@
     python3 scripts/refresh_sections.py --section stats --platform gitee
     python3 scripts/refresh_sections.py --section stats --platform gitcode
 
-Updates data/stats.json: account totals plus per-work stars for the featured
-works of each github account. Tokens are read from the environment when
+Updates data/stats.json: account totals only (repos, stars, followers). Tokens are read from the environment when
 present (GITHUB_TOKEN, GITEE_TOKEN); everything degrades gracefully offline.
 """
 
@@ -21,9 +20,6 @@ import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-
-import build  # noqa: E402
 
 STATS_PATH = ROOT / "data" / "stats.json"
 
@@ -89,14 +85,6 @@ def refresh_github(stats, token):
             "stars": None,
             "followers": user.get("followers"),
         })
-        # per-work stars for the featured works
-        works = acc.setdefault("works", {})
-        for slug in build.FEATURED.get(key, []):
-            try:
-                repo = gh_repo(login, slug, token)
-                works[slug] = {"stars": repo.get("stargazers_count"), "updated": (repo.get("pushed_at") or "")[:10]}
-            except OSError as exc:
-                print("skip work %s/%s: %s" % (login, slug, exc))
     stats["as_of"] = as_of
     stats["source"] = "scripts/refresh_sections.py"
 
@@ -125,22 +113,10 @@ def refresh_platform(stats, key, token, url, namespace_type, label):
     try:
         repos = platform_repos(url, token, namespace_type)
         user = fetch_json(url.replace("/repos", ""), token_param=token)
-        works = {}
-        for slug in build.FEATURED.get(key, []):
-            repo = next(
-                (r for r in repos if r.get("name") == slug or r.get("path") == slug),
-                None,
-            )
-            if repo:
-                works[slug] = {
-                    "stars": repo.get("stargazers_count"),
-                    "updated": (repo.get("pushed_at") or repo.get("updated_at") or "")[:10],
-                }
         accounts[key] = {
             "repos": len(repos),
             "stars": sum(r.get("stargazers_count") or 0 for r in repos),
             "followers": user.get("followers"),
-            "works": works,
         }
         stats["as_of"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     except OSError as exc:

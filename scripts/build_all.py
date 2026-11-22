@@ -5,9 +5,9 @@
     python3 scripts/build_all.py --out dist
 
 Each account gets its own directory containing README + SVG assets, built
-from the same build.py and the same WORKS table. This is the single-source
-counterpart to scripts/mirror-shared.sh: the mirror pushes the shared layer,
-this proves every target can be rendered before pushing.
+from the same build.py and the same contribution/project snapshot. This is
+the single-source counterpart to scripts/mirror-shared.sh: the mirror pushes
+the shared layer, this proves every target can be rendered before pushing.
 """
 
 import argparse

@@ -71,11 +71,17 @@ class IsolationTest(unittest.TestCase):
 
 
 class DataTest(unittest.TestCase):
-    def test_featured_works_exist_in_catalogue(self):
-        for account, slugs in build.FEATURED.items():
-            for slug in slugs:
-                self.assertIn(slug, build.WORKS, "%s -> %s" % (account, slug))
-                self.assertTrue(build.WORKS[slug]["line"]["zh-CN"].strip())
+    def test_contributions_snapshot_valid(self):
+        data = build.load_contributions()
+        self.assertTrue(data.get("as_of"))
+        for account in build.COPY:
+            entry = data["accounts"].get(account, {})
+            self.assertTrue(entry.get("projects"), account)
+            for slug in entry["projects"]:
+                self.assertIn(slug, data["projects"], "%s -> %s" % (account, slug))
+            for pr in entry.get("pull_requests", []):
+                self.assertIn(pr["status"], ("merged", "open", "closed"))
+                self.assertTrue(pr["repo"] and pr["title"])
 
     def test_profile_account_is_known(self):
         self.assertIn(build.current_account(), build.COPY)
@@ -85,30 +91,18 @@ class DataTest(unittest.TestCase):
         stats = json.loads((ROOT / "data" / "stats.json").read_text(encoding="utf-8"))
         self.assertIn("accounts", stats)
         self.assertIn(account, stats["accounts"])
-        works = stats["accounts"][account].get("works", {})
-        for slug in build.FEATURED[account]:
-            self.assertIn(slug, works)
-
-
-if __name__ == "__main__":
-    unittest.main()
+        self.assertIsInstance(stats["accounts"][account].get("repos"), int)
+        self.assertIsInstance(stats["accounts"][account].get("followers"), int)
 
 
 class AllProfilesRenderTest(unittest.TestCase):
     """One build.py must render every profile with its own links."""
 
-    def test_every_account_renders_own_featured_links(self):
-        bases = {
-            "github": "https://github.com",
-            "gitcode": "https://gitcode.com",
-            "gitee": "https://gitee.com",
-        }
+    def test_every_account_renders_own_project_links(self):
         for account in build.COPY:
-            platform = build.COPY[account]["platform"]
-            handle = build.COPY[account]["handle"]
             with tempfile.TemporaryDirectory() as out:
                 build_out(out, account)
                 text = (pathlib.Path(out) / "README.md").read_text(encoding="utf-8")
-                for slug in build.FEATURED[account]:
-                    href = "%s/%s/%s" % (bases[platform], handle, build.WORKS[slug].get("repo", slug))
-                    self.assertIn('href="%s"' % href, text, "%s missing %s" % (account, href))
+                for slug in build.contribution_account(account).get("projects", []):
+                    url = build.project_url(account, slug)
+                    self.assertIn("](%s)" % url, text, "%s missing %s" % (account, url))

@@ -47,11 +47,11 @@
 <circle cx="1138" cy="76" r="47" fill="none" stroke="#2E5BC7" stroke-width="1" opacity="0.10"/>
 <circle cx="1138" cy="76" r="3.2" fill="#C08A2E" opacity="0.85"/>
 <text x="40" y="46" class="mono" font-size="10" letter-spacing="2" fill="#E14B2B">SIGNAL / 03</text>
-<text x="40" y="80" class="ink" font-size="21" font-weight="650">シグナル · 直近 12 か月</text>
+<text x="40" y="80" class="ink" font-size="21" font-weight="650">シグナル · 現在のスナップショット</text>
 <text x="40" y="106" class="mono faint" font-size="11.2">as of 2026-11-22</text>
 <line x1="332" y1="34" x2="332" y2="116" stroke="#DDD2BD"/>
-<text x="360" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">2,324</text>
-<text x="360" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">コミット</text>
+<text x="360" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">27</text>
+<text x="360" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">リポジトリ</text>
 <rect x="360" y="110" width="38" height="3" rx="1.5" fill="#E14B2B"/>
 <line x1="538" y1="34" x2="538" y2="116" stroke="#DDD2BD"/>
 <text x="566" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">303</text>

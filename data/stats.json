@@ -16,25 +16,7 @@
    "repos": 27,
    "reviews": 5,
    "starred": 184,
-   "stars": null,
-   "works": {
-    "moneyhelper": {
-     "stars": 105,
-     "updated": "2026-11-22"
-    },
-    "spark": {
-     "stars": 30,
-     "updated": "2026-11-21"
-    },
-    "workbench": {
-     "stars": 49,
-     "updated": "2026-11-22"
-    },
-    "world-walker": {
-     "stars": 21,
-     "updated": "2026-11-22"
-    }
-   }
+   "stars": null
   },
   "gh_morningstar": {
    "commits": 2012,
@@ -52,25 +34,7 @@
    "repos": 27,
    "reviews": 2,
    "starred": 73,
-   "stars": null,
-   "works": {
-    "moneyhelper": {
-     "stars": 0,
-     "updated": "2026-11-22"
-    },
-    "sciflow": {
-     "stars": 0,
-     "updated": "2026-11-22"
-    },
-    "spark": {
-     "stars": 0,
-     "updated": "2026-11-21"
-    },
-    "workbench": {
-     "stars": 1,
-     "updated": "2026-11-22"
-    }
-   }
+   "stars": null
   },
   "gh_x33834": {
    "commits": 320,
@@ -88,71 +52,17 @@
    "repos": 28,
    "reviews": 0,
    "starred": 2,
-   "stars": null,
-   "works": {
-    "CodePocket": {
-     "stars": 2,
-     "updated": "2026-10-17"
-    },
-    "harbor": {
-     "stars": 2,
-     "updated": "2026-11-22"
-    },
-    "mashang": {
-     "stars": 0,
-     "updated": "2026-11-06"
-    },
-    "world-walker": {
-     "stars": 1,
-     "updated": "2026-11-22"
-    }
-   }
+   "stars": null
   },
   "gitcode_badhope": {
    "followers": 0,
    "repos": 25,
-   "stars": 1,
-   "works": {
-    "CodePocket": {
-     "stars": 0,
-     "updated": "2026-10-18"
-    },
-    "mashang": {
-     "stars": 0,
-     "updated": "2026-11-07"
-    },
-    "pocketmind": {
-     "stars": 0,
-     "updated": "2026-11-07"
-    },
-    "workbench": {
-     "stars": 0,
-     "updated": "2026-11-22"
-    }
-   }
+   "stars": 1
   },
   "gitee_badhope": {
    "followers": 0,
    "repos": 23,
-   "stars": 1,
-   "works": {
-    "CodePocket": {
-     "stars": 0,
-     "updated": "2026-10-18"
-    },
-    "mashang": {
-     "stars": 0,
-     "updated": "2026-11-07"
-    },
-    "moneyhelper": {
-     "stars": 0,
-     "updated": "2026-11-22"
-    },
-    "quiz-chest": {
-     "stars": 0,
-     "updated": "2026-11-08"
-    }
-   }
+   "stars": 1
   }
  },
  "as_of": "2026-11-22",
