@@ -12,6 +12,11 @@ All notable changes to the profile page generator. The format follows
 - Legacy GitCode/Gitee CI copies that referenced deleted scripts, plus old
   card/icon data left in the mirrors.
 
+### Fixed
+- Gitee featured grid now points at the existing `CodePocket` repo instead of a
+  missing `shopcash` path; the CSDN channel says archive/manual rather than
+  claiming a scheduler that is not installed.
+
 ### Changed
 - Stats refresh now counts personal, non-fork repositories on GitHub, Gitee
   and GitCode; the weekly job is no longer allowed to fail silently.

@@ -3,8 +3,8 @@
 #   gitcode / gitee / github-x33834 / github-morningstar
 #
 # 共享层只包含**账号无关**的数据源、数据与脚本；README、profile.json 与
-# 各账号专属资产（hero / PNG / 技能卡 / 贡献图）不跨账号复制，而是在目标仓库里
-# 按目标 profile.json 原地重建，避免 GitHub 账号的图跑到 GitCode 页面上。
+# 各账号专属资产（hero / 星图 / 作品卡）不跨账号复制，而是在目标仓库里按
+# 目标 profile.json 原地重建，避免 GitHub 账号的图跑到 GitCode 页面上。
 # 用法：bash mirror-shared.sh <gitcode|gitee|github-x33834|github-morningstar>
 #   - 需要环境变量 TOKEN（对应平台令牌）
 #   - WORKSPACE 默认为当前目录（GitHub Actions 的 checkout 根）
@@ -26,7 +26,7 @@ fi
 [ -f "$SRC/profile.json" ] || { echo "source profile.json missing" >&2; exit 2; }
 [ -x "$SRC/scripts/git-askpass.sh" ] || { echo "source askpass helper missing or not executable" >&2; exit 2; }
 
-# 账号无关的共享层（绝不含 assets/ 卡片、data/cards/、data/contrib/）
+# 账号无关的共享层（绝不含 assets/ 与账号专属 profile.json）
 # 清单只在这一处维护：mirror.yml / refresh.yml 不再覆盖，防止两处漂移回灌旧版。
 SHARED_PATHS="build.py data/stats.json scripts tests Makefile .gitattributes .gitignore CHANGELOG.md LICENSE"
 
