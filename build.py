@@ -910,6 +910,12 @@ def build(account=None):
         outputs["README.ja.md"] = render_readme(account, "ja")
     else:
         outputs["README.md"] = render_readme(account, "zh-CN")
+        # Mirrors keep a single Chinese README; drop stale multilingual copies
+        # left by the previous pipeline so verify never sees foreign links.
+        for stale in ("README.zh-CN.md", "README.ja.md"):
+            path = ROOT / stale
+            if path.exists():
+                path.unlink()
     for name, content in outputs.items():
         (ROOT / name).write_text(content, encoding="utf-8")
     return sorted(outputs)
