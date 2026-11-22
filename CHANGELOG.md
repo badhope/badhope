@@ -15,6 +15,10 @@ All notable changes to the profile page generator. The format follows
   upstream PRs and a project table instead of promotional cards.
 
 ### Fixed
+- The Juejin channel now links to `/posts`; the bare user URL can render an
+  empty page on some sessions.
+- GitCode README images request eager loading so the first screen does not look
+  blank while the image proxy resolves the SVGs.
 - GitCode README images now use jsDelivr URLs instead of the repository-relative
   paths that GitCode rewrites to `raw.gitcode.com`; that host returned HTTP 418
   to anonymous visitors, so every SVG appeared broken even though it was public.

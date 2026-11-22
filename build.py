@@ -180,7 +180,7 @@ CHANNELS = [
         "name": {"en": "Juejin", "zh-CN": "稀土掘金", "ja": "Juejin"},
         "initial": "J",
         "accent_key": "accent2",
-        "url": "https://juejin.cn/user/2350111542479753",
+        "url": "https://juejin.cn/user/2350111542479753/posts",
         "display": "juejin.cn/user/2350111542479753",
         "tag": {"en": "AUTO · DAILY", "zh-CN": "自动运营 · 日更", "ja": "自動運用 · 毎日"},
         "note": {
@@ -834,7 +834,10 @@ def image_tag(account, name, lang, alt, width="100%"):
     light = asset(account, name, lang, "light")
     if COPY[account]["platform"] == "github":
         return picture(light, asset(account, name, lang, "dark"), alt, width)
-    return f'<img src="{light}" alt="{esc(alt)}" width="{width}" />'
+    # GitCode wraps README images in a lazy proxy; eager loading keeps the
+    # first screen from looking blank before the proxy resolves the SVG.
+    extra = ' loading="eager"' if COPY[account]["platform"] == "gitcode" else ""
+    return f'<img src="{light}" alt="{esc(alt)}" width="{width}"{extra} />'
 
 
 def render_readme(account, lang):
