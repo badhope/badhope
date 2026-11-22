@@ -80,6 +80,10 @@ for p in $LEGACY_PATHS; do
 done
 rm -f "$target"/assets/work-*.svg
 
+# Pin GitCode README images to the source commit; avoid a stale jsDelivr
+# branch cache after a visual change.
+export PROFILE_ASSET_COMMIT="${PROFILE_ASSET_COMMIT:-$(git -C "$SRC" rev-parse HEAD)}"
+
 # 按目标账号原地重建 README 与全部 SVG（README 用目标仓库自己的 profile 与文案）
 ( cd "$target" && "$PYTHON_BIN" scripts/generate.py --here )
 

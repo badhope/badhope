@@ -57,7 +57,9 @@ class GitCodeImagesTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as out:
             build_out(out, "gitcode_badhope")
             text = (pathlib.Path(out) / "README.md").read_text(encoding="utf-8")
-            self.assertIn("cdn.jsdelivr.net/gh/badhope/badhope@main/assets/", text)
+            self.assertRegex(
+                text, r"cdn\.jsdelivr\.net/gh/badhope/badhope@(?:main|[0-9a-f]{7,40})/assets/"
+            )
             self.assertNotIn("raw.gitcode.com", text)
 
 

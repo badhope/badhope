@@ -12,12 +12,24 @@ the shared layer, this proves every target can be rendered before pushing.
 
 import argparse
 import json
+import os
 import pathlib
 import shutil
+import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+
+# GitCode images live behind jsDelivr; pin them to this source commit so a
+# branch cache cannot serve the previous star chart after a design change.
+if not os.environ.get("PROFILE_ASSET_COMMIT"):
+    try:
+        os.environ["PROFILE_ASSET_COMMIT"] = subprocess.check_output(
+            ["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True
+        ).strip()
+    except Exception:
+        pass
 
 import build  # noqa: E402
 

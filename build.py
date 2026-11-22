@@ -13,6 +13,7 @@ Entry points used by CI and the mirror:
 
 import json
 import math
+import os
 import pathlib
 import random
 import re
@@ -800,18 +801,22 @@ def picture(light, dark, alt, width="100%"):
     )
 
 
-REMOTE_ASSET_BASE = {
-    # GitCode rewrites relative README images to raw.gitcode.com, whose WAF
-    # returns 418 to anonymous readers. Serve the same committed SVG files
-    # through jsDelivr so the public GitCode page can actually render them.
-    "gitcode": "https://cdn.jsdelivr.net/gh/badhope/badhope@main/assets",
-}
+def remote_asset_base():
+    """GitCode needs an absolute image URL because its raw host blocks anon.
+
+    Pin the jsDelivr path to the source commit when the mirror supplies it;
+    `@main` is only a local fallback and may be cached by the CDN.
+    """
+    commit = os.environ.get("PROFILE_ASSET_COMMIT", "").strip()
+    ref = commit if re.fullmatch(r"[0-9a-f]{7,40}", commit) else "main"
+    return f"https://cdn.jsdelivr.net/gh/badhope/badhope@{ref}/assets"
 
 
 def asset(account, name, lang, theme):
     filename = f"{name}-{lang}-{theme}.svg"
-    base = REMOTE_ASSET_BASE.get(COPY[account]["platform"])
-    return f"{base}/{filename}" if base else f"assets/{filename}"
+    if COPY[account]["platform"] == "gitcode":
+        return f"{remote_asset_base()}/{filename}"
+    return f"assets/{filename}"
 
 
 def image_tag(account, name, lang, alt, width="100%"):
