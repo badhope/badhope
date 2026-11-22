@@ -70,6 +70,20 @@ class IsolationTest(unittest.TestCase):
                 self.assertNotIn(foreign, path.read_text(encoding="utf-8"))
 
 
+class PublishingChannelsTest(unittest.TestCase):
+    def test_four_publishing_accounts_are_rendered(self):
+        self.assertEqual(
+            [channel["key"] for channel in build.CHANNELS],
+            ["csdn", "juejin", "zhihu", "cnblogs"],
+        )
+        for channel in build.CHANNELS:
+            self.assertTrue(channel["url"].startswith("https://"), channel["key"])
+            for lang in ("en", "zh-CN", "ja"):
+                self.assertIn(lang, channel["name"])
+                self.assertIn(lang, channel["tag"])
+                self.assertIn(lang, channel["note"])
+
+
 class DataTest(unittest.TestCase):
     def test_contributions_snapshot_valid(self):
         data = build.load_contributions()
@@ -106,3 +120,5 @@ class AllProfilesRenderTest(unittest.TestCase):
                 for slug in build.contribution_account(account).get("projects", []):
                     url = build.project_url(account, slug)
                     self.assertIn("](%s)" % url, text, "%s missing %s" % (account, url))
+                for channel in build.CHANNELS:
+                    self.assertIn(channel["url"], text, "%s missing %s" % (account, channel["key"]))

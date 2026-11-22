@@ -30,8 +30,8 @@
 <ellipse cx="54" cy="54" rx="40" ry="14" fill="none" stroke="#7FA5FF" stroke-width="1" opacity="0.30" transform="rotate(-18 54 54)"/>
 <text x="54" y="64" text-anchor="middle" font-size="24" font-weight="750" fill="#7FA5FF">J</text>
 <text x="98" y="50" class="ink" font-size="23" font-weight="700">稀土掘金</text>
-<rect x="452" y="24" width="108" height="22" rx="11" fill="#7FA5FF" opacity="0.12"/>
-<text x="506" y="39" text-anchor="middle" class="mono" font-size="9.2" letter-spacing="1" fill="#7FA5FF">自动运营 · 日更</text>
+<rect x="404" y="24" width="156" height="22" rx="11" fill="#7FA5FF" opacity="0.12"/>
+<text x="482" y="39" text-anchor="middle" class="mono" font-size="10.4" letter-spacing="0.3" fill="#7FA5FF">自动运营 · 日更</text>
 <text x="98" y="78" class="muted" font-size="13.5" opacity="0.92">短平快的日常与沸点，由自动化管线运营。</text>
 <text x="98" y="110" class="mono faint" font-size="10.5">juejin.cn/user/2350111542479753</text>
 <text x="556" y="110" text-anchor="end" class="mono" font-size="12" fill="#7FA5FF">↗</text>

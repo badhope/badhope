@@ -13,7 +13,7 @@
 
 - **Personal repositories** — 27 · personal namespace, forks excluded
 - **Upstream pull requests** — 6 selected: 3 merged, 3 open, 0 closed
-- **Publishing** — CSDN long-form and Juejin notes; two channels only
+- **Publishing** — CSDN archive; Juejin, Zhihu and Cnblogs automation
 
 ## 02 · Upstream pull requests
 
@@ -50,6 +50,12 @@
 ## 05 · Publishing line
 
 <p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-en-dark.svg" /><img src="assets/channel-csdn-en-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-en-dark.svg" /><img src="assets/channel-juejin-en-light.svg" alt="Juejin" width="49.2%" /></picture></a></p>
+
+<p align="center"><a href="https://www.zhihu.com/people/e7c851hd"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-zhihu-en-dark.svg" /><img src="assets/channel-zhihu-en-light.svg" alt="Zhihu" width="49.2%" /></picture></a> <a href="https://www.cnblogs.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-cnblogs-en-dark.svg" /><img src="assets/channel-cnblogs-en-light.svg" alt="Cnblogs" width="49.2%" /></picture></a></p>
+
+<sub>Four publishing accounts: CSDN is archived by hand; Juejin, Zhihu and Cnblogs run on the automation line.</sub>
+
+<sub>Latest on CSDN</sub>
 
 - 2026-11-04 — [把 AI Agent 接进业务系统，我踩了 3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167)
 - 2026-10-18 — [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657)

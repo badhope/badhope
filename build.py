@@ -91,11 +91,10 @@ COPY = {
             "ja": "セルフホストのエージェント、ローカルファーストの道具、上流の修正。",
         },
         "status": {
-            "en": [("BUILDING", "moneyhelper · workbench"), ("PUBLISHING", "CSDN · Juejin"), ("OPEN TO", "Agent / full-stack roles"), ("TIMEZONE", "UTC+8")],
-            "zh-CN": [("在做", "moneyhelper · workbench"), ("在写", "CSDN · 掘金"), ("在看", "Agent / 全栈机会"), ("时区", "UTC+8")],
-            "ja": [("製作中", "moneyhelper · workbench"), ("執筆", "CSDN · Juejin"), ("募集中", "エージェント / フルスタック"), ("タイムゾーン", "UTC+8")],
+            "en": [("BUILDING", "moneyhelper · workbench"), ("PUBLISHING", "4 channels"), ("OPEN TO", "Agent / full-stack roles"), ("TIMEZONE", "UTC+8")],
+            "zh-CN": [("在做", "moneyhelper · workbench"), ("在写", "四通道"), ("在看", "Agent / 全栈机会"), ("时区", "UTC+8")],
+            "ja": [("製作中", "moneyhelper · workbench"), ("執筆", "4チャネル"), ("募集中", "エージェント / フルスタック"), ("タイムゾーン", "UTC+8")],
         },
-        "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
     },
     "gh_morningstar": {
         "platform": "github",
@@ -107,16 +106,15 @@ COPY = {
             "ja": "長期プロジェクト · 上流コントリビュータ",
         },
         "tagline": {
-            "en": "Long-horizon projects and upstream fixes; notes on CSDN and Juejin.",
-            "zh-CN": "长线项目与上游修复；工程手记写在 CSDN 与掘金。",
-            "ja": "長期プロジェクトと上流の修正。記録は CSDN と Juejin に。",
+            "en": "Long-horizon projects and upstream fixes; notes on CSDN, Juejin, Zhihu and Cnblogs.",
+            "zh-CN": "长线项目与上游修复；工程手记发在 CSDN、掘金、知乎与博客园。",
+            "ja": "長期プロジェクトと上流の修正。記録は CSDN、Juejin、Zhihu、Cnblogs に。",
         },
         "status": {
-            "en": [("BUILDING", "moneyhelper · sciflow"), ("PUBLISHING", "CSDN · Juejin"), ("OPEN TO", "Long-term collaboration"), ("TIMEZONE", "UTC+8")],
-            "zh-CN": [("在做", "moneyhelper · sciflow"), ("在写", "CSDN · 掘金"), ("在看", "长期合作"), ("时区", "UTC+8")],
-            "ja": [("製作中", "moneyhelper · sciflow"), ("執筆", "CSDN · Juejin"), ("募集中", "長期コラボ"), ("タイムゾーン", "UTC+8")],
+            "en": [("BUILDING", "moneyhelper · sciflow"), ("PUBLISHING", "4 channels"), ("OPEN TO", "Long-term collaboration"), ("TIMEZONE", "UTC+8")],
+            "zh-CN": [("在做", "moneyhelper · sciflow"), ("在写", "四通道"), ("在看", "长期合作"), ("时区", "UTC+8")],
+            "ja": [("製作中", "moneyhelper · sciflow"), ("執筆", "4チャネル"), ("募集中", "長期コラボ"), ("タイムゾーン", "UTC+8")],
         },
-        "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
     },
     "gh_x33834": {
         "platform": "github",
@@ -133,11 +131,10 @@ COPY = {
             "ja": "上流の修正と小さな道具。コードを読み、修正を返す。",
         },
         "status": {
-            "en": [("BUILDING", "world-walker · harbor"), ("PUBLISHING", "CSDN · Juejin"), ("OPEN TO", "Upstream / tooling"), ("TIMEZONE", "UTC+8")],
-            "zh-CN": [("在做", "world-walker · harbor"), ("在写", "CSDN · 掘金"), ("在看", "上游 / 工具链"), ("时区", "UTC+8")],
-            "ja": [("製作中", "world-walker · harbor"), ("執筆", "CSDN · Juejin"), ("募集中", "上流 / ツール"), ("タイムゾーン", "UTC+8")],
+            "en": [("BUILDING", "world-walker · harbor"), ("PUBLISHING", "4 channels"), ("OPEN TO", "Upstream / tooling"), ("TIMEZONE", "UTC+8")],
+            "zh-CN": [("在做", "world-walker · harbor"), ("在写", "四通道"), ("在看", "上游 / 工具链"), ("时区", "UTC+8")],
+            "ja": [("製作中", "world-walker · harbor"), ("執筆", "4チャネル"), ("募集中", "上流 / ツール"), ("タイムゾーン", "UTC+8")],
         },
-        "more_intro": {"en": "Also on the shelf", "zh-CN": "架子上还有", "ja": "棚の続き"},
     },
     "gitcode_badhope": {
         "platform": "gitcode",
@@ -145,17 +142,15 @@ COPY = {
         "home_display": "gitcode.com/badhope",
         "role": {"zh-CN": "移动端开发 · 离线工具"},
         "tagline": {"zh-CN": "移动端与离线工具；同一套生成器的 GitCode 镜像。"},
-        "status": {"zh-CN": [("在做", "mashang · pocketmind"), ("在写", "CSDN · 掘金"), ("镜像", "GitHub → GitCode"), ("时区", "UTC+8")]},
-        "more_intro": {"zh-CN": "架子上还有"},
+        "status": {"zh-CN": [("在做", "mashang · pocketmind"), ("在写", "四通道"), ("镜像", "GitHub → GitCode"), ("时区", "UTC+8")]},
     },
     "gitee_badhope": {
         "platform": "gitee",
         "handle": "badhope",
         "home_display": "gitee.com/badhope",
-        "role": {"zh-CN": "作品镜像 · 小程序"},
-        "tagline": {"zh-CN": "作品镜像；精选项目与小型实验共用同一套生成器。"},
-        "status": {"zh-CN": [("在做", "CodePocket · quiz-chest"), ("在写", "CSDN · 掘金"), ("镜像", "GitHub → Gitee"), ("时区", "UTC+8")]},
-        "more_intro": {"zh-CN": "架子上还有"},
+        "role": {"zh-CN": "主页镜像 · 小程序"},
+        "tagline": {"zh-CN": "主页镜像；项目与小型实验共用同一套生成器。"},
+        "status": {"zh-CN": [("在做", "CodePocket · quiz-chest"), ("在写", "四通道"), ("镜像", "GitHub → Gitee"), ("时区", "UTC+8")]},
     },
 }
 
@@ -169,9 +164,10 @@ CHANNELS = [
         "key": "csdn",
         "name": {"en": "CSDN", "zh-CN": "CSDN", "ja": "CSDN"},
         "initial": "C",
+        "accent_key": "accent",
         "url": "https://blog.csdn.net/weixin_56622231",
         "display": "badhope.blog.csdn.net",
-        "tag": {"en": "ARCHIVE · LONG FORM", "zh-CN": "长文归档", "ja": "アーカイブ · 長文"},
+        "tag": {"en": "MANUAL", "zh-CN": "手动归档", "ja": "手動"},
         "note": {
             "en": "Engineering notes and post-mortems, archived and published by hand.",
             "zh-CN": "工程手记与踩坑复盘，整理后归档发布。",
@@ -182,6 +178,7 @@ CHANNELS = [
         "key": "juejin",
         "name": {"en": "Juejin", "zh-CN": "稀土掘金", "ja": "Juejin"},
         "initial": "J",
+        "accent_key": "accent2",
         "url": "https://juejin.cn/user/2350111542479753",
         "display": "juejin.cn/user/2350111542479753",
         "tag": {"en": "AUTO · DAILY", "zh-CN": "自动运营 · 日更", "ja": "自動運用 · 毎日"},
@@ -191,7 +188,43 @@ CHANNELS = [
             "ja": "短い日常メモ、自動化ラインで運用。",
         },
     },
+    {
+        "key": "zhihu",
+        "name": {"en": "Zhihu", "zh-CN": "知乎", "ja": "知乎"},
+        "initial": "Z",
+        "accent_key": "accent4",
+        "url": "https://www.zhihu.com/people/e7c851hd",
+        "display": "zhihu.com/people/e7c851hd",
+        "tag": {"en": "AUTO · DAILY", "zh-CN": "自动运营 · 日更", "ja": "自動運用 · 毎日"},
+        "note": {
+            "en": "Long-form answers and daily notes, run by the automation line.",
+            "zh-CN": "长文回答与日常，由自动化管线运营。",
+            "ja": "長文回答と日常メモ、自動化ラインで運用。",
+        },
+    },
+    {
+        "key": "cnblogs",
+        "name": {"en": "Cnblogs", "zh-CN": "博客园", "ja": "博客园"},
+        "initial": "B",
+        "accent_key": "accent3",
+        "url": "https://www.cnblogs.com/badhope",
+        "display": "cnblogs.com/badhope",
+        "tag": {"en": "AUTO · DAILY", "zh-CN": "自动 · 巡场", "ja": "自動 · 巡回"},
+        "note": {
+            "en": "Engineering notes and a daily field check, run by the automation line.",
+            "zh-CN": "工程手记与每日巡场，由自动化管线运营。",
+            "ja": "工程メモと毎日の巡回、自動化ラインで運用。",
+        },
+    },
 ]
+
+PIPELINE_NOTE = {
+    "en": "Four publishing accounts: CSDN is archived by hand; Juejin, Zhihu and Cnblogs run on the automation line.",
+    "zh-CN": "四个发布账号：CSDN 手动归档；掘金、知乎、博客园由自动化管线运营。",
+    "ja": "四つの配信アカウント。CSDN は手動アーカイブ、Juejin・知乎・博客园 は自動化ラインで運用。",
+}
+
+LATEST_LABEL = {"en": "Latest on CSDN", "zh-CN": "CSDN 最近", "ja": "CSDN 最新"}
 
 TOOLBOX = {
     "en": ["Python", "TypeScript", "Kotlin", "Tauri", "MCP"],
@@ -242,7 +275,7 @@ NOW_COPY = {
         "prs": "Upstream pull requests",
         "pr_note": "{n} selected: {merged} merged, {open} open, {closed} closed",
         "publish": "Publishing",
-        "publish_note": "CSDN long-form and Juejin notes; two channels only",
+        "publish_note": "CSDN archive; Juejin, Zhihu and Cnblogs automation",
     },
     "zh-CN": {
         "repos": "个人仓库",
@@ -250,7 +283,7 @@ NOW_COPY = {
         "prs": "外部 PR",
         "pr_note": "{n} 条：已合并 {merged}，开放中 {open}，已关闭 {closed}",
         "publish": "发布",
-        "publish_note": "CSDN 长文与掘金沸点；只保留两条通道",
+        "publish_note": "CSDN 长文归档；掘金、知乎、博客园自动运营",
     },
     "ja": {
         "repos": "個人リポジトリ",
@@ -258,7 +291,7 @@ NOW_COPY = {
         "prs": "外部 PR",
         "pr_note": "{n} 件：マージ {merged}、オープン {open}、クローズ {closed}",
         "publish": "配信",
-        "publish_note": "CSDN 長文と Juejin 短文。二経路のみ",
+        "publish_note": "CSDN 長文アーカイブ、Juejin・知乎・博客园 は自動運用",
     },
 }
 
@@ -620,7 +653,7 @@ def svg_numbers(account, lang, theme):
 
 def svg_channel(channel, lang, theme):
     t = THEMES[theme]
-    accent = t["accent"] if channel["key"] == "csdn" else t["accent2"]
+    accent = t[channel.get("accent_key", "accent2")]
     w, h = 608, 156
     out = [svg_head(w, h, channel["name"][lang], theme)]
     out.append(
@@ -638,8 +671,8 @@ def svg_channel(channel, lang, theme):
     out.append(f'<ellipse cx="54" cy="54" rx="40" ry="14" fill="none" stroke="{accent}" stroke-width="1" opacity="0.30" transform="rotate(-18 54 54)"/>')
     out.append(f'<text x="54" y="64" text-anchor="middle" font-size="24" font-weight="750" fill="{accent}">{esc(channel["initial"])}</text>')
     out.append(f'<text x="98" y="50" class="ink" font-size="23" font-weight="700">{esc(channel["name"][lang])}</text>')
-    out.append(f'<rect x="452" y="24" width="108" height="22" rx="11" fill="{accent}" opacity="0.12"/>')
-    out.append(f'<text x="506" y="39" text-anchor="middle" class="mono" font-size="9.2" letter-spacing="1" fill="{accent}">{esc(channel["tag"][lang])}</text>')
+    out.append(f'<rect x="404" y="24" width="156" height="22" rx="11" fill="{accent}" opacity="0.12"/>')
+    out.append(f'<text x="482" y="39" text-anchor="middle" class="mono" font-size="10.4" letter-spacing="0.3" fill="{accent}">{esc(channel["tag"][lang])}</text>')
     out.append(f'<text x="98" y="78" class="muted" font-size="13.5" opacity="0.92">{esc(channel["note"][lang])}</text>')
     out.append(f'<text x="98" y="110" class="mono faint" font-size="10.5">{esc(channel["display"])}</text>')
     out.append(f'<text x="556" y="110" text-anchor="end" class="mono" font-size="12" fill="{accent}">↗</text>')
@@ -878,7 +911,12 @@ def render_readme(account, lang):
             + image_tag(account, f"channel-{channel['key']}", lang, channel["name"][lang], "49.2%")
             + "</a>"
         )
-    out.append(f'<p align="center">{" ".join(cards)}</p>')
+    for i in range(0, len(cards), 2):
+        out.append(f'<p align="center">{" ".join(cards[i:i + 2])}</p>')
+        out.append("")
+    out.append(f"<sub>{PIPELINE_NOTE[lang]}</sub>")
+    out.append("")
+    out.append(f"<sub>{LATEST_LABEL[lang]}</sub>")
     out.append("")
     for date, title, url in WRITING:
         out.append(f"- {date} — [{title}]({url})")

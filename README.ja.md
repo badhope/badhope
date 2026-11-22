@@ -13,7 +13,7 @@
 
 - **個人リポジトリ** — 27 件 · 個人名前空間、fork を除く
 - **外部 PR** — 6 件：マージ 3、オープン 3、クローズ 0
-- **配信** — CSDN 長文と Juejin 短文。二経路のみ
+- **配信** — CSDN 長文アーカイブ、Juejin・知乎・博客园 は自動運用
 
 ## 02 · 外部 PR
 
@@ -50,6 +50,12 @@
 ## 05 · 配信ライン
 
 <p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-ja-dark.svg" /><img src="assets/channel-csdn-ja-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-ja-dark.svg" /><img src="assets/channel-juejin-ja-light.svg" alt="Juejin" width="49.2%" /></picture></a></p>
+
+<p align="center"><a href="https://www.zhihu.com/people/e7c851hd"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-zhihu-ja-dark.svg" /><img src="assets/channel-zhihu-ja-light.svg" alt="知乎" width="49.2%" /></picture></a> <a href="https://www.cnblogs.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-cnblogs-ja-dark.svg" /><img src="assets/channel-cnblogs-ja-light.svg" alt="博客园" width="49.2%" /></picture></a></p>
+
+<sub>四つの配信アカウント。CSDN は手動アーカイブ、Juejin・知乎・博客园 は自動化ラインで運用。</sub>
+
+<sub>CSDN 最新</sub>
 
 - 2026-11-04 — [把 AI Agent 接进业务系统，我踩了 3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167)
 - 2026-10-18 — [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657)

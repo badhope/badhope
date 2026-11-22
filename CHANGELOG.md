@@ -20,12 +20,16 @@ All notable changes to the profile page generator. The format follows
   claiming a scheduler that is not installed.
 - PR file/comment units and snapshot labels now follow the page language;
   Japanese project rows use Japanese notes instead of falling back to English.
+- Removed the last `more_intro` fields left over from the retired shelf section.
 
 ### Changed
 - The `Now` strip is generated from `stats.json` and the selected PR snapshot;
   repository and PR counts no longer live as hand-written, stale strings.
 - Added `data/contributions.json`: selected upstream PRs with status, date,
   diff size, file count and comments, plus per-account project lists.
+- The publishing line now shows four accounts in a 2x2 card grid: CSDN (manual
+  archive), Juejin, Zhihu and Cnblogs (automation). New channel SVGs are
+  generated per language and theme; the hero status stays compact.
 - Stats refresh now counts personal, non-fork repositories on GitHub, Gitee
   and GitCode; the weekly job is no longer allowed to fail silently.
 - GitHub numbers now report repository count; Gitee/GitCode report project

@@ -30,8 +30,8 @@
 <ellipse cx="54" cy="54" rx="40" ry="14" fill="none" stroke="#2E5BC7" stroke-width="1" opacity="0.30" transform="rotate(-18 54 54)"/>
 <text x="54" y="64" text-anchor="middle" font-size="24" font-weight="750" fill="#2E5BC7">J</text>
 <text x="98" y="50" class="ink" font-size="23" font-weight="700">Juejin</text>
-<rect x="452" y="24" width="108" height="22" rx="11" fill="#2E5BC7" opacity="0.12"/>
-<text x="506" y="39" text-anchor="middle" class="mono" font-size="9.2" letter-spacing="1" fill="#2E5BC7">自動運用 · 毎日</text>
+<rect x="404" y="24" width="156" height="22" rx="11" fill="#2E5BC7" opacity="0.12"/>
+<text x="482" y="39" text-anchor="middle" class="mono" font-size="10.4" letter-spacing="0.3" fill="#2E5BC7">自動運用 · 毎日</text>
 <text x="98" y="78" class="muted" font-size="13.5" opacity="0.92">短い日常メモ、自動化ラインで運用。</text>
 <text x="98" y="110" class="mono faint" font-size="10.5">juejin.cn/user/2350111542479753</text>
 <text x="556" y="110" text-anchor="end" class="mono" font-size="12" fill="#2E5BC7">↗</text>
