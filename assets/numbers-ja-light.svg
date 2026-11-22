@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="156" viewBox="0 0 1240 156" role="img" aria-label="numbers">
+<style>
+  text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .ink { fill: #15171C; }
+  .muted { fill: #5F6673; }
+  .faint { fill: #8B919C; }
+  .accent { fill: #F0502E; }
+  .accent2 { fill: #2A5BFF; }
+  .accent3 { fill: #0E9F6E; }
+  .accent4 { fill: #7C3AED; }
+  .line { stroke: #E2DACB; stroke-width: 1; }
+</style>
+
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#15171C" flood-opacity="0.12"/></filter>
+<rect x="4" y="4" width="1232" height="160" rx="24" fill="#FFFFFF" stroke="#E2DACB" filter="url(#soft)"/>
+<rect x="4" y="4" width="6" height="136" rx="3" fill="#F0502E"/>
+<text x="40" y="46" class="mono" font-size="10" letter-spacing="2" fill="#F0502E">SIGNAL / 03</text>
+<text x="40" y="80" class="ink" font-size="21" font-weight="650">シグナル · 直近 12 か月</text>
+<text x="40" y="106" class="mono faint" font-size="11.2">as of 2026-11-16</text>
+<line x1="332" y1="34" x2="332" y2="116" stroke="#E2DACB"/>
+<text x="360" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">2,324</text>
+<text x="360" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">コミット</text>
+<rect x="360" y="110" width="38" height="3" rx="1.5" fill="#F0502E"/>
+<line x1="538" y1="34" x2="538" y2="116" stroke="#E2DACB"/>
+<text x="566" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">303</text>
+<text x="566" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">PR</text>
+<rect x="566" y="110" width="38" height="3" rx="1.5" fill="#2A5BFF"/>
+<line x1="744" y1="34" x2="744" y2="116" stroke="#E2DACB"/>
+<text x="772" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">31</text>
+<text x="772" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">マージ済み</text>
+<rect x="772" y="110" width="38" height="3" rx="1.5" fill="#0E9F6E"/>
+<line x1="950" y1="34" x2="950" y2="116" stroke="#E2DACB"/>
+<text x="978" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">27</text>
+<text x="978" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">フォロワー</text>
+<rect x="978" y="110" width="38" height="3" rx="1.5" fill="#7C3AED"/>
+</svg>

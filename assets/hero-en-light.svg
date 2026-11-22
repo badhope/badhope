@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="320" viewBox="0 0 1240 320" role="img" aria-label="badhope — Agent developer · local-first software">
+<style>
+  text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .ink { fill: #15171C; }
+  .muted { fill: #5F6673; }
+  .faint { fill: #8B919C; }
+  .accent { fill: #F0502E; }
+  .accent2 { fill: #2A5BFF; }
+  .accent3 { fill: #0E9F6E; }
+  .accent4 { fill: #7C3AED; }
+  .line { stroke: #E2DACB; stroke-width: 1; }
+</style>
+
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7F2E7"/><stop offset="0.55" stop-color="#F7F2E7"/><stop offset="1" stop-color="#EDF1FF"/></linearGradient>
+<radialGradient id="orbA"><stop stop-color="#F0502E" stop-opacity="0.55"/><stop offset="1" stop-color="#F0502E" stop-opacity="0"/></radialGradient>
+<radialGradient id="orbB"><stop stop-color="#2A5BFF" stop-opacity="0.50"/><stop offset="1" stop-color="#2A5BFF" stop-opacity="0"/></radialGradient>
+<radialGradient id="sphere" cx="35%" cy="26%" r="78%"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.95"/><stop offset="0.28" stop-color="#2A5BFF"/><stop offset="0.72" stop-color="#F0502E"/><stop offset="1" stop-color="#15171C"/></radialGradient>
+<pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#15171C" stroke-opacity="0.06" stroke-width="1"/></pattern>
+<filter id="blur"><feGaussianBlur stdDeviation="34"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#15171C" flood-opacity="0.16"/></filter>
+</defs>
+<rect width="1240" height="320" rx="26" fill="url(#bg)"/>
+<rect width="1240" height="320" rx="26" fill="url(#grid)"/>
+<circle cx="1090" cy="10" r="210" fill="url(#orbA)" filter="url(#blur)" opacity="0.75"/>
+<circle cx="880" cy="330" r="220" fill="url(#orbB)" filter="url(#blur)" opacity="0.65"/>
+<circle cx="1164" cy="268" r="40" fill="url(#sphere)" filter="url(#soft)"/>
+<ellipse cx="1152" cy="252" rx="12" ry="7" fill="#FFFFFF" opacity="0.55"/>
+<rect x="56" y="46" width="4" height="14" rx="2" fill="#F0502E"/>
+<text x="70" y="58" class="mono muted" font-size="11" letter-spacing="2.2">PROFILE / 2026</text>
+<text x="54" y="132" class="ink" font-size="72" font-weight="750" letter-spacing="-2.2">badhope</text>
+<text x="58" y="168" class="muted" font-size="19">Agent developer · local-first software</text>
+<text x="58" y="200" class="muted" font-size="15.5" opacity="0.92">I build agents that live on your own machine: small,</text>
+<text x="58" y="224" class="muted" font-size="15.5" opacity="0.92">auditable, and a little stubborn about the cloud.</text>
+<rect x="58" y="246" width="60" height="24" rx="12" fill="#F2ECDD" stroke="#DED4C1"/>
+<text x="88.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">Python</text>
+<rect x="126" y="246" width="88" height="24" rx="12" fill="#F2ECDD" stroke="#DED4C1"/>
+<text x="170.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">TypeScript</text>
+<rect x="222" y="246" width="60" height="24" rx="12" fill="#F2ECDD" stroke="#DED4C1"/>
+<text x="252.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">Kotlin</text>
+<rect x="290" y="246" width="54" height="24" rx="12" fill="#F2ECDD" stroke="#DED4C1"/>
+<text x="317.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">Tauri</text>
+<rect x="352" y="246" width="40" height="24" rx="12" fill="#F2ECDD" stroke="#DED4C1"/>
+<text x="372.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">MCP</text>
+<rect x="856" y="42" width="328" height="164" rx="20" fill="#FFFFFF" fill-opacity="0.86" stroke="#E2DACB" filter="url(#soft)"/>
+<text x="882" y="70" class="mono faint" font-size="9.5" letter-spacing="1.8">STATUS</text>
+<circle cx="884" cy="90" r="3.5" fill="#F0502E"/>
+<text x="898" y="94" class="mono muted" font-size="10.5" letter-spacing="1.1">BUILDING</text>
+<text x="1160" y="94" text-anchor="end" class="ink" font-size="13.5">moneyhelper · workbench</text>
+<circle cx="884" cy="122" r="3.5" fill="#2A5BFF"/>
+<text x="898" y="126" class="mono muted" font-size="10.5" letter-spacing="1.1">PUBLISHING</text>
+<text x="1160" y="126" text-anchor="end" class="ink" font-size="13.5">CSDN · Juejin</text>
+<circle cx="884" cy="154" r="3.5" fill="#0E9F6E"/>
+<text x="898" y="158" class="mono muted" font-size="10.5" letter-spacing="1.1">OPEN TO</text>
+<text x="1160" y="158" text-anchor="end" class="ink" font-size="13.5">Agent / full-stack roles</text>
+<circle cx="884" cy="186" r="3.5" fill="#7C3AED"/>
+<text x="898" y="190" class="mono muted" font-size="10.5" letter-spacing="1.1">TIMEZONE</text>
+<text x="1160" y="190" text-anchor="end" class="ink" font-size="13.5">UTC+8</text>
+</svg>

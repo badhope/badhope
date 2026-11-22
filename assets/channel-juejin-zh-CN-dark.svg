@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="608" height="156" viewBox="0 0 608 156" role="img" aria-label="稀土掘金">
+<style>
+  text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .ink { fill: #F2F0EA; }
+  .muted { fill: #A6ADBA; }
+  .faint { fill: #737B88; }
+  .accent { fill: #FF6A4D; }
+  .accent2 { fill: #6E9BFF; }
+  .accent3 { fill: #35D39A; }
+  .accent4 { fill: #A78BFA; }
+  .line { stroke: #2A2F39; stroke-width: 1; }
+</style>
+
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="9" stdDeviation="13" flood-color="#000000" flood-opacity="0.13"/></filter>
+<rect x="12" y="14" width="584" height="128" rx="18" fill="#6E9BFF" opacity="0.10"/>
+<rect x="4" y="4" width="584" height="128" rx="18" fill="#14171D" stroke="#2A2F39" filter="url(#soft)"/>
+<rect x="28" y="28" width="52" height="52" rx="16" fill="#6E9BFF" opacity="0.13"/>
+<text x="54" y="64" text-anchor="middle" font-size="24" font-weight="750" fill="#6E9BFF">J</text>
+<text x="98" y="50" class="ink" font-size="23" font-weight="700">稀土掘金</text>
+<rect x="452" y="24" width="108" height="22" rx="11" fill="#6E9BFF" opacity="0.12"/>
+<text x="506" y="39" text-anchor="middle" class="mono" font-size="9.2" letter-spacing="1" fill="#6E9BFF">自动运营 · 日更</text>
+<text x="98" y="78" class="muted" font-size="13.5" opacity="0.92">短平快的日常与沸点，由自动化管线运营。</text>
+<text x="98" y="110" class="mono faint" font-size="10.5">juejin.cn/user/2350111542479753</text>
+<text x="556" y="110" text-anchor="end" class="mono" font-size="12" fill="#6E9BFF">↗</text>
+</svg>

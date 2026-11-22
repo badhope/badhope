@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="156" viewBox="0 0 1240 156" role="img" aria-label="numbers">
+<style>
+  text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .ink { fill: #F2F0EA; }
+  .muted { fill: #A6ADBA; }
+  .faint { fill: #737B88; }
+  .accent { fill: #FF6A4D; }
+  .accent2 { fill: #6E9BFF; }
+  .accent3 { fill: #35D39A; }
+  .accent4 { fill: #A78BFA; }
+  .line { stroke: #2A2F39; stroke-width: 1; }
+</style>
+
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.12"/></filter>
+<rect x="4" y="4" width="1232" height="160" rx="24" fill="#14171D" stroke="#2A2F39" filter="url(#soft)"/>
+<rect x="4" y="4" width="6" height="136" rx="3" fill="#FF6A4D"/>
+<text x="40" y="46" class="mono" font-size="10" letter-spacing="2" fill="#FF6A4D">SIGNAL / 03</text>
+<text x="40" y="80" class="ink" font-size="21" font-weight="650">信号 · 过去 12 个月</text>
+<text x="40" y="106" class="mono faint" font-size="11.2">as of 2026-11-16</text>
+<line x1="332" y1="34" x2="332" y2="116" stroke="#2A2F39"/>
+<text x="360" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">2,324</text>
+<text x="360" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">提交</text>
+<rect x="360" y="110" width="38" height="3" rx="1.5" fill="#FF6A4D"/>
+<line x1="538" y1="34" x2="538" y2="116" stroke="#2A2F39"/>
+<text x="566" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">303</text>
+<text x="566" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">PR</text>
+<rect x="566" y="110" width="38" height="3" rx="1.5" fill="#6E9BFF"/>
+<line x1="744" y1="34" x2="744" y2="116" stroke="#2A2F39"/>
+<text x="772" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">31</text>
+<text x="772" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">已合并</text>
+<rect x="772" y="110" width="38" height="3" rx="1.5" fill="#35D39A"/>
+<line x1="950" y1="34" x2="950" y2="116" stroke="#2A2F39"/>
+<text x="978" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">27</text>
+<text x="978" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">关注者</text>
+<rect x="978" y="110" width="38" height="3" rx="1.5" fill="#A78BFA"/>
+</svg>

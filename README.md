@@ -1,69 +1,42 @@
-<p align="right"><sub><b>English</b> · [中文](README.zh-CN.md) · [日本語](README.ja.md)</sub></p>
-
-<p align="center"><img src="assets/taiji.svg" alt="taiji" width="220" /></p>
-
-<p align="center"><img src="assets/hero-en.svg" alt="badhope · github.com/badhope" width="100%" /></p>
-
-<p align="center"><img src="assets/typing-en.svg" alt="typing" width="100%" /></p>
-
-## Now
-
-- **moneyhelper** — chat-first personal finance agent, local-first, numbers you can audit
-- **workbench** — a desktop workbench (Tauri 2 + React) for daily driver tasks
-- Upstream fixes: ohmyzsh, lefthook, betterleaks, scrapy
-
-## Featured work
-
-<p align="center"><a href="https://github.com/badhope/moneyhelper"><img src="assets/work-1-en.svg" alt="moneyhelper" width="49.2%" /></a> <a href="https://github.com/badhope/workbench"><img src="assets/work-2-en.svg" alt="workbench" width="49.2%" /></a></p>
-
-<p align="center"><a href="https://github.com/badhope/spark"><img src="assets/work-3-en.svg" alt="spark" width="49.2%" /></a> <a href="https://github.com/badhope/world-walker"><img src="assets/work-4-en.svg" alt="world-walker" width="49.2%" /></a></p>
-
-> More on the shelf: [DU](https://github.com/badhope/DU) · [mashang](https://github.com/badhope/mashang) · [digilegacy](https://github.com/badhope/digilegacy) · [harbor](https://github.com/badhope/harbor) · [sciflow](https://github.com/badhope/sciflow) · [pocketmind](https://github.com/badhope/pocketmind) · [aquapilot](https://github.com/badhope/aquapilot) · [melee](https://github.com/badhope/melee)
-
-## Activity
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/badhope/badhope/output/github-contribution-grid-snake-dark.svg" />
-  <img src="https://raw.githubusercontent.com/badhope/badhope/output/github-contribution-grid-snake.svg" width="100%" alt="contribution snake" />
-</picture>
-
-## Open source
-
-| Upstream | Record |
-| --- | --- |
-| [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) | 3 merged · 3 under review |
-| [renovate-operator](https://github.com/mogenius/renovate-operator) | 1 merged · 1 under review |
-| [icalendar](https://github.com/python-icalendar/icalendar) | 3 merged |
-| [apache/airflow](https://github.com/apache/airflow) | 1 merged |
-| [betterleaks · lefthook · scrapy](https://github.com/betterleaks/betterleaks) | under review |
-
-<sub>Tracked across this account and [X33834](https://github.com/X33834) / [Morningstar202604](https://github.com/Morningstar202604).</sub>
-
-## Numbers
+<p align="right"><sub><b>English</b> · <a href="README.zh-CN.md">中文</a> · <a href="README.ja.md">日本語</a></sub></p>
 
 <p align="center">
-  <a href="https://github.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=badhope&amp;show_icons=true&amp;hide_border=true&amp;include_all_commits=true&amp;theme=github_dark" /><img height="165" src="https://github-readme-stats.vercel.app/api?username=badhope&amp;show_icons=true&amp;hide_border=true&amp;include_all_commits=true" alt="GitHub stats" /></picture></a>
-  <a href="https://github.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=badhope&amp;hide_border=true&amp;border_radius=0&amp;background=0D1117&amp;border=30363D&amp;stroke=4F46E5&amp;ring=A5B4FC&amp;fire=D9B876&amp;currStreakNum=E6EDF3&amp;sideNums=E6EDF3&amp;currStreakLabel=8B949E&amp;sideLabels=8B949E&amp;dates=8B949E" /><img height="165" src="https://streak-stats.demolab.com?user=badhope&amp;hide_border=true&amp;border_radius=0" alt="GitHub streak" /></picture></a>
-  <a href="https://github.com/badhope"><picture><source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=badhope&amp;layout=compact&amp;hide_border=true&amp;langs_count=8&amp;theme=github_dark" /><img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=badhope&amp;layout=compact&amp;hide_border=true&amp;langs_count=8" alt="Top languages" /></picture></a>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/hero-en-dark.svg" /><img src="assets/hero-en-light.svg" alt="badhope · github.com/badhope" width="100%" /></picture>
 </p>
 
-## Writing
+## 01 · Now
 
-- 2026-11-04 — [把 AI Agent 接进业务系统，我踩了3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167)
+- **moneyhelper** — a chat-first personal finance agent; local-first, every number auditable
+- **workbench** — a Tauri 2 + React desktop workbench that keeps the daily grind in one window
+- **Publishing line** — CSDN long-form and Juejin notes, automated; these two channels only
+
+## 02 · Selected work
+
+<p align="center"><a href="https://github.com/badhope/moneyhelper"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/work-1-en-dark.svg" /><img src="assets/work-1-en-light.svg" alt="moneyhelper" width="49.2%" /></picture></a> <a href="https://github.com/badhope/spark"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/work-2-en-dark.svg" /><img src="assets/work-2-en-light.svg" alt="spark" width="49.2%" /></picture></a></p>
+
+<p align="center"><a href="https://github.com/badhope/workbench"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/work-3-en-dark.svg" /><img src="assets/work-3-en-light.svg" alt="workbench" width="49.2%" /></picture></a> <a href="https://github.com/badhope/world-walker"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/work-4-en-dark.svg" /><img src="assets/work-4-en-light.svg" alt="world-walker" width="49.2%" /></picture></a></p>
+
+## 03 · Numbers
+
+<p align="center">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/numbers-en-dark.svg" /><img src="assets/numbers-en-light.svg" alt="numbers" width="100%" /></picture>
+</p>
+
+## 04 · Publishing line
+
+<p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-en-dark.svg" /><img src="assets/channel-csdn-en-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-en-dark.svg" /><img src="assets/channel-juejin-en-light.svg" alt="Juejin" width="49.2%" /></picture></a></p>
+
+- 2026-11-04 — [把 AI Agent 接进业务系统，我踩了 3 个挺蠢的坑](https://blog.csdn.net/weixin_56622231/article/details/170051167)
 - 2026-10-18 — [Gemini 4 Argon 全面开放：谷歌憋了半年的旗舰大招，到底行不行？](https://blog.csdn.net/weixin_56622231/article/details/168251657)
-- 2026-10-16 — [MCP 落地一年，我总结了 6 个没人告诉你的工程真相](https://zhuanlan.zhihu.com/p/2094232145015453253)
 
-<sub>CSDN · Juejin · Zhihu — <a href="https://blog.csdn.net/weixin_56622231">blog</a> · <a href="https://juejin.cn/user/2350111542479753">juejin</a> · <a href="https://www.zhihu.com/people/e7c851hd">zhihu</a></sub>
+<sub><a href="https://blog.csdn.net/weixin_56622231">All posts on CSDN →</a></sub>
 
-**Toolbox** — Python · TypeScript / React · Kotlin · Tauri · FastAPI · Docker · SQLite
+## 05 · Also on the shelf
 
----
+> [DU](https://github.com/badhope/DU) · [mashang](https://github.com/badhope/mashang) · [digilegacy](https://github.com/badhope/digilegacy) · [harbor](https://github.com/badhope/harbor) · [sciflow](https://github.com/badhope/sciflow) · [pocketmind](https://github.com/badhope/pocketmind) · [aquapilot](https://github.com/badhope/aquapilot) · [melee](https://github.com/badhope/melee)
 
-<details>
-<summary>About this page</summary>
+<sub>Upstream: [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) · [icalendar](https://github.com/python-icalendar/icalendar) · [apache/airflow](https://github.com/apache/airflow) · [renovate-operator](https://github.com/mogenius/renovate-operator)</sub>
 
-This page is generated by `build.py` from one data source — `make gen` rebuilds every byte, `make verify` proves it offline.
-
-</details>
+<sub>One source, five profiles · numbers from a local snapshot</sub>
 
 All public repositories: [github.com/badhope](https://github.com/badhope)

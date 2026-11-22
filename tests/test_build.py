@@ -80,3 +80,23 @@ class DataTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AllProfilesRenderTest(unittest.TestCase):
+    """One build.py must render every profile with its own links."""
+
+    def test_every_account_renders_own_featured_links(self):
+        bases = {
+            "github": "https://github.com",
+            "gitcode": "https://gitcode.com",
+            "gitee": "https://gitee.com",
+        }
+        for account in build.COPY:
+            platform = build.COPY[account]["platform"]
+            handle = build.COPY[account]["handle"]
+            with tempfile.TemporaryDirectory() as out:
+                build_out(out, account)
+                text = (pathlib.Path(out) / "README.md").read_text(encoding="utf-8")
+                for slug in build.FEATURED[account]:
+                    href = "%s/%s/%s" % (bases[platform], handle, build.WORKS[slug].get("repo", slug))
+                    self.assertIn('href="%s"' % href, text, "%s missing %s" % (account, href))

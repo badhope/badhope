@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="320" viewBox="0 0 1240 320" role="img" aria-label="badhope — Agent 开发者 · 本地优先软件">
+<style>
+  text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
+  .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .ink { fill: #F2F0EA; }
+  .muted { fill: #A6ADBA; }
+  .faint { fill: #737B88; }
+  .accent { fill: #FF6A4D; }
+  .accent2 { fill: #6E9BFF; }
+  .accent3 { fill: #35D39A; }
+  .accent4 { fill: #A78BFA; }
+  .line { stroke: #2A2F39; stroke-width: 1; }
+</style>
+
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A0C10"/><stop offset="0.55" stop-color="#0A0C10"/><stop offset="1" stop-color="#111528"/></linearGradient>
+<radialGradient id="orbA"><stop stop-color="#FF6A4D" stop-opacity="0.55"/><stop offset="1" stop-color="#FF6A4D" stop-opacity="0"/></radialGradient>
+<radialGradient id="orbB"><stop stop-color="#6E9BFF" stop-opacity="0.50"/><stop offset="1" stop-color="#6E9BFF" stop-opacity="0"/></radialGradient>
+<radialGradient id="sphere" cx="35%" cy="26%" r="78%"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.95"/><stop offset="0.28" stop-color="#6E9BFF"/><stop offset="0.72" stop-color="#FF6A4D"/><stop offset="1" stop-color="#F2F0EA"/></radialGradient>
+<pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#F2F0EA" stroke-opacity="0.06" stroke-width="1"/></pattern>
+<filter id="blur"><feGaussianBlur stdDeviation="34"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.16"/></filter>
+</defs>
+<rect width="1240" height="320" rx="26" fill="url(#bg)"/>
+<rect width="1240" height="320" rx="26" fill="url(#grid)"/>
+<circle cx="1090" cy="10" r="210" fill="url(#orbA)" filter="url(#blur)" opacity="0.75"/>
+<circle cx="880" cy="330" r="220" fill="url(#orbB)" filter="url(#blur)" opacity="0.65"/>
+<circle cx="1164" cy="268" r="40" fill="url(#sphere)" filter="url(#soft)"/>
+<ellipse cx="1152" cy="252" rx="12" ry="7" fill="#FFFFFF" opacity="0.55"/>
+<rect x="56" y="46" width="4" height="14" rx="2" fill="#FF6A4D"/>
+<text x="70" y="58" class="mono muted" font-size="11" letter-spacing="2.2">PROFILE / 2026</text>
+<text x="54" y="132" class="ink" font-size="72" font-weight="750" letter-spacing="-2.2">badhope</text>
+<text x="58" y="168" class="muted" font-size="19">Agent 开发者 · 本地优先软件</text>
+<text x="58" y="200" class="muted" font-size="15.5" opacity="0.92">把 Agent 装进自己的电脑：小、可复核，对云保持一点固执。</text>
+<rect x="58" y="246" width="60" height="24" rx="12" fill="#1D222B" stroke="#333A46"/>
+<text x="88.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">Python</text>
+<rect x="126" y="246" width="88" height="24" rx="12" fill="#1D222B" stroke="#333A46"/>
+<text x="170.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">TypeScript</text>
+<rect x="222" y="246" width="60" height="24" rx="12" fill="#1D222B" stroke="#333A46"/>
+<text x="252.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">Kotlin</text>
+<rect x="290" y="246" width="54" height="24" rx="12" fill="#1D222B" stroke="#333A46"/>
+<text x="317.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">Tauri</text>
+<rect x="352" y="246" width="40" height="24" rx="12" fill="#1D222B" stroke="#333A46"/>
+<text x="372.0" y="262" text-anchor="middle" class="mono muted" font-size="10.5">MCP</text>
+<rect x="856" y="42" width="328" height="164" rx="20" fill="#14171D" fill-opacity="0.86" stroke="#2A2F39" filter="url(#soft)"/>
+<text x="882" y="70" class="mono faint" font-size="9.5" letter-spacing="1.8">STATUS</text>
+<circle cx="884" cy="90" r="3.5" fill="#FF6A4D"/>
+<text x="898" y="94" class="mono muted" font-size="10.5" letter-spacing="1.1">在做</text>
+<text x="1160" y="94" text-anchor="end" class="ink" font-size="13.5">moneyhelper · workbench</text>
+<circle cx="884" cy="122" r="3.5" fill="#6E9BFF"/>
+<text x="898" y="126" class="mono muted" font-size="10.5" letter-spacing="1.1">在写</text>
+<text x="1160" y="126" text-anchor="end" class="ink" font-size="13.5">CSDN · 掘金</text>
+<circle cx="884" cy="154" r="3.5" fill="#35D39A"/>
+<text x="898" y="158" class="mono muted" font-size="10.5" letter-spacing="1.1">在看</text>
+<text x="1160" y="158" text-anchor="end" class="ink" font-size="13.5">Agent / 全栈机会</text>
+<circle cx="884" cy="186" r="3.5" fill="#A78BFA"/>
+<text x="898" y="190" class="mono muted" font-size="10.5" letter-spacing="1.1">时区</text>
+<text x="1160" y="190" text-anchor="end" class="ink" font-size="13.5">UTC+8</text>
+</svg>
