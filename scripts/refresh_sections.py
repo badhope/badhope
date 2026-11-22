@@ -120,36 +120,46 @@ def platform_repos(url, token, namespace_type):
     ]
 
 
-def refresh_gitee(stats, token):
+def refresh_platform(stats, key, token, url, namespace_type, label):
     accounts = stats.setdefault("accounts", {})
     try:
-        repos = platform_repos("https://gitee.com/api/v5/users/badhope/repos", token, "personal")
-        user = fetch_json("https://gitee.com/api/v5/users/badhope", token_param=token)
-        accounts["gitee_badhope"] = {
+        repos = platform_repos(url, token, namespace_type)
+        user = fetch_json(url.replace("/repos", ""), token_param=token)
+        works = {}
+        for slug in build.FEATURED.get(key, []):
+            repo = next(
+                (r for r in repos if r.get("name") == slug or r.get("path") == slug),
+                None,
+            )
+            if repo:
+                works[slug] = {
+                    "stars": repo.get("stargazers_count"),
+                    "updated": (repo.get("pushed_at") or repo.get("updated_at") or "")[:10],
+                }
+        accounts[key] = {
             "repos": len(repos),
             "stars": sum(r.get("stargazers_count") or 0 for r in repos),
             "followers": user.get("followers"),
+            "works": works,
         }
         stats["as_of"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     except OSError as exc:
-        print("skip gitee: %s" % exc)
+        print("skip %s: %s" % (label, exc))
         raise
+
+
+def refresh_gitee(stats, token):
+    refresh_platform(
+        stats, "gitee_badhope", token,
+        "https://gitee.com/api/v5/users/badhope/repos", "personal", "gitee",
+    )
 
 
 def refresh_gitcode(stats, token):
-    accounts = stats.setdefault("accounts", {})
-    try:
-        repos = platform_repos("https://api.gitcode.com/api/v5/users/badhope/repos", token, "user")
-        user = fetch_json("https://api.gitcode.com/api/v5/users/badhope", token_param=token)
-        accounts["gitcode_badhope"] = {
-            "repos": len(repos),
-            "stars": sum(r.get("stargazers_count") or 0 for r in repos),
-            "followers": user.get("followers"),
-        }
-        stats["as_of"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
-    except OSError as exc:
-        print("skip gitcode: %s" % exc)
-        raise
+    refresh_platform(
+        stats, "gitcode_badhope", token,
+        "https://api.gitcode.com/api/v5/users/badhope/repos", "user", "gitcode",
+    )
 
 
 def main(argv=None):

@@ -329,7 +329,7 @@ WORKS = {
 FEATURED = {
     "gh_badhope": ["moneyhelper", "spark", "workbench", "world-walker"],
     "gitcode_badhope": ["mashang", "pocketmind", "CodePocket", "workbench"],
-    "gitee_badhope": ["shopcash", "quiz-chest", "mashang", "moneyhelper"],
+    "gitee_badhope": ["CodePocket", "quiz-chest", "mashang", "moneyhelper"],
     "gh_morningstar": ["moneyhelper", "spark", "sciflow", "workbench"],
     "gh_x33834": ["world-walker", "harbor", "CodePocket", "mashang"],
 }
