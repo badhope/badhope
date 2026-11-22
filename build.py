@@ -212,10 +212,10 @@ COPY = {
         "home_display": "gitee.com/badhope",
         "role": {"zh-CN": "作品镜像 · 小程序"},
         "tagline": {"zh-CN": "作品另一处安放：精选项目与小型实验，保持同一套骨架。"},
-        "status": {"zh-CN": [("在做", "shopcash · quiz-chest"), ("在写", "CSDN · 掘金"), ("镜像", "GitHub → Gitee"), ("时区", "UTC+8")]},
+        "status": {"zh-CN": [("在做", "CodePocket · quiz-chest"), ("在写", "CSDN · 掘金"), ("镜像", "GitHub → Gitee"), ("时区", "UTC+8")]},
         "now": {
             "zh-CN": [
-                "**shopcash** —— 单机门店收银与记账，资金零介入",
+                "**CodePocket** —— 离线优先的安卓 Python IDE，原生 CPython 3.13",
                 "**quiz-chest** —— 本地优先的自有题库练习",
                 "**发布管线** —— CSDN 长文与掘金沸点",
             ]
