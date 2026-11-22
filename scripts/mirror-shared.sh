@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
-# 把 github/badhope 的「共享层」同步到 GitCode 或 Gitee 的同名仓库。
+# 把 github/badhope 的「共享层」同步到四个镜像仓库：
+#   gitcode / gitee / github-x33834 / github-morningstar
 #
 # 共享层只包含**账号无关**的数据源、数据与脚本；README、profile.json 与
 # 各账号专属资产（hero / PNG / 技能卡 / 贡献图）不跨账号复制，而是在目标仓库里
 # 按目标 profile.json 原地重建，避免 GitHub 账号的图跑到 GitCode 页面上。
-# 用法：bash mirror-shared.sh <gitcode|gitee>
+# 用法：bash mirror-shared.sh <gitcode|gitee|github-x33834|github-morningstar>
 #   - 需要环境变量 TOKEN（对应平台令牌）
 #   - WORKSPACE 默认为当前目录（GitHub Actions 的 checkout 根）
 set -euo pipefail
 
 PLATFORM="${1:?usage: mirror-shared.sh <gitcode|gitee>}"
 case "$PLATFORM" in
-  gitcode) HOST="gitcode.com" ;;
-  gitee)   HOST="gitee.com" ;;
+  gitcode)            HOST="gitcode.com";  OWNER="badhope";           REPO="badhope";           USERNAME="oauth2" ;;
+  gitee)              HOST="gitee.com";    OWNER="badhope";           REPO="badhope";           USERNAME="oauth2" ;;
+  github-x33834)      HOST="github.com";   OWNER="X33834";            REPO="X33834";            USERNAME="x-access-token" ;;
+  github-morningstar) HOST="github.com";   OWNER="Morningstar202604"; REPO="Morningstar202604"; USERNAME="x-access-token" ;;
   *) echo "unknown platform: $PLATFORM" >&2; exit 2 ;;
 esac
-
-OWNER="badhope"
-REPO="badhope"
 SRC="${WORKSPACE:-$PWD}"
 if ! SRC="$(cd "$SRC" && pwd)"; then
   echo "source workspace is not accessible" >&2
@@ -50,9 +50,10 @@ if [ -n "${MIRROR_BASE:-}" ]; then
   remote="${MIRROR_BASE}/${REPO}.git"
 else
   : "${TOKEN:?TOKEN 未设置 —— 跳过 $PLATFORM 镜像}"
+  export GIT_MIRROR_USERNAME="${GIT_MIRROR_USERNAME:-$USERNAME}"
   export GIT_ASKPASS="${SRC}/scripts/git-askpass.sh"
   export GIT_TERMINAL_PROMPT=0
-  remote="https://${GIT_MIRROR_USERNAME:-oauth2}@${HOST}/${OWNER}/${REPO}.git"
+  remote="https://${GIT_MIRROR_USERNAME:-$USERNAME}@${HOST}/${OWNER}/${REPO}.git"
 fi
 git clone --quiet --depth 1 "$remote" "$work/target"
 target="$work/target"

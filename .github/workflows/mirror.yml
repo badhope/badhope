@@ -1,21 +1,21 @@
 # ============================================================================
-# 镜像工作流 —— 仅 badhope 仓库携带（github/badhope 在 GitCode / Gitee 也有主页）。
+# 镜像工作流 —— 仅 badhope 仓库携带。
+# 目标：GitCode、Gitee、GitHub X33834、GitHub Morningstar202604。
 #
-# 设计前提（重要）：三个平台的主页文案本来就不同 ——
-#   github/badhope  面向 GitHub 读者（109 行 README）
-#   gitcode/badhope 面向国内读者（94 行，强调"国内镜像站 + 移动端实验场"）
-#   gitee/badhope   同上（89 行）
-# 因此镜像**只同步共享层**（accounts.py、data/ 数据、assets/ 自绘资产、scripts/），
-# **不覆盖 README 与 profile.json**，否则会把国内站的文案改回 GitHub 版。
+# 设计前提：五个主页共享同一份生成器（build.py + scripts + tests），
+# 但每个账号保留自己的 profile.json / data/stats.json / 文案与产物。
+# 镜像只同步账号无关的共享层，然后在目标仓库里按目标账号原地重建。
 #
 # 触发：push 到 main 后自动跑；也可 workflow_dispatch 手动同步。
 #
 # 前置 Secret：
-#   GITCODE_TOKEN   GitCode 令牌（通过 GIT_ASKPASS 传入，不写入 URL）
-#   GITEE_TOKEN     Gitee 令牌（通过 GIT_ASKPASS 传入，不写入 URL）
+#   GITCODE_TOKEN       GitCode 令牌（通过 GIT_ASKPASS 传入，不写入 URL）
+#   GITEE_TOKEN         Gitee 令牌
+#   X33834_TOKEN        GitHub X33834 的 PAT（repo 权限）
+#   MORNINGSTAR_TOKEN   GitHub Morningstar202604 的 PAT（repo 权限）
 # ============================================================================
 
-name: Mirror to GitCode & Gitee
+name: Mirror shared layer to five profiles
 
 on:
   push:
@@ -57,3 +57,23 @@ jobs:
             exit 0
           fi
           bash scripts/mirror-shared.sh gitee
+
+      - name: Mirror shared layer to GitHub X33834
+        env:
+          TOKEN: ${{ secrets.X33834_TOKEN }}
+        run: |
+          if [ -z "${TOKEN:-}" ]; then
+            echo "未配置 X33834_TOKEN，跳过 X33834 镜像"
+            exit 0
+          fi
+          bash scripts/mirror-shared.sh github-x33834
+
+      - name: Mirror shared layer to GitHub Morningstar202604
+        env:
+          TOKEN: ${{ secrets.MORNINGSTAR_TOKEN }}
+        run: |
+          if [ -z "${TOKEN:-}" ]; then
+            echo "未配置 MORNINGSTAR_TOKEN，跳过 Morningstar 镜像"
+            exit 0
+          fi
+          bash scripts/mirror-shared.sh github-morningstar
