@@ -4,6 +4,14 @@ All notable changes to the profile page generator. The format follows
 [Keep a Changelog](https://keepachangelog.com/) and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+- Rebuilt the shared profile template around a celestial theme: star fields,
+  constellation lines, a gold-rimmed rotating starchart (SMIL, 180s), and
+  light/dark palettes that read as a day-sky atlas rather than a plain white
+  page. One source still renders all five profiles.
+
 ## [4.1.0] — 2026-11-07
 
 ### Added

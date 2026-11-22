@@ -27,6 +27,18 @@ class DeterminismTest(unittest.TestCase):
                 )
 
 
+class CelestialChartTest(unittest.TestCase):
+    def test_starchart_is_self_drawn_animated_and_reproducible(self):
+        for lang in ("en", "zh-CN", "ja"):
+            for theme in ("light", "dark"):
+                svg = build.svg_starchart(lang, theme)
+                self.assertEqual(svg, build.svg_starchart(lang, theme))
+                self.assertIn('<animateTransform', svg)
+                self.assertIn('dur="180s"', svg)
+                self.assertNotIn('src="http', svg)
+                self.assertNotIn('href="http', svg)
+
+
 class AssetRefsTest(unittest.TestCase):
     def test_every_referenced_asset_exists(self):
         for name in ("README.md", "README.zh-CN.md", "README.ja.md"):

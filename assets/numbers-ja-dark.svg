@@ -2,36 +2,67 @@
 <style>
   text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
   .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
-  .ink { fill: #F2F0EA; }
-  .muted { fill: #A6ADBA; }
-  .faint { fill: #737B88; }
-  .accent { fill: #FF6A4D; }
-  .accent2 { fill: #6E9BFF; }
-  .accent3 { fill: #35D39A; }
-  .accent4 { fill: #A78BFA; }
-  .line { stroke: #2A2F39; stroke-width: 1; }
+  .ink { fill: #F4F1E7; }
+  .muted { fill: #A8B1C3; }
+  .faint { fill: #6E788E; }
+  .accent { fill: #FF7455; }
+  .accent2 { fill: #7FA5FF; }
+  .accent3 { fill: #3DDAAA; }
+  .accent4 { fill: #B79BFF; }
+  .line { stroke: #283145; stroke-width: 1; }
 </style>
 
 <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.12"/></filter>
-<rect x="4" y="4" width="1232" height="160" rx="24" fill="#14171D" stroke="#2A2F39" filter="url(#soft)"/>
-<rect x="4" y="4" width="6" height="136" rx="3" fill="#FF6A4D"/>
-<text x="40" y="46" class="mono" font-size="10" letter-spacing="2" fill="#FF6A4D">SIGNAL / 03</text>
+<rect x="4" y="4" width="1232" height="160" rx="24" fill="#0D121D" stroke="#283145" filter="url(#soft)"/>
+<rect x="4" y="4" width="6" height="136" rx="3" fill="#FF7455"/>
+<circle cx="1143.4" cy="144.4" r="0.6" fill="#7FA5FF" opacity="0.18"/>
+<g opacity="0.32999999999999996"><line x1="1138.9" y1="144.4" x2="1147.9" y2="144.4" stroke="#7FA5FF" stroke-width="1"/><line x1="1143.4" y1="139.9" x2="1143.4" y2="148.9" stroke="#7FA5FF" stroke-width="1"/><circle cx="1143.4" cy="144.4" r="1.5" fill="#7FA5FF"/></g>
+<circle cx="381.9" cy="60.1" r="1.2" fill="#F5D48A" opacity="0.18"/>
+<circle cx="240.5" cy="69.8" r="0.9" fill="#F5D48A" opacity="0.17"/>
+<circle cx="1114.8" cy="19.7" r="1.7" fill="#F5D48A" opacity="0.18"/>
+<circle cx="635.6" cy="112.7" r="1.2" fill="#F5D48A" opacity="0.17"/>
+<circle cx="257.3" cy="9.2" r="1.2" fill="#F5D48A" opacity="0.17"/>
+<circle cx="769.1" cy="147.7" r="1.2" fill="#7FA5FF" opacity="0.17"/>
+<circle cx="1063.7" cy="147.3" r="1.2" fill="#F5D48A" opacity="0.17"/>
+<circle cx="391.3" cy="16.7" r="1.7" fill="#F5D48A" opacity="0.18"/>
+<circle cx="599.2" cy="121.1" r="0.9" fill="#F5D48A" opacity="0.18"/>
+<circle cx="224.0" cy="51.9" r="2.2" fill="#F5D48A" opacity="0.18"/>
+<circle cx="144.8" cy="18.6" r="0.6" fill="#F5D48A" opacity="0.17"/>
+<circle cx="1162.2" cy="45.5" r="2.2" fill="#7FA5FF" opacity="0.18"/>
+<circle cx="459.4" cy="46.7" r="1.2" fill="#F5D48A" opacity="0.17"/>
+<circle cx="564.2" cy="36.3" r="0.9" fill="#F5D48A" opacity="0.18"/>
+<circle cx="969.7" cy="108.7" r="1.7" fill="#F5D48A" opacity="0.18"/>
+<circle cx="676.0" cy="140.0" r="2.2" fill="#F5D48A" opacity="0.18"/>
+<circle cx="475.9" cy="70.5" r="0.6" fill="#F5D48A" opacity="0.18"/>
+<circle cx="516.8" cy="7.5" r="0.9" fill="#7FA5FF" opacity="0.17"/>
+<circle cx="1203.6" cy="123.1" r="0.6" fill="#F5D48A" opacity="0.17"/>
+<circle cx="1221.5" cy="114.9" r="1.2" fill="#F5D48A" opacity="0.18"/>
+<circle cx="975.1" cy="76.6" r="0.6" fill="#F5D48A" opacity="0.18"/>
+<circle cx="578.1" cy="33.1" r="1.7" fill="#F5D48A" opacity="0.17"/>
+<circle cx="270.1" cy="19.3" r="2.2" fill="#F5D48A" opacity="0.17"/>
+<g opacity="0.32"><line x1="265.6" y1="19.3" x2="274.6" y2="19.3" stroke="#F5D48A" stroke-width="1"/><line x1="270.1" y1="14.8" x2="270.1" y2="23.8" stroke="#F5D48A" stroke-width="1"/><circle cx="270.1" cy="19.3" r="1.5" fill="#F5D48A"/></g>
+<circle cx="854.8" cy="86.6" r="0.9" fill="#7FA5FF" opacity="0.18"/>
+<circle cx="523.6" cy="137.3" r="1.7" fill="#F5D48A" opacity="0.17"/>
+<circle cx="1138" cy="76" r="62" fill="none" stroke="#7FA5FF" stroke-width="1" opacity="0.12"/>
+<circle cx="1138" cy="76" r="47" fill="none" stroke="#7FA5FF" stroke-width="1" opacity="0.10"/>
+<circle cx="1138" cy="76" r="3.2" fill="#D8A94E" opacity="0.85"/>
+<text x="40" y="46" class="mono" font-size="10" letter-spacing="2" fill="#FF7455">SIGNAL / 03</text>
 <text x="40" y="80" class="ink" font-size="21" font-weight="650">シグナル · 直近 12 か月</text>
 <text x="40" y="106" class="mono faint" font-size="11.2">as of 2026-11-16</text>
-<line x1="332" y1="34" x2="332" y2="116" stroke="#2A2F39"/>
+<line x1="332" y1="34" x2="332" y2="116" stroke="#283145"/>
 <text x="360" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">2,324</text>
 <text x="360" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">コミット</text>
-<rect x="360" y="110" width="38" height="3" rx="1.5" fill="#FF6A4D"/>
-<line x1="538" y1="34" x2="538" y2="116" stroke="#2A2F39"/>
+<rect x="360" y="110" width="38" height="3" rx="1.5" fill="#FF7455"/>
+<line x1="538" y1="34" x2="538" y2="116" stroke="#283145"/>
 <text x="566" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">303</text>
 <text x="566" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">PR</text>
-<rect x="566" y="110" width="38" height="3" rx="1.5" fill="#6E9BFF"/>
-<line x1="744" y1="34" x2="744" y2="116" stroke="#2A2F39"/>
+<rect x="566" y="110" width="38" height="3" rx="1.5" fill="#7FA5FF"/>
+<line x1="744" y1="34" x2="744" y2="116" stroke="#283145"/>
 <text x="772" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">31</text>
 <text x="772" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">マージ済み</text>
-<rect x="772" y="110" width="38" height="3" rx="1.5" fill="#35D39A"/>
-<line x1="950" y1="34" x2="950" y2="116" stroke="#2A2F39"/>
+<rect x="772" y="110" width="38" height="3" rx="1.5" fill="#3DDAAA"/>
+<line x1="950" y1="34" x2="950" y2="116" stroke="#283145"/>
 <text x="978" y="66" class="ink" font-size="38" font-weight="750" letter-spacing="-1.2">27</text>
 <text x="978" y="98" class="mono muted" font-size="11.2" letter-spacing="1.3">フォロワー</text>
-<rect x="978" y="110" width="38" height="3" rx="1.5" fill="#A78BFA"/>
+<rect x="978" y="110" width="38" height="3" rx="1.5" fill="#B79BFF"/>
 </svg>

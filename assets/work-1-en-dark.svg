@@ -2,33 +2,58 @@
 <style>
   text { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; }
   .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
-  .ink { fill: #F2F0EA; }
-  .muted { fill: #A6ADBA; }
-  .faint { fill: #737B88; }
-  .accent { fill: #FF6A4D; }
-  .accent2 { fill: #6E9BFF; }
-  .accent3 { fill: #35D39A; }
-  .accent4 { fill: #A78BFA; }
-  .line { stroke: #2A2F39; stroke-width: 1; }
+  .ink { fill: #F4F1E7; }
+  .muted { fill: #A8B1C3; }
+  .faint { fill: #6E788E; }
+  .accent { fill: #FF7455; }
+  .accent2 { fill: #7FA5FF; }
+  .accent3 { fill: #3DDAAA; }
+  .accent4 { fill: #B79BFF; }
+  .line { stroke: #283145; stroke-width: 1; }
 </style>
 
 <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.14"/></filter>
-<rect x="12" y="14" width="584" height="218" rx="20" fill="#FF6A4D" opacity="0.11"/>
-<rect x="4" y="4" width="584" height="200" rx="20" fill="#14171D" stroke="#2A2F39" filter="url(#soft)"/>
-<rect x="4" y="4" width="584" height="6" rx="3" fill="#FF6A4D"/>
+<rect x="12" y="14" width="584" height="222" rx="20" fill="#FF7455" opacity="0.11"/>
+<rect x="4" y="4" width="584" height="222" rx="20" fill="#0D121D" stroke="#283145" filter="url(#soft)"/>
+<rect x="4" y="4" width="584" height="6" rx="3" fill="#FF7455"/>
+<circle cx="159.4" cy="167.1" r="0.9" fill="#7FA5FF" opacity="0.15"/>
+<g opacity="0.3"><line x1="154.9" y1="167.1" x2="163.9" y2="167.1" stroke="#7FA5FF" stroke-width="1"/><line x1="159.4" y1="162.6" x2="159.4" y2="171.6" stroke="#7FA5FF" stroke-width="1"/><circle cx="159.4" cy="167.1" r="1.5" fill="#7FA5FF"/></g>
+<circle cx="403.7" cy="210.9" r="0.9" fill="#F5D48A" opacity="0.17"/>
+<circle cx="322.8" cy="54.9" r="1.2" fill="#F5D48A" opacity="0.18"/>
+<circle cx="79.8" cy="166.8" r="0.6" fill="#F5D48A" opacity="0.13"/>
+<circle cx="504.6" cy="24.2" r="1.2" fill="#F5D48A" opacity="0.14"/>
+<circle cx="450.9" cy="229.9" r="1.2" fill="#F5D48A" opacity="0.16"/>
+<circle cx="144.4" cy="217.8" r="2.2" fill="#7FA5FF" opacity="0.15"/>
+<circle cx="261.7" cy="90.7" r="1.7" fill="#F5D48A" opacity="0.15"/>
+<circle cx="397.2" cy="86.3" r="2.2" fill="#F5D48A" opacity="0.14"/>
+<circle cx="595.4" cy="168.4" r="2.2" fill="#F5D48A" opacity="0.15"/>
+<g opacity="0.1">
+<line x1="472" y1="96" x2="512" y2="74" stroke="#7FA5FF" stroke-width="1"/>
+<line x1="512" y1="74" x2="548" y2="106" stroke="#7FA5FF" stroke-width="1"/>
+<line x1="548" y1="106" x2="574" y2="86" stroke="#7FA5FF" stroke-width="1"/>
+<circle cx="472" cy="96" r="2.2" fill="#F5D48A"/>
+<circle cx="472" cy="96" r="5.5" fill="none" stroke="#7FA5FF" stroke-width="1" opacity="0.45"/>
+<circle cx="512" cy="74" r="2.2" fill="#F5D48A"/>
+<circle cx="512" cy="74" r="5.5" fill="none" stroke="#7FA5FF" stroke-width="1" opacity="0.45"/>
+<circle cx="548" cy="106" r="2.2" fill="#F5D48A"/>
+<circle cx="548" cy="106" r="5.5" fill="none" stroke="#7FA5FF" stroke-width="1" opacity="0.45"/>
+<circle cx="574" cy="86" r="2.2" fill="#F5D48A"/>
+<circle cx="574" cy="86" r="5.5" fill="none" stroke="#7FA5FF" stroke-width="1" opacity="0.45"/>
+</g>
 <text x="28" y="38" class="mono faint" font-size="10.5" letter-spacing="1.5">FEATURED / 01</text>
-<rect x="486" y="20" width="76" height="24" rx="12" fill="#1D222B" stroke="#333A46"/>
+<rect x="486" y="20" width="76" height="24" rx="12" fill="#171F30" stroke="#303A50"/>
 <text x="524" y="36" text-anchor="middle" class="mono muted" font-size="11">★ 103</text>
 <text x="28" y="82" class="ink" font-size="29" font-weight="720" letter-spacing="-0.6">moneyhelper</text>
 <text x="28" y="110" class="muted" font-size="14.2" opacity="0.92">A chat-first finance agent that keeps the books on</text>
 <text x="28" y="131" class="muted" font-size="14.2" opacity="0.92">your machine. Sentence-level bookkeeping, portfolio</text>
 <text x="28" y="152" class="muted" font-size="14.2" opacity="0.92">risk, earnings research.</text>
-<rect x="28" y="170" width="67" height="24" rx="12" fill="#1D222B" stroke="#333A46"/>
+<rect x="28" y="170" width="67" height="24" rx="12" fill="#171F30" stroke="#303A50"/>
 <text x="61.5" y="186" text-anchor="middle" class="mono muted" font-size="10.5">FastAPI</text>
-<rect x="103" y="170" width="81" height="24" rx="12" fill="#1D222B" stroke="#333A46"/>
+<rect x="103" y="170" width="81" height="24" rx="12" fill="#171F30" stroke="#303A50"/>
 <text x="143.5" y="186" text-anchor="middle" class="mono muted" font-size="10.5">LangGraph</text>
-<rect x="192" y="170" width="54" height="24" rx="12" fill="#1D222B" stroke="#333A46"/>
+<rect x="192" y="170" width="54" height="24" rx="12" fill="#171F30" stroke="#303A50"/>
 <text x="219.0" y="186" text-anchor="middle" class="mono muted" font-size="10.5">React</text>
-<text x="28" y="214" class="mono" font-size="10.5" fill="#FF6A4D">github.com/badhope/moneyhelper</text>
-<text x="556" y="214" text-anchor="end" class="mono" font-size="12" fill="#FF6A4D">↗</text>
+<line x1="28" y1="198" x2="556" y2="198" stroke="#283145" opacity="0.7"/>
+<text x="28" y="213" class="mono faint" font-size="9.5" letter-spacing="1.4">OPEN</text>
+<text x="556" y="213" text-anchor="end" class="mono" font-size="14" fill="#FF7455">↗</text>
 </svg>

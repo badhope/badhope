@@ -4,6 +4,11 @@
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/hero-zh-CN-dark.svg" /><img src="assets/hero-zh-CN-light.svg" alt="badhope · github.com/badhope" width="100%" /></picture>
 </p>
 
+<p align="center">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/starchart-zh-CN-dark.svg" /><img src="assets/starchart-zh-CN-light.svg" alt="slow celestial chart" width="48%" /></picture>
+</p>
+<p align="center"><sub>缓慢旋转的星图 · 一圈三分钟</sub></p>
+
 ## 01 · 现在
 
 - **moneyhelper** —— 对话优先的个人理财 Agent，本地优先，每个数字都能复核

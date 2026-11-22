@@ -12,7 +12,9 @@ Entry points used by CI and the mirror:
 """
 
 import json
+import math
 import pathlib
+import random
 import re
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -20,40 +22,50 @@ ASSETS = ROOT / "assets"
 
 THEMES = {
     "light": {
-        "bg": "#F7F2E7",
-        "bg2": "#EDF1FF",
-        "panel": "#FFFFFF",
-        "panel2": "#FBF7EE",
-        "ink": "#15171C",
-        "muted": "#5F6673",
-        "faint": "#8B919C",
-        "line": "#E2DACB",
-        "chip": "#F2ECDD",
-        "chipLine": "#DED4C1",
-        "accent": "#F0502E",
-        "accent2": "#2A5BFF",
-        "accent3": "#0E9F6E",
-        "accent4": "#7C3AED",
-        "grid": "#15171C",
-        "shadow": "#15171C",
+        "bg": "#F8F2E4",
+        "bg2": "#E7EDFB",
+        "panel": "#FFFDF7",
+        "panel2": "#F7F0DF",
+        "ink": "#141A2A",
+        "muted": "#5D6478",
+        "faint": "#8A8FA3",
+        "line": "#DDD2BD",
+        "chip": "#F1E8D6",
+        "chipLine": "#D8CCB4",
+        "accent": "#E14B2B",
+        "accent2": "#2E5BC7",
+        "accent3": "#0E8E77",
+        "accent4": "#7A4FD6",
+        "grid": "#141A2A",
+        "shadow": "#141A2A",
+        "star": "#A97B2F",
+        "constellation": "#2E5BC7",
+        "nebulaA": "#F3B49B",
+        "nebulaB": "#A9BFF2",
+        "gold": "#C08A2E",
     },
     "dark": {
-        "bg": "#0A0C10",
-        "bg2": "#111528",
-        "panel": "#14171D",
-        "panel2": "#181C24",
-        "ink": "#F2F0EA",
-        "muted": "#A6ADBA",
-        "faint": "#737B88",
-        "line": "#2A2F39",
-        "chip": "#1D222B",
-        "chipLine": "#333A46",
-        "accent": "#FF6A4D",
-        "accent2": "#6E9BFF",
-        "accent3": "#35D39A",
-        "accent4": "#A78BFA",
-        "grid": "#F2F0EA",
+        "bg": "#05070E",
+        "bg2": "#0A1124",
+        "panel": "#0D121D",
+        "panel2": "#111827",
+        "ink": "#F4F1E7",
+        "muted": "#A8B1C3",
+        "faint": "#6E788E",
+        "line": "#283145",
+        "chip": "#171F30",
+        "chipLine": "#303A50",
+        "accent": "#FF7455",
+        "accent2": "#7FA5FF",
+        "accent3": "#3DDAAA",
+        "accent4": "#B79BFF",
+        "grid": "#F4F1E7",
         "shadow": "#000000",
+        "star": "#F5D48A",
+        "constellation": "#7FA5FF",
+        "nebulaA": "#FF6B4D",
+        "nebulaB": "#5D7CFF",
+        "gold": "#D8A94E",
     },
 }
 
@@ -429,6 +441,12 @@ SIGNAL_TITLE = {
     "ja": "シグナル · 直近 12 か月",
 }
 
+STARCHART_NOTE = {
+    "en": "A slow sky · one turn every three minutes",
+    "zh-CN": "缓慢旋转的星图 · 一圈三分钟",
+    "ja": "ゆっくり回る星図 · 一周三分",
+}
+
 LANG_NAMES = {"en": "English", "zh-CN": "中文", "ja": "日本語"}
 
 WRITING_MORE = {"en": "All posts on CSDN →", "zh-CN": "CSDN 全部文章 →", "ja": "CSDN の全記事 →"}
@@ -565,6 +583,70 @@ def chip_row(x, y, items, theme, lang):
     return out
 
 
+def sparkle(cx, cy, r, color, opacity=0.7):
+    """A four-point star drawn as two hairlines plus a small core."""
+    return (
+        f'<g opacity="{opacity}">'
+        f'<line x1="{cx - r}" y1="{cy}" x2="{cx + r}" y2="{cy}" stroke="{color}" stroke-width="1"/>'
+        f'<line x1="{cx}" y1="{cy - r}" x2="{cx}" y2="{cy + r}" stroke="{color}" stroke-width="1"/>'
+        f'<circle cx="{cx}" cy="{cy}" r="{max(0.6, r / 3)}" fill="{color}"/>'
+        f'</g>'
+    )
+
+
+def star_field(width, height, theme, count=40, seed=7, opacity=0.4):
+    """Deterministic star field. Ratio and seed keep every build byte-identical."""
+    t = THEMES[theme]
+    rng = random.Random(seed)
+    out = []
+    for i in range(count):
+        x = round(rng.uniform(4, width - 4), 1)
+        y = round(rng.uniform(4, height - 4), 1)
+        r = rng.choice((0.6, 0.9, 1.2, 1.7, 2.2))
+        alpha = round(rng.uniform(0.18, opacity), 2)
+        color = t["star"] if i % 6 else t["constellation"]
+        out.append(f'<circle cx="{x}" cy="{y}" r="{r}" fill="{color}" opacity="{alpha}"/>')
+        if i % 23 == 0:
+            out.append(sparkle(x, y, 4.5, color, min(0.8, alpha + 0.15)))
+    return out
+
+
+def star_field_radius(cx, cy, radius, theme, count=40, seed=11, opacity=0.5):
+    t = THEMES[theme]
+    rng = random.Random(seed)
+    out = []
+    made = 0
+    while made < count:
+        x = rng.uniform(-radius, radius)
+        y = rng.uniform(-radius, radius)
+        if x * x + y * y > radius * radius:
+            continue
+        r = rng.choice((0.6, 0.9, 1.2, 1.7, 2.3))
+        alpha = round(rng.uniform(0.2, opacity), 2)
+        color = t["star"] if made % 5 else t["constellation"]
+        out.append(f'<circle cx="{round(cx + x, 1)}" cy="{round(cy + y, 1)}" r="{r}" fill="{color}" opacity="{alpha}"/>')
+        if made % 19 == 0:
+            out.append(sparkle(round(cx + x, 1), round(cy + y, 1), 5, color, min(0.85, alpha + 0.2)))
+        made += 1
+    return out
+
+
+def constellation(points, theme, opacity=0.18, stroke_width=1):
+    """Connect a small set of stars, like a hand-drawn constellation."""
+    t = THEMES[theme]
+    color = t["constellation"]
+    out = [f'<g opacity="{opacity}">']
+    for i in range(len(points) - 1):
+        x1, y1 = points[i]
+        x2, y2 = points[i + 1]
+        out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{stroke_width}"/>')
+    for x, y in points:
+        out.append(f'<circle cx="{x}" cy="{y}" r="2.2" fill="{t["star"]}"/>')
+        out.append(f'<circle cx="{x}" cy="{y}" r="5.5" fill="none" stroke="{color}" stroke-width="1" opacity="0.45"/>')
+    out.append('</g>')
+    return out
+
+
 def svg_hero(account, lang, theme):
     copy = COPY[account]
     t = THEMES[theme]
@@ -600,7 +682,7 @@ def svg_hero(account, lang, theme):
         f'<path d="M44 0H0V44" fill="none" stroke="{t["grid"]}" stroke-opacity="0.06" stroke-width="1"/>'
         f'</pattern>'
     )
-    out.append('<filter id="blur"><feGaussianBlur stdDeviation="34"/></filter>')
+    out.append('<filter id="blur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="34"/></filter>')
     out.append(
         f'<filter id="soft" x="-20%" y="-20%" width="140%" height="140%">'
         f'<feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="{t["shadow"]}" flood-opacity="0.16"/>'
@@ -609,10 +691,16 @@ def svg_hero(account, lang, theme):
     out.append("</defs>")
     out.append(f'<rect width="{w}" height="{h}" rx="26" fill="url(#bg)"/>')
     out.append(f'<rect width="{w}" height="{h}" rx="26" fill="url(#grid)"/>')
+    out.extend(star_field(w, h, theme, count=54, seed=5, opacity=0.38))
+    out.extend(constellation([(212, 22), (256, 52), (318, 30), (366, 66), (414, 40)], theme, opacity=0.13))
+    out.extend(constellation([(780, 24), (812, 58), (862, 44), (902, 78)], theme, opacity=0.12))
     out.append(f'<circle cx="1090" cy="10" r="210" fill="url(#orbA)" filter="url(#blur)" opacity="0.75"/>')
     out.append(f'<circle cx="880" cy="330" r="220" fill="url(#orbB)" filter="url(#blur)" opacity="0.65"/>')
+    out.append(f'<ellipse cx="1164" cy="268" rx="72" ry="17" fill="none" stroke="{t["gold"]}" stroke-width="1.2" opacity="0.38" transform="rotate(-18 1164 268)"/>')
     out.append(f'<circle cx="1164" cy="268" r="40" fill="url(#sphere)" filter="url(#soft)"/>')
     out.append(f'<ellipse cx="1152" cy="252" rx="12" ry="7" fill="#FFFFFF" opacity="0.55"/>')
+    out.append(sparkle(1072, 196, 9, t["star"], 0.55))
+    out.append(sparkle(1188, 338, 7, t["star"], 0.45))
 
     # identity block
     out.append(f'<rect x="56" y="46" width="4" height="14" rx="2" fill="{t["accent"]}"/>')
@@ -659,12 +747,14 @@ def svg_work(account, lang, slug, index, theme):
         f'<feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="{t["shadow"]}" flood-opacity="0.14"/>'
         f'</filter>'
     )
-    out.append(f'<rect x="12" y="14" width="584" height="218" rx="20" fill="{accent}" opacity="0.11"/>')
+    out.append(f'<rect x="12" y="14" width="584" height="222" rx="20" fill="{accent}" opacity="0.11"/>')
     out.append(
-        f'<rect x="4" y="4" width="584" height="200" rx="20" fill="{t["panel"]}" '
+        f'<rect x="4" y="4" width="584" height="222" rx="20" fill="{t["panel"]}" '
         f'stroke="{t["line"]}" filter="url(#soft)"/>'
     )
     out.append(f'<rect x="4" y="4" width="584" height="6" rx="3" fill="{accent}"/>')
+    out.extend(star_field(w, h, theme, count=10, seed=index * 13, opacity=0.13))
+    out.extend(constellation([(472, 96), (512, 74), (548, 106), (574, 86)], theme, opacity=0.10))
     out.append(f'<text x="28" y="38" class="mono faint" font-size="10.5" letter-spacing="1.5">FEATURED / {index:02d}</text>')
     if stars:
         out.append(
@@ -676,9 +766,9 @@ def svg_work(account, lang, slug, index, theme):
         out.append(f'<text x="28" y="{110 + i * 21}" class="muted" font-size="14.2" opacity="0.92">{esc(part)}</text>')
     for item in chip_row(28, 170, [s.strip() for s in stack.split("·")][:3], theme, lang):
         out.append(item)
-    out.append(f'<line x1="28" y1="201" x2="556" y2="201" stroke="{t["line"]}" opacity="0.7"/>')
-    out.append(f'<text x="28" y="217" class="mono faint" font-size="9.5" letter-spacing="1.4">OPEN</text>')
-    out.append(f'<text x="556" y="217" text-anchor="end" class="mono" font-size="14" fill="{accent}">↗</text>')
+    out.append(f'<line x1="28" y1="198" x2="556" y2="198" stroke="{t["line"]}" opacity="0.7"/>')
+    out.append(f'<text x="28" y="213" class="mono faint" font-size="9.5" letter-spacing="1.4">OPEN</text>')
+    out.append(f'<text x="556" y="213" text-anchor="end" class="mono" font-size="14" fill="{accent}">↗</text>')
     out.append("</svg>")
     return "\n".join(out)
 
@@ -698,6 +788,10 @@ def svg_numbers(account, lang, theme):
         f'stroke="{t["line"]}" filter="url(#soft)"/>'
     )
     out.append(f'<rect x="4" y="4" width="6" height="136" rx="3" fill="{t["accent"]}"/>')
+    out.extend(star_field(w, h, theme, count=26, seed=23, opacity=0.17))
+    out.append(f'<circle cx="1138" cy="76" r="62" fill="none" stroke="{t["constellation"]}" stroke-width="1" opacity="0.12"/>')
+    out.append(f'<circle cx="1138" cy="76" r="47" fill="none" stroke="{t["constellation"]}" stroke-width="1" opacity="0.10"/>')
+    out.append(f'<circle cx="1138" cy="76" r="3.2" fill="{t["gold"]}" opacity="0.85"/>')
     out.append(f'<text x="40" y="46" class="mono" font-size="10" letter-spacing="2" fill="{t["accent"]}">SIGNAL / 03</text>')
     out.append(f'<text x="40" y="80" class="ink" font-size="21" font-weight="650">{esc(SIGNAL_TITLE[lang])}</text>')
     out.append(f'<text x="40" y="106" class="mono faint" font-size="11.2">as of {esc(as_of)}</text>')
@@ -729,6 +823,8 @@ def svg_channel(channel, lang, theme):
         f'stroke="{t["line"]}" filter="url(#soft)"/>'
     )
     out.append(f'<rect x="28" y="28" width="52" height="52" rx="16" fill="{accent}" opacity="0.13"/>')
+    out.extend(star_field(w, h, theme, count=10, seed=31, opacity=0.13))
+    out.append(f'<ellipse cx="54" cy="54" rx="40" ry="14" fill="none" stroke="{accent}" stroke-width="1" opacity="0.30" transform="rotate(-18 54 54)"/>')
     out.append(f'<text x="54" y="64" text-anchor="middle" font-size="24" font-weight="750" fill="{accent}">{esc(channel["initial"])}</text>')
     out.append(f'<text x="98" y="50" class="ink" font-size="23" font-weight="700">{esc(channel["name"][lang])}</text>')
     out.append(f'<rect x="452" y="24" width="108" height="22" rx="11" fill="{accent}" opacity="0.12"/>')
@@ -738,6 +834,95 @@ def svg_channel(channel, lang, theme):
     out.append(f'<text x="556" y="110" text-anchor="end" class="mono" font-size="12" fill="{accent}">↗</text>')
     out.append("</svg>")
     return "\n".join(out)
+
+def svg_starchart(lang, theme):
+    """A slowly turning celestial plate. SMIL keeps it alive even as a plain <img>."""
+    t = THEMES[theme]
+    w, h = 640, 640
+    c = 320
+    outer = 252
+    disc = 226
+    title = {"zh-CN": "星辰图谱", "en": "CELESTIAL CHART", "ja": "星図"}[lang]
+    out = [svg_head(w, h, f"{title} — slow rotation", theme)]
+    out.append("<defs>")
+    out.append(
+        f'<radialGradient id="halo"><stop stop-color="{t["star"]}" stop-opacity="0.10"/>'
+        f'<stop offset="0.55" stop-color="{t["constellation"]}" stop-opacity="0.05"/>'
+        f'<stop offset="1" stop-color="{t["constellation"]}" stop-opacity="0"/></radialGradient>'
+    )
+    out.append(
+        f'<radialGradient id="disc" cx="42%" cy="36%" r="72%">'
+        f'<stop offset="0" stop-color="{t["panel"]}" stop-opacity="0.82"/>'
+        f'<stop offset="0.72" stop-color="{t["panel2"]}" stop-opacity="0.72"/>'
+        f'<stop offset="1" stop-color="{t["panel"]}" stop-opacity="0.55"/></radialGradient>'
+    )
+    out.append("</defs>")
+    out.append(f'<circle cx="{c}" cy="{c}" r="310" fill="url(#halo)"/>')
+    out.extend(star_field(w, h, theme, count=64, seed=43, opacity=0.42))
+
+    # outer rim and 72 ticks; every sixth tick is longer
+    out.append(f'<circle cx="{c}" cy="{c}" r="{outer}" fill="none" stroke="{t["gold"]}" stroke-width="1.7" opacity="0.80"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{outer - 6}" fill="none" stroke="{t["gold"]}" stroke-width="1.1" opacity="0.42"/>')
+    for i in range(72):
+        a = 2 * math.pi * i / 72
+        major = i % 6 == 0
+        r1 = outer - 10 if major else outer - 4
+        r2 = outer + 7
+        x1 = round(c + r1 * math.sin(a), 2)
+        y1 = round(c - r1 * math.cos(a), 2)
+        x2 = round(c + r2 * math.sin(a), 2)
+        y2 = round(c - r2 * math.cos(a), 2)
+        out.append(
+            f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{t["gold"]}" '
+            f'stroke-width="{1.6 if major else 1.0}" opacity="{0.78 if major else 0.34}"/>'
+        )
+
+    # cardinal letters, kept just outside the rim
+    out.append(f'<text x="{c}" y="54" text-anchor="middle" class="mono muted" font-size="10" letter-spacing="2">N</text>')
+    out.append(f'<text x="{c}" y="602" text-anchor="middle" class="mono muted" font-size="10" letter-spacing="2">S</text>')
+    out.append(f'<text x="598" y="324" text-anchor="middle" class="mono muted" font-size="10" letter-spacing="2">E</text>')
+    out.append(f'<text x="42" y="324" text-anchor="middle" class="mono muted" font-size="10" letter-spacing="2">W</text>')
+    out.append(f'<text x="24" y="28" class="mono faint" font-size="8.5" letter-spacing="1.8">CELESTIAL ATLAS</text>')
+    out.append(f'<text x="616" y="28" text-anchor="end" class="mono faint" font-size="8.5" letter-spacing="1.8">EPOCH / 2026</text>')
+
+    out.append("<g>")
+    out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="180s" repeatCount="indefinite"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="{t["bg2"]}" opacity="0.50"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="url(#disc)" stroke="{t["gold"]}" stroke-width="1.4" opacity="0.92"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{disc - 14}" fill="none" stroke="{t["constellation"]}" stroke-width="1.1" opacity="0.34"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="150" fill="none" stroke="{t["constellation"]}" stroke-width="1.1" opacity="0.26"/>')
+    out.append(f'<ellipse cx="{c}" cy="{c}" rx="214" ry="118" fill="none" stroke="{t["constellation"]}" stroke-width="1.4" opacity="0.26" transform="rotate(-18 320 320)"/>')
+
+    # twelve faint spokes, as on an armillary plate
+    for i in range(12):
+        a = 2 * math.pi * i / 12
+        x1 = round(c + 64 * math.sin(a), 1)
+        y1 = round(c - 64 * math.cos(a), 1)
+        x2 = round(c + (disc - 4) * math.sin(a), 1)
+        y2 = round(c - (disc - 4) * math.cos(a), 1)
+        out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{t["constellation"]}" stroke-width="1.0" opacity="0.16"/>')
+
+    out.extend(star_field_radius(c, c, 210, theme, count=42, seed=17, opacity=0.52))
+    out.extend(constellation([(416, 248), (452, 302), (432, 368), (368, 412), (298, 398)], theme, opacity=0.46))
+    out.extend(constellation([(222, 252), (196, 286), (214, 328), (250, 348)], theme, opacity=0.34))
+    out.append(f'<circle cx="412" cy="354" r="3" fill="{t["gold"]}" opacity="0.85"/>')
+    out.append(f'<circle cx="228" cy="290" r="2.4" fill="{t["constellation"]}" opacity="0.85"/>')
+
+    # a long hour hand so the rotation is legible at a glance
+    out.append(f'<line x1="{c}" y1="{c}" x2="{c}" y2="98" stroke="{t["star"]}" stroke-width="1.4" opacity="0.34"/>')
+    out.append(f'<circle cx="{c}" cy="98" r="3.5" fill="{t["star"]}" opacity="0.75"/>')
+
+    # centre: a quiet gold star on a dark coin
+    out.append(f'<circle cx="{c}" cy="{c}" r="64" fill="{t["panel"]}" stroke="{t["gold"]}" stroke-width="1.7" opacity="0.96"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="54" fill="none" stroke="{t["line"]}" stroke-width="1.1" opacity="0.55"/>')
+    out.append(sparkle(c, c, 31, t["star"], 0.92))
+    out.append(f'<circle cx="{c}" cy="{c}" r="7" fill="{t["panel"]}" stroke="{t["gold"]}" stroke-width="1.2"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="3" fill="{t["star"]}"/>')
+    out.append("</g>")
+
+    out.append("</svg>")
+    return "\n".join(out)
+
 
 # ---------------------------------------------------------------------------
 # README rendering
@@ -801,6 +986,11 @@ def render_readme(account, lang):
     out.append('<p align="center">')
     out.append(image_tag(account, "hero", lang, f"{copy['handle']} · {copy['home_display']}"))
     out.append("</p>")
+    out.append("")
+    out.append('<p align="center">')
+    out.append(image_tag(account, "starchart", lang, "slow celestial chart", "48%"))
+    out.append("</p>")
+    out.append(f'<p align="center"><sub>{STARCHART_NOTE[lang]}</sub></p>')
     out.append("")
 
     out.append(f"## 01 · {head['now']}")
@@ -884,6 +1074,9 @@ def render_assets(account):
             numbers = ASSETS / f"numbers-{lang}-{theme}.svg"
             numbers.write_text(svg_numbers(account, lang, theme), encoding="utf-8")
             written.append(numbers)
+            starchart = ASSETS / f"starchart-{lang}-{theme}.svg"
+            starchart.write_text(svg_starchart(lang, theme), encoding="utf-8")
+            written.append(starchart)
             for i, slug in enumerate(FEATURED[account], 1):
                 path = ASSETS / f"work-{i}-{lang}-{theme}.svg"
                 path.write_text(svg_work(account, lang, slug, i, theme), encoding="utf-8")
