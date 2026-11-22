@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/starchart-ja-dark.svg" /><img src="assets/starchart-ja-light.svg" alt="slow celestial chart" width="48%" /></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/starchart-ja-dark.svg" /><img src="assets/starchart-ja-light.svg" alt="slow celestial chart" width="58%" /></picture>
 </p>
 <p align="center"><sub>ゆっくり回る星図 · 一周三分</sub></p>
 

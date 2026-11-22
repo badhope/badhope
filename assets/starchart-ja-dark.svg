@@ -177,21 +177,21 @@
 <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="180s" repeatCount="indefinite"/>
 <circle cx="320" cy="320" r="226" fill="#0A1124" opacity="0.62"/>
 <circle cx="320" cy="320" r="226" fill="url(#disc)" stroke="#EDBD62" stroke-width="1.8" opacity="0.96"/>
-<circle cx="320" cy="320" r="212" fill="none" stroke="#9DB8FF" stroke-width="1.5" opacity="0.58"/>
-<circle cx="320" cy="320" r="150" fill="none" stroke="#9DB8FF" stroke-width="1.5" opacity="0.48"/>
-<ellipse cx="320" cy="320" rx="214" ry="118" fill="none" stroke="#9DB8FF" stroke-width="1.7" opacity="0.44" transform="rotate(-18 320 320)"/>
-<line x1="320.0" y1="256.0" x2="320.0" y2="98.0" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="352.0" y1="264.6" x2="431.0" y2="127.7" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="375.4" y1="288.0" x2="512.3" y2="209.0" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="384.0" y1="320.0" x2="542.0" y2="320.0" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="375.4" y1="352.0" x2="512.3" y2="431.0" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="352.0" y1="375.4" x2="431.0" y2="512.3" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="320.0" y1="384.0" x2="320.0" y2="542.0" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="288.0" y1="375.4" x2="209.0" y2="512.3" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="264.6" y1="352.0" x2="127.7" y2="431.0" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="256.0" y1="320.0" x2="98.0" y2="320.0" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="264.6" y1="288.0" x2="127.7" y2="209.0" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
-<line x1="288.0" y1="264.6" x2="209.0" y2="127.7" stroke="#9DB8FF" stroke-width="1.2" opacity="0.30"/>
+<circle cx="320" cy="320" r="212" fill="none" stroke="#9DB8FF" stroke-width="1.6" opacity="0.66"/>
+<circle cx="320" cy="320" r="150" fill="none" stroke="#9DB8FF" stroke-width="1.6" opacity="0.56"/>
+<ellipse cx="320" cy="320" rx="214" ry="118" fill="none" stroke="#9DB8FF" stroke-width="1.8" opacity="0.50" transform="rotate(-18 320 320)"/>
+<line x1="320.0" y1="256.0" x2="320.0" y2="98.0" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="352.0" y1="264.6" x2="431.0" y2="127.7" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="375.4" y1="288.0" x2="512.3" y2="209.0" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="384.0" y1="320.0" x2="542.0" y2="320.0" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="375.4" y1="352.0" x2="512.3" y2="431.0" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="352.0" y1="375.4" x2="431.0" y2="512.3" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="320.0" y1="384.0" x2="320.0" y2="542.0" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="288.0" y1="375.4" x2="209.0" y2="512.3" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="264.6" y1="352.0" x2="127.7" y2="431.0" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="256.0" y1="320.0" x2="98.0" y2="320.0" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="264.6" y1="288.0" x2="127.7" y2="209.0" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
+<line x1="288.0" y1="264.6" x2="209.0" y2="127.7" stroke="#9DB8FF" stroke-width="1.25" opacity="0.36"/>
 <circle cx="329.2" cy="448.8" r="1.2" fill="#9DB8FF" opacity="0.37"/>
 <g opacity="0.5700000000000001"><line x1="324.2" y1="448.8" x2="334.2" y2="448.8" stroke="#9DB8FF" stroke-width="1"/><line x1="329.2" y1="443.8" x2="329.2" y2="453.8" stroke="#9DB8FF" stroke-width="1"/><circle cx="329.2" cy="448.8" r="1.6666666666666667" fill="#9DB8FF"/></g>
 <circle cx="431.8" cy="405.8" r="1.2" fill="#FFE3A0" opacity="0.27"/>
@@ -251,11 +251,11 @@
 <circle cx="445.7" cy="231.2" r="0.9" fill="#FFE3A0" opacity="0.5"/>
 <circle cx="321.0" cy="266.4" r="0.6" fill="#FFE3A0" opacity="0.4"/>
 <circle cx="326.4" cy="212.4" r="0.6" fill="#9DB8FF" opacity="0.76"/>
-<g opacity="0.72">
-<line x1="416" y1="248" x2="452" y2="302" stroke="#9DB8FF" stroke-width="1.4"/>
-<line x1="452" y1="302" x2="432" y2="368" stroke="#9DB8FF" stroke-width="1.4"/>
-<line x1="432" y1="368" x2="368" y2="412" stroke="#9DB8FF" stroke-width="1.4"/>
-<line x1="368" y1="412" x2="298" y2="398" stroke="#9DB8FF" stroke-width="1.4"/>
+<g opacity="0.8">
+<line x1="416" y1="248" x2="452" y2="302" stroke="#9DB8FF" stroke-width="1.5"/>
+<line x1="452" y1="302" x2="432" y2="368" stroke="#9DB8FF" stroke-width="1.5"/>
+<line x1="432" y1="368" x2="368" y2="412" stroke="#9DB8FF" stroke-width="1.5"/>
+<line x1="368" y1="412" x2="298" y2="398" stroke="#9DB8FF" stroke-width="1.5"/>
 <circle cx="416" cy="248" r="2.2" fill="#FFE3A0"/>
 <circle cx="416" cy="248" r="5.5" fill="none" stroke="#9DB8FF" stroke-width="1" opacity="0.45"/>
 <circle cx="452" cy="302" r="2.2" fill="#FFE3A0"/>
@@ -267,10 +267,10 @@
 <circle cx="298" cy="398" r="2.2" fill="#FFE3A0"/>
 <circle cx="298" cy="398" r="5.5" fill="none" stroke="#9DB8FF" stroke-width="1" opacity="0.45"/>
 </g>
-<g opacity="0.56">
-<line x1="222" y1="252" x2="196" y2="286" stroke="#9DB8FF" stroke-width="1.3"/>
-<line x1="196" y1="286" x2="214" y2="328" stroke="#9DB8FF" stroke-width="1.3"/>
-<line x1="214" y1="328" x2="250" y2="348" stroke="#9DB8FF" stroke-width="1.3"/>
+<g opacity="0.64">
+<line x1="222" y1="252" x2="196" y2="286" stroke="#9DB8FF" stroke-width="1.4"/>
+<line x1="196" y1="286" x2="214" y2="328" stroke="#9DB8FF" stroke-width="1.4"/>
+<line x1="214" y1="328" x2="250" y2="348" stroke="#9DB8FF" stroke-width="1.4"/>
 <circle cx="222" cy="252" r="2.2" fill="#FFE3A0"/>
 <circle cx="222" cy="252" r="5.5" fill="none" stroke="#9DB8FF" stroke-width="1" opacity="0.45"/>
 <circle cx="196" cy="286" r="2.2" fill="#FFE3A0"/>
@@ -285,15 +285,15 @@
 <circle cx="228" cy="290" r="3.2" fill="#9DB8FF" opacity="1"/>
 <g>
 <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="45s" repeatCount="indefinite"/>
-<line x1="320" y1="96" x2="320" y2="128" stroke="#EDBD62" stroke-width="2.4" opacity="0.90"/>
-<line x1="320" y1="112" x2="320" y2="146" stroke="#9DB8FF" stroke-width="1.4" opacity="0.42"/>
-<circle cx="320" cy="94" r="9" fill="#FFE3A0" opacity="0.16"/>
-<circle cx="320" cy="94" r="4.2" fill="#FFE3A0" opacity="0.99"/>
+<line x1="320" y1="96" x2="320" y2="132" stroke="#EDBD62" stroke-width="3.0" opacity="0.92"/>
+<line x1="320" y1="112" x2="320" y2="150" stroke="#9DB8FF" stroke-width="1.7" opacity="0.48"/>
+<circle cx="320" cy="94" r="15" fill="#FFE3A0" opacity="0.18"/>
+<circle cx="320" cy="94" r="6.2" fill="#FFE3A0" opacity="0.99"/>
 </g>
 <g>
 <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 320 320" to="0 320 320" dur="90s" repeatCount="indefinite"/>
-<circle cx="320" cy="144" r="5" fill="#9DB8FF" opacity="0.98"/>
-<circle cx="320" cy="144" r="11" fill="none" stroke="#9DB8FF" stroke-width="1.2" opacity="0.38"/>
+<circle cx="320" cy="144" r="5.5" fill="#9DB8FF" opacity="0.99"/>
+<circle cx="320" cy="144" r="13" fill="none" stroke="#9DB8FF" stroke-width="1.4" opacity="0.42"/>
 </g>
 <line x1="320" y1="320" x2="320" y2="96" stroke="#FFE3A0" stroke-width="2.4" opacity="0.86"/>
 <line x1="320" y1="320" x2="320" y2="376" stroke="#EDBD62" stroke-width="1.8" opacity="0.62"/>

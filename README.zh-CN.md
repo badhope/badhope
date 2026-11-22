@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/starchart-zh-CN-dark.svg" /><img src="assets/starchart-zh-CN-light.svg" alt="slow celestial chart" width="48%" /></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/starchart-zh-CN-dark.svg" /><img src="assets/starchart-zh-CN-light.svg" alt="slow celestial chart" width="58%" /></picture>
 </p>
 <p align="center"><sub>缓慢旋转的星图 · 一圈三分钟</sub></p>
 

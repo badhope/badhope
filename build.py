@@ -733,9 +733,9 @@ def svg_starchart(lang, theme):
     out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="180s" repeatCount="indefinite"/>')
     out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="{t["bg2"]}" opacity="0.62"/>')
     out.append(f'<circle cx="{c}" cy="{c}" r="{disc}" fill="url(#disc)" stroke="{t["gold"]}" stroke-width="1.8" opacity="0.96"/>')
-    out.append(f'<circle cx="{c}" cy="{c}" r="{disc - 14}" fill="none" stroke="{t["constellation"]}" stroke-width="1.5" opacity="0.58"/>')
-    out.append(f'<circle cx="{c}" cy="{c}" r="150" fill="none" stroke="{t["constellation"]}" stroke-width="1.5" opacity="0.48"/>')
-    out.append(f'<ellipse cx="{c}" cy="{c}" rx="214" ry="118" fill="none" stroke="{t["constellation"]}" stroke-width="1.7" opacity="0.44" transform="rotate(-18 320 320)"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="{disc - 14}" fill="none" stroke="{t["constellation"]}" stroke-width="1.6" opacity="0.66"/>')
+    out.append(f'<circle cx="{c}" cy="{c}" r="150" fill="none" stroke="{t["constellation"]}" stroke-width="1.6" opacity="0.56"/>')
+    out.append(f'<ellipse cx="{c}" cy="{c}" rx="214" ry="118" fill="none" stroke="{t["constellation"]}" stroke-width="1.8" opacity="0.50" transform="rotate(-18 320 320)"/>')
 
     # twelve faint spokes, as on an armillary plate
     for i in range(12):
@@ -744,11 +744,11 @@ def svg_starchart(lang, theme):
         y1 = round(c - 64 * math.cos(a), 1)
         x2 = round(c + (disc - 4) * math.sin(a), 1)
         y2 = round(c - (disc - 4) * math.cos(a), 1)
-        out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{t["constellation"]}" stroke-width="1.2" opacity="0.30"/>')
+        out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{t["constellation"]}" stroke-width="1.25" opacity="0.36"/>')
 
     out.extend(star_field_radius(c, c, 210, theme, count=56, seed=17, opacity=0.80))
-    out.extend(constellation([(416, 248), (452, 302), (432, 368), (368, 412), (298, 398)], theme, opacity=0.72, stroke_width=1.4))
-    out.extend(constellation([(222, 252), (196, 286), (214, 328), (250, 348)], theme, opacity=0.56, stroke_width=1.3))
+    out.extend(constellation([(416, 248), (452, 302), (432, 368), (368, 412), (298, 398)], theme, opacity=0.80, stroke_width=1.5))
+    out.extend(constellation([(222, 252), (196, 286), (214, 328), (250, 348)], theme, opacity=0.64, stroke_width=1.4))
     out.append(f'<circle cx="412" cy="354" r="4" fill="{t["star"]}" opacity="1"/>')
     out.append(f'<circle cx="412" cy="354" r="10" fill="none" stroke="{t["gold"]}" stroke-width="1.4" opacity="0.50"/>')
     out.append(f'<circle cx="228" cy="290" r="3.2" fill="{t["constellation"]}" opacity="1"/>')
@@ -757,18 +757,18 @@ def svg_starchart(lang, theme):
     # rotation obvious even at a glance. The plate itself remains slow.
     out.append('<g>')
     out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 320 320" to="360 320 320" dur="45s" repeatCount="indefinite"/>')
-    out.append(f'<line x1="320" y1="96" x2="320" y2="128" stroke="{t["gold"]}" stroke-width="2.4" opacity="0.90"/>')
-    out.append(f'<line x1="320" y1="112" x2="320" y2="146" stroke="{t["constellation"]}" stroke-width="1.4" opacity="0.42"/>')
-    out.append(f'<circle cx="320" cy="94" r="9" fill="{t["star"]}" opacity="0.16"/>')
-    out.append(f'<circle cx="320" cy="94" r="4.2" fill="{t["star"]}" opacity="0.99"/>')
+    out.append(f'<line x1="320" y1="96" x2="320" y2="132" stroke="{t["gold"]}" stroke-width="3.0" opacity="0.92"/>')
+    out.append(f'<line x1="320" y1="112" x2="320" y2="150" stroke="{t["constellation"]}" stroke-width="1.7" opacity="0.48"/>')
+    out.append(f'<circle cx="320" cy="94" r="15" fill="{t["star"]}" opacity="0.18"/>')
+    out.append(f'<circle cx="320" cy="94" r="6.2" fill="{t["star"]}" opacity="0.99"/>')
     out.append('</g>')
 
     # A smaller blue moon counter-rotates at a different speed, so the chart
     # never looks like one static dial with a single moving hand.
     out.append('<g>')
     out.append('<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 320 320" to="0 320 320" dur="90s" repeatCount="indefinite"/>')
-    out.append(f'<circle cx="320" cy="144" r="5" fill="{t["constellation"]}" opacity="0.98"/>')
-    out.append(f'<circle cx="320" cy="144" r="11" fill="none" stroke="{t["constellation"]}" stroke-width="1.2" opacity="0.38"/>')
+    out.append(f'<circle cx="320" cy="144" r="5.5" fill="{t["constellation"]}" opacity="0.99"/>')
+    out.append(f'<circle cx="320" cy="144" r="13" fill="none" stroke="{t["constellation"]}" stroke-width="1.4" opacity="0.42"/>')
     out.append('</g>')
 
     # a long hour hand so the rotation is legible at a glance
@@ -851,7 +851,7 @@ def render_readme(account, lang):
     out.append("</p>")
     out.append("")
     out.append('<p align="center">')
-    out.append(image_tag(account, "starchart", lang, "slow celestial chart", "48%"))
+    out.append(image_tag(account, "starchart", lang, "slow celestial chart", "58%"))
     out.append("</p>")
     out.append(f'<p align="center"><sub>{STARCHART_NOTE[lang]}</sub></p>')
     out.append("")
