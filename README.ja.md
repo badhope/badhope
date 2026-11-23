@@ -47,7 +47,14 @@
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/numbers-ja-dark.svg" /><img src="assets/numbers-ja-light.svg" alt="numbers" width="100%" /></picture>
 </p>
 
-## 05 · 配信ライン
+## 05 · コントリビューション
+
+<p align="center">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/contrib-ja-dark.svg" /><img src="assets/contrib-ja-light.svg" alt="contribution calendar" width="100%" /></picture>
+</p>
+<sub>日々の寄与は GitHub GraphQL の正確なスナップショット · 毎週更新</sub>
+
+## 06 · 配信ライン
 
 <p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-ja-dark.svg" /><img src="assets/channel-csdn-ja-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753/posts"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-ja-dark.svg" /><img src="assets/channel-juejin-ja-light.svg" alt="Juejin" width="49.2%" /></picture></a></p>
 

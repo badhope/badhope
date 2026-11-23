@@ -4,6 +4,16 @@ All notable changes to the profile page generator. The format follows
 [Keep a Changelog](https://keepachangelog.com/) and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [4.2.0] — 2026-11-23
+
+### Added
+- Section 05 · Contribution calendar on every profile: a self-drawn SVG heatmap
+  (light/dark, three languages) with streaks and a metric row. GitHub accounts
+  use the exact GraphQL contributions snapshot; the Gitee and GitCode mirrors
+  accumulate their platform event stream week over week (weekly refresh keeps
+  old days on fetch failure). `data/calendar.json` joins the shared mirror
+  layer so all five profiles render their own calendar.
+
 ## [Unreleased]
 
 ### Removed

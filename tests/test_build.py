@@ -122,6 +122,47 @@ class DataTest(unittest.TestCase):
         self.assertIsInstance(stats["accounts"][account].get("followers"), int)
 
 
+class CalendarTest(unittest.TestCase):
+    def test_calendar_snapshot_shape(self):
+        cal = build.load_calendar()
+        self.assertTrue(cal.get("as_of"))
+        for account in build.COPY:
+            entry = cal["accounts"].get(account, {})
+            self.assertTrue(entry.get("days"), account)
+            self.assertTrue(entry.get("source"), account)
+            for date in entry["days"]:
+                self.assertRegex(date, r"^\d{4}-\d{2}-\d{2}$")
+            for count in entry["days"].values():
+                self.assertIsInstance(count, int)
+                self.assertGreaterEqual(count, 0)
+
+    def test_every_account_renders_contribution_calendar(self):
+        for account in build.COPY:
+            metrics = build.calendar_metrics(account)
+            self.assertTrue(metrics["grid"], account)
+            self.assertEqual(len(metrics["grid"]) % 7, 0)
+            with tempfile.TemporaryDirectory() as out:
+                build_out(out, account)
+                text = (pathlib.Path(out) / "README.md").read_text(encoding="utf-8")
+                self.assertIn("## 05 ·", text, account)
+                lang = "en" if account.startswith("gh_") else "zh-CN"
+                asset = build.asset(account, "contrib", lang, "light")
+                self.assertIn(asset, text, account)
+                if account.startswith("gh_"):
+                    self.assertGreater(len(metrics["grid"]), 300, account)
+                else:
+                    self.assertGreaterEqual(len(metrics["grid"]), 28, account)
+
+    def test_svg_contrib_is_deterministic_and_local(self):
+        for account in build.COPY:
+            for lang in ("en", "zh-CN", "ja"):
+                for theme in ("light", "dark"):
+                    svg = build.svg_contrib(account, lang, theme)
+                    self.assertEqual(svg, build.svg_contrib(account, lang, theme))
+                    self.assertNotIn('src="http', svg)
+                    self.assertNotIn('href="http', svg)
+
+
 class AllProfilesRenderTest(unittest.TestCase):
     """One build.py must render every profile with its own links."""
 

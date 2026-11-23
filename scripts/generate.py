@@ -22,8 +22,14 @@ FINGERPRINT_FILE = ROOT / ".build-fingerprint"
 
 
 def input_fingerprint():
-    """Fingerprint of every generator input (build.py, profile.json, stats)."""
-    inputs = [ROOT / "build.py", ROOT / "profile.json", ROOT / "data" / "stats.json"]
+    """Fingerprint of every generator input (build.py, profile.json, data snapshots)."""
+    inputs = [
+        ROOT / "build.py",
+        ROOT / "profile.json",
+        ROOT / "data" / "stats.json",
+        ROOT / "data" / "contributions.json",
+        ROOT / "data" / "calendar.json",
+    ]
     h = hashlib.sha256()
     for p in inputs:
         h.update(p.read_bytes() if p.exists() else b"missing")

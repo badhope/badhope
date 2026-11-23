@@ -47,7 +47,14 @@
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/numbers-zh-CN-dark.svg" /><img src="assets/numbers-zh-CN-light.svg" alt="numbers" width="100%" /></picture>
 </p>
 
-## 05 · 发布管线
+## 05 · 贡献日历
+
+<p align="center">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/contrib-zh-CN-dark.svg" /><img src="assets/contrib-zh-CN-light.svg" alt="contribution calendar" width="100%" /></picture>
+</p>
+<sub>逐日贡献来自 GitHub GraphQL 精确快照 · 每周刷新</sub>
+
+## 06 · 发布管线
 
 <p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-zh-CN-dark.svg" /><img src="assets/channel-csdn-zh-CN-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753/posts"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-zh-CN-dark.svg" /><img src="assets/channel-juejin-zh-CN-light.svg" alt="稀土掘金" width="49.2%" /></picture></a></p>
 

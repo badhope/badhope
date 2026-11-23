@@ -11,6 +11,7 @@ Entry points used by CI and the mirror:
     python3 scripts/verify.py
 """
 
+import datetime
 import json
 import math
 import os
@@ -234,10 +235,52 @@ TOOLBOX = {
 }
 
 HEADINGS = {
-    "en": {"now": "Now", "contrib": "Upstream pull requests", "projects": "Other projects", "numbers": "Numbers", "publish": "Publishing line"},
-    "zh-CN": {"now": "现在", "contrib": "外部 PR", "projects": "参与项目", "numbers": "数据", "publish": "发布管线"},
-    "ja": {"now": "いま", "contrib": "外部 PR", "projects": "参加プロジェクト", "numbers": "数字", "publish": "配信ライン"},
+    "en": {"now": "Now", "contrib": "Upstream pull requests", "projects": "Other projects", "numbers": "Numbers", "calendar": "Contribution calendar", "publish": "Publishing line"},
+    "zh-CN": {"now": "现在", "contrib": "外部 PR", "projects": "参与项目", "numbers": "数据", "calendar": "贡献日历", "publish": "发布管线"},
+    "ja": {"now": "いま", "contrib": "外部 PR", "projects": "参加プロジェクト", "numbers": "数字", "calendar": "コントリビューション", "publish": "配信ライン"},
 }
+
+CAL_TITLE = {
+    "github": {
+        "en": "One year of contributions",
+        "zh-CN": "近一年的贡献",
+        "ja": "一年分のコントリビューション",
+    },
+    "gitcode": {"en": "Activity events, accumulating", "zh-CN": "活动事件 · 持续累积", "ja": "アクティビティ · 蓄積中"},
+    "gitee": {"en": "Activity events, accumulating", "zh-CN": "活动事件 · 持续累积", "ja": "アクティビティ · 蓄積中"},
+}
+
+CAL_NOTE = {
+    "github": {
+        "en": "Exact daily contributions from the GitHub GraphQL snapshot · refreshed weekly",
+        "zh-CN": "逐日贡献来自 GitHub GraphQL 精确快照 · 每周刷新",
+        "ja": "日々の寄与は GitHub GraphQL の正確なスナップショット · 毎週更新",
+    },
+    "gitcode": {
+        "en": "Activity calendar accumulated from the GitCode event stream · refreshed weekly",
+        "zh-CN": "活动日历由 GitCode 事件流累积 · 每周刷新",
+        "ja": "GitCode のイベントストリームから蓄積 · 毎週更新",
+    },
+    "gitee": {
+        "en": "Activity calendar accumulated from the Gitee event stream · refreshed weekly",
+        "zh-CN": "活动日历由 Gitee 事件流累积 · 每周刷新",
+        "ja": "Gitee のイベントストリームから蓄積 · 毎週更新",
+    },
+}
+
+MONTHS = {
+    "en": ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
+    "zh-CN": ("1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"),
+    "ja": ("1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"),
+}
+
+WEEKDAY_MARKS = {
+    "en": ("Mon", "Wed", "Fri"),
+    "zh-CN": ("一", "三", "五"),
+    "ja": ("月", "水", "金"),
+}
+
+CAL_MIN_WEEKS = 4  # event-stream calendars never render thinner than this
 
 PR_STATUS = {
     "merged": {"en": "merged", "zh-CN": "已合并", "ja": "マージ済み"},
@@ -304,6 +347,10 @@ METRIC_LABELS = {
     "repos": {"en": "REPOSITORIES", "zh-CN": "仓库", "ja": "リポジトリ"},
     "stars": {"en": "STARS", "zh-CN": "星标", "ja": "スター"},
     "projects": {"en": "PROJECTS", "zh-CN": "项目", "ja": "プロジェクト"},
+    "issues": {"en": "ISSUES", "zh-CN": "Issue", "ja": "Issue"},
+    "reviews": {"en": "REVIEWS", "zh-CN": "评审", "ja": "レビュー"},
+    "events": {"en": "EVENTS", "zh-CN": "活动", "ja": "イベント"},
+    "active": {"en": "ACTIVE DAYS", "zh-CN": "活跃天", "ja": "稼働日"},
 }
 
 SIGNAL_TITLE = {
@@ -346,6 +393,19 @@ def load_stats():
 
 
 CONTRIB_PATH = ROOT / "data" / "contributions.json"
+
+CAL_PATH = ROOT / "data" / "calendar.json"
+
+
+def load_calendar():
+    try:
+        return json.loads(CAL_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"as_of": "", "accounts": {}}
+
+
+def calendar_account(account):
+    return load_calendar().get("accounts", {}).get(account, {})
 
 
 def load_contributions():
@@ -391,6 +451,187 @@ def fmt_num(value):
         return "{:,}".format(int(value))
     except (TypeError, ValueError):
         return str(value)
+
+
+# ---------------------------------------------------------------------------
+# Contribution calendar
+# ---------------------------------------------------------------------------
+
+
+def calendar_metrics(account):
+    """Daily grid, streaks and metric row for one account.
+
+    GitHub accounts get the exact GraphQL year; event-stream accounts
+    (Gitee / GitCode) render at least CAL_MIN_WEEKS so the grid grows
+    gracefully as the weekly refresh accumulates days.
+    """
+    acc = calendar_account(account)
+    days = acc.get("days", {})
+    platform = COPY[account]["platform"]
+    stats_acc = load_stats().get("accounts", {}).get(account, {})
+
+    if days:
+        start, end = min(days), max(days)
+    else:
+        start = end = load_calendar().get("as_of", "")
+
+    try:
+        d_start = datetime.date.fromisoformat(start)
+        d_end = datetime.date.fromisoformat(end)
+    except ValueError:
+        d_start = d_end = datetime.date(1970, 1, 1)
+
+    if platform == "github":
+        d_start = d_start - datetime.timedelta(days=d_start.isoweekday() - 1)
+    else:
+        if (d_end - d_start).days + 1 < CAL_MIN_WEEKS * 7:
+            d_start = d_end - datetime.timedelta(days=CAL_MIN_WEEKS * 7 - 1)
+            d_start = d_start - datetime.timedelta(days=d_start.isoweekday() - 1)
+
+    grid = []
+    day = d_start
+    data_end = d_end
+    while day <= d_end:
+        grid.append((day.isoformat(), int(days.get(day.isoformat(), 0))))
+        day += datetime.timedelta(days=1)
+    while len(grid) % 7:
+        d_end += datetime.timedelta(days=1)
+        grid.append((d_end.isoformat(), 0))
+    span_days = (data_end - d_start).days + 1
+
+    best = run = 0
+    for _, count in grid:
+        if count:
+            run += 1
+            best = max(best, run)
+        else:
+            run = 0
+    current = 0
+    for _, count in reversed(grid):
+        if count:
+            current += 1
+        else:
+            break
+    active = sum(1 for _, count in grid if count)
+
+    totals = acc.get("totals", {})
+    if platform == "github":
+        metrics = [
+            ("commits", totals.get("commits")),
+            ("prs", totals.get("pull_requests")),
+            ("issues", totals.get("issues")),
+            ("reviews", totals.get("reviews")),
+        ]
+    else:
+        metrics = [
+            ("events", totals.get("events", 0)),
+            ("active", active),
+            ("repos", stats_acc.get("repos")),
+            ("stars", stats_acc.get("stars")),
+        ]
+    return {
+        "grid": grid,
+        "metrics": metrics,
+        "current": current,
+        "best": best,
+        "active": active,
+        "window": (d_start.isoformat(), data_end.isoformat()),
+        "span_days": span_days,
+        "source": acc.get("source", ""),
+    }
+
+
+def svg_contrib(account, lang, theme):
+    m = calendar_metrics(account)
+    t = THEMES[theme]
+    copy = COPY[account]
+    w, h = 1240, 340
+    out = [svg_head(w, h, "contribution calendar", theme)]
+    out.append(
+        f'<filter id="soft" x="-20%" y="-20%" width="140%" height="140%">'
+        f'<feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="{t["shadow"]}" flood-opacity="0.12"/>'
+        f'</filter>'
+    )
+    out.append(
+        f'<rect x="4" y="4" width="1232" height="332" rx="24" fill="{t["panel"]}" '
+        f'stroke="{t["line"]}" filter="url(#soft)"/>'
+    )
+    out.append(f'<rect x="4" y="4" width="6" height="136" rx="3" fill="{t["accent"]}"/>')
+    out.extend(star_field(w, h, theme, count=26, seed=57, opacity=0.16))
+    out.append(f'<text x="40" y="46" class="mono" font-size="10" letter-spacing="2" fill="{t["accent"]}">CONTRIBUTIONS / 05</text>')
+    out.append(f'<text x="40" y="80" class="ink" font-size="21" font-weight="650">{esc(CAL_TITLE[copy["platform"]][lang])}</text>')
+    window = f"{copy['home_display']} · {m['window'][0]} → {m['window'][1]}"
+    out.append(f'<text x="40" y="106" class="mono faint" font-size="11.2">{esc(window)}</text>')
+
+    # Heatmap grid: Monday-aligned columns, 12px cells on a 16px pitch.
+    pitch, cell = 16, 12
+    x0, y0 = 84, 142
+    cols = max(1, len(m["grid"]) // 7)
+    nonzero = [c for _, c in m["grid"] if c] or [0]
+    q1, q2, q3 = (sorted(nonzero)[len(nonzero) * k // 4] for k in (1, 2, 3))
+    for col in range(cols):
+        for row in range(7):
+            idx = col * 7 + row
+            if idx >= len(m["grid"]):
+                break
+            _, count = m["grid"][idx]
+            if count == 0:
+                fill, opacity = t["chip"], 1.0
+            elif count <= q1:
+                fill, opacity = t["accent3"], 0.32
+            elif count <= q2:
+                fill, opacity = t["accent3"], 0.55
+            elif count <= q3:
+                fill, opacity = t["accent3"], 0.78
+            else:
+                fill, opacity = t["accent3"], 1.0
+            x = x0 + col * pitch
+            y = y0 + row * pitch
+            stroke = ' stroke="%s" stroke-opacity="0.35"' % t["chipLine"] if count == 0 else ""
+            out.append(
+                f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="2.5" '
+                f'fill="{fill}" fill-opacity="{opacity}"{stroke}/>'
+            )
+
+    # Month labels across the top of the grid.
+    last_month, last_label_col = None, -3
+    for col in range(cols):
+        day = m["grid"][col * 7][0]
+        month = int(day[5:7])
+        if month != last_month:
+            if last_month is None or month < last_month or col - last_label_col >= 2:
+                out.append(
+                    f'<text x="{x0 + col * pitch}" y="130" class="mono faint" font-size="9.5">{esc(MONTHS[lang][month - 1])}</text>'
+                )
+                last_label_col = col
+            last_month = month
+    # Weekday marks on the left edge.
+    for row_idx, row in enumerate((0, 2, 4)):
+        out.append(
+            f'<text x="72" y="{y0 + row * pitch + 10}" text-anchor="end" class="mono faint" font-size="9">{esc(WEEKDAY_MARKS[lang][row_idx])}</text>'
+        )
+    # Intensity legend at the top right.
+    legend_y = y0 - 4
+    out.append(f'<text x="1026" y="{legend_y + 10}" text-anchor="end" class="mono faint" font-size="9">less</text>')
+    for i, op in enumerate((0.16, 0.32, 0.55, 0.78, 1.0)):
+        out.append(
+            f'<rect x="{1040 + i * 15}" y="{legend_y}" width="{cell}" height="{cell}" rx="2.5" '
+            f'fill="{t["accent3"]}" fill-opacity="{op}"/>'
+        )
+    out.append(f'<text x="{1040 + 5 * 15 + 12}" y="{legend_y + 10}" class="mono faint" font-size="9">more</text>')
+
+    # Streak line + metric row along the bottom.
+    out.append(f'<line x1="40" y1="272" x2="1200" y2="272" stroke="{t["line"]}" opacity="0.6"/>')
+    streak = f"streak best {m['best']}d · current {m['current']}d · active {m['active']}/{m['span_days']}d"
+    out.append(f'<text x="40" y="300" class="mono muted" font-size="11.5">{esc(streak)}</text>')
+    start_x, step = 360, 206
+    for i, (key, value) in enumerate(m["metrics"]):
+        x = start_x + i * step
+        out.append(f'<line x1="{x - 28}" y1="278" x2="{x - 28}" y2="316" stroke="{t["line"]}"/>')
+        out.append(f'<text x="{x}" y="300" class="ink" font-size="26" font-weight="750" letter-spacing="-0.8">{esc(fmt_num(value))}</text>')
+        out.append(f'<text x="{x}" y="320" class="mono muted" font-size="10.4" letter-spacing="1.2">{esc(METRIC_LABELS[key][lang])}</text>')
+    out.append("</svg>")
+    return "\n".join(out)
 
 # ---------------------------------------------------------------------------
 # SVG helpers
@@ -946,7 +1187,15 @@ def render_readme(account, lang):
     out.append("</p>")
     out.append("")
 
-    out.append(f"## 05 · {head['publish']}")
+    out.append(f"## 05 · {head['calendar']}")
+    out.append("")
+    out.append('<p align="center">')
+    out.append(image_tag(account, "contrib", lang, "contribution calendar"))
+    out.append("</p>")
+    out.append(f"<sub>{CAL_NOTE[platform][lang]}</sub>")
+    out.append("")
+
+    out.append(f"## 06 · {head['publish']}")
     out.append("")
     cards = []
     for channel in CHANNELS:
@@ -995,6 +1244,9 @@ def render_assets(account):
             numbers = ASSETS / f"numbers-{lang}-{theme}.svg"
             numbers.write_text(svg_numbers(account, lang, theme), encoding="utf-8")
             written.append(numbers)
+            contrib = ASSETS / f"contrib-{lang}-{theme}.svg"
+            contrib.write_text(svg_contrib(account, lang, theme), encoding="utf-8")
+            written.append(contrib)
             starchart = ASSETS / f"starchart-{lang}-{theme}.svg"
             starchart.write_text(svg_starchart(lang, theme), encoding="utf-8")
             written.append(starchart)

@@ -47,7 +47,14 @@
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/numbers-en-dark.svg" /><img src="assets/numbers-en-light.svg" alt="numbers" width="100%" /></picture>
 </p>
 
-## 05 · Publishing line
+## 05 · Contribution calendar
+
+<p align="center">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/contrib-en-dark.svg" /><img src="assets/contrib-en-light.svg" alt="contribution calendar" width="100%" /></picture>
+</p>
+<sub>Exact daily contributions from the GitHub GraphQL snapshot · refreshed weekly</sub>
+
+## 06 · Publishing line
 
 <p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-en-dark.svg" /><img src="assets/channel-csdn-en-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753/posts"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-en-dark.svg" /><img src="assets/channel-juejin-en-light.svg" alt="Juejin" width="49.2%" /></picture></a></p>
 
