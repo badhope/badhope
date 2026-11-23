@@ -93,6 +93,12 @@
      "stars": 3
     },
     {
+     "description": "CampusHub \u2014 self-hosted open-source campus community platform: Vue 3 + NestJS + PostgreSQL",
+     "language": "JavaScript",
+     "name": "campushub",
+     "stars": 1
+    },
+    {
      "description": "Local-first production desk for solo creators: six AI pipelines (video, novel, podcast, course, writing, shorts), approval-gated agents, versioned files, MCP + A2A. The Windows installer bundles its own runtime.",
      "language": "TypeScript",
      "name": "creator-studio",
@@ -126,12 +132,6 @@
      "description": "Self-hosted AI workspace for accounts you already own: groups, files, history, permissions, tools, and sub-2B local models that run offline.",
      "language": "Python",
      "name": "bigrobot",
-     "stars": 0
-    },
-    {
-     "description": "CampusHub \u2014 self-hosted open-source campus community platform: Vue 3 + NestJS + PostgreSQL",
-     "language": "JavaScript",
-     "name": "campushub",
      "stars": 0
     },
     {
