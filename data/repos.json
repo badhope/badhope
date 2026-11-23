@@ -1,0 +1,810 @@
+{
+ "accounts": {
+  "gh_badhope": {
+   "repos": [
+    {
+     "description": "Self-hosted finance that keeps the books for you: one sentence becomes journal entries, bank reconciliation and a closed month. Every figure comes from deterministic code, never the model.",
+     "language": "Python",
+     "name": "moneyhelper",
+     "stars": 105
+    },
+    {
+     "description": "A local-first desktop workbench for tasks, projects, ports, processes, AI spend, and notes.",
+     "language": "TypeScript",
+     "name": "workbench",
+     "stars": 49
+    },
+    {
+     "description": "Local-first AI coding agent and office workbench. One audited agent loop across terminal, browser, IDE and API, with approval, sandbox, rollback and any OpenAI-compatible model.",
+     "language": "Python",
+     "name": "spark",
+     "stars": 30
+    },
+    {
+     "description": "A single-player AI tabletop RPG engine: deterministic rules own the numbers, saves and replay; any OpenAI-compatible model writes the scene.",
+     "language": "Python",
+     "name": "world-walker",
+     "stars": 21
+    },
+    {
+     "description": "Local-first research workbench for literature, writing, review, and submission, with a deterministic quality gate and traceable citations.",
+     "language": "TypeScript",
+     "name": "sciflow",
+     "stars": 13
+    },
+    {
+     "description": "Tianji (DU) \u2014 a local-only Chinese metaphysics master arena. Two verified schools answer one question, you score blind, then methods are revealed and dated claims are tracked on your own device. No backend, no upload, no telemetry; 12 public-domain classics (1.87M chars) ship in-repo with verbatim citation checking. | \u5929\u673a\u53f0\uff1a\u4e0d\u4e0a\u4f20\u6570\u636e\u7684\u672c\u5730\u7384\u5b66\u5927\u5e08\u6d4b\u8bc4\u5e73\u53f0\u3002",
+     "language": "TypeScript",
+     "name": "DU",
+     "stars": 11
+    },
+    {
+     "description": "Self-hosted publishing hub for writers. Draft once, publish to the platforms you use, and keep every copy in sync.",
+     "language": "Python",
+     "name": "harbor",
+     "stars": 11
+    },
+    {
+     "description": "\u7801\u4e0a Mashang \u2014 \u8d5b\u535a\u670b\u514b\u98ce\u79bb\u7ebf\u7f16\u7a0b\u5b66\u4e60\u7ec8\u7aef\uff1a\u5185\u7f6e CPython 3.13 + JavaScript(Rhino)\uff0c38 \u8bb2 + 17 \u8bb2\u6269\u5c55\u3001assert \u5224\u9898\u3001\u53d8\u91cf\u5feb\u7167\uff1b\u540c\u6e90\u7f51\u9875\u7248\u53ef\u76f4\u63a5\u8bd5\u73a9\u3002Android 7.0+ \u00b7 Kotlin \u00b7 MIT",
+     "language": "Python",
+     "name": "mashang",
+     "stars": 9
+    },
+    {
+     "description": "Self-hosted digital legacy planning for assets, heirs and release rules. Encrypted, auditable, Rust + Vue.",
+     "language": "Rust",
+     "name": "digilegacy",
+     "stars": 8
+    },
+    {
+     "description": "A self-hostable absurd research community for open questions, honest notes, and public failures.",
+     "language": "Python",
+     "name": "rubbish",
+     "stars": 8
+    },
+    {
+     "description": "CodePocket \u2014 offline-first Python IDE for Android, native CPython",
+     "language": "Kotlin",
+     "name": "CodePocket",
+     "stars": 4
+    },
+    {
+     "description": "\u9898\u5323 QuizChest\uff1a\u672c\u5730\u4f18\u5148\u7684\u81ea\u6709\u9898\u5e93\u7ec3\u4e60\u5e94\u7528",
+     "language": "TypeScript",
+     "name": "quiz-chest",
+     "stars": 4
+    },
+    {
+     "description": "Windows desktop toolkit for power users and sysadmins. Tauri 2 + Vue 3.5, wt-service runs as SYSTEM for the high-privilege ops (services, registry, hosts, scheduled tasks). 35-command palette to skip the menus.",
+     "language": "Rust",
+     "name": "WindowsTools",
+     "stars": 3
+    },
+    {
+     "description": "Self-hosted broadcast studio for AI matches: live board, replay, directing, recaps and highlights from one event stream. Import Kaggle Game Arena and TextArena episodes as first-class broadcasts.",
+     "language": "Python",
+     "name": "melee",
+     "stars": 3
+    },
+    {
+     "description": "PocketMind \u53e3\u888b\u667a\u7075 \u2014 \u4f4f\u8fdb Android \u624b\u673a\u7684\u5e38\u9a7b AI Agent\u3002\u4e00\u4e2a APK \u72ec\u7acb\u8fd0\u884c\uff0c37 \u4e2a\u539f\u751f\u5de5\u5177\u76f4\u8c03\u624b\u673a\u80fd\u529b\uff0c\u670d\u52a1\u7aef\u5f3a\u5236\u5ba1\u6279\uff0c\u6570\u636e\u7559\u5728\u672c\u673a\u3002",
+     "language": "Python",
+     "name": "pocketmind",
+     "stars": 3
+    },
+    {
+     "description": "Local-first production desk for solo creators: six AI pipelines (video, novel, podcast, course, writing, shorts), approval-gated agents, versioned files, MCP + A2A. The Windows installer bundles its own runtime.",
+     "language": "TypeScript",
+     "name": "creator-studio",
+     "stars": 1
+    },
+    {
+     "description": "EQ-Worker \u4eba\u60c5\u4e16\u6545\u52a9\u624b\uff1a\u4eca\u65e5\u884c\u52a8\u3001\u4eba\u60c5\u8d26\u672c\u3001\u968f\u793c\u53c2\u8c0b\u3001\u8bdd\u672f\u53c2\u8c0b\u3001\u5173\u7cfb\u4f53\u68c0\u3002\u672c\u5730\u4f18\u5148\uff0c\u6570\u636e\u4e0d\u51fa\u672c\u673a\u3002v3.0.0",
+     "language": "HTML",
+     "name": "EQ-Worker",
+     "stars": 0
+    },
+    {
+     "description": "Flow \u00b7 AI \u539f\u751f\u8de8\u5883\u51fa\u53e3\u7535\u5546\u5e73\u53f0\uff5c\u4e70\u5bb6\u5546\u57ce + \u5356\u5bb6 AI \u5de5\u4f5c\u53f0\uff0c5 \u4e2a\u771f\u5b9e LLM Agent\u3001\u4eba\u5de5\u5ba1\u6279\u5f0f\u8fd0\u8425\u526f\u9a7e\u3001\u771f\u5b9e\u652f\u4ed8\u4e0e\u9000\u6b3e\u95ed\u73af\u3002TypeScript \u5168\u6808\u5f00\u6e90\u3002",
+     "language": "TypeScript",
+     "name": "Flow",
+     "stars": 0
+    },
+    {
+     "description": "AI-operated wastewater process simulation: editable flowsheet, ASM1 + Takacs benchmarked against IWA BSM1, auditable AI operator with logged operator verdicts, four-dimension scorecard, CLI + single-file exe, and an MCP endpoint for agent frameworks.",
+     "language": "TypeScript",
+     "name": "aquapilot",
+     "stars": 0
+    },
+    {
+     "description": "One source, five public profiles \u2014 upstream PR ledger, projects, numbers, and a four-channel publishing line. \u4e94\u4e2a\u4e3b\u9875\u5171\u7528\u4e00\u5957\u6a21\u677f\uff1a\u5916\u90e8 PR\u3001\u9879\u76ee\u3001\u6570\u636e\u4e0e\u56db\u901a\u9053\u53d1\u5e03\u7ba1\u7ebf\u3002",
+     "language": "Python",
+     "name": "badhope",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted AI workspace for accounts you already own: groups, files, history, permissions, tools, and sub-2B local models that run offline.",
+     "language": "Python",
+     "name": "bigrobot",
+     "stars": 0
+    },
+    {
+     "description": "CampusHub \u2014 self-hosted open-source campus community platform: Vue 3 + NestJS + PostgreSQL",
+     "language": "JavaScript",
+     "name": "campushub",
+     "stars": 0
+    },
+    {
+     "description": "LingSuan Pro \u2014 income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3. \u7075\u7b97 Pro \u7075\u6d3b\u5c31\u4e1a\u8005\u6536\u5165\u7cbe\u7b97\u3002",
+     "language": "TypeScript",
+     "name": "flexcalc-pro",
+     "stars": 0
+    },
+    {
+     "description": "A plain-language guide to rights navigation and benefits for workers in China, with official links and honest data provenance.",
+     "language": "TypeScript",
+     "name": "no-money",
+     "stars": 0
+    },
+    {
+     "description": "rules: portable AI work contract for coding agents \u2014 rules, skills, subagents, commands, and runtime hooks for ZCode, Claude Code, opencode, and Codex.",
+     "language": "Python",
+     "name": "rules",
+     "stars": 0
+    },
+    {
+     "description": "\u5e97\u6536\u5b9d ShopCash \u2014 \u5355\u673a\u95e8\u5e97\u6536\u94f6\u4e0e\u6536\u6b3e\u8bb0\u8d26\u8f6f\u4ef6\uff08\u94b1\u53ea\u8fdb\u5546\u5bb6\u81ea\u5df1\u7684\u5fae\u4fe1/\u652f\u4ed8\u5b9d\u5546\u6237\u53f7\uff0c\u8f6f\u4ef6\u96f6\u8d44\u91d1\u4ecb\u5165\uff09",
+     "language": "JavaScript",
+     "name": "shopcash",
+     "stars": 0
+    },
+    {
+     "description": "\u300a\u6c38\u4e50\u5927\u5178\u300b\u6570\u5b57\u91cd\u520a \u00b7 \u4e5d\u7c7b\u516d\u5341\u6761\u5f71\u5370\u9875\u4e0e\u5e74\u8868",
+     "language": "TypeScript",
+     "name": "yongle-dadian",
+     "stars": 0
+    }
+   ],
+   "source": "github-api"
+  },
+  "gh_morningstar": {
+   "repos": [
+    {
+     "description": "EQ-Worker \u4eba\u60c5\u4e16\u6545\u52a9\u624b\uff1a\u4eca\u65e5\u884c\u52a8\u3001\u4eba\u60c5\u8d26\u672c\u3001\u968f\u793c\u53c2\u8c0b\u3001\u8bdd\u672f\u53c2\u8c0b\u3001\u5173\u7cfb\u4f53\u68c0\u3002\u672c\u5730\u4f18\u5148\uff0c\u6570\u636e\u4e0d\u51fa\u672c\u673a\u3002v3.0.0",
+     "language": "HTML",
+     "name": "EQ-Worker",
+     "stars": 1
+    },
+    {
+     "description": "A self-hostable absurd research community for open questions, honest notes, and public failures.",
+     "language": "Python",
+     "name": "rubbish",
+     "stars": 1
+    },
+    {
+     "description": "A local-first desktop workbench for tasks, projects, ports, processes, AI spend, and notes.",
+     "language": "TypeScript",
+     "name": "workbench",
+     "stars": 1
+    },
+    {
+     "description": "CodePocket \u2014 \u79bb\u7ebf\u4f18\u5148\u7684\u5b89\u5353 Python IDE\uff08\u5185\u7f6e CPython 3.13\uff09",
+     "language": "Kotlin",
+     "name": "CodePocket",
+     "stars": 0
+    },
+    {
+     "description": "Tianji (DU) \u2014 a local-only Chinese metaphysics master arena. Two verified schools answer one question, you score blind, then methods are revealed and dated claims are tracked on your own device. No backend, no upload, no telemetry; 12 public-domain classics (1.87M chars) ship in-repo with verbatim citation checking. | \u5929\u673a\u53f0\uff1a\u4e0d\u4e0a\u4f20\u6570\u636e\u7684\u672c\u5730\u7384\u5b66\u5927\u5e08\u6d4b\u8bc4\u5e73\u53f0\u3002",
+     "language": "TypeScript",
+     "name": "DU",
+     "stars": 0
+    },
+    {
+     "description": "Flow \u00b7 AI \u539f\u751f\u8de8\u5883\u51fa\u53e3\u7535\u5546\u5e73\u53f0\uff5c\u4e70\u5bb6\u5546\u57ce + \u5356\u5bb6 AI \u5de5\u4f5c\u53f0\uff0c5 \u4e2a\u771f\u5b9e LLM Agent\u3001\u4eba\u5de5\u5ba1\u6279\u5f0f\u8fd0\u8425\u526f\u9a7e\u3001\u771f\u5b9e\u652f\u4ed8\u4e0e\u9000\u6b3e\u95ed\u73af\u3002TypeScript \u5168\u6808\u5f00\u6e90\u3002",
+     "language": "TypeScript",
+     "name": "Flow",
+     "stars": 0
+    },
+    {
+     "description": "One of five shared profile mirrors \u2014 long-horizon projects and docs-first engineering, generated from the same source. \u4e94\u4e2a\u5171\u7528\u4e3b\u9875\u4e4b\u4e00\uff1a\u957f\u5468\u671f\u9879\u76ee\u4e0e\u6587\u6863\u4f18\u5148\u5de5\u7a0b\uff0c\u540c\u4e00\u5957\u751f\u6210\u5668\u3002",
+     "language": "Python",
+     "name": "Morningstar202604",
+     "stars": 0
+    },
+    {
+     "description": "AI-operated wastewater process simulation: editable flowsheet, ASM1 + Takacs benchmarked against IWA BSM1, auditable AI operator with logged operator verdicts, four-dimension scorecard, CLI + single-file exe, and an MCP endpoint for agent frameworks.",
+     "language": "TypeScript",
+     "name": "aquapilot",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted AI workspace for accounts you already own: groups, files, history, permissions, tools, and sub-2B local models that run offline.",
+     "language": "Python",
+     "name": "bigrobot",
+     "stars": 0
+    },
+    {
+     "description": "CampusHub \u2014 \u6821\u56ed\u670d\u52a1\u5e73\u53f0",
+     "language": "JavaScript",
+     "name": "campushub",
+     "stars": 0
+    },
+    {
+     "description": "Local-first production desk for solo creators: six AI pipelines (video, novel, podcast, course, writing, shorts), approval-gated agents, versioned files, MCP + A2A. The Windows installer bundles its own runtime.",
+     "language": "TypeScript",
+     "name": "creator-studio",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted digital legacy planning for assets, heirs and release rules. Encrypted, auditable, Rust + Vue.",
+     "language": "Rust",
+     "name": "digilegacy",
+     "stars": 0
+    },
+    {
+     "description": "LingSuan Pro \u2014 income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3. \u7075\u7b97 Pro \u7075\u6d3b\u5c31\u4e1a\u8005\u6536\u5165\u7cbe\u7b97\u3002",
+     "language": "TypeScript",
+     "name": "flexcalc-pro",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted publishing hub for writers. Draft once, publish to the platforms you use, and keep every copy in sync.",
+     "language": "Python",
+     "name": "harbor",
+     "stars": 0
+    },
+    {
+     "description": "\u7801\u4e0a Mashang \u2014 \u8d5b\u535a\u670b\u514b\u98ce\u79bb\u7ebf\u7f16\u7a0b\u5b66\u4e60\u7ec8\u7aef\uff1a\u5185\u7f6e CPython 3.13 + JavaScript(Rhino)\uff0c38 \u8bb2 + 17 \u8bb2\u6269\u5c55\u3001assert \u5224\u9898\u3001\u53d8\u91cf\u5feb\u7167\uff1b\u540c\u6e90\u7f51\u9875\u7248\u53ef\u76f4\u63a5\u8bd5\u73a9\u3002Android 7.0+ \u00b7 Kotlin \u00b7 MIT",
+     "language": "Python",
+     "name": "mashang",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted broadcast studio for AI matches: live board, replay, directing, recaps and highlights from one event stream. Import Kaggle Game Arena and TextArena episodes as first-class broadcasts.",
+     "language": "Python",
+     "name": "melee",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted finance that keeps the books for you: one sentence becomes journal entries, bank reconciliation and a closed month. Every figure comes from deterministic code, never the model.",
+     "language": "Python",
+     "name": "moneyhelper",
+     "stars": 0
+    },
+    {
+     "description": "A plain-language guide to rights navigation and benefits for workers in China, with official links and honest data provenance.",
+     "language": "TypeScript",
+     "name": "no-money",
+     "stars": 0
+    },
+    {
+     "description": "PocketMind \u53e3\u888b\u667a\u7075 \u2014 \u4f4f\u8fdb Android \u624b\u673a\u7684\u5e38\u9a7b AI Agent\u3002\u4e00\u4e2a APK \u72ec\u7acb\u8fd0\u884c\uff0c37 \u4e2a\u539f\u751f\u5de5\u5177\u76f4\u8c03\u624b\u673a\u80fd\u529b\uff0c\u670d\u52a1\u7aef\u5f3a\u5236\u5ba1\u6279\uff0c\u6570\u636e\u7559\u5728\u672c\u673a\u3002",
+     "language": "Python",
+     "name": "pocketmind",
+     "stars": 0
+    },
+    {
+     "description": "\u9898\u5323 QuizChest\uff1a\u672c\u5730\u4f18\u5148\u7684\u81ea\u6709\u9898\u5e93\u7ec3\u4e60\u5e94\u7528",
+     "language": "TypeScript",
+     "name": "quiz-chest",
+     "stars": 0
+    },
+    {
+     "description": "rules: portable AI work contract for coding agents \u2014 rules, skills, subagents, commands, and runtime hooks for ZCode, Claude Code, opencode, and Codex.",
+     "language": "Python",
+     "name": "rules",
+     "stars": 0
+    },
+    {
+     "description": "Local-first research workbench for literature, writing, review, and submission, with a deterministic quality gate and traceable citations.",
+     "language": "TypeScript",
+     "name": "sciflow",
+     "stars": 0
+    },
+    {
+     "description": "\u5e97\u6536\u5b9d ShopCash \u2014 \u5355\u673a\u95e8\u5e97\u6536\u94f6\u4e0e\u6536\u6b3e\u8bb0\u8d26\u8f6f\u4ef6\uff08\u94b1\u53ea\u8fdb\u5546\u5bb6\u81ea\u5df1\u7684\u5fae\u4fe1/\u652f\u4ed8\u5b9d\u5546\u6237\u53f7\uff0c\u8f6f\u4ef6\u96f6\u8d44\u91d1\u4ecb\u5165\uff09",
+     "language": "JavaScript",
+     "name": "shopcash",
+     "stars": 0
+    },
+    {
+     "description": "Local-first AI coding agent and office workbench. One audited agent loop across terminal, browser, IDE and API, with approval, sandbox, rollback and any OpenAI-compatible model.",
+     "language": "Python",
+     "name": "spark",
+     "stars": 0
+    },
+    {
+     "description": "A single-player AI tabletop RPG engine: deterministic rules own the numbers, saves and replay; any OpenAI-compatible model writes the scene.",
+     "language": "Python",
+     "name": "world-walker",
+     "stars": 0
+    },
+    {
+     "description": "\u300a\u6c38\u4e50\u5927\u5178\u300b\u6570\u5b57\u91cd\u520a \u00b7 \u4e5d\u7c7b\u516d\u5341\u6761\u5f71\u5370\u9875\u4e0e\u5e74\u8868",
+     "language": "TypeScript",
+     "name": "yongle-dadian",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. \u77e5\u5ba2 \u00b7 \u53ef\u81ea\u6258\u7ba1\u7684\u4e2a\u4eba\u52a9\u7406 Agent \u5e95\u5ea7",
+     "language": "Python",
+     "name": "zhike",
+     "stars": 0
+    }
+   ],
+   "source": "github-api"
+  },
+  "gh_x33834": {
+   "repos": [
+    {
+     "description": "CodePocket \u2014 an offline-first Python IDE for Android. Native CPython 3.13 bundled in the APK; install, open, code. No downloads, no network, no ads. Apache-2.0.",
+     "language": "Kotlin",
+     "name": "CodePocket",
+     "stars": 2
+    },
+    {
+     "description": "Self-hosted publishing hub for writers. Draft once, publish to the platforms you use, and keep every copy in sync.",
+     "language": "Python",
+     "name": "harbor",
+     "stars": 2
+    },
+    {
+     "description": "A single-player AI tabletop RPG engine: deterministic rules own the numbers, saves and replay; any OpenAI-compatible model writes the scene.",
+     "language": "Python",
+     "name": "world-walker",
+     "stars": 1
+    },
+    {
+     "description": "Tianji (DU) \u2014 a local-only Chinese metaphysics master arena. Two verified schools answer one question, you score blind, then methods are revealed and dated claims are tracked on your own device. No backend, no upload, no telemetry; 12 public-domain classics (1.87M chars) ship in-repo with verbatim citation checking. | \u5929\u673a\u53f0\uff1a\u4e0d\u4e0a\u4f20\u6570\u636e\u7684\u672c\u5730\u7384\u5b66\u5927\u5e08\u6d4b\u8bc4\u5e73\u53f0\u3002",
+     "language": "TypeScript",
+     "name": "DU",
+     "stars": 0
+    },
+    {
+     "description": "EQ-Worker \u4eba\u60c5\u4e16\u6545\u52a9\u624b\uff1a\u4eca\u65e5\u884c\u52a8\u3001\u4eba\u60c5\u8d26\u672c\u3001\u968f\u793c\u53c2\u8c0b\u3001\u8bdd\u672f\u53c2\u8c0b\u3001\u5173\u7cfb\u4f53\u68c0\u3002\u672c\u5730\u4f18\u5148\uff0c\u6570\u636e\u4e0d\u51fa\u672c\u673a\u3002v3.0.0",
+     "language": "HTML",
+     "name": "EQ-Worker",
+     "stars": 0
+    },
+    {
+     "description": "Flow \u00b7 AI \u539f\u751f\u8de8\u5883\u51fa\u53e3\u7535\u5546\u5e73\u53f0\uff5c\u4e70\u5bb6\u5546\u57ce + \u5356\u5bb6 AI \u5de5\u4f5c\u53f0\uff0c5 \u4e2a\u771f\u5b9e LLM Agent\u3001\u4eba\u5de5\u5ba1\u6279\u5f0f\u8fd0\u8425\u526f\u9a7e\u3001\u771f\u5b9e\u652f\u4ed8\u4e0e\u9000\u6b3e\u95ed\u73af\u3002TypeScript \u5168\u6808\u5f00\u6e90\u3002",
+     "language": "TypeScript",
+     "name": "Flow",
+     "stars": 0
+    },
+    {
+     "description": "One of five shared profile mirrors \u2014 upstream OSS fixes, small tools and agent experiments, generated from the same source. \u4e94\u4e2a\u5171\u7528\u4e3b\u9875\u4e4b\u4e00\uff1a\u4e0a\u6e38\u4fee\u590d\u3001\u5c0f\u5de5\u5177\u4e0e\u667a\u80fd\u4f53\u5b9e\u9a8c\uff0c\u540c\u4e00\u5957\u751f\u6210\u5668\u3002",
+     "language": "Python",
+     "name": "X33834",
+     "stars": 0
+    },
+    {
+     "description": "AI-operated wastewater process simulation: editable flowsheet, ASM1 + Takacs benchmarked against IWA BSM1, auditable AI operator with logged operator verdicts, four-dimension scorecard, CLI + single-file exe, and an MCP endpoint for agent frameworks.",
+     "language": "TypeScript",
+     "name": "aquapilot",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted AI workspace for accounts you already own: groups, files, history, permissions, tools, and sub-2B local models that run offline.",
+     "language": "Python",
+     "name": "bigrobot",
+     "stars": 0
+    },
+    {
+     "description": "CampusHub \u2014 \u6821\u56ed\u670d\u52a1\u5e73\u53f0",
+     "language": "JavaScript",
+     "name": "campushub",
+     "stars": 0
+    },
+    {
+     "description": "Local-first production desk for solo creators: six AI pipelines (video, novel, podcast, course, writing, shorts), approval-gated agents, versioned files, MCP + A2A. The Windows installer bundles its own runtime.",
+     "language": "TypeScript",
+     "name": "creator-studio",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted digital legacy planning for assets, heirs and release rules. Encrypted, auditable, Rust + Vue.",
+     "language": "Rust",
+     "name": "digilegacy",
+     "stars": 0
+    },
+    {
+     "description": "LingSuan Pro \u2014 income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3. \u7075\u7b97 Pro \u7075\u6d3b\u5c31\u4e1a\u8005\u6536\u5165\u7cbe\u7b97\u3002",
+     "language": "TypeScript",
+     "name": "flexcalc-pro",
+     "stars": 0
+    },
+    {
+     "description": "\u7801\u4e0a Mashang \u2014 \u8d5b\u535a\u670b\u514b\u98ce\u79bb\u7ebf\u7f16\u7a0b\u5b66\u4e60\u7ec8\u7aef\uff1a\u5185\u7f6e CPython 3.13 + JavaScript(Rhino)\uff0c38 \u8bb2 + 17 \u8bb2\u6269\u5c55\u3001assert \u5224\u9898\u3001\u53d8\u91cf\u5feb\u7167\uff1b\u540c\u6e90\u7f51\u9875\u7248\u53ef\u76f4\u63a5\u8bd5\u73a9\u3002Android 7.0+ \u00b7 Kotlin \u00b7 MIT",
+     "language": "Python",
+     "name": "mashang",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted broadcast studio for AI matches: live board, replay, directing, recaps and highlights from one event stream. Import Kaggle Game Arena and TextArena episodes as first-class broadcasts.",
+     "language": "Python",
+     "name": "melee",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted finance that keeps the books for you: one sentence becomes journal entries, bank reconciliation and a closed month. Every figure comes from deterministic code, never the model.",
+     "language": "Python",
+     "name": "moneyhelper",
+     "stars": 0
+    },
+    {
+     "description": "Mutual follow with X33834 / Morningstar202604 / badhope",
+     "language": null,
+     "name": "mutual-follow",
+     "stars": 0
+    },
+    {
+     "description": "A plain-language guide to rights navigation and benefits for workers in China, with official links and honest data provenance.",
+     "language": "TypeScript",
+     "name": "no-money",
+     "stars": 0
+    },
+    {
+     "description": "PocketMind \u53e3\u888b\u667a\u7075 \u2014 \u4f4f\u8fdb Android \u624b\u673a\u7684\u5e38\u9a7b AI Agent\u3002\u4e00\u4e2a APK \u72ec\u7acb\u8fd0\u884c\uff0c37 \u4e2a\u539f\u751f\u5de5\u5177\u76f4\u8c03\u624b\u673a\u80fd\u529b\uff0c\u670d\u52a1\u7aef\u5f3a\u5236\u5ba1\u6279\uff0c\u6570\u636e\u7559\u5728\u672c\u673a\u3002",
+     "language": "Python",
+     "name": "pocketmind",
+     "stars": 0
+    },
+    {
+     "description": "\u9898\u5323 QuizChest\uff1a\u672c\u5730\u4f18\u5148\u7684\u81ea\u6709\u9898\u5e93\u7ec3\u4e60\u5e94\u7528",
+     "language": "TypeScript",
+     "name": "quiz-chest",
+     "stars": 0
+    },
+    {
+     "description": "A self-hostable absurd research community for open questions, honest notes, and public failures.",
+     "language": "Python",
+     "name": "rubbish",
+     "stars": 0
+    },
+    {
+     "description": "rules: portable AI work contract for coding agents \u2014 rules, skills, subagents, commands, and runtime hooks for ZCode, Claude Code, opencode, and Codex.",
+     "language": "Python",
+     "name": "rules",
+     "stars": 0
+    },
+    {
+     "description": "Local-first research workbench for literature, writing, review, and submission, with a deterministic quality gate and traceable citations.",
+     "language": "TypeScript",
+     "name": "sciflow",
+     "stars": 0
+    },
+    {
+     "description": "\u5e97\u6536\u5b9d ShopCash \u2014 \u5355\u673a\u95e8\u5e97\u6536\u94f6\u4e0e\u6536\u6b3e\u8bb0\u8d26\u8f6f\u4ef6\uff08\u94b1\u53ea\u8fdb\u5546\u5bb6\u81ea\u5df1\u7684\u5fae\u4fe1/\u652f\u4ed8\u5b9d\u5546\u6237\u53f7\uff0c\u8f6f\u4ef6\u96f6\u8d44\u91d1\u4ecb\u5165\uff09",
+     "language": "JavaScript",
+     "name": "shopcash",
+     "stars": 0
+    },
+    {
+     "description": "Local-first AI coding agent and office workbench. One audited agent loop across terminal, browser, IDE and API, with approval, sandbox, rollback and any OpenAI-compatible model.",
+     "language": "Python",
+     "name": "spark",
+     "stars": 0
+    },
+    {
+     "description": "A local-first desktop workbench for tasks, projects, ports, processes, AI spend, and notes.",
+     "language": "TypeScript",
+     "name": "workbench",
+     "stars": 0
+    },
+    {
+     "description": "\u300a\u6c38\u4e50\u5927\u5178\u300b\u6570\u5b57\u91cd\u520a \u00b7 \u4e5d\u7c7b\u516d\u5341\u6761\u5f71\u5370\u9875\u4e0e\u5e74\u8868",
+     "language": "TypeScript",
+     "name": "yongle-dadian",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted agent harness for personal assistants: OpenAI function calling, MCP, ReAct, hybrid RAG, reminders, permissions and audit. QQ + Web. \u77e5\u5ba2 \u00b7 \u53ef\u81ea\u6258\u7ba1\u7684\u4e2a\u4eba\u52a9\u7406 Agent \u5e95\u5ea7",
+     "language": "Python",
+     "name": "zhike",
+     "stars": 0
+    }
+   ],
+   "source": "github-api"
+  },
+  "gitcode_badhope": {
+   "repos": [
+    {
+     "description": "A self-hostable absurd research community for open questions, honest notes, and public failures.",
+     "language": "Markdown",
+     "name": "rubbish",
+     "stars": 1
+    },
+    {
+     "description": "CodePocket \u2014 an offline-first Python IDE for Android. Native CPython 3.13 bundled in the APK; install, open, code. No downloads, no network, no ads. Apache-2.0.",
+     "language": "Kotlin",
+     "name": "CodePocket",
+     "stars": 0
+    },
+    {
+     "description": "Tianji (DU) \u2014 a local-only Chinese metaphysics master arena. Two verified schools answer one question, you score blind, then methods are revealed and dated claims are tracked on your own device. No backend, no upload, no telemetry; 12 public-domain classics (1.87M chars) ship in-repo with verbatim citation checking. \u5929\u673a\u53f0\uff1a\u4e0d\u4e0a\u4f20\u6570\u636e\u7684\u672c\u5730\u7384\u5b66\u5927\u5e08\u6d4b\u8bc4\u5e73\u53f0\u3002",
+     "language": "TypeScript",
+     "name": "DU",
+     "stars": 0
+    },
+    {
+     "description": "EQ-Worker \u4eba\u60c5\u4e16\u6545\u52a9\u624b\uff1a\u4eca\u65e5\u884c\u52a8\u3001\u4eba\u60c5\u8d26\u672c\u3001\u968f\u793c\u53c2\u8c0b\u3001\u8bdd\u672f\u53c2\u8c0b\u3001\u5173\u7cfb\u4f53\u68c0\u3002\u672c\u5730\u4f18\u5148\uff0c\u6570\u636e\u4e0d\u51fa\u672c\u673a\u3002v3.0.0",
+     "language": "HTML",
+     "name": "EQ-Worker",
+     "stars": 0
+    },
+    {
+     "description": "Flow \u00b7 AI \u539f\u751f\u8de8\u5883\u51fa\u53e3\u7535\u5546\u5e73\u53f0\uff5c\u4e70\u5bb6\u5546\u57ce + \u5356\u5bb6 AI \u5de5\u4f5c\u53f0\uff0c5 \u4e2a\u771f\u5b9e LLM Agent\u3001\u4eba\u5de5\u5ba1\u6279\u5f0f\u8fd0\u8425\u526f\u9a7e\u3001\u771f\u5b9e\u652f\u4ed8\u4e0e\u9000\u6b3e\u95ed\u73af\u3002TypeScript \u5168\u6808\u5f00\u6e90\u3002",
+     "language": "TypeScript",
+     "name": "Flow",
+     "stars": 0
+    },
+    {
+     "description": "AI-operated wastewater process simulation: editable flowsheet, ASM1 + Takacs benchmarked against IWA BSM1, an auditable AI operator, a four-dimension operational scorecard, CLI and single-file exe, and an MCP endpoint for agent frameworks.",
+     "language": "TypeScript",
+     "name": "aquapilot",
+     "stars": 0
+    },
+    {
+     "description": "Five-profile shared homepage mirror \u2014 upstream PR ledger, projects, numbers and four publishing channels. \u4e94\u4e2a\u4e3b\u9875\u5171\u7528\u4e00\u5957\u6a21\u677f\uff1a\u5916\u90e8 PR\u3001\u9879\u76ee\u3001\u6570\u636e\u4e0e\u56db\u901a\u9053\u53d1\u5e03\u7ba1\u7ebf\u3002",
+     "language": "Python",
+     "name": "badhope",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted AI workspace for accounts you already own: groups, files, history, permissions, tools, and sub-2B local models that run offline.",
+     "language": "Python",
+     "name": "bigrobot",
+     "stars": 0
+    },
+    {
+     "description": "CampusHub \u2014 \u81ea\u6258\u7ba1\u5f00\u6e90\u6821\u56ed\u793e\u533a\u5e73\u53f0\uff1aVue 3 NestJS PostgreSQL\u3002\u4e8c\u624b\u5e02\u96c6/\u5931\u7269\u62db\u9886/\u8868\u767d\u5899/\u6821\u56ed\u6307\u5357/\u7b7e\u5230/\u901a\u77e5/\u7ba1\u7406\u540e\u53f0\u3002CampusHub \u2014 self-hosted open-source campus community platform. Vue 3 NestJS PostgreSQL Prisma.",
+     "language": "JavaScript",
+     "name": "campushub",
+     "stars": 0
+    },
+    {
+     "description": "Local-first AI production desk for solo creators: video, novels, podcasts, courses. Scenario packs, approval-gated tools, contract-checked artifacts. Tauri + React + Fastify.",
+     "language": "TypeScript",
+     "name": "creator-studio",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted digital legacy planning for assets, heirs and release rules. Encrypted, auditable, Rust + Vue.",
+     "language": "Rust",
+     "name": "digilegacy",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted publishing hub for writers. Draft once, publish to the platforms you use, and keep every copy in sync.",
+     "language": "Python",
+     "name": "harbor",
+     "stars": 0
+    },
+    {
+     "description": "\u7801\u4e0a Mashang \u2014 \u8d5b\u535a\u670b\u514b\u98ce\u79bb\u7ebf\u7f16\u7a0b\u5b66\u4e60\u7ec8\u7aef\uff1a\u5185\u7f6e CPython 3.13 + JavaScript \u8fd0\u884c\u65f6\uff0c38 \u8bb2\u95ef\u5173\u8bfe\u7a0b\u3001assert \u5224\u9898\u3001\u53d8\u91cf\u53ef\u89c6\u5316 | Android \u00b7 Kotlin \u00b7 MIT",
+     "language": "Python",
+     "name": "mashang",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted broadcast studio for AI matches: live board, replay, directing, recaps and highlights from one event stream. Import Kaggle Game Arena and TextArena episodes as first-class broadcasts.",
+     "language": "Python",
+     "name": "melee",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted finance that keeps the books for you \u2014 one sentence becomes entries, reconciliation and a closed month. Every figure comes from deterministic code, never the model.",
+     "language": "Python",
+     "name": "moneyhelper",
+     "stars": 0
+    },
+    {
+     "description": "A plain-language guide to rights navigation and benefits for workers in China, with official links and honest data provenance.",
+     "language": "TypeScript",
+     "name": "no-money",
+     "stars": 0
+    },
+    {
+     "description": "PocketMind \u53e3\u888b\u667a\u7075 \u2014 \u4f4f\u8fdb Android \u624b\u673a\u7684\u5e38\u9a7b AI Agent\u3002\u4e00\u4e2a APK \u72ec\u7acb\u8fd0\u884c\uff0c37 \u4e2a\u539f\u751f\u5de5\u5177\u76f4\u8c03\u624b\u673a\u80fd\u529b\uff0c\u670d\u52a1\u7aef\u5f3a\u5236\u5ba1\u6279\uff0c\u6570\u636e\u7559\u5728\u672c\u673a\u3002",
+     "language": "Python",
+     "name": "pocketmind",
+     "stars": 0
+    },
+    {
+     "description": "Local-first quiz app: import your own question banks (JSON/CSV), practise offline with timed mock exams, mistake review and learning stats. No account, no server.",
+     "language": "TypeScript",
+     "name": "quiz-chest",
+     "stars": 0
+    },
+    {
+     "description": "rules\uff1a\u9762\u5411 AI \u7f16\u7a0b\u667a\u80fd\u4f53\u7684\u53ef\u79fb\u690d\u5de5\u4f5c\u5951\u7ea6\uff0c\u5305\u542b\u89c4\u5219\u3001\u6280\u80fd\u3001\u5b50\u4ee3\u7406\u3001\u547d\u4ee4\u4e0e\u8fd0\u884c\u65f6\u94a9\u5b50\uff0c\u652f\u6301 ZCode / Claude Code / opencode / Codex\u3002",
+     "language": "Markdown",
+     "name": "rules",
+     "stars": 0
+    },
+    {
+     "description": "Local-first research workbench for literature, writing, review, and submission, with a deterministic quality gate and traceable citations.",
+     "language": "TypeScript",
+     "name": "sciflow",
+     "stars": 0
+    },
+    {
+     "description": "\u5355\u673a\u95e8\u5e97\u6536\u94f6\u4e0e\u6536\u6b3e\u8bb0\u8d26\u8f6f\u4ef6\uff08\u8f6f\u4ef6\u96f6\u8d44\u91d1\u4ecb\u5165\uff09",
+     "language": "JavaScript",
+     "name": "shopcash",
+     "stars": 0
+    },
+    {
+     "description": "Local-first AI coding agent and office workbench. One audited agent loop across terminal, browser, IDE and API, with approval, sandbox, rollback and any OpenAI-compatible model.",
+     "language": "Python",
+     "name": "spark",
+     "stars": 0
+    },
+    {
+     "description": "A local-first desktop workbench for tasks, projects, ports, processes, AI spend, and notes.",
+     "language": "TypeScript",
+     "name": "workbench",
+     "stars": 0
+    },
+    {
+     "description": "A single-player AI tabletop RPG engine: deterministic rules own the numbers, saves and replay; any OpenAI-compatible model writes the scene.",
+     "language": "Python",
+     "name": "world-walker",
+     "stars": 0
+    },
+    {
+     "description": "\u300a\u6c38\u4e50\u5927\u5178\u300b\u6570\u5b57\u91cd\u520a \u00b7 \u4e5d\u7c7b\u516d\u5341\u6761\u5f71\u5370\u9875\u4e0e\u5e74\u8868",
+     "language": "TypeScript",
+     "name": "yongle-dadian",
+     "stars": 0
+    }
+   ],
+   "source": "gitcode-api"
+  },
+  "gitee_badhope": {
+   "repos": [
+    {
+     "description": "CampusHub \u2014 self-hosted open-source campus community platform. Vue 3 NestJS PostgreSQL Prisma. Second-hand marketplace, lost",
+     "language": "JavaScript",
+     "name": "campushub",
+     "stars": 1
+    },
+    {
+     "description": "CodePocket \u2014 \u79bb\u7ebf\u4f18\u5148\u7684\u5b89\u5353 Python IDE\uff08\u5185\u7f6e CPython 3.13\uff09",
+     "language": "Kotlin",
+     "name": "CodePocket",
+     "stars": 0
+    },
+    {
+     "description": "Tianji (DU) \u2014 local-only Chinese metaphysics master arena: two verified schools answer the same question, you score blind, then methods are revealed and dated claims tracked locally. No backend, no upload, no telemetry. \u5929\u673a\u53f0\uff1a\u4e0d\u4e0a\u4f20\u6570\u636e\u7684\u672c\u5730\u7384\u5b66\u5927\u5e08\u6d4b\u8bc4\u5e73\u53f0\u3002",
+     "language": "TypeScript",
+     "name": "DU",
+     "stars": 0
+    },
+    {
+     "description": "EQ-Worker \u4eba\u60c5\u4e16\u6545\u52a9\u624b\uff1a\u4eca\u65e5\u884c\u52a8\u3001\u4eba\u60c5\u8d26\u672c\u3001\u968f\u793c\u53c2\u8c0b\u3001\u8bdd\u672f\u53c2\u8c0b\u3001\u5173\u7cfb\u4f53\u68c0\u3002\u672c\u5730\u4f18\u5148\uff0c\u6570\u636e\u4e0d\u51fa\u672c\u673a\u3002v3.0.0",
+     "language": "HTML",
+     "name": "EQ-Worker",
+     "stars": 0
+    },
+    {
+     "description": "Flow \u00b7 AI \u539f\u751f\u8de8\u5883\u51fa\u53e3\u7535\u5546\u5e73\u53f0\uff5c\u4e70\u5bb6\u5546\u57ce + \u5356\u5bb6 AI \u5de5\u4f5c\u53f0\uff0c5 \u4e2a\u771f\u5b9e LLM Agent\u3001\u4eba\u5de5\u5ba1\u6279\u5f0f\u8fd0\u8425\u526f\u9a7e\u3001\u771f\u5b9e\u652f\u4ed8\u4e0e\u9000\u6b3e\u95ed\u73af\u3002TypeScript \u5168\u6808\u5f00\u6e90\u3002",
+     "language": "TypeScript",
+     "name": "Flow",
+     "stars": 0
+    },
+    {
+     "description": "AI-operated wastewater process simulation: editable flowsheet, ASM1 + Takacs benchmarked against IWA BSM1, an auditable AI operator, a four-dimension operational scorecard, CLI and single-file exe, and an MCP endpoint for agent frameworks.",
+     "language": "TypeScript",
+     "name": "aquapilot",
+     "stars": 0
+    },
+    {
+     "description": "Five-profile shared homepage mirror \u2014 upstream PR ledger, projects, numbers and four publishing channels. \u4e94\u4e2a\u4e3b\u9875\u5171\u7528\u4e00\u5957\u6a21\u677f\uff1a\u5916\u90e8 PR\u3001\u9879\u76ee\u3001\u6570\u636e\u4e0e\u56db\u901a\u9053\u53d1\u5e03\u7ba1\u7ebf\u3002",
+     "language": "Python",
+     "name": "badhope",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted AI workspace for accounts you already own: groups, files, history, permissions, tools, and sub-2B local models that run offline.",
+     "language": "Python",
+     "name": "bigrobot",
+     "stars": 0
+    },
+    {
+     "description": "Local-first AI production desk for solo creators: video, novels, podcasts, courses. Scenario packs, approval-gated tools, contract-checked artifacts. Tauri + React + Fastify.",
+     "language": "TypeScript",
+     "name": "creator-studio",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted digital legacy planning for assets, heirs and release rules. Encrypted, auditable, Rust + Vue.",
+     "language": "Rust",
+     "name": "digilegacy",
+     "stars": 0
+    },
+    {
+     "description": "LingSuan Pro \u2014 income, tax, social-insurance and labor-rights calculator for China's gig workers (delivery riders, ride-hailing drivers). 15 cities with per-field provenance, offline-first Tauri + Vue 3.",
+     "language": "TypeScript",
+     "name": "flexcalc-pro",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted publishing hub for writers. Draft once, publish to the platforms you use, and keep every copy in sync.",
+     "language": "Python",
+     "name": "harbor",
+     "stars": 0
+    },
+    {
+     "description": "\u7801\u4e0a Mashang \u2014 \u8d5b\u535a\u670b\u514b\u98ce\u79bb\u7ebf\u7f16\u7a0b\u5b66\u4e60\u7ec8\u7aef\uff1a\u5185\u7f6e CPython 3.13 + JavaScript(Rhino)\uff0c38 \u8bb2 + 17 \u8bb2\u6269\u5c55\u3001assert \u5224\u9898\u3001\u53d8\u91cf\u5feb\u7167\uff1b\u540c\u6e90\u7f51\u9875\u7248\u53ef\u76f4\u63a5\u8bd5\u73a9\u3002Android 7.0+ \u00b7 Kotlin \u00b7 MIT",
+     "language": "Python",
+     "name": "mashang",
+     "stars": 0
+    },
+    {
+     "description": "Self-hosted broadcast studio for AI matches: live board, replay, directing, recaps and highlights from one event stream. Import Kaggle Game Arena and TextArena episodes as first-class broadcasts.",
+     "language": "Python",
+     "name": "melee",
+     "stars": 0
+    },
+    {
+     "description": "\u81ea\u6258\u7ba1\u8d22\u52a1\u8f6f\u4ef6\uff1a\u4e00\u53e5\u8bdd\u8bb0\u8d26\u3001\u81ea\u52a8\u5bf9\u8d26\u3001\u6708\u672b\u81ea\u52a8\u7ed3\u8d26\u3002\u6bcf\u4e2a\u6570\u5b57\u7531\u786e\u5b9a\u6027\u4ee3\u7801\u7b97\u51fa\u5e76\u53ef\u6eaf\u6e90\uff0c\u6a21\u578b\u53ea\u8d1f\u8d23\u63aa\u8f9e\uff0c\u4e0d\u53c2\u4e0e\u8ba1\u7b97\u3002",
+     "language": "Python",
+     "name": "moneyhelper",
+     "stars": 0
+    },
+    {
+     "description": "A plain-language guide to rights navigation and benefits for workers in China, with official links and honest data provenance.",
+     "language": "TypeScript",
+     "name": "no-money",
+     "stars": 0
+    },
+    {
+     "description": "PocketMind \u53e3\u888b\u667a\u7075 \u2014 \u4f4f\u8fdb Android \u624b\u673a\u7684\u5e38\u9a7b AI Agent\u3002\u4e00\u4e2a APK \u72ec\u7acb\u8fd0\u884c\uff0c37 \u4e2a\u539f\u751f\u5de5\u5177\u76f4\u8c03\u624b\u673a\u80fd\u529b\uff0c\u670d\u52a1\u7aef\u5f3a\u5236\u5ba1\u6279\uff0c\u6570\u636e\u7559\u5728\u672c\u673a\u3002",
+     "language": "Python",
+     "name": "pocketmind",
+     "stars": 0
+    },
+    {
+     "description": "Local-first quiz app: import your own question banks (JSON/CSV), practise offline with timed mock exams, mistake review and learning stats. No account, no server.",
+     "language": "TypeScript",
+     "name": "quiz-chest",
+     "stars": 0
+    },
+    {
+     "description": "A self-hostable absurd research community for open questions, honest notes, and public failures.",
+     "language": "Python",
+     "name": "rubbish",
+     "stars": 0
+    },
+    {
+     "description": "Local-first research workbench for literature, writing, review, and submission, with a deterministic quality gate and traceable citations.",
+     "language": "TypeScript",
+     "name": "sciflow",
+     "stars": 0
+    },
+    {
+     "description": "Local-first AI coding agent and office workbench. One audited agent loop across terminal, browser, IDE and API, with approval, sandbox, rollback and any OpenAI-compatible model.",
+     "language": "Python",
+     "name": "spark",
+     "stars": 0
+    },
+    {
+     "description": "A local-first desktop workbench for tasks, projects, ports, processes, AI spend, and notes.",
+     "language": "TypeScript",
+     "name": "workbench",
+     "stars": 0
+    },
+    {
+     "description": "A single-player AI tabletop RPG engine: deterministic rules own the numbers, saves and replay; any OpenAI-compatible model writes the scene.",
+     "language": "Python",
+     "name": "world-walker",
+     "stars": 0
+    }
+   ],
+   "source": "gitee-api"
+  }
+ },
+ "as_of": "2026-11-23"
+}

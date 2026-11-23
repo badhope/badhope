@@ -19,6 +19,8 @@
 
 <sub>6 selected · 3 merged · 3 open · 0 closed · +757/−67 · 39 files · 8 comments</sub>
 
+<sub>3 merged in 0.7d on average · fastest 0d</sub>
+
 - [mogenius/renovate-operator#796](https://github.com/mogenius/renovate-operator/pull/796) — feat(webhook): rotate the webhook auth token via an annotation · **open** · opened 2026-11-05 · +417/−23 · 14 files · 2 comments
 - [ncepu-iDealStudio/Fast-Https#9](https://github.com/ncepu-iDealStudio/Fast-Https/pull/9) — fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试 · **merged** · merged 2026-11-07 · +162/−36 · 11 files · 1 comment
 - [evilmartians/lefthook#1629](https://github.com/evilmartians/lefthook/pull/1629) — fix: apply the staged-files fallback to pre-merge-commit · **open** · opened 2026-11-05 · +63/−2 · 5 files · 1 comment
@@ -28,18 +30,15 @@
 
 <sub>PR snapshot 2026-11-22 · GitHub Search / pulls API</sub>
 
-## 03 · Other projects
+## 03 · Featured projects
 
-| Project | Stack | Scope |
-|---|---|---|
-| [harbor](https://github.com/badhope/harbor) | Python | self-hosted publishing hub; one draft, 15 channels |
-| [spark](https://github.com/badhope/spark) | Python · React | self-hosted coding-agent harness; sandboxed runs, MCP tools |
-| [moneyhelper](https://github.com/badhope/moneyhelper) | FastAPI · LangGraph · React | chat-first finance agent; bookkeeping, portfolio risk, filings |
-| [workbench](https://github.com/badhope/workbench) | Tauri 2 · React 19 · TypeScript | desktop workbench; clipboard, snippets, windows, quick launch |
-| [world-walker](https://github.com/badhope/world-walker) | Python stdlib · MCP | deterministic rules layer for AI interactive fiction |
-| [digilegacy](https://github.com/badhope/digilegacy) | Rust | self-hosted digital legacy planning; assets, heirs, release rules |
-| [sciflow](https://github.com/badhope/sciflow) | Python · TypeScript | research workbench; literature, experiment log, drafting |
-| [aquapilot](https://github.com/badhope/aquapilot) | TypeScript | wastewater process simulation; editable flowsheet, ASM1 |
+<p align="center"><a href="https://github.com/badhope/moneyhelper"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-0-en-dark.svg" /><img src="assets/project-0-en-light.svg" alt="moneyhelper" width="49.2%" /></picture></a> <a href="https://github.com/badhope/workbench"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-1-en-dark.svg" /><img src="assets/project-1-en-light.svg" alt="workbench" width="49.2%" /></picture></a></p>
+
+<p align="center"><a href="https://github.com/badhope/spark"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-2-en-dark.svg" /><img src="assets/project-2-en-light.svg" alt="spark" width="49.2%" /></picture></a> <a href="https://github.com/badhope/world-walker"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-3-en-dark.svg" /><img src="assets/project-3-en-light.svg" alt="world-walker" width="49.2%" /></picture></a></p>
+
+<p align="center"><a href="https://github.com/badhope/sciflow"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-4-en-dark.svg" /><img src="assets/project-4-en-light.svg" alt="sciflow" width="49.2%" /></picture></a> <a href="https://github.com/badhope/harbor"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-5-en-dark.svg" /><img src="assets/project-5-en-light.svg" alt="harbor" width="49.2%" /></picture></a></p>
+
+<sub>More projects: [digilegacy](https://github.com/badhope/digilegacy) · [aquapilot](https://github.com/badhope/aquapilot)</sub>
 
 ## 04 · Numbers
 
@@ -54,7 +53,13 @@
 </p>
 <sub>Exact daily contributions from the GitHub GraphQL snapshot · refreshed weekly</sub>
 
-## 06 · Publishing line
+## 06 · Languages
+
+<p align="center">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/langs-en-dark.svg" /><img src="assets/langs-en-light.svg" alt="language mix" width="100%" /></picture>
+</p>
+
+## 07 · Publishing line
 
 <p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-en-dark.svg" /><img src="assets/channel-csdn-en-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753/posts"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-en-dark.svg" /><img src="assets/channel-juejin-en-light.svg" alt="Juejin" width="49.2%" /></picture></a></p>
 

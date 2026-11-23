@@ -19,6 +19,8 @@
 
 <sub>6 件 · マージ済み 3 · オープン 3 · クローズ 0 · +757/−67 · 39 ファイル · 8 コメント</sub>
 
+<sub>マージ済み 3 件 · 平均 0.7 日 · 最速 0 日</sub>
+
 - [mogenius/renovate-operator#796](https://github.com/mogenius/renovate-operator/pull/796) — feat(webhook): rotate the webhook auth token via an annotation · **オープン** · 提出 2026-11-05 · +417/−23 · 14 ファイル · 2 コメント
 - [ncepu-iDealStudio/Fast-Https#9](https://github.com/ncepu-iDealStudio/Fast-Https/pull/9) — fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试 · **マージ済み** · マージ 2026-11-07 · +162/−36 · 11 ファイル · 1 コメント
 - [evilmartians/lefthook#1629](https://github.com/evilmartians/lefthook/pull/1629) — fix: apply the staged-files fallback to pre-merge-commit · **オープン** · 提出 2026-11-05 · +63/−2 · 5 ファイル · 1 コメント
@@ -28,18 +30,15 @@
 
 <sub>PR スナップショット 2026-11-22 · GitHub Search / pulls API</sub>
 
-## 03 · 参加プロジェクト
+## 03 · 代表プロジェクト
 
-| プロジェクト | スタック | 方向 |
-|---|---|---|
-| [harbor](https://github.com/badhope/harbor) | Python | 自ホスト配信ハブ；1 つの草稿を 15 チャネルへ |
-| [spark](https://github.com/badhope/spark) | Python · React | 自ホスト型コーディングエージェント基盤；サンドボックス実行、MCP ツール |
-| [moneyhelper](https://github.com/badhope/moneyhelper) | FastAPI · LangGraph · React | 対話型家計エージェント；記帳、ポートフォリオ・リスク、決算 |
-| [workbench](https://github.com/badhope/workbench) | Tauri 2 · React 19 · TypeScript | デスクトップ作業台；クリップボード、スニペット、ウィンドウ、クイック起動 |
-| [world-walker](https://github.com/badhope/world-walker) | Python stdlib · MCP | AI インタラクティブ小説の決定論的ルール層 |
-| [digilegacy](https://github.com/badhope/digilegacy) | Rust | 自ホスト型デジタル遺産計画；資産、相続人、解放ルール |
-| [sciflow](https://github.com/badhope/sciflow) | Python · TypeScript | 研究ワークベンチ；文献、実験記録、構造化執筆 |
-| [aquapilot](https://github.com/badhope/aquapilot) | TypeScript | 排水処理プロセスのシミュレーション；編集可能なフロー、ASM1 |
+<p align="center"><a href="https://github.com/badhope/moneyhelper"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-0-ja-dark.svg" /><img src="assets/project-0-ja-light.svg" alt="moneyhelper" width="49.2%" /></picture></a> <a href="https://github.com/badhope/workbench"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-1-ja-dark.svg" /><img src="assets/project-1-ja-light.svg" alt="workbench" width="49.2%" /></picture></a></p>
+
+<p align="center"><a href="https://github.com/badhope/spark"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-2-ja-dark.svg" /><img src="assets/project-2-ja-light.svg" alt="spark" width="49.2%" /></picture></a> <a href="https://github.com/badhope/world-walker"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-3-ja-dark.svg" /><img src="assets/project-3-ja-light.svg" alt="world-walker" width="49.2%" /></picture></a></p>
+
+<p align="center"><a href="https://github.com/badhope/sciflow"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-4-ja-dark.svg" /><img src="assets/project-4-ja-light.svg" alt="sciflow" width="49.2%" /></picture></a> <a href="https://github.com/badhope/harbor"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-5-ja-dark.svg" /><img src="assets/project-5-ja-light.svg" alt="harbor" width="49.2%" /></picture></a></p>
+
+<sub>その他のプロジェクト: [digilegacy](https://github.com/badhope/digilegacy) · [aquapilot](https://github.com/badhope/aquapilot)</sub>
 
 ## 04 · 数字
 
@@ -54,7 +53,13 @@
 </p>
 <sub>日々の寄与は GitHub GraphQL の正確なスナップショット · 毎週更新</sub>
 
-## 06 · 配信ライン
+## 06 · 言語構成
+
+<p align="center">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/langs-ja-dark.svg" /><img src="assets/langs-ja-light.svg" alt="language mix" width="100%" /></picture>
+</p>
+
+## 07 · 配信ライン
 
 <p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-ja-dark.svg" /><img src="assets/channel-csdn-ja-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753/posts"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-ja-dark.svg" /><img src="assets/channel-juejin-ja-light.svg" alt="Juejin" width="49.2%" /></picture></a></p>
 

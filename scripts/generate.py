@@ -29,6 +29,7 @@ def input_fingerprint():
         ROOT / "data" / "stats.json",
         ROOT / "data" / "contributions.json",
         ROOT / "data" / "calendar.json",
+        ROOT / "data" / "repos.json",
     ]
     h = hashlib.sha256()
     for p in inputs:

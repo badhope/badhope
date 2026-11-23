@@ -235,9 +235,9 @@ TOOLBOX = {
 }
 
 HEADINGS = {
-    "en": {"now": "Now", "contrib": "Upstream pull requests", "projects": "Other projects", "numbers": "Numbers", "calendar": "Contribution calendar", "publish": "Publishing line"},
-    "zh-CN": {"now": "现在", "contrib": "外部 PR", "projects": "参与项目", "numbers": "数据", "calendar": "贡献日历", "publish": "发布管线"},
-    "ja": {"now": "いま", "contrib": "外部 PR", "projects": "参加プロジェクト", "numbers": "数字", "calendar": "コントリビューション", "publish": "配信ライン"},
+    "en": {"now": "Now", "contrib": "Upstream pull requests", "projects": "Featured projects", "numbers": "Numbers", "calendar": "Contribution calendar", "langs": "Languages", "publish": "Publishing line"},
+    "zh-CN": {"now": "现在", "contrib": "外部 PR", "projects": "精选项目", "numbers": "数据", "calendar": "贡献日历", "langs": "语言构成", "publish": "发布管线"},
+    "ja": {"now": "いま", "contrib": "外部 PR", "projects": "代表プロジェクト", "numbers": "数字", "calendar": "コントリビューション", "langs": "言語構成", "publish": "配信ライン"},
 }
 
 CAL_TITLE = {
@@ -281,6 +281,40 @@ WEEKDAY_MARKS = {
 }
 
 CAL_MIN_WEEKS = 4  # event-stream calendars never render thinner than this
+
+PROJECTS_TITLE = {
+    "en": "Featured projects",
+    "zh-CN": "精选项目",
+    "ja": "代表的なプロジェクト",
+}
+
+PROJECTS_MORE = {
+    "en": "More projects",
+    "zh-CN": "更多项目",
+    "ja": "その他のプロジェクト",
+}
+
+LANGS_TITLE = {
+    "en": "Repository languages",
+    "zh-CN": "仓库语言构成",
+    "ja": "リポジトリの言語",
+}
+
+LANGS_OTHER = {"en": "Other", "zh-CN": "其他", "ja": "その他"}
+
+LANGS_EMPTY = {
+    "en": "This platform does not expose language labels · {n} repositories",
+    "zh-CN": "该平台未提供语言标注 · {n} 个仓库",
+    "ja": "このプラットフォームは言語を公開していない · {n} リポジトリ",
+}
+
+LANG_MIN_COVERAGE = 0.4  # below this share of labeled repos, fall back to a note
+
+PR_EFFICIENCY = {
+    "en": "{n} merged in {avg}d on average · fastest {fastest}d",
+    "zh-CN": "已合并 {n} 条 · 平均 {avg} 天 · 最快 {fastest} 天",
+    "ja": "マージ済み {n} 件 · 平均 {avg} 日 · 最速 {fastest} 日",
+}
 
 PR_STATUS = {
     "merged": {"en": "merged", "zh-CN": "已合并", "ja": "マージ済み"},
@@ -406,6 +440,63 @@ def load_calendar():
 
 def calendar_account(account):
     return load_calendar().get("accounts", {}).get(account, {})
+
+
+REPOS_PATH = ROOT / "data" / "repos.json"
+
+
+def load_repos():
+    try:
+        return json.loads(REPOS_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"as_of": "", "accounts": {}}
+
+
+def repos_for(account):
+    return load_repos().get("accounts", {}).get(account, {}).get("repos", [])
+
+
+def featured_repos(account, limit=6):
+    """Catalog projects of this account, best-starred first."""
+    catalog = set(contribution_account(account).get("projects", []))
+    ranked = [repo for repo in repos_for(account) if repo.get("name") in catalog]
+    return ranked[:limit]
+
+
+def repo_note(account, repo, lang):
+    """Catalog copy when available, else the platform's own description."""
+    catalog = load_contributions().get("projects", {}).get(repo.get("name", ""), {})
+    if lang == "zh-CN":
+        note = catalog.get("note_zh")
+    elif lang == "ja":
+        note = catalog.get("note_ja")
+    else:
+        note = catalog.get("note")
+    return note or repo.get("description") or ""
+
+
+def pr_efficiency(prs):
+    """(avg days to merge, fastest) over merged PRs with both dates."""
+    spans = []
+    for pr in prs:
+        if pr.get("status") != "merged" or not pr.get("opened") or not pr.get("merged_at"):
+            continue
+        try:
+            opened = datetime.date.fromisoformat(str(pr["opened"])[:10])
+            merged = datetime.date.fromisoformat(str(pr["merged_at"])[:10])
+        except ValueError:
+            continue
+        days = (merged - opened).days
+        if days >= 0:
+            spans.append(days)
+    if not spans:
+        return None
+    avg = sum(spans) / len(spans)
+    if avg == int(avg):
+        avg_text = str(int(avg))
+    else:
+        avg_text = "%.1f" % avg
+    return avg_text, min(spans), len(spans)
 
 
 def load_contributions():
@@ -1034,6 +1125,122 @@ def svg_starchart(lang, theme):
     return "\n".join(out)
 
 
+def svg_project(account, lang, theme, index, repo):
+    """A 608×156 featured-project card: initial, name, stars, description."""
+    t = THEMES[theme]
+    accent = t[ACCENTS[index % len(ACCENTS)]]
+    name = repo.get("name", "")
+    w, h = 608, 156
+    out = [svg_head(w, h, name, theme)]
+    out.append(
+        f'<filter id="soft" x="-20%" y="-20%" width="140%" height="140%">'
+        f'<feDropShadow dx="0" dy="9" stdDeviation="13" flood-color="{t["shadow"]}" flood-opacity="0.13"/>'
+        f'</filter>'
+    )
+    out.append(f'<rect x="12" y="14" width="584" height="128" rx="18" fill="{accent}" opacity="0.10"/>')
+    out.append(
+        f'<rect x="4" y="4" width="584" height="128" rx="18" fill="{t["panel"]}" '
+        f'stroke="{t["line"]}" filter="url(#soft)"/>'
+    )
+    out.append(f'<rect x="28" y="28" width="52" height="52" rx="16" fill="{accent}" opacity="0.13"/>')
+    out.extend(star_field(w, h, theme, count=8, seed=71 + index, opacity=0.12))
+    out.append(f'<ellipse cx="54" cy="54" rx="40" ry="14" fill="none" stroke="{accent}" stroke-width="1" opacity="0.30" transform="rotate(-18 54 54)"/>')
+    initial = (name[:1] or "·").upper()
+    out.append(f'<text x="54" y="64" text-anchor="middle" font-size="24" font-weight="750" fill="{accent}">{esc(initial)}</text>')
+    out.append(f'<text x="98" y="52" class="ink" font-size="22" font-weight="700">{esc(name)}</text>')
+    stars = fmt_num(repo.get("stars") or 0)
+    meta = "★ %s" % stars
+    language = repo.get("language")
+    if language:
+        meta += " · %s" % language
+    out.append(f'<rect x="392" y="28" width="172" height="24" rx="12" fill="{accent}" opacity="0.12"/>')
+    out.append(f'<text x="478" y="44" text-anchor="middle" class="mono" font-size="11" fill="{accent}">{esc(meta)}</text>')
+    lines = wrap_text(repo_note(account, repo, lang), 34, lang)[:2]
+    for i, line in enumerate(lines):
+        out.append(
+            f'<text x="98" y="{76 + i * 18}" class="muted" font-size="12.6" opacity="0.92">{esc(line)}</text>'
+        )
+    out.append(f'<text x="98" y="116" class="mono faint" font-size="10.5">{esc(COPY[account]["handle"] + "/" + name)}</text>')
+    out.append(f'<text x="556" y="116" text-anchor="end" class="mono" font-size="12" fill="{accent}">↗</text>')
+    out.append("</svg>")
+    return "\n".join(out)
+
+
+def language_mix(account):
+    """Repo-count share per language; None groups under the Other bucket."""
+    repos = repos_for(account)
+    counts = {}
+    known = 0
+    for repo in repos:
+        language = repo.get("language")
+        counts[language] = counts.get(language, 0) + 1
+        if language:
+            known += 1
+    total = len(repos)
+    coverage = (known / total) if total else 0.0
+    named = sorted(((lang, n) for lang, n in counts.items() if lang), key=lambda kv: (-kv[1], kv[0]))[:5]
+    other = sum(n for lang, n in counts.items() if not lang)
+    top_names = {lang for lang, _ in named}
+    other += sum(n for lang, n in counts.items() if lang and lang not in top_names)
+    return named, other, total, coverage
+
+
+def svg_langs(account, lang, theme):
+    named, other, total, coverage = language_mix(account)
+    t = THEMES[theme]
+    w, h = 1240, 196
+    out = [svg_head(w, h, "language mix", theme)]
+    out.append(
+        f'<filter id="soft" x="-20%" y="-20%" width="140%" height="140%">'
+        f'<feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="{t["shadow"]}" flood-opacity="0.12"/>'
+        f'</filter>'
+    )
+    out.append(
+        f'<rect x="4" y="4" width="1232" height="188" rx="24" fill="{t["panel"]}" '
+        f'stroke="{t["line"]}" filter="url(#soft)"/>'
+    )
+    out.append(f'<rect x="4" y="4" width="6" height="136" rx="3" fill="{t["accent"]}"/>')
+    out.extend(star_field(w, h, theme, count=20, seed=97, opacity=0.15))
+    out.append(f'<text x="40" y="46" class="mono" font-size="10" letter-spacing="2" fill="{t["accent"]}">LANGUAGES / 06</text>')
+    out.append(f'<text x="40" y="80" class="ink" font-size="21" font-weight="650">{esc(LANGS_TITLE[lang])}</text>')
+    window = "%s · %s · as of %s" % (COPY[account]["home_display"], fmt_num(total), load_repos().get("as_of", ""))
+    out.append(f'<text x="40" y="106" class="mono faint" font-size="11.2">{esc(window)}</text>')
+
+    if coverage < LANG_MIN_COVERAGE or not named:
+        out.append(f'<text x="40" y="160" class="muted" font-size="13">{esc(LANGS_EMPTY[lang].format(n=total))}</text>')
+        out.append("</svg>")
+        return "\n".join(out)
+
+    segments = list(named)
+    if other:
+        segments.append((None, other))
+    total_units = sum(n for _, n in segments)
+    bar_x, bar_y, bar_w, bar_h = 40, 128, 900, 14
+    cursor = bar_x
+    palette = ACCENTS + ("gold", "faint")
+    legend = []
+    for i, (name, count) in enumerate(segments):
+        width = bar_w * count / total_units
+        color = t[palette[i % len(palette)]]
+        label = LANGS_OTHER[lang] if name is None else name
+        rx = 7 if i == 0 else (7 if i == len(segments) - 1 else 2)
+        out.append(
+            f'<rect x="{cursor:.1f}" y="{bar_y}" width="{width:.1f}" height="{bar_h}" rx="{rx}" fill="{color}"/>'
+        )
+        legend.append((color, label, count))
+        cursor += width
+    # Legend chips along the right column.
+    lx, ly = 972, 60
+    for i, (color, label, count) in enumerate(legend):
+        y = ly + i * 22
+        if i >= 6:
+            break
+        out.append(f'<circle cx="{lx}" cy="{y - 4}" r="4" fill="{color}"/>')
+        out.append(f'<text x="{lx + 14}" y="{y}" class="mono muted" font-size="11">{esc(label)} {fmt_num(count)}</text>')
+    out.append("</svg>")
+    return "\n".join(out)
+
+
 # ---------------------------------------------------------------------------
 # README rendering
 # ---------------------------------------------------------------------------
@@ -1143,6 +1350,11 @@ def render_readme(account, lang):
         + "</sub>"
     )
     out.append("")
+    efficiency = pr_efficiency(prs)
+    if efficiency:
+        avg_text, fastest, merged_n = efficiency
+        out.append(f"<sub>{PR_EFFICIENCY[lang].format(n=merged_n, avg=avg_text, fastest=fastest)}</sub>")
+        out.append("")
     for pr in prs:
         status = pr.get("status", "closed")
         when_label = PR_WHEN.get(status, PR_WHEN["closed"])[lang]
@@ -1165,20 +1377,25 @@ def render_readme(account, lang):
 
     out.append(f"## 03 · {head['projects']}")
     out.append("")
-    heads = PROJECT_TABLE[lang]
-    out.append(f"| {heads[0]} | {heads[1]} | {heads[2]} |")
-    out.append("|---|---|---|")
-    for slug in cacc.get("projects", []):
-        entry = contrib.get("projects", {}).get(slug, {})
-        name = entry.get("name", slug)
-        if lang == "zh-CN":
-            note = entry.get("note_zh", entry.get("note", ""))
-        elif lang == "ja":
-            note = entry.get("note_ja", entry.get("note", ""))
-        else:
-            note = entry.get("note", "")
-        out.append(f"| [{name}]({project_url(account, slug)}) | {entry.get('stack', '')} | {note} |")
-    out.append("")
+    featured = featured_repos(account)
+    cards = []
+    for index, repo in enumerate(featured):
+        cards.append(
+            f'<a href="{project_url(account, repo["name"])}">'
+            + image_tag(account, f"project-{index}", lang, repo.get("name", ""), "49.2%")
+            + "</a>"
+        )
+    for i in range(0, len(cards), 2):
+        out.append(f'<p align="center">{" ".join(cards[i:i + 2])}</p>')
+        out.append("")
+    rest = [slug for slug in cacc.get("projects", []) if slug not in {r.get("name") for r in featured}]
+    if rest:
+        out.append(
+            f"<sub>{PROJECTS_MORE[lang]}: "
+            + " · ".join(f"[{contrib.get('projects', {}).get(slug, {}).get('name', slug)}]({project_url(account, slug)})" for slug in rest)
+            + "</sub>"
+        )
+        out.append("")
 
     out.append(f"## 04 · {head['numbers']}")
     out.append("")
@@ -1195,7 +1412,14 @@ def render_readme(account, lang):
     out.append(f"<sub>{CAL_NOTE[platform][lang]}</sub>")
     out.append("")
 
-    out.append(f"## 06 · {head['publish']}")
+    out.append(f"## 06 · {head['langs']}")
+    out.append("")
+    out.append('<p align="center">')
+    out.append(image_tag(account, "langs", lang, "language mix"))
+    out.append("</p>")
+    out.append("")
+
+    out.append(f"## 07 · {head['publish']}")
     out.append("")
     cards = []
     for channel in CHANNELS:
@@ -1247,6 +1471,13 @@ def render_assets(account):
             contrib = ASSETS / f"contrib-{lang}-{theme}.svg"
             contrib.write_text(svg_contrib(account, lang, theme), encoding="utf-8")
             written.append(contrib)
+            langs_card = ASSETS / f"langs-{lang}-{theme}.svg"
+            langs_card.write_text(svg_langs(account, lang, theme), encoding="utf-8")
+            written.append(langs_card)
+            for index, repo in enumerate(featured_repos(account)):
+                path = ASSETS / f"project-{index}-{lang}-{theme}.svg"
+                path.write_text(svg_project(account, lang, theme, index, repo), encoding="utf-8")
+                written.append(path)
             starchart = ASSETS / f"starchart-{lang}-{theme}.svg"
             starchart.write_text(svg_starchart(lang, theme), encoding="utf-8")
             written.append(starchart)

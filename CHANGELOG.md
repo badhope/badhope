@@ -4,6 +4,19 @@ All notable changes to the profile page generator. The format follows
 [Keep a Changelog](https://keepachangelog.com/) and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [4.3.0] — 2026-11-23
+
+### Added
+- Featured-project cards replace the section 03 table: the top six catalog
+  projects by stars as linked 608×156 cards (initial block, language, star
+  count, two-line note), remaining catalog projects as a compact "more" line.
+  Data comes from the new `data/repos.json` snapshot (`--section repos`), which
+  also feeds a section 06 language-mix bar per account. Gitee omits language
+  labels, so the gitee refresh cross-fills languages from the same-named
+  GitHub mirror repos and falls back to a muted note below 40% coverage.
+- PR efficiency line in section 02: merged count, average and fastest
+  days-to-merge, computed from the existing PR snapshot.
+
 ## [4.2.0] — 2026-11-23
 
 ### Added

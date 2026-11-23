@@ -20,6 +20,7 @@ import datetime
 import json
 import os
 import pathlib
+import re
 import sys
 import time
 import urllib.error
@@ -30,6 +31,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 STATS_PATH = ROOT / "data" / "stats.json"
 CALENDAR_PATH = ROOT / "data" / "calendar.json"
+REPOS_PATH = ROOT / "data" / "repos.json"
 
 GH_ACCOUNTS = {
     "gh_badhope": "badhope",
@@ -293,9 +295,88 @@ def refresh_gitee_calendar(cal, token):
     cal["as_of"] = today_utc()
 
 
+# ---------------------------------------------------------------------------
+# Repo catalog (data/repos.json) — popular cards + language breakdown
+# ---------------------------------------------------------------------------
+
+
+def normalize_repo(entry, name_key="name"):
+    description = (entry.get("description") or "").strip()
+    return {
+        "name": entry.get(name_key) or entry.get("path") or "",
+        "description": re.sub(r"\s+", " ", description),
+        "language": entry.get("language") or None,
+        "stars": int(entry.get("stargazers_count") or 0),
+    }
+
+
+def refresh_github_repos(repos_data, token):
+    as_of = today_utc()
+    accounts = repos_data.setdefault("accounts", {})
+    for key, login in GH_ACCOUNTS.items():
+        try:
+            owned = gh_owned_repos(login, token)
+        except OSError as exc:
+            print("skip %s (%s): %s" % (key, login, exc))
+            continue
+        entries = sorted(
+            (normalize_repo(repo) for repo in owned),
+            key=lambda r: (-r["stars"], r["name"]),
+        )
+        accounts[key] = {"source": "github-api", "repos": entries}
+        print("repos refreshed (%s/%s): %d" % (key, login, len(entries)))
+    repos_data["as_of"] = as_of
+
+
+def refresh_platform_repos(repos_data, key, token, base_url, detail_url, namespace_type, label, detail=False, cross_fill_from=()):
+    """Upsert per-repo entries from a Gitee/GitCode v5 list endpoint.
+
+    `detail=True` additionally fetches each repo individually (detail_url is
+    a template with {name}) because the Gitee user-repos list omits the
+    language field; a failed detail call keeps the previous entry.
+    `cross_fill_from` copies the language of same-named GitHub mirror repos
+    (identical code, so identical language) when the platform leaves it null.
+    """
+    accounts = repos_data.setdefault("accounts", {})
+    acc = accounts.setdefault(key, {"source": "%s-api" % label, "repos": []})
+    existing = {r["name"]: r for r in acc.get("repos", []) if r.get("name")}
+    try:
+        listed = platform_repos(base_url, token, namespace_type)
+    except OSError as exc:
+        print("skip %s: %s" % (label, exc))
+        raise
+    for entry in listed:
+        repo = normalize_repo(entry)
+        if repo["name"]:
+            existing[repo["name"]] = repo
+    if detail:
+        for name in sorted(existing):
+            if existing[name].get("language"):
+                continue
+            try:
+                full = fetch_json_retry(detail_url.format(name=urllib.parse.quote(name, safe="")), token_param=token)
+                existing[name] = normalize_repo(full)
+            except OSError as exc:
+                print("detail skip %s/%s: %s" % (label, name, exc))
+            time.sleep(0.6)
+    if cross_fill_from:
+        mirrors = {}
+        for src in cross_fill_from:
+            for r in accounts.get(src, {}).get("repos", []):
+                if r.get("language"):
+                    mirrors.setdefault(r["name"], r["language"])
+        for name, repo in existing.items():
+            if not repo.get("language") and name in mirrors:
+                repo["language"] = mirrors[name]
+    entries = sorted(existing.values(), key=lambda r: (-r["stars"], r["name"]))
+    acc["repos"] = entries
+    repos_data["as_of"] = today_utc()
+    print("repos refreshed (%s): %d" % (key, len(entries)))
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--section", choices=["stats", "calendar"], required=True)
+    ap.add_argument("--section", choices=["stats", "calendar", "repos"], required=True)
     ap.add_argument("--platform", choices=["github", "gitee", "gitcode"], required=True)
     args = ap.parse_args(argv)
 
@@ -309,6 +390,31 @@ def main(argv=None):
             refresh_gitcode(stats, os.environ.get("GITCODE_TOKEN"))
         STATS_PATH.write_text(json.dumps(stats, indent=1, sort_keys=True) + "\n", encoding="utf-8")
         print("stats refreshed (%s): as_of=%s" % (args.platform, stats.get("as_of")))
+        return 0
+
+    if args.section == "repos":
+        data = json.loads(REPOS_PATH.read_text(encoding="utf-8")) if REPOS_PATH.exists() else {}
+        try:
+            if args.platform == "github":
+                refresh_github_repos(data, os.environ.get("GITHUB_TOKEN"))
+            elif args.platform == "gitee":
+                refresh_platform_repos(
+                    data, "gitee_badhope", os.environ.get("GITEE_TOKEN"),
+                    "https://gitee.com/api/v5/users/badhope/repos",
+                    "https://gitee.com/api/v5/repos/badhope/{name}", "personal", "gitee",
+                    detail=True, cross_fill_from=("gh_badhope", "gh_morningstar", "gh_x33834"),
+                )
+            else:
+                refresh_platform_repos(
+                    data, "gitcode_badhope", os.environ.get("GITCODE_TOKEN"),
+                    "https://api.gitcode.com/api/v5/users/badhope/repos",
+                    "https://api.gitcode.com/api/v5/repos/badhope/{name}", "user", "gitcode",
+                )
+        except OSError as exc:
+            print("repos fetch failed (%s), keeping previous data: %s" % (args.platform, exc))
+            return 0
+        REPOS_PATH.write_text(json.dumps(data, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+        print("repos written (%s): as_of=%s" % (args.platform, data.get("as_of")))
         return 0
 
     cal = json.loads(CALENDAR_PATH.read_text(encoding="utf-8")) if CALENDAR_PATH.exists() else {}

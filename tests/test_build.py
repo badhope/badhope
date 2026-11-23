@@ -122,6 +122,76 @@ class DataTest(unittest.TestCase):
         self.assertIsInstance(stats["accounts"][account].get("followers"), int)
 
 
+class ReposSnapshotTest(unittest.TestCase):
+    def test_repos_snapshot_valid(self):
+        data = build.load_repos()
+        self.assertTrue(data.get("as_of"))
+        for account in build.COPY:
+            repos = data["accounts"].get(account, {}).get("repos", [])
+            self.assertTrue(repos, account)
+            names = [r["name"] for r in repos]
+            self.assertEqual(len(names), len(set(names)), account)
+            for repo in repos:
+                self.assertTrue(repo["name"], account)
+                self.assertIsInstance(repo["stars"], int)
+                self.assertGreaterEqual(repo["stars"], 0)
+                self.assertTrue(repo["language"] is None or isinstance(repo["language"], str), account)
+
+    def test_featured_remap_to_catalog(self):
+        for account in build.COPY:
+            catalog = set(build.contribution_account(account).get("projects", []))
+            for repo in build.featured_repos(account):
+                self.assertIn(repo["name"], catalog, account)
+            # every catalog project stays reachable: card or "more" line
+            self.assertLessEqual(len(build.featured_repos(account)), 6, account)
+
+
+class LanguagesCardTest(unittest.TestCase):
+    def test_svg_langs_is_deterministic_and_local(self):
+        for account in build.COPY:
+            for lang in ("en", "zh-CN", "ja"):
+                for theme in ("light", "dark"):
+                    svg = build.svg_langs(account, lang, theme)
+                    self.assertEqual(svg, build.svg_langs(account, lang, theme))
+                    self.assertNotIn('src="http', svg)
+                    self.assertNotIn('href="http', svg)
+
+    def test_every_account_renders_language_section(self):
+        for account in build.COPY:
+            with tempfile.TemporaryDirectory() as out:
+                build_out(out, account)
+                text = (pathlib.Path(out) / "README.md").read_text(encoding="utf-8")
+                self.assertIn("## 06 ·", text, account)
+                lang = "en" if account.startswith("gh_") else "zh-CN"
+                self.assertIn(build.asset(account, "langs", lang, "light"), text, account)
+
+
+class ProjectsCardTest(unittest.TestCase):
+    def test_cards_render_stars_and_links(self):
+        for account in build.COPY:
+            featured = build.featured_repos(account)
+            self.assertTrue(featured, account)
+            for index, repo in enumerate(featured):
+                svg = build.svg_project(account, "zh-CN", "light", index, repo)
+                self.assertIn("★", svg)
+                self.assertIn(repo["name"], svg)
+            with tempfile.TemporaryDirectory() as out:
+                build_out(out, account)
+                text = (pathlib.Path(out) / "README.md").read_text(encoding="utf-8")
+                for slug in build.contribution_account(account).get("projects", []):
+                    url = build.project_url(account, slug)
+                    linked = "](%s)" % url in text or 'href="%s"' % url in text
+                    self.assertTrue(linked, "%s missing %s" % (account, url))
+
+    def test_pr_efficiency_line_when_merged_exist(self):
+        prs = build.contribution_account("gh_badhope").get("pull_requests", [])
+        efficiency = build.pr_efficiency(prs)
+        self.assertIsNotNone(efficiency)
+        avg, fastest, n = efficiency
+        self.assertGreaterEqual(n, 1)
+        self.assertLessEqual(float(fastest), float(avg))
+
+
 class CalendarTest(unittest.TestCase):
     def test_calendar_snapshot_shape(self):
         cal = build.load_calendar()
@@ -173,6 +243,7 @@ class AllProfilesRenderTest(unittest.TestCase):
                 text = (pathlib.Path(out) / "README.md").read_text(encoding="utf-8")
                 for slug in build.contribution_account(account).get("projects", []):
                     url = build.project_url(account, slug)
-                    self.assertIn("](%s)" % url, text, "%s missing %s" % (account, url))
+                    linked = "](%s)" % url in text or 'href="%s"' % url in text
+                    self.assertTrue(linked, "%s missing %s" % (account, url))
                 for channel in build.CHANNELS:
                     self.assertIn(channel["url"], text, "%s missing %s" % (account, channel["key"]))

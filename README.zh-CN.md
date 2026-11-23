@@ -19,6 +19,8 @@
 
 <sub>6 条 · 已合并 3 · 开放中 3 · 已关闭 0 · +757/−67 · 39 个文件 · 8 条评论</sub>
 
+<sub>已合并 3 条 · 平均 0.7 天 · 最快 0 天</sub>
+
 - [mogenius/renovate-operator#796](https://github.com/mogenius/renovate-operator/pull/796) — feat(webhook): rotate the webhook auth token via an annotation · **开放中** · 开启于 2026-11-05 · +417/−23 · 14 个文件 · 2 条评论
 - [ncepu-iDealStudio/Fast-Https#9](https://github.com/ncepu-iDealStudio/Fast-Https/pull/9) — fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试 · **已合并** · 合并于 2026-11-07 · +162/−36 · 11 个文件 · 1 条评论
 - [evilmartians/lefthook#1629](https://github.com/evilmartians/lefthook/pull/1629) — fix: apply the staged-files fallback to pre-merge-commit · **开放中** · 开启于 2026-11-05 · +63/−2 · 5 个文件 · 1 条评论
@@ -28,18 +30,15 @@
 
 <sub>PR 快照 2026-11-22 · GitHub Search / pulls API</sub>
 
-## 03 · 参与项目
+## 03 · 精选项目
 
-| 项目 | 技术栈 | 方向 |
-|---|---|---|
-| [harbor](https://github.com/badhope/harbor) | Python | 自托管发布枢纽；一份草稿分发 15 个渠道 |
-| [spark](https://github.com/badhope/spark) | Python · React | 自托管编码智能体底座；沙箱执行、MCP 工具 |
-| [moneyhelper](https://github.com/badhope/moneyhelper) | FastAPI · LangGraph · React | 对话式理财 Agent；记账、持仓风控、财报 |
-| [workbench](https://github.com/badhope/workbench) | Tauri 2 · React 19 · TypeScript | 桌面工作台；剪贴板、片段、窗口、快速启动 |
-| [world-walker](https://github.com/badhope/world-walker) | Python stdlib · MCP | AI 互动小说的确定性规则层 |
-| [digilegacy](https://github.com/badhope/digilegacy) | Rust | 自托管数字遗产规划；资产、继承人、释放规则 |
-| [sciflow](https://github.com/badhope/sciflow) | Python · TypeScript | 科研工作台；文献、实验记录、结构化写作 |
-| [aquapilot](https://github.com/badhope/aquapilot) | TypeScript | 废水工艺模拟；可编辑流程、ASM1 |
+<p align="center"><a href="https://github.com/badhope/moneyhelper"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-0-zh-CN-dark.svg" /><img src="assets/project-0-zh-CN-light.svg" alt="moneyhelper" width="49.2%" /></picture></a> <a href="https://github.com/badhope/workbench"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-1-zh-CN-dark.svg" /><img src="assets/project-1-zh-CN-light.svg" alt="workbench" width="49.2%" /></picture></a></p>
+
+<p align="center"><a href="https://github.com/badhope/spark"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-2-zh-CN-dark.svg" /><img src="assets/project-2-zh-CN-light.svg" alt="spark" width="49.2%" /></picture></a> <a href="https://github.com/badhope/world-walker"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-3-zh-CN-dark.svg" /><img src="assets/project-3-zh-CN-light.svg" alt="world-walker" width="49.2%" /></picture></a></p>
+
+<p align="center"><a href="https://github.com/badhope/sciflow"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-4-zh-CN-dark.svg" /><img src="assets/project-4-zh-CN-light.svg" alt="sciflow" width="49.2%" /></picture></a> <a href="https://github.com/badhope/harbor"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-5-zh-CN-dark.svg" /><img src="assets/project-5-zh-CN-light.svg" alt="harbor" width="49.2%" /></picture></a></p>
+
+<sub>更多项目: [digilegacy](https://github.com/badhope/digilegacy) · [aquapilot](https://github.com/badhope/aquapilot)</sub>
 
 ## 04 · 数据
 
@@ -54,7 +53,13 @@
 </p>
 <sub>逐日贡献来自 GitHub GraphQL 精确快照 · 每周刷新</sub>
 
-## 06 · 发布管线
+## 06 · 语言构成
+
+<p align="center">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/langs-zh-CN-dark.svg" /><img src="assets/langs-zh-CN-light.svg" alt="language mix" width="100%" /></picture>
+</p>
+
+## 07 · 发布管线
 
 <p align="center"><a href="https://blog.csdn.net/weixin_56622231"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-csdn-zh-CN-dark.svg" /><img src="assets/channel-csdn-zh-CN-light.svg" alt="CSDN" width="49.2%" /></picture></a> <a href="https://juejin.cn/user/2350111542479753/posts"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/channel-juejin-zh-CN-dark.svg" /><img src="assets/channel-juejin-zh-CN-light.svg" alt="稀土掘金" width="49.2%" /></picture></a></p>
 
