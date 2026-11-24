@@ -1,58 +1,28 @@
 {
  "accounts": {
   "gh_badhope": {
-   "commits": 2324,
-   "contributions_window": {
-    "from": "2025-11-02T00:00:00Z",
-    "to": "2026-11-05T23:59:59Z"
-   },
+   "as_of": "2026-11-24",
+   "commits": 2940,
    "followers": 28,
-   "following": 31,
-   "gists": 0,
-   "issues": 14,
-   "merged": 31,
-   "organizations": 0,
-   "prs": 303,
+   "prs": 414,
    "repos": 27,
-   "reviews": 5,
-   "starred": 184,
-   "stars": null
+   "upstream_merged": 59
   },
   "gh_morningstar": {
-   "commits": 2012,
-   "contributions_window": {
-    "from": "2025-11-02T00:00:00Z",
-    "to": "2026-11-05T23:59:59Z"
-   },
+   "as_of": "2026-11-24",
+   "commits": 2128,
    "followers": 18,
-   "following": 27,
-   "gists": 0,
-   "issues": 9,
-   "merged": 16,
-   "organizations": 0,
-   "prs": 64,
+   "prs": 79,
    "repos": 27,
-   "reviews": 2,
-   "starred": 73,
-   "stars": null
+   "upstream_merged": 18
   },
   "gh_x33834": {
-   "commits": 320,
-   "contributions_window": {
-    "from": "2025-11-02T00:00:00Z",
-    "to": "2026-11-05T23:59:59Z"
-   },
+   "as_of": "2026-11-24",
+   "commits": 454,
    "followers": 3,
-   "following": 27,
-   "gists": 0,
-   "issues": 23,
-   "merged": 1,
-   "organizations": 0,
-   "prs": 19,
+   "prs": 29,
    "repos": 28,
-   "reviews": 0,
-   "starred": 2,
-   "stars": null
+   "upstream_merged": 1
   },
   "gitcode_badhope": {
    "followers": 0,
@@ -65,6 +35,6 @@
    "stars": 1
   }
  },
- "as_of": "2026-11-23",
+ "as_of": "2026-11-24",
  "source": "scripts/refresh_sections.py"
 }
