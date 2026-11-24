@@ -376,7 +376,7 @@ NOW_COPY = {
 METRIC_LABELS = {
     "commits": {"en": "COMMITS", "zh-CN": "提交", "ja": "コミット"},
     "prs": {"en": "PULL REQUESTS", "zh-CN": "PR", "ja": "PR"},
-    "merged": {"en": "MERGED", "zh-CN": "已合并", "ja": "マージ済み"},
+    "upstream_merged": {"en": "UPSTREAM MERGED", "zh-CN": "上游合并", "ja": "上流マージ済み"},
     "followers": {"en": "FOLLOWERS", "zh-CN": "关注者", "ja": "フォロワー"},
     "repos": {"en": "REPOSITORIES", "zh-CN": "仓库", "ja": "リポジトリ"},
     "stars": {"en": "STARS", "zh-CN": "星标", "ja": "スター"},
@@ -523,7 +523,7 @@ def stat_metrics(account):
     acc = stats.get("accounts", {}).get(account, {})
     platform = COPY[account]["platform"]
     if platform == "github":
-        keys = ["repos", "prs", "merged", "followers"]
+        keys = ["repos", "prs", "upstream_merged", "followers"]
     else:
         keys = ["repos", "stars", "followers", "projects"]
     values = []

@@ -74,6 +74,11 @@ jobs:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
         run: python3 scripts/refresh_sections.py --section repos --platform gitee
 
+      - name: Refresh upstream pull requests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/refresh_sections.py --section pulls --platform github
+
       - name: Rebuild page with fresh numbers
         run: python3 scripts/generate.py --here
 
@@ -87,7 +92,7 @@ jobs:
           if ! git diff --quiet; then
             git config user.name "badhope"
             git config user.email "badhope@users.noreply.github.com"
-            git add data/stats.json data/calendar.json data/repos.json README.md README.zh-CN.md README.ja.md assets/
+            git add data/stats.json data/calendar.json data/repos.json data/contributions.json README.md README.zh-CN.md README.ja.md assets/
             git commit -m "chore: refresh stats snapshot"
             git push
           else

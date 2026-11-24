@@ -4,6 +4,19 @@ All notable changes to the profile page generator. The format follows
 [Keep a Changelog](https://keepachangelog.com/) and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [4.4.0] — 2026-11-24
+
+### Added
+- Weekly refresh now covers every snapshot: stats recomputes PR totals via
+  GraphQL and upstream merges via Search (`upstream_merged`, replacing the
+  stale legacy `merged` field whose window had silently frozen in November);
+  a new `--section pulls` rebuilds the section 02 PR list from Search + pulls
+  API (latest six per GitHub identity, three on the mirrors), so the PR
+  snapshot is no longer hand-maintained.
+- Numbers card label clarified from MERGED to UPSTREAM MERGED — the old label
+  mixed "all PRs authored" with "merged into other people's repos" and read
+  like a 10% merge rate.
+
 ## [4.3.0] — 2026-11-23
 
 ### Added

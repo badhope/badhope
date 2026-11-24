@@ -12,23 +12,23 @@
 ## 01 · Now
 
 - **Personal repositories** — 27 · personal namespace, forks excluded
-- **Upstream pull requests** — 6 selected: 3 merged, 3 open, 0 closed
+- **Upstream pull requests** — 6 selected: 2 merged, 4 open, 0 closed
 - **Publishing** — CSDN archive; Juejin, Zhihu and Cnblogs automation
 
 ## 02 · Upstream pull requests
 
-<sub>6 selected · 3 merged · 3 open · 0 closed · +757/−67 · 39 files · 8 comments</sub>
+<sub>6 selected · 2 merged · 4 open · 0 closed · +761/−89 · 16 files · 15 comments</sub>
 
-<sub>3 merged in 0.7d on average · fastest 0d</sub>
+<sub>2 merged in 0.5d on average · fastest 0d</sub>
 
-- [mogenius/renovate-operator#796](https://github.com/mogenius/renovate-operator/pull/796) — feat(webhook): rotate the webhook auth token via an annotation · **open** · opened 2026-11-05 · +417/−23 · 14 files · 2 comments
-- [ncepu-iDealStudio/Fast-Https#9](https://github.com/ncepu-iDealStudio/Fast-Https/pull/9) — fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试 · **merged** · merged 2026-11-07 · +162/−36 · 11 files · 1 comment
-- [evilmartians/lefthook#1629](https://github.com/evilmartians/lefthook/pull/1629) — fix: apply the staged-files fallback to pre-merge-commit · **open** · opened 2026-11-05 · +63/−2 · 5 files · 1 comment
-- [sqlfluff/sqlfluff#9009](https://github.com/sqlfluff/sqlfluff/pull/9009) — Snowflake: parse an empty PACKAGES list · **merged** · merged 2026-11-05 · +56/−2 · 3 files · 1 comment
-- [mogenius/renovate-operator#772](https://github.com/mogenius/renovate-operator/pull/772) — feat(ui): add a check-all toggle to the log level filter · **merged** · merged 2026-10-31 · +44/−0 · 3 files · 0 comments
-- [betterleaks/betterleaks#456](https://github.com/betterleaks/betterleaks/pull/456) — fix(generic-api-key): detect base64 secrets that start with + or / · **open** · opened 2026-11-05 · +15/−4 · 3 files · 3 comments
+- [davila7/claude-code-templates#1675](https://github.com/davila7/claude-code-templates/pull/1675) — Add release-manager agent (development-team) · **merged** · merged 2026-11-24 · +38/−0 · 1 file · 6 comments
+- [Infisical/cli#517](https://github.com/Infisical/cli/pull/517) — fix(secrets): set expands NAME=@filepath with a token like it does with a login · **open** · opened 2026-11-23 · +70/−16 · 2 files · 1 comment
+- [dapr/dapr#11226](https://github.com/dapr/dapr/pull/11226) — feat(api): standardize workflow api errors with the rich error model · **open** · opened 2026-11-23 · +446/−62 · 8 files · 0 comments
+- [Infisical/cli#516](https://github.com/Infisical/cli/pull/516) — feat(export): add --quote-style to the dotenv export formats · **open** · opened 2026-11-23 · +112/−8 · 3 files · 1 comment
+- [kestra-io/kestra#23016](https://github.com/kestra-io/kestra/pull/23016) — docs(assets): fix devcontainer links and image paths in contributing guide · **merged** · merged 2026-11-23 · +3/−3 · 1 file · 2 comments
+- [davila7/claude-code-templates#1673](https://github.com/davila7/claude-code-templates/pull/1673) — Add env-var-auditor skill (development) · **open** · opened 2026-11-23 · +92/−0 · 1 file · 5 comments
 
-<sub>PR snapshot 2026-11-22 · GitHub Search / pulls API</sub>
+<sub>PR snapshot 2026-11-24 · GitHub Search / pulls API</sub>
 
 ## 03 · Featured projects
 

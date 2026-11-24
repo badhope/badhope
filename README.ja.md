@@ -12,23 +12,23 @@
 ## 01 · いま
 
 - **個人リポジトリ** — 27 件 · 個人名前空間、fork を除く
-- **外部 PR** — 6 件：マージ 3、オープン 3、クローズ 0
+- **外部 PR** — 6 件：マージ 2、オープン 4、クローズ 0
 - **配信** — CSDN 長文アーカイブ、Juejin・知乎・博客园 は自動運用
 
 ## 02 · 外部 PR
 
-<sub>6 件 · マージ済み 3 · オープン 3 · クローズ 0 · +757/−67 · 39 ファイル · 8 コメント</sub>
+<sub>6 件 · マージ済み 2 · オープン 4 · クローズ 0 · +761/−89 · 16 ファイル · 15 コメント</sub>
 
-<sub>マージ済み 3 件 · 平均 0.7 日 · 最速 0 日</sub>
+<sub>マージ済み 2 件 · 平均 0.5 日 · 最速 0 日</sub>
 
-- [mogenius/renovate-operator#796](https://github.com/mogenius/renovate-operator/pull/796) — feat(webhook): rotate the webhook auth token via an annotation · **オープン** · 提出 2026-11-05 · +417/−23 · 14 ファイル · 2 コメント
-- [ncepu-iDealStudio/Fast-Https#9](https://github.com/ncepu-iDealStudio/Fast-Https/pull/9) — fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试 · **マージ済み** · マージ 2026-11-07 · +162/−36 · 11 ファイル · 1 コメント
-- [evilmartians/lefthook#1629](https://github.com/evilmartians/lefthook/pull/1629) — fix: apply the staged-files fallback to pre-merge-commit · **オープン** · 提出 2026-11-05 · +63/−2 · 5 ファイル · 1 コメント
-- [sqlfluff/sqlfluff#9009](https://github.com/sqlfluff/sqlfluff/pull/9009) — Snowflake: parse an empty PACKAGES list · **マージ済み** · マージ 2026-11-05 · +56/−2 · 3 ファイル · 1 コメント
-- [mogenius/renovate-operator#772](https://github.com/mogenius/renovate-operator/pull/772) — feat(ui): add a check-all toggle to the log level filter · **マージ済み** · マージ 2026-10-31 · +44/−0 · 3 ファイル · 0 コメント
-- [betterleaks/betterleaks#456](https://github.com/betterleaks/betterleaks/pull/456) — fix(generic-api-key): detect base64 secrets that start with + or / · **オープン** · 提出 2026-11-05 · +15/−4 · 3 ファイル · 3 コメント
+- [davila7/claude-code-templates#1675](https://github.com/davila7/claude-code-templates/pull/1675) — Add release-manager agent (development-team) · **マージ済み** · マージ 2026-11-24 · +38/−0 · 1 ファイル · 6 コメント
+- [Infisical/cli#517](https://github.com/Infisical/cli/pull/517) — fix(secrets): set expands NAME=@filepath with a token like it does with a login · **オープン** · 提出 2026-11-23 · +70/−16 · 2 ファイル · 1 コメント
+- [dapr/dapr#11226](https://github.com/dapr/dapr/pull/11226) — feat(api): standardize workflow api errors with the rich error model · **オープン** · 提出 2026-11-23 · +446/−62 · 8 ファイル · 0 コメント
+- [Infisical/cli#516](https://github.com/Infisical/cli/pull/516) — feat(export): add --quote-style to the dotenv export formats · **オープン** · 提出 2026-11-23 · +112/−8 · 3 ファイル · 1 コメント
+- [kestra-io/kestra#23016](https://github.com/kestra-io/kestra/pull/23016) — docs(assets): fix devcontainer links and image paths in contributing guide · **マージ済み** · マージ 2026-11-23 · +3/−3 · 1 ファイル · 2 コメント
+- [davila7/claude-code-templates#1673](https://github.com/davila7/claude-code-templates/pull/1673) — Add env-var-auditor skill (development) · **オープン** · 提出 2026-11-23 · +92/−0 · 1 ファイル · 5 コメント
 
-<sub>PR スナップショット 2026-11-22 · GitHub Search / pulls API</sub>
+<sub>PR スナップショット 2026-11-24 · GitHub Search / pulls API</sub>
 
 ## 03 · 代表プロジェクト
 

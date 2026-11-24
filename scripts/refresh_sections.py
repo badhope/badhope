@@ -32,6 +32,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 STATS_PATH = ROOT / "data" / "stats.json"
 CALENDAR_PATH = ROOT / "data" / "calendar.json"
 REPOS_PATH = ROOT / "data" / "repos.json"
+CONTRIBUTIONS_PATH = ROOT / "data" / "contributions.json"
 
 GH_ACCOUNTS = {
     "gh_badhope": "badhope",
@@ -80,21 +81,45 @@ def gh_owned_repos(login, token):
 
 
 def refresh_github(stats, token):
-    as_of = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+    """Recompute every GitHub metric that feeds the Numbers card.
+
+    prs = all pull requests authored in the trailing year (GraphQL);
+    upstream_merged = merged PRs in other people's repos (Search). The stale
+    account entry is replaced wholesale so old fields never linger.
+    """
+    as_of = today_utc()
+    since = (datetime.date.today() - datetime.timedelta(days=365)).isoformat()
     accounts = stats.setdefault("accounts", {})
     for key, login in GH_ACCOUNTS.items():
         try:
             user = gh_user(login, token)
             owned = gh_owned_repos(login, token)
+            data = graphql(
+                "https://api.github.com/graphql", token,
+                "query($login:String!){ user(login:$login){ contributionsCollection {"
+                " totalPullRequestContributions totalCommitContributions } } }",
+                {"login": login},
+            )
+            coll = (data.get("user") or {}).get("contributionsCollection") or {}
+            query = "author:%s type:pr is:merged -user:%s created:>=%s" % (login, login, since)
+            search = fetch_json_retry(
+                "https://api.github.com/search/issues?per_page=1&q="
+                + urllib.parse.quote(query, safe=""),
+                token,
+            )
         except OSError as exc:
             print("skip %s (%s): %s" % (key, login, exc))
             continue
-        acc = accounts.setdefault(key, {})
-        acc.update({
+        accounts[key] = {
             "repos": len(owned),
-            "stars": None,
             "followers": user.get("followers"),
-        })
+            "prs": coll.get("totalPullRequestContributions"),
+            "commits": coll.get("totalCommitContributions"),
+            "upstream_merged": search.get("total_count"),
+            "as_of": as_of,
+        }
+        print("stats refreshed (%s/%s): prs=%s upstream_merged=%s" % (
+            key, login, accounts[key]["prs"], accounts[key]["upstream_merged"]))
     stats["as_of"] = as_of
     stats["source"] = "scripts/refresh_sections.py"
 
@@ -328,6 +353,100 @@ def refresh_github_repos(repos_data, token):
     repos_data["as_of"] = as_of
 
 
+# ---------------------------------------------------------------------------
+# Upstream pull requests (data/contributions.json pull_requests)
+# ---------------------------------------------------------------------------
+
+PULLS_LIMIT = {"github": 6, "mirror": 3}  # mirrors show the same person, shorter list
+
+
+def normalize_pull(search_item, pull):
+    """Merge a Search-API hit with its pulls-API detail into snapshot shape."""
+    repo = (search_item.get("repository_url") or "").rsplit("/", 2)
+    full_name = "%s/%s" % (repo[-2], repo[-1]) if len(repo) >= 2 else search_item.get("repository_url", "")
+    if pull.get("head") and (pull["head"].get("repo") or {}).get("full_name"):
+        full_name = pull["head"]["repo"]["full_name"]
+    if pull.get("base") and (pull["base"].get("repo") or {}).get("full_name"):
+        full_name = pull["base"]["repo"]["full_name"]
+    state = pull.get("state") or search_item.get("state") or "closed"
+    if pull.get("merged_at") or (search_item.get("pull_request") or {}).get("merged_at"):
+        status = "merged"
+    elif state == "open":
+        status = "open"
+    else:
+        status = "closed"
+    opened = (pull.get("created_at") or search_item.get("created_at") or "")[:10]
+    comments = int(search_item.get("comments") or 0) + int(pull.get("review_comments") or 0)
+    return {
+        "repo": full_name,
+        "number": pull.get("number", search_item.get("number")),
+        "title": pull.get("title") or search_item.get("title") or "",
+        "status": status,
+        "opened": opened,
+        "merged_at": (pull.get("merged_at") or "")[:10] or None,
+        "additions": int(pull.get("additions") or 0),
+        "deletions": int(pull.get("deletions") or 0),
+        "files": int(pull.get("changed_files") or 0),
+        "comments": comments,
+    }
+
+
+def refresh_pulls(contributions, token):
+    """Latest upstream PRs per GitHub identity, refreshed from Search + pulls API.
+
+    The mirror accounts re-render badhope's list (same person), truncated to
+    PULLS_LIMIT["mirror"]; everything stays inside data/contributions.json and
+    the manually curated projects catalog is left untouched.
+    """
+    since = (datetime.date.today() - datetime.timedelta(days=365)).isoformat()
+    accounts = contributions.setdefault("accounts", {})
+    lists = {}
+    for key, login in GH_ACCOUNTS.items():
+        limit = PULLS_LIMIT["github"]
+        try:
+            query = "author:%s type:pr -user:%s created:>=%s" % (login, login, since)
+            payload = fetch_json_retry(
+                "https://api.github.com/search/issues?per_page=%d&page=1&sort=created&order=desc&q=%s"
+                % (limit, urllib.parse.quote(query, safe="")),
+                token,
+            )
+            items = payload.get("items") or []
+            prs = []
+            for item in items[:limit]:
+                repo_full = (item.get("repository_url") or "").rsplit("/", 2)
+                if len(repo_full) < 2:
+                    continue
+                owner_name = "%s/%s" % (repo_full[-2], repo_full[-1])
+                number = item.get("number")
+                try:
+                    detail = fetch_json_retry(
+                        "https://api.github.com/repos/%s/pulls/%s" % (owner_name, number), token
+                    )
+                except OSError as exc:
+                    print("pull detail skip %s/%s#%s: %s" % (key, owner_name, number, exc))
+                    detail = {}
+                prs.append(normalize_pull(item, detail))
+                time.sleep(0.4)
+        except OSError as exc:
+            print("skip pulls %s (%s): %s" % (key, login, exc))
+            continue
+        prs.sort(key=lambda p: p.get("opened", ""), reverse=True)
+        lists[key] = prs
+        print("pulls refreshed (%s/%s): %d" % (key, login, len(prs)))
+
+    if "gh_badhope" in lists:
+        accounts["gh_badhope"]["pull_requests"] = lists["gh_badhope"]
+        for mirror in ("gitee_badhope", "gitcode_badhope"):
+            if mirror in accounts:
+                accounts[mirror]["pull_requests"] = lists["gh_badhope"][: PULLS_LIMIT["mirror"]]
+    for key in ("gh_morningstar", "gh_x33834"):
+        if key in lists and key in accounts:
+            accounts[key]["pull_requests"] = lists[key]
+    if lists:
+        contributions["as_of"] = today_utc()
+        contributions["source"] = "GitHub Search / pulls API snapshot"
+
+
 def refresh_platform_repos(repos_data, key, token, base_url, detail_url, namespace_type, label, detail=False, cross_fill_from=()):
     """Upsert per-repo entries from a Gitee/GitCode v5 list endpoint.
 
@@ -376,9 +495,22 @@ def refresh_platform_repos(repos_data, key, token, base_url, detail_url, namespa
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--section", choices=["stats", "calendar", "repos"], required=True)
+    ap.add_argument("--section", choices=["stats", "calendar", "repos", "pulls"], required=True)
     ap.add_argument("--platform", choices=["github", "gitee", "gitcode"], required=True)
     args = ap.parse_args(argv)
+
+    if args.section == "pulls":
+        if args.platform != "github":
+            ap.error("pulls is a github-only section")
+        data = json.loads(CONTRIBUTIONS_PATH.read_text(encoding="utf-8")) if CONTRIBUTIONS_PATH.exists() else {"accounts": {}}
+        try:
+            refresh_pulls(data, os.environ.get("GITHUB_TOKEN"))
+        except OSError as exc:
+            print("pulls fetch failed, keeping previous data: %s" % exc)
+            return 0
+        CONTRIBUTIONS_PATH.write_text(json.dumps(data, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+        print("pulls written: as_of=%s" % data.get("as_of"))
+        return 0
 
     if args.section == "stats":
         stats = json.loads(STATS_PATH.read_text(encoding="utf-8")) if STATS_PATH.exists() else {}

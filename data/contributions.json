@@ -1,415 +1,463 @@
 {
-  "as_of": "2026-11-22",
-  "source": "GitHub Search API / pulls API snapshot",
-  "projects": {
-    "harbor": {
-      "name": "harbor",
-      "stack": "Python",
-      "note": "self-hosted publishing hub; one draft, 15 channels",
-      "note_zh": "自托管发布枢纽；一份草稿分发 15 个渠道",
-      "note_ja": "自ホスト配信ハブ；1 つの草稿を 15 チャネルへ"
+ "accounts": {
+  "gh_badhope": {
+   "projects": [
+    "harbor",
+    "spark",
+    "moneyhelper",
+    "workbench",
+    "world-walker",
+    "digilegacy",
+    "sciflow",
+    "aquapilot"
+   ],
+   "pull_requests": [
+    {
+     "additions": 38,
+     "comments": 6,
+     "deletions": 0,
+     "files": 1,
+     "merged_at": "2026-11-24",
+     "number": 1675,
+     "opened": "2026-11-23",
+     "repo": "davila7/claude-code-templates",
+     "status": "merged",
+     "title": "Add release-manager agent (development-team)"
     },
-    "spark": {
-      "name": "spark",
-      "stack": "Python · React",
-      "note": "self-hosted coding-agent harness; sandboxed runs, MCP tools",
-      "note_zh": "自托管编码智能体底座；沙箱执行、MCP 工具",
-      "note_ja": "自ホスト型コーディングエージェント基盤；サンドボックス実行、MCP ツール"
+    {
+     "additions": 70,
+     "comments": 1,
+     "deletions": 16,
+     "files": 2,
+     "merged_at": null,
+     "number": 517,
+     "opened": "2026-11-23",
+     "repo": "Infisical/cli",
+     "status": "open",
+     "title": "fix(secrets): set expands NAME=@filepath with a token like it does with a login"
     },
-    "moneyhelper": {
-      "name": "moneyhelper",
-      "stack": "FastAPI · LangGraph · React",
-      "note": "chat-first finance agent; bookkeeping, portfolio risk, filings",
-      "note_zh": "对话式理财 Agent；记账、持仓风控、财报",
-      "note_ja": "対話型家計エージェント；記帳、ポートフォリオ・リスク、決算"
+    {
+     "additions": 446,
+     "comments": 0,
+     "deletions": 62,
+     "files": 8,
+     "merged_at": null,
+     "number": 11226,
+     "opened": "2026-11-23",
+     "repo": "dapr/dapr",
+     "status": "open",
+     "title": "feat(api): standardize workflow api errors with the rich error model"
     },
-    "workbench": {
-      "name": "workbench",
-      "stack": "Tauri 2 · React 19 · TypeScript",
-      "note": "desktop workbench; clipboard, snippets, windows, quick launch",
-      "note_zh": "桌面工作台；剪贴板、片段、窗口、快速启动",
-      "note_ja": "デスクトップ作業台；クリップボード、スニペット、ウィンドウ、クイック起動"
+    {
+     "additions": 112,
+     "comments": 1,
+     "deletions": 8,
+     "files": 3,
+     "merged_at": null,
+     "number": 516,
+     "opened": "2026-11-23",
+     "repo": "Infisical/cli",
+     "status": "open",
+     "title": "feat(export): add --quote-style to the dotenv export formats"
     },
-    "world-walker": {
-      "name": "world-walker",
-      "stack": "Python stdlib · MCP",
-      "note": "deterministic rules layer for AI interactive fiction",
-      "note_zh": "AI 互动小说的确定性规则层",
-      "note_ja": "AI インタラクティブ小説の決定論的ルール層"
+    {
+     "additions": 3,
+     "comments": 2,
+     "deletions": 3,
+     "files": 1,
+     "merged_at": "2026-11-23",
+     "number": 23016,
+     "opened": "2026-11-23",
+     "repo": "kestra-io/kestra",
+     "status": "merged",
+     "title": "docs(assets): fix devcontainer links and image paths in contributing guide"
     },
-    "digilegacy": {
-      "name": "digilegacy",
-      "stack": "Rust",
-      "note": "self-hosted digital legacy planning; assets, heirs, release rules",
-      "note_zh": "自托管数字遗产规划；资产、继承人、释放规则",
-      "note_ja": "自ホスト型デジタル遺産計画；資産、相続人、解放ルール"
-    },
-    "sciflow": {
-      "name": "sciflow",
-      "stack": "Python · TypeScript",
-      "note": "research workbench; literature, experiment log, drafting",
-      "note_zh": "科研工作台；文献、实验记录、结构化写作",
-      "note_ja": "研究ワークベンチ；文献、実験記録、構造化執筆"
-    },
-    "aquapilot": {
-      "name": "aquapilot",
-      "stack": "TypeScript",
-      "note": "wastewater process simulation; editable flowsheet, ASM1",
-      "note_zh": "废水工艺模拟；可编辑流程、ASM1",
-      "note_ja": "排水処理プロセスのシミュレーション；編集可能なフロー、ASM1"
-    },
-    "CodePocket": {
-      "name": "CodePocket",
-      "stack": "Kotlin · CPython 3.13",
-      "note": "offline-first Android Python IDE; native CPython",
-      "note_zh": "离线优先的 Android Python IDE；原生 CPython",
-      "note_ja": "オフライン優先の Android Python IDE；ネイティブ CPython"
-    },
-    "quiz-chest": {
-      "name": "quiz-chest",
-      "stack": "TypeScript",
-      "note": "local-first question bank; import, tag, drill",
-      "note_zh": "本地优先题库；导入、打标、刷题",
-      "note_ja": "ローカル優先の問題バンク；取り込み、タグ付け、反復"
-    },
-    "mashang": {
-      "name": "mashang",
-      "stack": "Kotlin · CPython 3.13",
-      "note": "offline programming terminal; quests, assert grading",
-      "note_zh": "离线编程终端；关卡、assert 判题",
-      "note_ja": "オフライン・プログラミング端末；ステージ、assert 採点"
-    },
-    "pocketmind": {
-      "name": "pocketmind",
-      "stack": "Android · on-device",
-      "note": "resident Android agent; one APK, on-device tools",
-      "note_zh": "Android 常驻 Agent；单 APK、端侧工具",
-      "note_ja": "Android 常駐エージェント；単一 APK、端末内ツール"
-    },
-    "bigrobot": {
-      "name": "bigrobot",
-      "stack": "Python",
-      "note": "self-hosted AI workspace for owned accounts; groups, files, tools",
-      "note_zh": "自托管 AI 工作区；分组、文件、工具",
-      "note_ja": "自ホスト型 AI ワークスペース；グループ、ファイル、ツール"
-    },
-    "creator-studio": {
-      "name": "creator-studio",
-      "stack": "TypeScript",
-      "note": "local-first production desk for solo creators; six pipelines",
-      "note_zh": "面向个人创作者的本地产线；六条流水线",
-      "note_ja": "個人クリエイター向けローカル制作台；6 本のパイプライン"
+    {
+     "additions": 92,
+     "comments": 5,
+     "deletions": 0,
+     "files": 1,
+     "merged_at": null,
+     "number": 1673,
+     "opened": "2026-11-23",
+     "repo": "davila7/claude-code-templates",
+     "status": "open",
+     "title": "Add env-var-auditor skill (development)"
     }
+   ]
   },
-  "accounts": {
-    "gh_badhope": {
-      "projects": [
-        "harbor",
-        "spark",
-        "moneyhelper",
-        "workbench",
-        "world-walker",
-        "digilegacy",
-        "sciflow",
-        "aquapilot"
-      ],
-      "pull_requests": [
-        {
-          "repo": "mogenius/renovate-operator",
-          "number": 796,
-          "title": "feat(webhook): rotate the webhook auth token via an annotation",
-          "status": "open",
-          "opened": "2026-11-05",
-          "merged_at": "",
-          "additions": 417,
-          "deletions": 23,
-          "files": 14,
-          "comments": 2
-        },
-        {
-          "repo": "ncepu-iDealStudio/Fast-Https",
-          "number": 9,
-          "title": "fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试",
-          "status": "merged",
-          "opened": "2026-11-06",
-          "merged_at": "2026-11-07",
-          "additions": 162,
-          "deletions": 36,
-          "files": 11,
-          "comments": 1
-        },
-        {
-          "repo": "evilmartians/lefthook",
-          "number": 1629,
-          "title": "fix: apply the staged-files fallback to pre-merge-commit",
-          "status": "open",
-          "opened": "2026-11-05",
-          "merged_at": "",
-          "additions": 63,
-          "deletions": 2,
-          "files": 5,
-          "comments": 1
-        },
-        {
-          "repo": "sqlfluff/sqlfluff",
-          "number": 9009,
-          "title": "Snowflake: parse an empty PACKAGES list",
-          "status": "merged",
-          "opened": "2026-11-05",
-          "merged_at": "2026-11-05",
-          "additions": 56,
-          "deletions": 2,
-          "files": 3,
-          "comments": 1
-        },
-        {
-          "repo": "mogenius/renovate-operator",
-          "number": 772,
-          "title": "feat(ui): add a check-all toggle to the log level filter",
-          "status": "merged",
-          "opened": "2026-10-30",
-          "merged_at": "2026-10-31",
-          "additions": 44,
-          "deletions": 0,
-          "files": 3,
-          "comments": 0
-        },
-        {
-          "repo": "betterleaks/betterleaks",
-          "number": 456,
-          "title": "fix(generic-api-key): detect base64 secrets that start with + or /",
-          "status": "open",
-          "opened": "2026-11-05",
-          "merged_at": "",
-          "additions": 15,
-          "deletions": 4,
-          "files": 3,
-          "comments": 3
-        }
-      ]
+  "gh_morningstar": {
+   "projects": [
+    "sciflow",
+    "world-walker",
+    "digilegacy",
+    "harbor",
+    "creator-studio",
+    "moneyhelper",
+    "spark",
+    "workbench"
+   ],
+   "pull_requests": [
+    {
+     "additions": 775,
+     "comments": 0,
+     "deletions": 152,
+     "files": 20,
+     "merged_at": null,
+     "number": 36,
+     "opened": "2026-11-24",
+     "repo": "badhope/CodePocket",
+     "status": "open",
+     "title": "feat(0.0.29): ANSI \u7ec8\u7aef\u6a21\u62df\u5668\uff08\u672c\u5730 xterm.js\uff09"
     },
-    "gh_x33834": {
-      "projects": [
-        "world-walker",
-        "harbor",
-        "CodePocket",
-        "mashang",
-        "workbench",
-        "digilegacy",
-        "moneyhelper",
-        "bigrobot"
-      ],
-      "pull_requests": [
-        {
-          "repo": "apache/airflow",
-          "number": 73099,
-          "title": "Support Table objects in BigQueryHook.create_table table_resource",
-          "status": "merged",
-          "opened": "2026-09-24",
-          "merged_at": "2026-10-05",
-          "additions": 82,
-          "deletions": 4,
-          "files": 3,
-          "comments": 11
-        },
-        {
-          "repo": "y1s11564/simona-desktop-app",
-          "number": 1,
-          "title": "移动端适配：安卓原生壳 UI 美化 + Web UI 布局修复",
-          "status": "closed",
-          "opened": "2026-09-13",
-          "merged_at": null,
-          "additions": 325,
-          "deletions": 80,
-          "files": 14,
-          "comments": 0
-        }
-      ]
+    {
+     "additions": 1862,
+     "comments": 1,
+     "deletions": 139,
+     "files": 113,
+     "merged_at": null,
+     "number": 33,
+     "opened": "2026-11-23",
+     "repo": "badhope/CodePocket",
+     "status": "closed",
+     "title": "0.0.26\uff1a\u6b63\u5f0f\u7b7e\u540d\u3001x86_64 \u53cc ABI\u3001\u7ec8\u7aef\u4e0e\u53ea\u8bfb\u5b50 Agent"
     },
-    "gh_morningstar": {
-      "projects": [
-        "sciflow",
-        "world-walker",
-        "digilegacy",
-        "harbor",
-        "creator-studio",
-        "moneyhelper",
-        "spark",
-        "workbench"
-      ],
-      "pull_requests": [
-        {
-          "repo": "ohmyzsh/ohmyzsh",
-          "number": 14140,
-          "title": "feat(core): add `omz diagnose` locale check",
-          "status": "open",
-          "opened": "2026-09-29",
-          "merged_at": null,
-          "additions": 39,
-          "deletions": 0,
-          "files": 2,
-          "comments": 2
-        },
-        {
-          "repo": "PyCalendar/icalendar",
-          "number": 1731,
-          "title": "docs: stop composing single_utc_property docstrings from the property name",
-          "status": "merged",
-          "opened": "2026-09-02",
-          "merged_at": "2026-09-08",
-          "additions": 129,
-          "deletions": 16,
-          "files": 4,
-          "comments": 22
-        },
-        {
-          "repo": "PyCalendar/icalendar",
-          "number": 1751,
-          "title": "Refactor TYPE_CHECKING imports to use public exports from icalendar.cal",
-          "status": "merged",
-          "opened": "2026-09-02",
-          "merged_at": "2026-09-03",
-          "additions": 4,
-          "deletions": 4,
-          "files": 4,
-          "comments": 8
-        },
-        {
-          "repo": "ohmyzsh/ohmyzsh",
-          "number": 14021,
-          "title": "fix(pipenv): keep activation and the project directory in sync",
-          "status": "merged",
-          "opened": "2026-08-25",
-          "merged_at": "2026-09-05",
-          "additions": 12,
-          "deletions": 5,
-          "files": 1,
-          "comments": 1
-        },
-        {
-          "repo": "jaychouchannel/claude-tool-agent",
-          "number": 34,
-          "title": "fix(frontend): 星号强调仅限单行配对，* 列表与行内代码不再被误吞",
-          "status": "merged",
-          "opened": "2026-09-28",
-          "merged_at": "2026-10-11",
-          "additions": 13,
-          "deletions": 8,
-          "files": 1,
-          "comments": 1
-        },
-        {
-          "repo": "jaychouchannel/claude-tool-agent",
-          "number": 33,
-          "title": "fix(orchestrator): 修复回复开头 @ 导致的链式发言断链",
-          "status": "merged",
-          "opened": "2026-08-28",
-          "merged_at": "2026-08-29",
-          "additions": 85,
-          "deletions": 5,
-          "files": 3,
-          "comments": 0
-        }
-      ]
+    {
+     "additions": 1055,
+     "comments": 0,
+     "deletions": 76,
+     "files": 28,
+     "merged_at": null,
+     "number": 32,
+     "opened": "2026-11-23",
+     "repo": "badhope/CodePocket",
+     "status": "open",
+     "title": "feat(0.0.25): Agent \u8ba1\u5212\u6a21\u5f0f + \u4e0a\u4e0b\u6587\u9884\u7b97 + \u591a Provider / MCP / \u7ec8\u7aef\u8865\u9f50"
     },
-    "gitee_badhope": {
-      "projects": [
-        "CodePocket",
-        "quiz-chest",
-        "mashang",
-        "moneyhelper",
-        "spark",
-        "world-walker",
-        "harbor"
-      ],
-      "pull_requests": [
-        {
-          "repo": "mogenius/renovate-operator",
-          "number": 796,
-          "title": "feat(webhook): rotate the webhook auth token via an annotation",
-          "status": "open",
-          "opened": "2026-11-05",
-          "merged_at": "",
-          "additions": 417,
-          "deletions": 23,
-          "files": 14,
-          "comments": 2
-        },
-        {
-          "repo": "ncepu-iDealStudio/Fast-Https",
-          "number": 9,
-          "title": "fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试",
-          "status": "merged",
-          "opened": "2026-11-06",
-          "merged_at": "2026-11-07",
-          "additions": 162,
-          "deletions": 36,
-          "files": 11,
-          "comments": 1
-        },
-        {
-          "repo": "sqlfluff/sqlfluff",
-          "number": 9009,
-          "title": "Snowflake: parse an empty PACKAGES list",
-          "status": "merged",
-          "opened": "2026-11-05",
-          "merged_at": "2026-11-05",
-          "additions": 56,
-          "deletions": 2,
-          "files": 3,
-          "comments": 1
-        }
-      ]
+    {
+     "additions": 43933,
+     "comments": 0,
+     "deletions": 44398,
+     "files": 7,
+     "merged_at": "2026-11-20",
+     "number": 22,
+     "opened": "2026-11-20",
+     "repo": "Nailong-Studio/NaiLoong-Universe",
+     "status": "merged",
+     "title": "feat(v18.7.5): \u8def\u7531\u53cc\u5e55\u8f6c\u573a\u4e0e\u54cd\u5e94\u5f0f\u52a8\u6548"
     },
-    "gitcode_badhope": {
-      "projects": [
-        "mashang",
-        "pocketmind",
-        "CodePocket",
-        "workbench",
-        "moneyhelper",
-        "spark",
-        "world-walker",
-        "harbor"
-      ],
-      "pull_requests": [
-        {
-          "repo": "mogenius/renovate-operator",
-          "number": 796,
-          "title": "feat(webhook): rotate the webhook auth token via an annotation",
-          "status": "open",
-          "opened": "2026-11-05",
-          "merged_at": "",
-          "additions": 417,
-          "deletions": 23,
-          "files": 14,
-          "comments": 2
-        },
-        {
-          "repo": "ncepu-iDealStudio/Fast-Https",
-          "number": 9,
-          "title": "fix: 三个深层问题——代理请求帧描述（走私）、两处限流失效、flaky 测试",
-          "status": "merged",
-          "opened": "2026-11-06",
-          "merged_at": "2026-11-07",
-          "additions": 162,
-          "deletions": 36,
-          "files": 11,
-          "comments": 1
-        },
-        {
-          "repo": "sqlfluff/sqlfluff",
-          "number": 9009,
-          "title": "Snowflake: parse an empty PACKAGES list",
-          "status": "merged",
-          "opened": "2026-11-05",
-          "merged_at": "2026-11-05",
-          "additions": 56,
-          "deletions": 2,
-          "files": 3,
-          "comments": 1
-        }
-      ]
+    {
+     "additions": 615,
+     "comments": 0,
+     "deletions": 365,
+     "files": 8,
+     "merged_at": "2026-11-20",
+     "number": 21,
+     "opened": "2026-11-20",
+     "repo": "Nailong-Studio/NaiLoong-Universe",
+     "status": "merged",
+     "title": "v18.7.4 \u00b7 \u4e25\u683c\u8c03\u8bd5\uff1a\u6309\u94ae\u70b9\u51fb\u3001\u5207\u9875\u6eda\u52a8\u3001\u5b57\u4f53\u5bf9\u6bd4\u4e0e\u516b\u5385\u7f57\u76d8"
+    },
+    {
+     "additions": 113,
+     "comments": 0,
+     "deletions": 3,
+     "files": 4,
+     "merged_at": "2026-10-17",
+     "number": 3,
+     "opened": "2026-10-17",
+     "repo": "Nailong-Studio/NaiLoong-Universe",
+     "status": "merged",
+     "title": "feat(sfx): \u8da3\u5473\u97f3\u6548\u2014\u2014\u5582\u5230\u54c8\u54c8\u5927\u7b11\uff0c\u88ab\u5403\u5676\u5c31\u585e\uff08v17.6\uff09"
     }
+   ]
+  },
+  "gh_x33834": {
+   "projects": [
+    "world-walker",
+    "harbor",
+    "CodePocket",
+    "mashang",
+    "workbench",
+    "digilegacy",
+    "moneyhelper",
+    "bigrobot"
+   ],
+   "pull_requests": [
+    {
+     "additions": 85766,
+     "comments": 0,
+     "deletions": 21595,
+     "files": 1933,
+     "merged_at": null,
+     "number": 73672,
+     "opened": "2026-09-24",
+     "repo": "apache/airflow",
+     "status": "closed",
+     "title": "diag"
+    },
+    {
+     "additions": 14,
+     "comments": 1,
+     "deletions": 1,
+     "files": 1,
+     "merged_at": null,
+     "number": 1298,
+     "opened": "2026-09-17",
+     "repo": "chaitin/MonkeyCode",
+     "status": "closed",
+     "title": "fix(frontend): replace field-sizing:content with JS auto-resize to fix CJK cursor offset"
+    },
+    {
+     "additions": 23,
+     "comments": 0,
+     "deletions": 0,
+     "files": 1,
+     "merged_at": null,
+     "number": 6,
+     "opened": "2026-09-15",
+     "repo": "y1s11564/simona-desktop-app",
+     "status": "closed",
+     "title": "security: \u751f\u4ea7\u73af\u5883 CSP \u767d\u540d\u5355"
+    },
+    {
+     "additions": 9,
+     "comments": 0,
+     "deletions": 2,
+     "files": 1,
+     "merged_at": null,
+     "number": 5,
+     "opened": "2026-09-15",
+     "repo": "y1s11564/simona-desktop-app",
+     "status": "closed",
+     "title": "perf: \u957f\u4f1a\u8bdd\u6d88\u606f\u6e32\u67d3\u4f18\u5316"
+    },
+    {
+     "additions": 45,
+     "comments": 0,
+     "deletions": 0,
+     "files": 2,
+     "merged_at": null,
+     "number": 4,
+     "opened": "2026-09-15",
+     "repo": "y1s11564/simona-desktop-app",
+     "status": "closed",
+     "title": "style: design tokens / \u7126\u70b9\u53ef\u89c1\u6027 / \u79fb\u52a8\u7aef dvh"
+    },
+    {
+     "additions": 193,
+     "comments": 0,
+     "deletions": 68,
+     "files": 7,
+     "merged_at": null,
+     "number": 3,
+     "opened": "2026-09-15",
+     "repo": "y1s11564/simona-desktop-app",
+     "status": "closed",
+     "title": "chore: ESLint/Prettier/Vitest \u5de5\u5177\u94fe + Markdown \u7eaf\u51fd\u6570\u5355\u6d4b"
+    }
+   ]
+  },
+  "gitcode_badhope": {
+   "projects": [
+    "mashang",
+    "pocketmind",
+    "CodePocket",
+    "workbench",
+    "moneyhelper",
+    "spark",
+    "world-walker",
+    "harbor"
+   ],
+   "pull_requests": [
+    {
+     "additions": 38,
+     "comments": 6,
+     "deletions": 0,
+     "files": 1,
+     "merged_at": "2026-11-24",
+     "number": 1675,
+     "opened": "2026-11-23",
+     "repo": "davila7/claude-code-templates",
+     "status": "merged",
+     "title": "Add release-manager agent (development-team)"
+    },
+    {
+     "additions": 70,
+     "comments": 1,
+     "deletions": 16,
+     "files": 2,
+     "merged_at": null,
+     "number": 517,
+     "opened": "2026-11-23",
+     "repo": "Infisical/cli",
+     "status": "open",
+     "title": "fix(secrets): set expands NAME=@filepath with a token like it does with a login"
+    },
+    {
+     "additions": 446,
+     "comments": 0,
+     "deletions": 62,
+     "files": 8,
+     "merged_at": null,
+     "number": 11226,
+     "opened": "2026-11-23",
+     "repo": "dapr/dapr",
+     "status": "open",
+     "title": "feat(api): standardize workflow api errors with the rich error model"
+    }
+   ]
+  },
+  "gitee_badhope": {
+   "projects": [
+    "CodePocket",
+    "quiz-chest",
+    "mashang",
+    "moneyhelper",
+    "spark",
+    "world-walker",
+    "harbor"
+   ],
+   "pull_requests": [
+    {
+     "additions": 38,
+     "comments": 6,
+     "deletions": 0,
+     "files": 1,
+     "merged_at": "2026-11-24",
+     "number": 1675,
+     "opened": "2026-11-23",
+     "repo": "davila7/claude-code-templates",
+     "status": "merged",
+     "title": "Add release-manager agent (development-team)"
+    },
+    {
+     "additions": 70,
+     "comments": 1,
+     "deletions": 16,
+     "files": 2,
+     "merged_at": null,
+     "number": 517,
+     "opened": "2026-11-23",
+     "repo": "Infisical/cli",
+     "status": "open",
+     "title": "fix(secrets): set expands NAME=@filepath with a token like it does with a login"
+    },
+    {
+     "additions": 446,
+     "comments": 0,
+     "deletions": 62,
+     "files": 8,
+     "merged_at": null,
+     "number": 11226,
+     "opened": "2026-11-23",
+     "repo": "dapr/dapr",
+     "status": "open",
+     "title": "feat(api): standardize workflow api errors with the rich error model"
+    }
+   ]
   }
+ },
+ "as_of": "2026-11-24",
+ "projects": {
+  "CodePocket": {
+   "name": "CodePocket",
+   "note": "offline-first Android Python IDE; native CPython",
+   "note_ja": "\u30aa\u30d5\u30e9\u30a4\u30f3\u512a\u5148\u306e Android Python IDE\uff1b\u30cd\u30a4\u30c6\u30a3\u30d6 CPython",
+   "note_zh": "\u79bb\u7ebf\u4f18\u5148\u7684 Android Python IDE\uff1b\u539f\u751f CPython",
+   "stack": "Kotlin \u00b7 CPython 3.13"
+  },
+  "aquapilot": {
+   "name": "aquapilot",
+   "note": "wastewater process simulation; editable flowsheet, ASM1",
+   "note_ja": "\u6392\u6c34\u51e6\u7406\u30d7\u30ed\u30bb\u30b9\u306e\u30b7\u30df\u30e5\u30ec\u30fc\u30b7\u30e7\u30f3\uff1b\u7de8\u96c6\u53ef\u80fd\u306a\u30d5\u30ed\u30fc\u3001ASM1",
+   "note_zh": "\u5e9f\u6c34\u5de5\u827a\u6a21\u62df\uff1b\u53ef\u7f16\u8f91\u6d41\u7a0b\u3001ASM1",
+   "stack": "TypeScript"
+  },
+  "bigrobot": {
+   "name": "bigrobot",
+   "note": "self-hosted AI workspace for owned accounts; groups, files, tools",
+   "note_ja": "\u81ea\u30db\u30b9\u30c8\u578b AI \u30ef\u30fc\u30af\u30b9\u30da\u30fc\u30b9\uff1b\u30b0\u30eb\u30fc\u30d7\u3001\u30d5\u30a1\u30a4\u30eb\u3001\u30c4\u30fc\u30eb",
+   "note_zh": "\u81ea\u6258\u7ba1 AI \u5de5\u4f5c\u533a\uff1b\u5206\u7ec4\u3001\u6587\u4ef6\u3001\u5de5\u5177",
+   "stack": "Python"
+  },
+  "creator-studio": {
+   "name": "creator-studio",
+   "note": "local-first production desk for solo creators; six pipelines",
+   "note_ja": "\u500b\u4eba\u30af\u30ea\u30a8\u30a4\u30bf\u30fc\u5411\u3051\u30ed\u30fc\u30ab\u30eb\u5236\u4f5c\u53f0\uff1b6 \u672c\u306e\u30d1\u30a4\u30d7\u30e9\u30a4\u30f3",
+   "note_zh": "\u9762\u5411\u4e2a\u4eba\u521b\u4f5c\u8005\u7684\u672c\u5730\u4ea7\u7ebf\uff1b\u516d\u6761\u6d41\u6c34\u7ebf",
+   "stack": "TypeScript"
+  },
+  "digilegacy": {
+   "name": "digilegacy",
+   "note": "self-hosted digital legacy planning; assets, heirs, release rules",
+   "note_ja": "\u81ea\u30db\u30b9\u30c8\u578b\u30c7\u30b8\u30bf\u30eb\u907a\u7523\u8a08\u753b\uff1b\u8cc7\u7523\u3001\u76f8\u7d9a\u4eba\u3001\u89e3\u653e\u30eb\u30fc\u30eb",
+   "note_zh": "\u81ea\u6258\u7ba1\u6570\u5b57\u9057\u4ea7\u89c4\u5212\uff1b\u8d44\u4ea7\u3001\u7ee7\u627f\u4eba\u3001\u91ca\u653e\u89c4\u5219",
+   "stack": "Rust"
+  },
+  "harbor": {
+   "name": "harbor",
+   "note": "self-hosted publishing hub; one draft, 15 channels",
+   "note_ja": "\u81ea\u30db\u30b9\u30c8\u914d\u4fe1\u30cf\u30d6\uff1b1 \u3064\u306e\u8349\u7a3f\u3092 15 \u30c1\u30e3\u30cd\u30eb\u3078",
+   "note_zh": "\u81ea\u6258\u7ba1\u53d1\u5e03\u67a2\u7ebd\uff1b\u4e00\u4efd\u8349\u7a3f\u5206\u53d1 15 \u4e2a\u6e20\u9053",
+   "stack": "Python"
+  },
+  "mashang": {
+   "name": "mashang",
+   "note": "offline programming terminal; quests, assert grading",
+   "note_ja": "\u30aa\u30d5\u30e9\u30a4\u30f3\u30fb\u30d7\u30ed\u30b0\u30e9\u30df\u30f3\u30b0\u7aef\u672b\uff1b\u30b9\u30c6\u30fc\u30b8\u3001assert \u63a1\u70b9",
+   "note_zh": "\u79bb\u7ebf\u7f16\u7a0b\u7ec8\u7aef\uff1b\u5173\u5361\u3001assert \u5224\u9898",
+   "stack": "Kotlin \u00b7 CPython 3.13"
+  },
+  "moneyhelper": {
+   "name": "moneyhelper",
+   "note": "chat-first finance agent; bookkeeping, portfolio risk, filings",
+   "note_ja": "\u5bfe\u8a71\u578b\u5bb6\u8a08\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\uff1b\u8a18\u5e33\u3001\u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa\u30fb\u30ea\u30b9\u30af\u3001\u6c7a\u7b97",
+   "note_zh": "\u5bf9\u8bdd\u5f0f\u7406\u8d22 Agent\uff1b\u8bb0\u8d26\u3001\u6301\u4ed3\u98ce\u63a7\u3001\u8d22\u62a5",
+   "stack": "FastAPI \u00b7 LangGraph \u00b7 React"
+  },
+  "pocketmind": {
+   "name": "pocketmind",
+   "note": "resident Android agent; one APK, on-device tools",
+   "note_ja": "Android \u5e38\u99d0\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\uff1b\u5358\u4e00 APK\u3001\u7aef\u672b\u5185\u30c4\u30fc\u30eb",
+   "note_zh": "Android \u5e38\u9a7b Agent\uff1b\u5355 APK\u3001\u7aef\u4fa7\u5de5\u5177",
+   "stack": "Android \u00b7 on-device"
+  },
+  "quiz-chest": {
+   "name": "quiz-chest",
+   "note": "local-first question bank; import, tag, drill",
+   "note_ja": "\u30ed\u30fc\u30ab\u30eb\u512a\u5148\u306e\u554f\u984c\u30d0\u30f3\u30af\uff1b\u53d6\u308a\u8fbc\u307f\u3001\u30bf\u30b0\u4ed8\u3051\u3001\u53cd\u5fa9",
+   "note_zh": "\u672c\u5730\u4f18\u5148\u9898\u5e93\uff1b\u5bfc\u5165\u3001\u6253\u6807\u3001\u5237\u9898",
+   "stack": "TypeScript"
+  },
+  "sciflow": {
+   "name": "sciflow",
+   "note": "research workbench; literature, experiment log, drafting",
+   "note_ja": "\u7814\u7a76\u30ef\u30fc\u30af\u30d9\u30f3\u30c1\uff1b\u6587\u732e\u3001\u5b9f\u9a13\u8a18\u9332\u3001\u69cb\u9020\u5316\u57f7\u7b46",
+   "note_zh": "\u79d1\u7814\u5de5\u4f5c\u53f0\uff1b\u6587\u732e\u3001\u5b9e\u9a8c\u8bb0\u5f55\u3001\u7ed3\u6784\u5316\u5199\u4f5c",
+   "stack": "Python \u00b7 TypeScript"
+  },
+  "spark": {
+   "name": "spark",
+   "note": "self-hosted coding-agent harness; sandboxed runs, MCP tools",
+   "note_ja": "\u81ea\u30db\u30b9\u30c8\u578b\u30b3\u30fc\u30c7\u30a3\u30f3\u30b0\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u57fa\u76e4\uff1b\u30b5\u30f3\u30c9\u30dc\u30c3\u30af\u30b9\u5b9f\u884c\u3001MCP \u30c4\u30fc\u30eb",
+   "note_zh": "\u81ea\u6258\u7ba1\u7f16\u7801\u667a\u80fd\u4f53\u5e95\u5ea7\uff1b\u6c99\u7bb1\u6267\u884c\u3001MCP \u5de5\u5177",
+   "stack": "Python \u00b7 React"
+  },
+  "workbench": {
+   "name": "workbench",
+   "note": "desktop workbench; clipboard, snippets, windows, quick launch",
+   "note_ja": "\u30c7\u30b9\u30af\u30c8\u30c3\u30d7\u4f5c\u696d\u53f0\uff1b\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3001\u30b9\u30cb\u30da\u30c3\u30c8\u3001\u30a6\u30a3\u30f3\u30c9\u30a6\u3001\u30af\u30a4\u30c3\u30af\u8d77\u52d5",
+   "note_zh": "\u684c\u9762\u5de5\u4f5c\u53f0\uff1b\u526a\u8d34\u677f\u3001\u7247\u6bb5\u3001\u7a97\u53e3\u3001\u5feb\u901f\u542f\u52a8",
+   "stack": "Tauri 2 \u00b7 React 19 \u00b7 TypeScript"
+  },
+  "world-walker": {
+   "name": "world-walker",
+   "note": "deterministic rules layer for AI interactive fiction",
+   "note_ja": "AI \u30a4\u30f3\u30bf\u30e9\u30af\u30c6\u30a3\u30d6\u5c0f\u8aac\u306e\u6c7a\u5b9a\u8ad6\u7684\u30eb\u30fc\u30eb\u5c64",
+   "note_zh": "AI \u4e92\u52a8\u5c0f\u8bf4\u7684\u786e\u5b9a\u6027\u89c4\u5219\u5c42",
+   "stack": "Python stdlib \u00b7 MCP"
+  }
+ },
+ "source": "GitHub Search / pulls API snapshot"
 }
